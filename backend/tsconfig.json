@@ -1,0 +1,27 @@
+{
+    "compilerOptions": {
+        "module": "commonjs",
+        "target": "es2017",
+        "noImplicitAny": true,
+        "outDir": "./dist",
+        "sourceMap": true,
+        "noImplicitReturns": true,
+        "allowUnreachableCode": false,
+        "alwaysStrict": true,
+        "moduleResolution": "node",
+        "noImplicitThis": true,
+        "resolveJsonModule": true,
+        "baseUrl": "./src",
+        "paths": {
+        }
+    },
+    "include": [
+        "./src/**/*",
+        "../api/**/*.d.ts",
+    ],
+    "exclude": [
+        "node_modules/**/*.*",
+        "dist/**/*.js"
+    ]
+
+}
