@@ -1,13 +1,10 @@
-import * as express from "express"; 
-//import express = require("express");
-// Create a new express app instance
-//const app: express.Application = express();
+import * as express from 'express';
+import {a} from "./dataAccess/dataBase/connectdb"
 
-var app = express();
-
-app.get("/", function (req, res) {
-res.send("Hello World!");
+const app = express();
+ 
+app.get('/', (request, response) => {
+  response.send(' index.ts');
 });
-app.listen(3000, function () {
-console.log("App is listening on port 3000!");
-});
+ 
+app.listen(3000);
