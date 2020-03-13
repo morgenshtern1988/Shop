@@ -1,8 +1,10 @@
-const mongoose = require('mongoose');
+import * as mongoose from 'mongoose';
 
-export let a = mongoose.connect("http://mongodb://localhost:27017/shopDb")
-    .then(() => console.log("goood)"))
-    .catch( () => console.log('error'))
+export default () => {
+    mongoose.connect(process.env.MongoUrl, {useNewUrlParser: true, useUnifiedTopology: true});
+    console.log('Connected DB')
+}
+
 
 
   
