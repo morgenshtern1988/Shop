@@ -14,49 +14,36 @@ const MongoClient = require("mongodb").MongoClient;
 const objectId = require("mongodb").ObjectID;
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
-// const app = express();
 const jsonParser = express.json();
 
-const mongoClient = new MongoClient(process.env.MongoUrl, { useNewUrlParser: true });
+const mongoClient =  mongoose.connect(process.env.MongoUrl, { useNewUrlParser: true });
 
 let dbClient;
-
 // app.use(express.static(__dirname + "/public"));
-
 //СОЗДАНИЕ КОЛЛЕКЦИИ printing-edition
-mongoClient.connect(function (err: any, client: any) {
-
-  // if (err) return console.log(err);
-  // dbClient = client;
-  // app.locals.collection = client.db("BookStoreBD").collection("printing-edition");
+mongoClient(function (err: any, client: any) {
+  if (err) return console.log(err);
+  dbClient = client;
+  app.locals.collection = client.db("ShopBooks").collection("printing-edition");
   
 });
 
 app.get("/printing-edition", async function (request, response) {
-
   const collection = request.app.locals.collection;
   await collection.find({}).toArray(function (err: any, printingEdition: any) {
     if (err) return console.log(err);
     response.send(printingEdition)
-    // PrintingEditionModel.find()
-    //   .then((books)=>{
-    //     response.send(books)
-    //   })
   })
 }
 );
 
 app.post("/printing-edition", jsonParser, async (request, response): Promise<any> => {
-  // if (!request.body) return response.sendStatus(400);
-  // const printingEdition = request.body;
-  //  await PrintingEdition.insertMany(printingEdition, function (err: any, result: any) {
-  //   response.send(printingEdition);
-  // });
-  const data = request.body;
-  PrintingEdition.create(request.body)
-  
-  response.send(data)
-})
+  if (!request.body) return response.sendStatus(400);
+  const printingEdition = request.body;
+   await PrintingEdition.insertMany(printingEdition, function (err: any, result: any) {
+    response.send(printingEdition);
+  });
+});
 
 app.listen(3000, function () {
   console.log("Сервер ожидает подключения...");
