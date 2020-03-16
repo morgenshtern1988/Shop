@@ -8,12 +8,13 @@ interface PrintingEditionModel  {
     type: string;
     price: number;
     currency: string;
-    authot_ids: Array<string>;
+    author_ids: Array<string>;
 }
 
 interface PrintingEditionSchema extends PrintingEditionModel, mongoose.Document { }
 
-export const PrintingEdition = mongoose.model('printing-edition', new mongoose.Schema({
+//задаем название коллекции
+export const PrintingEditionSchema = mongoose.model('printing-edition', new mongoose.Schema({
     name: {
         type: String
     },
@@ -35,7 +36,7 @@ export const PrintingEdition = mongoose.model('printing-edition', new mongoose.S
     currency: {
         type: String
     },
-    authot_ids: {
+    author_ids: {
         type: mongoose.Schema.Types.ObjectId
     },
 }));

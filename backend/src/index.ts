@@ -2,100 +2,86 @@ import * as express from 'express';
 import *  as bodyParser from 'body-parser';
 import * as mongoose from 'mongoose';
 import connectMongo from "./dataAccess/dataBase/connectdb";
-import { User } from './dataAccess/entityModels/user';
-import { PrintingEdition } from "./dataAccess/entityModels/printing-edition";
+import {User} from './dataAccess/entityModels/user';
+import {PrintingEditionSchema} from "./dataAccess/entityModels/printing-edition";
 
-require('dotenv').config()
+require('dotenv').config();
+//конектимся с БД
 connectMongo();
 
-// const express = require("express");
 const app = express();
-const MongoClient = require("mongodb").MongoClient;
-const objectId = require("mongodb").ObjectID;
-app.use(bodyParser.urlencoded({ extended: true }))
-app.use(bodyParser.json())
+
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.json());
 const jsonParser = express.json();
 
-const mongoClient =  mongoose.connect(process.env.MongoUrl, { useNewUrlParser: true });
-
-let dbClient;
-// app.use(express.static(__dirname + "/public"));
-//СОЗДАНИЕ КОЛЛЕКЦИИ printing-edition
-mongoClient(function (err: any, client: any) {
-  if (err) return console.log(err);
-  dbClient = client;
-  app.locals.collection = client.db("ShopBooks").collection("printing-edition");
-  
-});
-
 app.get("/printing-edition", async function (request, response) {
-  const collection = request.app.locals.collection;
-  await collection.find({}).toArray(function (err: any, printingEdition: any) {
-    if (err) return console.log(err);
-    response.send(printingEdition)
-  })
-}
+        PrintingEditionSchema.find({}).then((printingEdition) => response.send(printingEdition))
+    }
 );
 
 app.post("/printing-edition", jsonParser, async (request, response): Promise<any> => {
-  if (!request.body) return response.sendStatus(400);
-  const printingEdition = request.body;
-   await PrintingEdition.insertMany(printingEdition, function (err: any, result: any) {
-    response.send(printingEdition);
-  });
+    if (!request.body) return response.sendStatus(400);
+    const printingEdition = request.body;
+    await PrintingEditionSchema.insertMany(printingEdition, function (err: any, result: any) {
+        response.send(printingEdition);
+    });
 });
+
 
 app.listen(3000, function () {
-  console.log("Сервер ожидает подключения...");
+    console.log("Сервер начинает прослушивание...");
 });
-  // const collection = request.app.locals.collection;
-  // collection.insertMany(printingEdition, function (err: any, result: any) {
 
-  //   response.send(printingEdition);
-  // });
+
+// const collection = request.app.locals.collection;
+// collection.insertMany(printingEdition, function (err: any, result: any) {
+
+//   response.send(printingEdition);
+// });
 // });
 
-  // for (let i = 0; i < request.body.length; i++) {
-  //   let name = request.body[i].name;
-  //   let description = request.body[i].description;  
-  //   let printingEdition = {
-  //         name: name,
-  //         description: description,
-  //       };
+// for (let i = 0; i < request.body.length; i++) {
+//   let name = request.body[i].name;
+//   let description = request.body[i].description;
+//   let printingEdition = {
+//         name: name,
+//         description: description,
+//       };
 
-  //   const collection = request.app.locals.collection;
-  //   collection.insertOne(printingEdition, function (err: any, result: any) {
-  //     if (err) return console.log(err);
-  //     response.send(printingEdition);
-  //   });
-  // }
-  // for (let i = 0; i <= request.body.length;) {
-    // const name = request.body.name[i];
-    // const description = request.body.description;
-    // console.log(name)
-    // let printingEdition = request.body;
-    //   console.log(request.body)
-    // const collection = request.app.locals.collection;
-    // collection.insertOne(printingEdition, function (err: any, result: any) {
+//   const collection = request.app.locals.collection;
+//   collection.insertOne(printingEdition, function (err: any, result: any) {
+//     if (err) return console.log(err);
+//     response.send(printingEdition);
+//   });
+// }
+// for (let i = 0; i <= request.body.length;) {
+// const name = request.body.name[i];
+// const description = request.body.description;
+// console.log(name)
+// let printingEdition = request.body;
+//   console.log(request.body)
+// const collection = request.app.locals.collection;
+// collection.insertOne(printingEdition, function (err: any, result: any) {
 
-    //   if (err) return console.log(err);
-    //   response.send(printingEdition);
-    // });
-  // }
-  // const name = request.body.name;
-  // const description = request.body.description;
+//   if (err) return console.log(err);
+//   response.send(printingEdition);
+// });
+// }
+// const name = request.body.name;
+// const description = request.body.description;
 
-  // let printingEdition = {
-  //       name: name,
-  //       description: description,
-  //     };
+// let printingEdition = {
+//       name: name,
+//       description: description,
+//     };
 
-  // const collection = request.app.locals.collection;
-  // collection.insertOne(printingEdition, function(err:any, result:any){
+// const collection = request.app.locals.collection;
+// collection.insertOne(printingEdition, function(err:any, result:any){
 
-  //     if(err) return console.log(err);
-  //     response.send(printingEdition);
-  // });
+//     if(err) return console.log(err);
+//     response.send(printingEdition);
+// });
 
 
 // app.post("/api/printing-edition", jsonParser, function (req: any, res: any) {
@@ -130,7 +116,6 @@ app.listen(3000, function () {
 //     res.send(printingEdition);
 //   });
 // });
-
 
 
 //   const collection = req.app.locals.collection;
@@ -169,13 +154,6 @@ app.listen(3000, function () {
 //       res.send(printingEdition);
 //     });
 // });
-
-
-
-
-
-
-
 
 
 // app.post('/',  (request: express.Request, response: express.Response) => {
