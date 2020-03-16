@@ -1,6 +1,6 @@
 import * as mongoose from 'mongoose';
 
-interface PrintingEditionModel  {
+interface IPrintingEdition  {
     name: string;
     description: string;
     cover_image: string;
@@ -11,7 +11,7 @@ interface PrintingEditionModel  {
     author_ids: Array<string>;
 }
 
-interface PrintingEditionSchema extends PrintingEditionModel, mongoose.Document { }
+interface PrintingEditionSchema extends IPrintingEdition, mongoose.Document { }
 
 //задаем название коллекции
 export const PrintingEditionSchema = mongoose.model('printing-edition', new mongoose.Schema({
