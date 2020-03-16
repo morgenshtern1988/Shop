@@ -1,19 +1,19 @@
 import * as mongoose from 'mongoose';
 
-interface PrintingEditionModel {
+interface PrintingEditionModel  {
     name: string;
-    description:string;
-    cover_image:string;
-    removes_at:string;
-    type:string;
-    price:number;
-    currency:string;
+    description: string;
+    cover_image: string;
+    removes_at: string;
+    type: string;
+    price: number;
+    currency: string;
     authot_ids: Array<string>;
 }
 
-interface PrintingEditionSchema extends PrintingEditionModel, mongoose.Document {}
+interface PrintingEditionSchema extends PrintingEditionModel, mongoose.Document { }
 
-export const PrintingEdition = mongoose.model('PrintingEdition', new mongoose.Schema({ 
+export const PrintingEdition = mongoose.model('printing-edition', new mongoose.Schema({
     name: {
         type: String
     },
@@ -37,5 +37,5 @@ export const PrintingEdition = mongoose.model('PrintingEdition', new mongoose.Sc
     },
     authot_ids: {
         type: mongoose.Schema.Types.ObjectId
-    },    
+    },
 }));
