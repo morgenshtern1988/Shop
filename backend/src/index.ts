@@ -2,9 +2,9 @@ import * as express from 'express';
 import *  as bodyParser from 'body-parser';
 import * as mongoose from 'mongoose';
 import connectMongo from "./dataAccess/dataBase/connectdb";
-// import {UserSchema} from './dataAccess/entityModels/user';
 import { PrintingEditionSchema } from "./dataAccess/entityModels/printing-edition";
-const {appPort} = require("./config/app")
+
+const { appPort } = require("./config/app")
 const auth = require("./services/auth/auth.user")
 const authMiddleware = require("./middleware/auth")
 require('dotenv').config();

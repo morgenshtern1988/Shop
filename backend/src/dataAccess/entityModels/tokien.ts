@@ -1,7 +1,5 @@
 const mongoose = require("mongoose");
 
-// import * as mongoose from 'mongoose';
-
 const TokenShema = new mongoose.Schema({
     tokenId: {
         type: String
