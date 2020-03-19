@@ -1,21 +1,25 @@
 import * as mongoose from 'mongoose';
+import {IUser} from "../../types/interface/user";
 
-interface UserModel {
-    email: string;
-    password: string;
-    role: number;
-}
+// interface UserSchema extends UserModel, mongoose.Document {}
 
-interface UserShema extends UserModel, mongoose.Document {}
-
-export const User = mongoose.model('User', new mongoose.Schema({ 
+export const UsersSchema = new mongoose.Schema({
+    userName:{
+        type:String,
+    },
+    firstName:{
+        type:Number,
+    },
     email: {
         type: String,
-    }, 
+    },
     password: {
         type: String,
     },
     role: {
-        type: Number
+        type: Array,
     }
-}));
+});
+
+interface userModel extends IUser, mongoose.Document {}
+export const userModel = mongoose.model<userModel>('User', UsersSchema);
