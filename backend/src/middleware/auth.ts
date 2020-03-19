@@ -1,26 +1,32 @@
 import * as express from 'express';
-import { JsonWebTokenError } from 'jsonwebtoken';
+import {JsonWebTokenError} from 'jsonwebtoken';
 
 const jwt = require("jsonwebtoken");
-const jwtSecret = require("../config/config")
+const {secret} = require("../config/app").jwt
 
 
 module.exports = (request: express.Request, response: express.Response, next: express.NextFunction) => {
-    
+
     const authHeader = request.get("Authorization")
     if (!authHeader) {
-        response.status(404)
+        response.status(401);
+        return;
     }
-    const token = authHeader.replace("Bearer", "");
-    console.log("--------")
-    console.log(authHeader)
-    console.log("--------")
-    console.log(token)
+    const token = authHeader.replace("String", "");
     try {
-        jwt.verify(token, jwtSecret)
+        const payload = jwt.verify(token, secret)
+        if (payload.type !== "access") {
+            response.status(401).json({message: "Invalid token!"});
+            return;
+        }
     } catch (err) {
-        if (err instanceof JsonWebTokenError) {
-            response.sendStatus(401)
+        if(err instanceof jwt.JsonWebTokenError){
+            response.sendStatus(401).json({message: "Token expired!"})
+            return;
+        }
+        if (err instanceof jwt.JsonWebTokenError) {
+            response.sendStatus(401).json({message: "Invalid token!"})
+            return;
         }
     }
     next();

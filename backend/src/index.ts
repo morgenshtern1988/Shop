@@ -4,8 +4,7 @@ import * as mongoose from 'mongoose';
 import connectMongo from "./dataAccess/dataBase/connectdb";
 // import {UserSchema} from './dataAccess/entityModels/user';
 import { PrintingEditionSchema } from "./dataAccess/entityModels/printing-edition";
-// import {registerUser, authorizationUser} from "./services/auth/auth.user";
-
+const {appPort} = require("./config/app")
 const auth = require("./services/auth/auth.user")
 const authMiddleware = require("./middleware/auth")
 require('dotenv').config();
@@ -31,10 +30,10 @@ app.post("/printing-edition", authMiddleware, async (request, response): Promise
 }
 );
 
-// app.post("/auth/register", jsonParser, registerUser);
+app.post("/auth/register", jsonParser, auth.registerUser);
 app.post("/auth/login", jsonParser, auth.authorizationUser);
+app.post("/refresh-tokens", auth.refreshTokens)
 
-
-app.listen(8080, function () {
+app.listen(appPort, function () {
     console.log("Сервер начинает прослушивание...");
 });
