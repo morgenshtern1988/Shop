@@ -1,5 +1,5 @@
 module.exports = {
-    appPort: "8888",
+    appPort: "8080",
     jwt: {
         secret: "SUPER SECRET TOKEN",
         tokens: {

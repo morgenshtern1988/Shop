@@ -32,7 +32,7 @@ app.post("/printing-edition", authMiddleware, async (request, response): Promise
 
 app.post("/auth/register", jsonParser, auth.registerUser);
 app.post("/auth/login", jsonParser, auth.authorizationUser);
-app.post("/refresh-tokens", auth.refreshTokens)
+app.post("/refresh-tokens", auth.refreshTokens);
 
 app.listen(appPort, function () {
     console.log("Сервер начинает прослушивание...");
