@@ -1,39 +1,25 @@
 import * as express from 'express';
 import *  as bodyParser from 'body-parser';
-import * as mongoose from 'mongoose';
 import connectMongo from "./dataAccess/dataBase/connectdb";
-import { PrintingEditionSchema } from "./dataAccess/entityModels/printing-edition";
-
-const { appPort } = require("./config/app")
-const auth = require("./services/auth/auth.user")
-const authMiddleware = require("./middleware/auth")
+import PORT from "./config/app";
+import { authMiddleware } from "./middleware/auth"
+// import{userRouter} from "./features/user/index";
+import { authRouter } from "./features/auth/index"
+import { adminProductRouter } from "./features/printing-editions/index"
 require('dotenv').config();
 // конектимся с БД
 connectMongo();
+
 const app = express();
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-const jsonParser = express.json();
 
-app.get("/printing-edition", authMiddleware, async function (request, response) {
-    PrintingEditionSchema.find({}).then((printingEdition) => response.send(printingEdition))
-}
-);
 
-app.post("/printing-edition", authMiddleware, async (request, response): Promise<any> => {
-    if (!request.body) return response.sendStatus(400);
-    const printingEdition = request.body;
-    await PrintingEditionSchema.insertMany(printingEdition, function (err: any, result: any) {
-        response.send(printingEdition);
-    });
-}
-);
+app.use("/auth", authRouter);
+app.use("/admin/printing-edition", adminProductRouter)
 
-app.post("/auth/register", jsonParser, auth.registerUser);
-app.post("/auth/login", jsonParser, auth.authorizationUser);
-app.post("/refresh-tokens", auth.refreshTokens);
 
-app.listen(appPort, function () {
+app.listen(PORT.appPort, function () {
     console.log("Сервер начинает прослушивание...");
 });

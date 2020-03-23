@@ -1,43 +1,33 @@
-const { tokens, secret } = require("../config/app").jwt;
-const jwt = require("jsonwebtoken");
+import * as jwt from "jsonwebtoken"
 //модуль для созданий уникального ИД
 const uuid = require("uuid/v4");
-// import * as mongoose from 'mongoose';
-const mongoose = require("mongoose")
-// const Token = mongoose.model("Token");
-import { tokenModel } from "../dataAccess/entityModels/tokien"
+import { tokenModel } from "../dataAccess/entityModels/tokien";
+import appJwt from "../config/app"
 
-const generateAccessToken = (userId: any) => {
+export const generateAccessToken = (userId: any) => {
     const payload = {
         userId,
-        type: tokens.access.type,
+        type: appJwt.jwt.tokens.access.type,
     };
-    const option = { expiresIn: tokens.access.expiresIn };
+    const option = { expiresIn: appJwt.jwt.tokens.access.expiresIn };
     //возвращает готовый token
-    return jwt.sign(payload, secret, option)
+    return jwt.sign(payload, appJwt.jwt.secret, option)
 };
 
-const generateRefreshToken = () => {
+export const generateRefreshToken = () => {
     const payload = {
-        //id token
         id: uuid(),
-        type: tokens.refresh.type,
+        type: appJwt.jwt.tokens.refresh.type,
     };
-    const option = { expiresIn: tokens.refresh.expiresIn };
+    const option = { expiresIn: appJwt.jwt.tokens.refresh.expiresIn };
     return {
         id: payload.id,
-        token: jwt.sign(payload, secret, option)
+        token: jwt.sign(payload, appJwt.jwt.secret, option)
     }
 };
 
 //перезапись refresh token в body
-const replaceDbRefreshToken = (tokenId: any, userId: any) =>
+export const replaceDbRefreshToken = (tokenId: any, userId: any) =>
     tokenModel.findOneAndRemove({ userId })
         .exec()
         .then(() => tokenModel.create({ tokenId, userId }));
-
-module.exports = {
-    replaceDbRefreshToken,
-    generateRefreshToken,
-    generateAccessToken
-};

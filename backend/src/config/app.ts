@@ -1,4 +1,4 @@
-module.exports = {
+export default {
     appPort: "8080",
     jwt: {
         secret: "SUPER SECRET TOKEN",

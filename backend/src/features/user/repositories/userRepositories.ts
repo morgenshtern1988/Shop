@@ -1,26 +1,26 @@
-import * as bcrypt from 'bcrypt';
-import * as express from 'express';
-import { userModel } from "../../dataAccess/entityModels/user";
-import * as mongoose from 'mongoose';
-import { tokenModel } from "../../dataAccess/entityModels/tokien"
+// import * as bcrypt from 'bcrypt';
+// import * as express from 'express';
+// import { userModel } from "../../../dataAccess/entityModels/user";
+// import * as mongoose from 'mongoose';
+// import { tokenModel } from "../../../dataAccess/entityModels/tokien"
+// import appJwt from "../../../config/app"
+// import {generateAccessToken, replaceDbRefreshToken, generateRefreshToken } from "../../../helpers/authHelpers"
+// // const authHelper = require("../../helpers/authHelpers");
+// const jwt = require("jsonwebtoken");
 
-const authHelper = require("../../helpers/authHelpers");
-// const { secret } = require("../../config/app").jwt;
-const jwt = require("jsonwebtoken");
 
-
-//геnерируем токены и обновляем refresh v mongo
-// const updateTokens = (userId: any) => {
-//     const accessToken = authHelper.generateAccessToken(userId);
-//     const refreshToken = authHelper.generateRefreshToken();
-//     return authHelper.replaceDbRefreshToken(refreshToken.id, userId)
+// //геnерируем токены и обновляем refresh v mongo
+// export const updateTokens = (userId: any) => {
+//     const accessToken = generateAccessToken(userId);
+//     const refreshToken = generateRefreshToken();
+//     return replaceDbRefreshToken(refreshToken.id, userId)
 //         .then(() => ({
 //             accessToken,
 //             refreshToken: refreshToken.token,
 //         }))
 // }
 
-// const registerUser = async function (request: express.Request, response: express.Response) {
+// export const registerUser = async function (request: express.Request, response: express.Response) {
 //     try {
 //         if (request.body === {}) {
 //             response.sendStatus(400)
@@ -40,7 +40,7 @@ const jwt = require("jsonwebtoken");
 //     }
 // }
 
-// const authorizationUser = async function (request: express.Request, response: express.Response, next: express.NextFunction) {
+// export const authorizationUser = async function (request: express.Request, response: express.Response, next: express.NextFunction) {
 //     const logInData = request.body;
 //     const user = await userModel.findOne({ email: logInData.email });
 //     if (user) {
@@ -53,11 +53,11 @@ const jwt = require("jsonwebtoken");
 // };
 
 
-// const refreshTokens = (req: express.Request, res: express.Response) => {
+// export const refreshTokens = (req: express.Request, res: express.Response) => {
 //     const { refreshToken } = req.body;
 //     let payload;
 //     try {
-//         payload = jwt.verify(refreshToken, secret);
+//         payload = jwt.verify(refreshToken, appJwt.jwt.secret);
 //         if (payload.type !== "refresh") {
 //             res.status(400).json({ message: "Invalid token" });
 //             return;
@@ -82,8 +82,8 @@ const jwt = require("jsonwebtoken");
 //         .then((tokens: any) => res.json(tokens))
 //         .catch((err: any) => res.status(400).json({ message: err.message }))
 // };
-// module.exports = {
-//     authorizationUser,
-//     registerUser,
-//     refreshTokens
-// };
+// // module.exports = {
+// //     authorizationUser,
+// //     registerUser,
+// //     refreshTokens
+// // };

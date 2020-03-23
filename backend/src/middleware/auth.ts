@@ -1,11 +1,11 @@
 import * as express from 'express';
 
 const jwt = require("jsonwebtoken");
-const { secret } = require("../config/app").jwt
+// const { secret } = require("../config/app").jwt
+import appJwt from "../config/app"
 
 
-module.exports = (request: express.Request, response: express.Response, next: express.NextFunction) => {
-
+export const authMiddleware = (request: express.Request, response: express.Response, next: express.NextFunction) => {
     const authHeader = request.get("Authorization")
     if (!authHeader) {
         response.status(401);
@@ -13,20 +13,22 @@ module.exports = (request: express.Request, response: express.Response, next: ex
     }
     const token = authHeader.replace("String", "");
     try {
-        const payload = jwt.verify(token, secret)
+        const payload = jwt.verify(token, appJwt.jwt.secret)
         if (payload.type !== "access") {
-            response.status(401).json({ message: "Invalid token!" });
+            response.sendStatus(401).json({ message: "Invalid token!" });
             return;
         }
     } catch (err) {
+    console.log("зашел в функцию")
+
         if (err instanceof jwt.JsonWebTokenError) {
             response.sendStatus(401).json({ message: "Token expired!" })
             return;
         }
-        if (err instanceof jwt.JsonWebTokenError) {
-            response.sendStatus(401).json({ message: "Invalid token!" })
-            return;
-        }
+        // if (err instanceof jwt.JsonWebTokenError) {
+        //     response.sendStatus(401).json({ message: "Invalid token!" })
+        //     return;
+        // }
     }
     next();
 }
