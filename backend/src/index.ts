@@ -5,12 +5,14 @@ import PORT from "./config/app";
 import { authMiddleware } from "./middleware/auth"
 // import{userRouter} from "./features/user/index";
 import { authRouter } from "./features/auth/index"
-import { adminProductRouter } from "./features/printing-editions/index"
+import { adminProductRouter } from "./features/printing-editions/index";
+
 require('dotenv').config();
 // конектимся с БД
 connectMongo();
 
 const app = express();
+
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());

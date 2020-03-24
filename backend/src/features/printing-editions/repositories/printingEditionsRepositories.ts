@@ -1,19 +1,25 @@
 import * as express from "express"
-import { Router } from "express";
-import { printingEditionModel } from "../../../dataAccess/entityModels/printing-edition"
-export const adminProductRouter = Router();
+import {printingEditionModel} from "../../../dataAccess/entityModels/printing-edition"
+import {IPrintingEdition} from "../../../types/interface/printingEdition";
+//authMiddleware
+export const adminShowProduct = async function (printingEdition: any) {
+    const result = printingEditionModel.find({});
+    return result
+};
 
 //authMiddleware
-export const adminShowProduct = async function (request:express.Request, response:express.Response) {
-    printingEditionModel.find({}).then((printingEdition) => response.send(printingEdition))
-}
+export const adminCreateProduct = async (printingEdition: IPrintingEdition) => {
+    const result = await printingEditionModel.insertMany(printingEdition);
+    return result;
+};
 
+export const adminRemoveProduct = async (id: string) => {
+    // const printingEdition = await printingEditionModel.find({});
+    const printingEdition = await printingEditionModel.findById(id);
+    await printingEditionModel.remove(printingEdition);
+};
 
-//authMiddleware
-export const adminCreateProduct= async (request:express.Request, response:express.Response): Promise<any> => {
-    if (!request.body) return response.sendStatus(400);
-    const printingEdition = request.body;
-    await printingEditionModel.insertMany(printingEdition, function (err: any, result: any) {
-        response.send(printingEdition);
-    });
-}
+export const adminUpdateProduct = async (reqPrintingEditions: any, id: string) => {
+    const printingEdition = await printingEditionModel.findById(id);
+    await printingEditionModel.update(printingEdition, reqPrintingEditions)
+};

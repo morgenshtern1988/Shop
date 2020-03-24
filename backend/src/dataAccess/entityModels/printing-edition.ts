@@ -1,30 +1,28 @@
 import * as mongoose from 'mongoose';
 import { IPrintingEdition } from "../../types/interface/printingEdition";
-
-// interface PrintingEditionSchema extends IPrintingEdition, mongoose.Document { }
-
+import {printingEditionsType} from "../emuns/printingEditionsType";
 //задаем название коллекции
 export const PrintingEditionSchema = new mongoose.Schema({
     name: {
-        type: String
+        type: String, required: true,
     },
     description: {
-        type: String
+        type: String, required: true
     },
     cover_image: {
         type: String
     },
     removes_at: {
-        type: Boolean
+        type: Boolean, default:false,
     },
     type: {
-        type: String
+        type: printingEditionsType, required: true,
     },
     price: {
         type: Number
     },
     currency: {
-        type: String
+        type: String, default:"EUR",
     },
     author_ids: {
         type: mongoose.Schema.Types.ObjectId

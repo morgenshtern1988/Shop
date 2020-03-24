@@ -1,11 +1,8 @@
 import * as bcrypt from 'bcrypt';
 import * as express from 'express';
 import { userModel } from "../../../dataAccess/entityModels/user";
-import { tokenModel } from "../../../dataAccess/entityModels/tokien"
-import { generateAccessToken, replaceDbRefreshToken, generateRefreshToken } from "../../../helpers/authHelpers"
-// import appJwt from "../../../config/app";
-// import * as jwt from"jsonwebtoken";
-
+import { tokenModel } from "../../../dataAccess/entityModels/tokien";
+import { generateAccessToken, replaceDbRefreshToken, generateRefreshToken } from "../../../helpers/authHelpers";
 
 //геnерируем токены и обновляем refresh v mongo
 export const updateTokens = (userId: any) => {

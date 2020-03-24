@@ -1,10 +1,10 @@
-import { Router } from "express";
-import {adminCreateProduct, adminShowProduct} from "./repositories/printingEditionsRepositories";
+import {Router} from "express";
+import {adminCreateProduct, adminShowProduct, adminRemoveProduct, adminUpdateProduct} from "./handlers/printingEgitions.handler";
 
 export const adminProductRouter = Router();
 
 //authMiddleware
 adminProductRouter.get("/", adminShowProduct);
-
-//добавить authMiddleware (токены)
-adminProductRouter.post("/create", adminCreateProduct );
+adminProductRouter.post("/create", adminCreateProduct);
+adminProductRouter.delete("/:id", adminRemoveProduct);
+adminProductRouter.put("/:id", adminUpdateProduct);
