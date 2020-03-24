@@ -1,10 +1,8 @@
 import { Router } from "express";
-import * as express from "express"
-import {registerUser, authorizationUser} from "./repositories/authRepositories"
-const jsonParser = express.json();
+import {registerUser, authenticateUser}from "./handlers/auth.handlers"
 
 export const authRouter = Router();
 
-authRouter.post("/register", jsonParser, registerUser);
-authRouter.post("/login", jsonParser, authorizationUser);
+authRouter.post("/register", registerUser);
+authRouter.post("/login", authenticateUser);
 // authRouter.post("/refresh-tokens", refreshTokens);

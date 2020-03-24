@@ -1,25 +1,29 @@
 import * as mongoose from 'mongoose';
 import {IUser} from "../../types/interface/user";
-
-// interface UserSchema extends UserModel, mongoose.Document {}
+import {userRoleType} from "../emuns/userRoleType";
 
 export const UsersSchema = new mongoose.Schema({
-    userName:{
-        type:String,
+    firstName: {
+        type: String, required: true
     },
-    firstName:{
-        type:Number,
+    lastName: {
+        type: String, required: true
+    },
+    avatar:{
+        type:String
     },
     email: {
-        type: String,
+        type: String, required: true
     },
     password: {
-        type: String,
+        type: String, required: true
     },
     role: {
-        type: Array,
+        type: userRoleType,
     }
 });
 
-interface userModel extends IUser, mongoose.Document {}
+interface userModel extends IUser, mongoose.Document {
+}
+
 export const userModel = mongoose.model<userModel>('User', UsersSchema);

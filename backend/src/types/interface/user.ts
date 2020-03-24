@@ -1,7 +1,8 @@
 export interface IUser {
-    userName:string;
+    lastName:string;
     firstName:string;
+    avatar:string;
     email: string;
     password: string;
-    role: Array<number>;
+    role: boolean;
 }

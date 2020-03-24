@@ -1,7 +1,7 @@
 import * as jwt from "jsonwebtoken"
 //модуль для созданий уникального ИД
 const uuid = require("uuid/v4");
-import { tokenModel } from "../dataAccess/entityModels/tokien";
+import {tokenModel} from "../dataAccess/entityModels/tokien";
 import appJwt from "../config/app"
 
 export const generateAccessToken = (userId: any) => {
@@ -9,8 +9,8 @@ export const generateAccessToken = (userId: any) => {
         userId,
         type: appJwt.jwt.tokens.access.type,
     };
-    const option = { expiresIn: appJwt.jwt.tokens.access.expiresIn };
-    //возвращает готовый token
+    const option = {expiresIn: appJwt.jwt.tokens.access.expiresIn};
+    //return token
     return jwt.sign(payload, appJwt.jwt.secret, option)
 };
 
@@ -19,15 +19,15 @@ export const generateRefreshToken = () => {
         id: uuid(),
         type: appJwt.jwt.tokens.refresh.type,
     };
-    const option = { expiresIn: appJwt.jwt.tokens.refresh.expiresIn };
+    const option = {expiresIn: appJwt.jwt.tokens.refresh.expiresIn};
     return {
         id: payload.id,
         token: jwt.sign(payload, appJwt.jwt.secret, option)
     }
 };
 
-//перезапись refresh token в body
-export const replaceDbRefreshToken = (tokenId: any, userId: any) =>
-    tokenModel.findOneAndRemove({ userId })
+//rewrite refresh token в DB
+export const replaceDbRefreshToken = (tokenId: string, userId: string) =>
+    tokenModel.findOneAndRemove({userId})
         .exec()
-        .then(() => tokenModel.create({ tokenId, userId }));
+        .then(() => tokenModel.create({tokenId, userId}));

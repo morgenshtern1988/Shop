@@ -2,7 +2,6 @@ import * as express from 'express';
 import *  as bodyParser from 'body-parser';
 import connectMongo from "./dataAccess/dataBase/connectdb";
 import PORT from "./config/app";
-import { authMiddleware } from "./middleware/auth"
 // import{userRouter} from "./features/user/index";
 import { authRouter } from "./features/auth/index"
 import { adminProductRouter } from "./features/printing-editions/index";
@@ -19,7 +18,7 @@ app.use(bodyParser.json());
 
 
 app.use("/auth", authRouter);
-app.use("/admin/printing-edition", adminProductRouter)
+app.use("/admin/printing-edition", adminProductRouter);
 
 
 app.listen(PORT.appPort, function () {

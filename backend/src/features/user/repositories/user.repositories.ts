@@ -1,4 +1,17 @@
-// import * as bcrypt from 'bcrypt';
+import {IUser} from "../../../types/interface/user";
+import {userModel} from "../../../dataAccess/entityModels/user";
+import * as bcrypt from 'bcrypt';
+
+export const registerUser = async (user:IUser) =>{
+    user.password = await bcrypt.hash(user.password, 10);
+    await userModel.insertMany(user)
+};
+
+
+
+
+
+
 // import * as express from 'express';
 // import { userModel } from "../../../dataAccess/entityModels/user";
 // import * as mongoose from 'mongoose';
