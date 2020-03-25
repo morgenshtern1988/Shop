@@ -5,7 +5,8 @@ import * as bcrypt from 'bcrypt';
 
 export const registerUser = async (user: IUser) => {
     user.password = await bcrypt.hash(user.password, 10);
-    await userModel.create(user)
+    const result = await userModel.insertMany(user)
+    return result
 };
 
 // геnерируем токены и обновляем refresh v mongo
