@@ -5,6 +5,7 @@ import PORT from "./config/app";
 // import{userRouter} from "./features/user/index";
 import { authRouter } from "./features/auth/index"
 import { adminProductRouter } from "./features/printing-editions/index";
+import * as cors from "cors"
 
 require('dotenv').config();
 // конектимся с БД
@@ -15,7 +16,7 @@ const app = express();
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-
+app.use(cors());
 
 app.use("/auth", authRouter);
 app.use("/admin/printing-edition", adminProductRouter);

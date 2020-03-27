@@ -1,0 +1,13 @@
+$white : rgb(233, 255, 211);
+$dark-white : rgb(144, 153, 148);
+
+.col{
+  width: 33.33%;
+  margin-bottom:  20px;
+  background-color: $white;
+  text-align: center;
+  .product-card{
+    background-color: $dark-white;
+    margin: 20px 20px;
+  }
+}

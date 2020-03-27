@@ -1,15 +1,20 @@
 import React from "react";
+import "./style.scss";
 
-const Product = () => {
+const Product = (props: any) => {
+    const {product} = props;
     return (
         <>
-            <p>User 1</p>
-            <p>User 2</p>
-            <p>User 3</p>
-            <p>User 4</p>
-            <p>User 5</p>
-            <p>User 6</p>
+            <div className="col">
+                <div className="product-card">
+                    <h1>{product.name}</h1>
+                    <p>{product.description}</p>
+                    <span>{product.cover_image}</span>
+                    <span>{product.price + " " + product.currency}</span>
+                </div>
+            </div>
         </>
     )
-}
-export default Product
+};
+
+export default Product;
