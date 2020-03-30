@@ -1,46 +1,47 @@
-import React, {useEffect, useState} from "react"
+import React, {useEffect, useReducer, useState} from "react"
+import {useDispatch, useSelector} from "react-redux";
 import {getProduct} from "../../services/api";
 import Product from "../../components/Product/Product";
-import "./style.scss"
+import "./style.scss";
 import Search from "../../components/Search/Search";
+import Catalog from "../../components/Catalog/Catalog";
+import {store} from "../../store";
 
-const productFromApi = async (setter: any) => {
+const productFromApi = async () => {
     const product = await getProduct();
-    setter(product);
+    store.dispatch({type: 'INIT_PRODUCT', payload: product});
+    // console.log(store.getState())
 };
 
 const ProductContainer = (props: any) => {
 
-    const [products, setProducts] = useState([]);
-    const [filterProducts, setFilterProducts] = useState([]);
-
+    const products = useSelector((store: any) => store.productReducer);
+    const dispatch = useDispatch();
+    // console.log(products);
     useEffect(() => {
-        productFromApi(setProducts);
+        productFromApi();
     }, []);
 
-    useEffect(() => {
-        setFilterProducts(products)
-    }, [products]);
-
     const getFilterProduct = (value: any) => {
-        // console.log(value);
-        const result = products.filter((product: any) => product.name.toLowerCase().includes(value));
-        setFilterProducts(result);
+        const result = products.filter((product: any) => product.name.toLowerCase().includes(value.toLowerCase()));
+        // console.log(result);
+        // store.dispatch({type: "FILTER_PRODUCT", payload: result});
+        // console.log(store.getState())
     };
 
     return (
-        <>
-            <section className="products">
-                <Search onChange={getFilterProduct}
-                        placeholder="Enter book"/>
-                {filterProducts.map(product => {
-                    return <Product
-                        product={product}
-                        key={product["_id"]}
-                    />
-                })}
-            </section>
-        </>
+        <section className="products">
+            <Catalog/>
+            <Search onClick={getFilterProduct}
+                    placeholder="Enter book"/>
+            {products.map((product: any) => {
+                return <Product
+                    product={product}
+                    key={product["_id"]}
+                />
+            })}
+        </section>
     )
 };
+
 export default ProductContainer;
