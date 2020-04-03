@@ -2,7 +2,7 @@ import React from "react";
 //
 const Search = (props: any) => {
     const {title, placeholder, onClick} = props;
-    // console.log(valueProduct.current.value)
+    console.log(props);
 
     return (
         <>
@@ -10,7 +10,8 @@ const Search = (props: any) => {
                 <label>{title || "Search"}</label>
                 <input type="text"
                        placeholder={placeholder || "Enter value"}
-                       onClick={(e) => console.log(e)}
+                       onChange={(e) => console.log(e)
+                       }
                 />
             </div>
         </>

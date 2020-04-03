@@ -1,15 +1,15 @@
-// import {IUser} from "../../../types/interface/user";
-// import {registerUser} from "../repositories/user.repositories";
+// import {IUser} from "../../../types/interface/login";
+// import {registerUser} from "../repositories/login.repositories";
 //
-// export const createUser = async (user: IUser) => {
-//     console.log(user)
+// export const createUser = async (login: IUser) => {
+//     console.log(login)
 //   /*  try {
-//         if (user === {}) {
+//         if (login === {}) {
 //             // throw Error
 //             return "error"
 //         }
-//         if (user.password !== "undefined" || user.password !== "null") {
-//             registerUser(user);
+//         if (login.password !== "undefined" || login.password !== "null") {
+//             registerUser(login);
 //         } else {
 //             return "undefined password"
 //         }

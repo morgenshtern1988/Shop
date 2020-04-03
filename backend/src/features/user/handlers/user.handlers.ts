@@ -1,8 +1,8 @@
 // import {Response, Request} from "express";
-// import {createUser} from "../services/user.services";
+// import {createUser} from "../services/login.services";
 //
 // export const registerUser = async (request: Request, response: Response) => {
 //     createUser(request.body)
-//         .then(user => response.json(user))
+//         .then(login => response.json(login))
 //         .catch(err => response.json(err))
 // };

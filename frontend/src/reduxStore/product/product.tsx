@@ -1,17 +1,14 @@
-interface Action {
-    type: string,
-    payload: object,
-}
-
-const initialState = {
-    products: [],
-};
-export const productReducer = (state: any = [], action: Action) => {
+// interface Action {
+//     type: string,
+//     payload: object,
+// }
+export const productReducer = (state: any = [] , action: any) => {
     switch (action.type) {
         case 'INIT_PRODUCT':
-            return [...state, action.payload];
+            return [ ...state, action.payload];
         case 'FILTER_PRODUCT':
-            return [...state, action.payload];
+            return  [...state, 222];
+            // return  [...state, ...state.products.filter((product:any) =>console.log(product.name))];
         default:
             return state;
     }

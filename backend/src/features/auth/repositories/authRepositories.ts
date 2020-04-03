@@ -5,7 +5,7 @@ import * as bcrypt from 'bcrypt';
 
 export const registerUser = async (user: IUser) => {
     user.password = await bcrypt.hash(user.password, 10);
-    const result = await userModel.insertMany(user)
+    const result = await userModel.insertMany(user);
     return result
 };
 
@@ -22,14 +22,15 @@ export const updateTokens = (userId: any) => {
 
 export const authenticateUser = async (user: IUser) => {
     const userInDb = await userModel.findOne({email: user.email});
+    // console.log(userInDb);
     if (userInDb) {
         const isPasswordMatching = await bcrypt.compare(user.password, userInDb.password);
         if (isPasswordMatching) {
-            console.log("done");
+            console.log("done совпали пароли");
           return updateTokens(userInDb._id)
-        } else return "Wrong password"
+        } else throw new Error("Wrong password")
     }
-    return "User does not exist"
+    throw new Error("User does not exist")
 };
 
 // // export const refreshTokens = (req: express.Request, res: express.Response) => {

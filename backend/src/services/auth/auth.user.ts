@@ -26,11 +26,11 @@ const jwt = require("jsonwebtoken");
 //             response.sendStatus(400)
 //             return;
 //         }
-//         const user = request.body;
-//         if (user.password !== "undefined" || user.password !== "null") {
-//             user.password = await bcrypt.hash(user.password, 10);
-//             await userModel.insertMany(user, (err: any, result: any) => {
-//                 response.send(user);
+//         const login = request.body;
+//         if (login.password !== "undefined" || login.password !== "null") {
+//             login.password = await bcrypt.hash(login.password, 10);
+//             await userModel.insertMany(login, (err: any, result: any) => {
+//                 response.send(login);
 //                 return;
 //             })
 //         }
@@ -42,11 +42,11 @@ const jwt = require("jsonwebtoken");
 
 // const authorizationUser = async function (request: express.Request, response: express.Response, next: express.NextFunction) {
 //     const logInData = request.body;
-//     const user = await userModel.findOne({ email: logInData.email });
-//     if (user) {
-//         const isPasswordMatching = await bcrypt.compare(logInData.password, user.password);
+//     const login = await userModel.findOne({ email: logInData.email });
+//     if (login) {
+//         const isPasswordMatching = await bcrypt.compare(logInData.password, login.password);
 //         if (isPasswordMatching) {
-//             updateTokens(user._id)
+//             updateTokens(login._id)
 //                 .then((tokens: any) => response.json(tokens));
 //         } else response.sendStatus(401)
 //     } else response.sendStatus(401)

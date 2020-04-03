@@ -1,5 +1,5 @@
 // import {Router} from "express";
-// import {registerUser} from "./handlers/user.handlers";
+// import {registerUser} from "./handlers/login.handlers";
 // // const jsonParser = express.json();
 // export const userRouter = Router();
 //

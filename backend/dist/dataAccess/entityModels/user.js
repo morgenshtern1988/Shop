@@ -12,4 +12,4 @@ exports.User = mongoose.model('User', new mongoose.Schema({
         type: Number
     }
 }));
-//# sourceMappingURL=user.js.map
+//# sourceMappingURL=login.js.map

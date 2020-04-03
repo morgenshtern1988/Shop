@@ -9,6 +9,9 @@ export const registerUser = async (request: Request, response: Response) => {
 
 export const authenticateUser = async (request: Request, response: Response) => {
     loginUser(request.body)
-        .then(user => response.json(user))
-        .catch(err => response.json(err))
+        .then(user => response.send(user))
+        .catch(() => response.sendStatus(401))
+
+        // .then(user => console.log("CATCHhh" + user))
+        // .catch(err =>console.log("ERRrrrr" + err))
 };
