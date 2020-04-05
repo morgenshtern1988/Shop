@@ -1,11 +1,12 @@
-const initialState = {
+let initialState = {
     email: "",
     password: "",
-    isLoading: false,
-    error: ""
+    loading: false,
+    error: "",
 };
 
 export const loginReducer = (state: any = initialState, action: any) => {
+
     switch (action.type) {
         case `@@login/DO_LOGIN`: {
             return {
@@ -34,17 +35,20 @@ export const loginReducer = (state: any = initialState, action: any) => {
             return state;
     }
 };
-// export const login = (state:any) => state.login;
-export const singInUser = async (url: string, data: any) => {
-    const result = await fetch(url, {
-        method: "POST",
-        // mode: 'cors',
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(data)
-    })
-    // .then(() => console.log("польз СУЩЕТСВУЕТ "))
-    // .catch(() => console.log("NE удачно"))
-    await console.log(result)
-};
+//export const login = (state:any) => state.login;
+
+// export const singInUser = async (url: string, data: any) => {
+//     const result = await fetch(url, {
+//         method: "POST",
+//         mode: 'cors',
+//         headers: {
+//             "Content-Type": "application/json"
+//         },
+//         body: JSON.stringify(data)
+//     });
+//     if (result.status === 200) {
+//
+//     }
+//
+// };
+//генерировать имя фамилип пользователя в шапке

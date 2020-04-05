@@ -1,15 +1,26 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose = require("mongoose");
-exports.User = mongoose.model('User', new mongoose.Schema({
+const userRoleType_1 = require("../emuns/userRoleType");
+exports.UsersSchema = new mongoose.Schema({
+    firstName: {
+        type: String, required: true
+    },
+    lastName: {
+        type: String, required: true
+    },
+    avatar: {
+        type: String
+    },
     email: {
-        type: String,
+        type: String, required: true
     },
     password: {
-        type: String,
+        type: String, required: true
     },
     role: {
-        type: Number
+        type: userRoleType_1.userRoleType,
     }
-}));
-//# sourceMappingURL=login.js.map
+});
+exports.userModel = mongoose.model('User', exports.UsersSchema);
+//# sourceMappingURL=user.js.map

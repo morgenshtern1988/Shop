@@ -1,5 +1,5 @@
 export default {
-    appPort: "8888",
+    appPort: "7227",
     jwt: {
         secret: "SUPER SECRET TOKEN",
         tokens: {

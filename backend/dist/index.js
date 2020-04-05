@@ -3,29 +3,21 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express = require("express");
 const bodyParser = require("body-parser");
 const connectdb_1 = require("./dataAccess/dataBase/connectdb");
-const user_1 = require("./dataAccess/entityModels/user");
-const printing_edition_1 = require("./dataAccess/entityModels/printing-edition");
+const app_1 = require("./config/app");
+// import{userRouter} from "./features/login/index";
+const index_1 = require("./features/auth/index");
+const index_2 = require("./features/printing-editions/index");
+const cors = require("cors");
 require('dotenv').config();
+// конектимся с БД
 connectdb_1.default();
 const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.post('/', (request, response) => {
-    // const result = User.insertMany({email:"Katya",role:12});
-    const userData = request.body;
-    // console.log(request)
-    response.send(userData);
+app.use(cors());
+app.use("/auth", index_1.authRouter);
+app.use("/admin/printing-edition", index_2.adminProductRouter);
+app.listen(app_1.default.appPort, function () {
+    console.log("Сервер начинает прослушивание...");
 });
-app.get('/', async (request, response) => {
-    const result = await user_1.User.insertMany({ email: "Katya", role: 12 });
-    console.log(request);
-    response.send(result);
-});
-app.get('/printing-dition', async (request, response) => {
-    const result = await printing_edition_1.PrintingEdition.insertMany({
-        email: 'DDD@asdasd.ru',
-    });
-    response.send(result);
-});
-app.listen(3000);
 //# sourceMappingURL=index.js.map

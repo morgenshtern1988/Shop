@@ -10,7 +10,7 @@ const Register = (props: any) => {
     console.log("----");
 
     const onSubmit = (formData: any) => {
-        postUserAddDb("http://localhost:8888/auth/register", formData)
+        postUserAddDb("http://localhost:7227/auth/register", formData)
     };
 
     return (

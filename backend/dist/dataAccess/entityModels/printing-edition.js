@@ -1,30 +1,33 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose = require("mongoose");
-exports.PrintingEdition = mongoose.model('PrintingEdition', new mongoose.Schema({
+const printingEditionsType_1 = require("../emuns/printingEditionsType");
+//задаем название коллекции
+exports.PrintingEditionSchema = new mongoose.Schema({
     name: {
-        type: String
+        type: String, required: true,
     },
     description: {
-        type: String
+        type: String, required: true
     },
     cover_image: {
         type: String
     },
     removes_at: {
-        type: Boolean
+        type: Boolean, default: false,
     },
     type: {
-        type: String
+        type: printingEditionsType_1.printingEditionsType, required: true,
     },
     price: {
         type: Number
     },
     currency: {
-        type: String
+        type: String, default: "EUR",
     },
-    authot_ids: {
+    author_ids: {
         type: mongoose.Schema.Types.ObjectId
     },
-}));
+});
+exports.printingEditionModel = mongoose.model("printing-edition", exports.PrintingEditionSchema);
 //# sourceMappingURL=printing-edition.js.map

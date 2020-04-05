@@ -10,10 +10,10 @@ export const registerUser = async (user: IUser) => {
 };
 
 // геnерируем токены и обновляем refresh v mongo
-export const updateTokens = (userId: any) => {
-    const accessToken = generateAccessToken(userId);
-    const refreshToken = generateRefreshToken();
-    return replaceDbRefreshToken(refreshToken.id, userId)
+export const updateTokens = async (userId: any) => {
+    const accessToken = await generateAccessToken(userId);
+    const refreshToken = await generateRefreshToken();
+    return await replaceDbRefreshToken(refreshToken.id, userId)
         .then(() => ({
             accessToken,
             refreshToken: refreshToken.token,
@@ -22,16 +22,20 @@ export const updateTokens = (userId: any) => {
 
 export const authenticateUser = async (user: IUser) => {
     const userInDb = await userModel.findOne({email: user.email});
-    // console.log(userInDb);
+    console.log(userInDb);
     if (userInDb) {
         const isPasswordMatching = await bcrypt.compare(user.password, userInDb.password);
         if (isPasswordMatching) {
-            console.log("done совпали пароли");
-          return updateTokens(userInDb._id)
+            console.log("удачно совпали пароли");
+            return await updateTokens(userInDb._id)
         } else throw new Error("Wrong password")
-    }
-    throw new Error("User does not exist")
+    } else throw new Error("User does not exist")
 };
+    //     } else
+    //         // throw new Error("Wrong password")
+    // }
+    // throw new Error("User does not exist")
+
 
 // // export const refreshTokens = (req: express.Request, res: express.Response) => {
 // //     const { refreshToken } = req.body;

@@ -25,5 +25,7 @@ export const loginUser = async (user: IUser) => {
         } else {
             throw new Error("request undefined")
         }
-    } catch (e) { response.status(400) }
+    } catch (e) {
+        response.sendStatus(200)
+    }
 };
