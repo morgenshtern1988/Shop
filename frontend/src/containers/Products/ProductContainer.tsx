@@ -6,8 +6,8 @@ import Catalog from "../../components/Catalog/Catalog";
 
 const ProductContainer = (props: any) => {
     const {products, getProductForApi} = props;
-
-    useEffect(()=>getProductForApi());
+    console.log(products);
+    useEffect(() => getProductForApi());
 
     return (
         <>
@@ -37,7 +37,7 @@ let mapStateToProps = (state: any) => {
 };
 let mapDispatchToProps = (dispatch: any) => {
     return {
-        getProductForApi:()=> dispatch(getProductThunk("http://localhost:8080/admin/printing-edition"))
+        getProductForApi: () => dispatch(getProductThunk("http://localhost:7227/admin/printing-edition"))
     }
 };
 export default connect(mapStateToProps, mapDispatchToProps)(ProductContainer)

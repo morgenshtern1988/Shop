@@ -9,7 +9,7 @@ export const registerUser = async (request: Request, response: Response) => {
 
 export const authenticateUser = async (request: Request, response: Response) => {
     loginUser(request.body)
-        .then(token => response.send(token.refreshToken))
+        .then(token => response.send(token.accessToken))
         .catch(() => response.sendStatus(401))
 
         // .then(user => console.log("CATCHhh" + user))

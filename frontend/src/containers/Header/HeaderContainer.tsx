@@ -14,6 +14,8 @@ const HeaderContainer = (props: any) => {
             <div>
                 <input type="text"/>
                 <button onClick={props.onFindProduct}>click</button>
+                <a href="http://localhost:3010/auth/login">Log in</a>
+                <a href="http://localhost:3010/auth/register">Sign up</a>
             </div>
             {/*<Search/>*/}
         </>

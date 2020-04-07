@@ -1,13 +1,13 @@
 let initialState = {
-    firstName:"",
-    lastName:"",
-    email:"",
-    password:"",
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: "",
 };
 
 export const registerReducer = (state: any = initialState, action: any) => {
     switch (action.type) {
-        case 'ADD_NEW_USER':
+        case '@@register/ADD_NEW_USER':
             return {
                 ...state,
                 ...action.payload
@@ -18,15 +18,17 @@ export const registerReducer = (state: any = initialState, action: any) => {
 };
 
 export const postUserAddDb = async (url: string, data: any) => {
-    const response = await fetch(url, {
+    console.log(data);
+    await fetch(url, {
         method: "POST",
         mode: 'cors',
         headers: {
             "Content-Type": "application/json"
         },
         body: JSON.stringify(data)
-    });
-    return await response.json()
+    })
+        .then(response=>console.log(response.json()))
+
 };
 
 /*
