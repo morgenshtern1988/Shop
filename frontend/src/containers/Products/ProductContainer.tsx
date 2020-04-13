@@ -7,14 +7,14 @@ import Catalog from "../../components/Catalog/Catalog";
 const ProductContainer = (props: any) => {
     const {products, getProductForApi} = props;
     console.log(products);
-    useEffect(() => getProductForApi());
+    // useEffect(() => getProductForApi());
 
     return (
         <>
             <section className="products">
                 <Catalog/>
                 <p>Товары</p>
-                {products.length > 0 &&
+             {/*   {products.length > 0 &&
                 <div>
                     {
                         products[0].map((product: any) => {
@@ -24,7 +24,7 @@ const ProductContainer = (props: any) => {
                             }
                         )
                     }
-                </div>
+                </div>*/}
                 }
             </section>
         </>

@@ -1,11 +1,11 @@
-import React, {useState} from "react";
+import React from "react";
 import {Button, FormGroup, FormControl, ControlLabel} from "react-bootstrap";
 import {connect} from "react-redux";
 import {singInUser} from "../../reduxStore/login/action";
-import {store} from "../../reduxStore";
+import {store} from "../../reduxStore/store";
 
 const Login = (props: any) => {
-    let {setEmail, setPassword, email, password} = props;
+    let {setEmail, setPassword, email, password, postUserFromApi} = props;
 
     function validateForm() {
         return (email !== undefined && password !== undefined)
@@ -13,7 +13,7 @@ const Login = (props: any) => {
 
     function handleSubmit(event: any) {
         const data = store.getState().loginReducer;
-        props.postUserFromApi(data);
+        postUserFromApi(data);
         event.preventDefault();
     }
 
@@ -55,7 +55,8 @@ const mapStateToProps = (state: any) => ({
 const mapDispatchToProps = (dispatch: any) => ({
     setEmail: (email: any) => dispatch({type: "@@login/LOGIN_START", payload: {email}}),
     setPassword: (password: any) => dispatch({type: "@@login/LOGIN_START", payload: {password}}),
-    postUserFromApi: (data: any) => dispatch(singInUser(data))
+    postUserFromApi: (data: any) => dispatch(singInUser(data)),
+    isAuthenticated: (bool: boolean)=> dispatch({type:"@@login/AUTH_VALUE", payload:{bool}})
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login)

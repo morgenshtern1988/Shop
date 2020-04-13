@@ -2,12 +2,16 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {Provider} from 'react-redux';
 import App from "./App";
-import {store} from "./reduxStore";
+import {PersistGate} from "redux-persist/integration/react"
 import {BrowserRouter} from "react-router-dom";
+import {store, persistor} from "./reduxStore/store";
 
 ReactDOM.render(
     <BrowserRouter>
         <Provider store={store}>
-            <App/>
+            <PersistGate persistor={persistor}>
+                <App/>
+            </PersistGate>
         </Provider>
-    </BrowserRouter>, document.getElementById('root'));
+    </BrowserRouter>
+    , document.getElementById('root'));

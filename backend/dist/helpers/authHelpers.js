@@ -5,30 +5,26 @@ const jwt = require("jsonwebtoken");
 const uuid = require("uuid/v4");
 const tokien_1 = require("../dataAccess/entityModels/tokien");
 const app_1 = require("../config/app");
-exports.generateAccessToken = async (userId) => {
+exports.generateAccessToken = async (user) => {
     const payload = {
-        userId,
+        role: user.role,
+        id: user._id,
         type: app_1.default.jwt.tokens.access.type,
     };
     const option = { expiresIn: app_1.default.jwt.tokens.access.expiresIn };
-    //return token
     return jwt.sign(payload, app_1.default.jwt.secret, option);
 };
-exports.generateRefreshToken = async () => {
+exports.generateRefreshToken = async (user) => {
     const payload = {
-        id: uuid(),
+        id: user._id,
+        role: user.role,
         type: app_1.default.jwt.tokens.refresh.type,
     };
     const option = { expiresIn: app_1.default.jwt.tokens.refresh.expiresIn };
-    return {
-        id: payload.id,
-        token: jwt.sign(payload, app_1.default.jwt.secret, option)
-    };
+    return jwt.sign(payload, app_1.default.jwt.secret, option);
 };
-//rewrite refresh token в DB
-exports.replaceDbRefreshToken = (tokenId, userId) => {
-    tokien_1.tokenModel.findOneAndRemove({ userId })
-        .exec()
-        .then(() => tokien_1.tokenModel.create({ tokenId, userId }));
-};
+//rewrite refresh token in DB
+exports.replaceDbRefreshToken = (tokenId, userId) => tokien_1.tokenModel.findOneAndRemove({ userId })
+    .exec()
+    .then(() => tokien_1.tokenModel.create({ tokenId, userId }));
 //# sourceMappingURL=authHelpers.js.map

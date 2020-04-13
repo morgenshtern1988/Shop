@@ -26,6 +26,12 @@ export const loginUser = async (user: IUser) => {
             throw new Error("request undefined")
         }
     } catch (e) {
-        response.sendStatus(200)
+      return response.sendStatus(200)
     }
 };
+
+
+import appJwt from "../../../config/app"
+import * as jwt from "jsonwebtoken"
+import {tokenModel} from "../../../dataAccess/entityModels/tokien";
+import {updateTokens} from "../repositories/authRepositories";

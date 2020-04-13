@@ -1,15 +1,21 @@
-import {store} from "../index";
-
 export let initialState = {
     email: "",
     password: "",
     loading: false,
+    token: "",
     error: "",
+    isAuthenticated: false,
 };
 
-export const loginReducer = (state: any = {}, action: any) => {
+export const loginReducer = (state: any = initialState, action: any) => {
 
     switch (action.type) {
+        case `@@login/AUTH_VALUE`: {
+            return {
+                ...state,
+                isAuthenticated: action.payload,
+            }
+        }
         case `@@login/DO_LOGIN`: {
             return {
                 ...state,
@@ -32,10 +38,10 @@ export const loginReducer = (state: any = {}, action: any) => {
             };
         }
         case `@@login/LOGIN_SUCCESS`: {
-            const {data} = action.payload;
+            // const {data} = action.payload;
             return {
                 ...state,
-                token: data,
+                token: action.payload,
                 loading: false
             };
         }
@@ -45,6 +51,7 @@ export const loginReducer = (state: any = {}, action: any) => {
 };
 
 export const singInUser = (data: any) => {
+    console.log(data);
     return async (dispatch: any) => {
         await fetch("http://localhost:7227/auth/login", {
             method: "POST",
@@ -55,18 +62,73 @@ export const singInUser = (data: any) => {
             body: JSON.stringify(data)
         })
             .then((result) => {
-                if (result.status === 200) {
-                    const data = result.text().then(token => token);
-                    dispatch({type: "@@login/LOGIN_SUCCESS", payload: {data}})
-                } else dispatch({type: "@@login/LOGIN_FAILED", payload: {}})
+                if (result.status !== 200) {
+                    throw Error
+                } else {
+                    return result.json().then((token: any) => token)
+                }
+            })
+            .then((token) => {
+                localStorage.setItem('token', JSON.stringify(token));
+                dispatch({type: "@@login/LOGIN_SUCCESS", payload: token});
+                dispatch({type: "@@login/AUTH_VALUE", payload: true})
+            })
+            .catch((err) => dispatch({type: "@@login/LOGIN_FAILED", payload: {}}))
+    }
+};
+
+export const isAlive = () => {
+    const authToken = JSON.parse(localStorage.getItem('token') || '{}');
+    return async (dispatch: any) => {
+        await fetch("http://localhost:7227/auth/access-tokens", {
+            mode: 'cors',
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": authToken.accessToken,
+            },
+        })
+            .then((result) => {
+                console.log(result);
+                if (result.status !== 401) {
+                    console.log("token живой");
+                } else {
+                    console.log("status 401");
+                    dispatch(getRefreshedToken())
+                }
+            })
+            .catch((e) => {
+                console.log("ошибка");
+            });
+    }
+};
+
+const getRefreshedToken = () => {
+    const authToken = JSON.parse(localStorage.getItem('token') || '{}');
+    return async (dispatch: any) => {
+        await fetch("http://localhost:7227/auth/refresh-tokens", {
+            mode: 'cors',
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": authToken.refreshToken,
+            }
+        })
+            .then((result) => {
+                if (result.status !== 200) {
+                    throw Error
+                } else {
+                    return result.json().then((token: any) => token)
+                }
+            })
+            .then((token) => {
+                localStorage.setItem('token', JSON.stringify(token));
+                dispatch({type: "@@login/LOGIN_SUCCESS", payload: token});
+            })
+            .catch((e) => {
+                console.log(e);
             })
     }
 };
 
 
-// .then((result) => {
-// if (result.status === 200) {
-//     const data = result.text().then((token) => token);
-//     console.log("success");
-//     return {type: "@@login/LOGIN_SUCCESS", payload: {data:data}}
-// };

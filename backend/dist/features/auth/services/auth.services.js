@@ -30,7 +30,7 @@ exports.loginUser = async (user) => {
         }
     }
     catch (e) {
-        express_1.response.sendStatus(400);
+        return express_1.response.sendStatus(200);
     }
 };
 //# sourceMappingURL=auth.services.js.map

@@ -3,27 +3,26 @@ import * as jwt from "jsonwebtoken"
 const uuid = require("uuid/v4");
 import {tokenModel} from "../dataAccess/entityModels/tokien";
 import appJwt from "../config/app"
+import {IUser} from "../types/interface/user";
 
-export const generateAccessToken = async (userId: any) => {
+export const generateAccessToken = async (user: any) => {
     const payload = {
-        userId,
+        role:user.role,
+        id:user._id,
         type: appJwt.jwt.tokens.access.type,
     };
     const option = {expiresIn: appJwt.jwt.tokens.access.expiresIn};
-    //return token
     return jwt.sign(payload, appJwt.jwt.secret, option)
 };
 
-export const generateRefreshToken = async () => {
+export const generateRefreshToken = async (user:any) => {
     const payload = {
-        id: uuid(),
+        id: user._id,
+        role:user.role,
         type: appJwt.jwt.tokens.refresh.type,
     };
     const option = {expiresIn: appJwt.jwt.tokens.refresh.expiresIn};
-    return {
-        id: payload.id,
-        token: jwt.sign(payload, appJwt.jwt.secret, option)
-    }
+    return jwt.sign(payload, appJwt.jwt.secret, option)
 };
 
 //rewrite refresh token in DB
