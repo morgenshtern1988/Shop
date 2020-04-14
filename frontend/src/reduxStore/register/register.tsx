@@ -10,9 +10,10 @@ let initialState = {
 export const registerReducer = (state: any = initialState, action: any) => {
     switch (action.type) {
         case '@@register/ADD_NEW_USER':
+            const {newUser} = action.payload;
             return {
                 ...state,
-                ...action.payload
+                ...newUser
             };
         case "@@register/REGISTER_START":
             return {
@@ -35,6 +36,7 @@ export const postUserAddDb = (url: string, data: any) => {
             body: JSON.stringify(data)
         })
             .then((result) => {
+                console.log(result);
                 return result.json().then((newUser: any) => newUser)
             })
             .then((newUser) => {

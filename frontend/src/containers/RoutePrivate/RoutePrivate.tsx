@@ -6,7 +6,7 @@ import {isAlive} from "../../reduxStore/login/action";
 
 export const PrivateRoute = (props: any) => {
 
-    const {component: WrapRoute, store, ...rest} = props;
+    const {component: Component, store, ...rest} = props;
 
     const selectIsOn = (state: RootState) => state.loginReducer.isAuthenticated;
     const isAuthenticated = useSelector(selectIsOn);
@@ -16,8 +16,8 @@ export const PrivateRoute = (props: any) => {
     return (
         <Route {...rest} render={(props: any) => (
             isAuthenticated
-                ? <WrapRoute {...props} />
-                : <Redirect to='auth/login'/>
+                ? <Component {...props} />
+                : <Redirect  exact to="auth/login"/>
         )}/>
     )
 };

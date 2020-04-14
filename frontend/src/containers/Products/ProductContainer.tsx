@@ -29,14 +29,20 @@ const ProductContainer = (props: any) => {
         </>
     )
 };
-let mapStateToProps = (state: any) => {
-    return {
-        products: state.productReducer
-    }
-};
-let mapDispatchToProps = (dispatch: any) => {
-    return {
-        getProductForApi: () => dispatch(getProductThunk("http://localhost:7227/admin/printing-edition"))
-    }
-};
-export default connect(mapStateToProps, mapDispatchToProps)(ProductContainer)
+export default ProductContainer;
+
+
+
+
+
+// let mapStateToProps = (state: any) => {
+//     return {
+//         products: state.productReducer
+//     }
+// };
+// let mapDispatchToProps = (dispatch: any) => {
+//     return {
+//         getProductForApi: () => dispatch(getProductThunk("http://localhost:7227/admin/printing-edition"))
+//     }
+// };
+// export default connect(mapStateToProps, mapDispatchToProps)(ProductContainer)

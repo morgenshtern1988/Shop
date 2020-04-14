@@ -49,17 +49,16 @@ export default function Signup(props: any) {
 
     async function handleSubmit(event: any) {
         event.preventDefault();
-
         setIsLoading(true);
-        // const data = {
-        //     firstName: newUser.firstName,
-        //     lastName: newUser.lastName,
-        //     email: newUser.email,
-        //     password: newUser.password,
-        // };
-        // postUserAddDb("http://localhost:7227/auth/register", data);
+        const data = {
+            firstName: newUser.firstName,
+            lastName: newUser.lastName,
+            email: newUser.email,
+            password: newUser.password,
+            role:0,
+        };
+        dispatch(postUserAddDb("http://localhost:7227/auth/register", data));
         // setNewUser("test");
-
         setIsLoading(false);
     }
 

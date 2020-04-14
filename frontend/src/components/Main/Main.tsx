@@ -3,7 +3,7 @@ import React from "react";
 const Main = () => {
     return (
         <>
-            <p>Main Auth</p>
+            <p>Main Auth hfhfj</p>
         </>
     )
 }

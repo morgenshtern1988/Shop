@@ -1,12 +1,17 @@
 import React from "react";
-import {Route} from "react-router-dom";
+import {Route, Switch, Redirect} from "react-router-dom";
 import ProductContainer from "../../containers/Products/ProductContainer";
+import Main from "../Main/Main";
 
-export const WrapRoute = (props: any) => {
+export const RouteMap = (props: any) => {
     return (
         <>
-            <h1>Im Route</h1>
-            <Route path="/" component={ProductContainer}/>
+            <Switch>
+                <Route exact path="/printing-edition" component={ProductContainer}/>
+                {/*<Route path="/printing-edition" component={ProductContainer}/>*/}
+                {/*<Route path="/admin/printing-edition" component={Main}/>*/}
+                {/*<Redirect to="/"/>*/}
+            </Switch>
         </>
     )
 };
