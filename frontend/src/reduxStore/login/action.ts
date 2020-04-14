@@ -89,16 +89,14 @@ export const isAlive = () => {
             },
         })
             .then((result) => {
-                console.log(result);
                 if (result.status !== 401) {
                     console.log("token живой");
                 } else {
-                    console.log("status 401");
                     dispatch(getRefreshedToken())
                 }
             })
             .catch((e) => {
-                console.log("ошибка");
+                console.log(e);
             });
     }
 };
