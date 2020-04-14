@@ -5,6 +5,7 @@ export interface IAuth {
 export interface RootState {
     loginReducer: IAuth,
     registerReducer: IRegisterUser,
+    productReducer: IProduct,
 }
 
 export interface IRegisterUser {
@@ -17,15 +18,12 @@ export interface IRegisterUser {
 
 }
 
-/* export interface login {
- email: string,
- password: string,
- loading: boolean,
- token: string,
- error: string,
- isAuthenticated: boolean,
+export interface IProduct {
+    name: string,
+    description: string,
+    currency: string,
+    cover_image: string,
+    type: string,
+    price: number,
+    removes_at: boolean,
 }
-
-export interface RootState {
- loginReducer: login,
-}*/

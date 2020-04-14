@@ -1,6 +1,6 @@
 import React from 'react';
 import {Route, Switch} from 'react-router-dom';
-import Main from "./components/Main/Main";
+import Main from "./components/Dashboard/Dashboard";
 import Register from "./containers/Form/RegisterContainer";
 import HeaderContainer from "./containers/Header/HeaderContainer";
 import Login from "./containers/Form/LoginContainer";

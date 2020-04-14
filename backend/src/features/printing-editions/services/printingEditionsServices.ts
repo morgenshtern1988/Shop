@@ -18,7 +18,6 @@ export async function showProduct(printingEditions: any) {
     }
 }
 
-//5e6fe7206c82e932a0351ae8
 export async function removeProduct(id: string) {
     adminRemoveProduct(id)
 }

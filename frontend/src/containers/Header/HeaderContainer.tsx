@@ -17,7 +17,10 @@ const HeaderContainer = (props: any) => {
                 <button onClick={props.onFindProduct}>click</button>
                 {
                     auth ?
-                        <a href="http://localhost:3010/auth/login" onClick={cleanLocalStorage}>Log Out</a>
+                        <div>
+                            <a href="http://localhost:3010/auth/login" onClick={cleanLocalStorage}>Log Out</a>
+                            <a href="http://localhost:3010/admin/printing-edition">Admin Aria</a>
+                        </div>
                         :
                         <>
                             <a href="http://localhost:3010/auth/login">Log in</a>

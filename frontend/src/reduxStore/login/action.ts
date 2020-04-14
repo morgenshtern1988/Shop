@@ -8,7 +8,6 @@ export let initialState = {
 };
 
 export const loginReducer = (state: any = initialState, action: any) => {
-
     switch (action.type) {
         case `@@login/AUTH_VALUE`: {
             return {
@@ -51,7 +50,6 @@ export const loginReducer = (state: any = initialState, action: any) => {
 };
 
 export const singInUser = (data: any) => {
-    console.log(data);
     return async (dispatch: any) => {
         await fetch("http://localhost:7227/auth/login", {
             method: "POST",
