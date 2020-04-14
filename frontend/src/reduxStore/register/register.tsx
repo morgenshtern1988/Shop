@@ -3,6 +3,8 @@ let initialState = {
     lastName: "",
     email: "",
     password: "",
+    confirmPassword: "",
+    confirmationCode: "",
 };
 
 export const registerReducer = (state: any = initialState, action: any) => {
@@ -12,23 +14,36 @@ export const registerReducer = (state: any = initialState, action: any) => {
                 ...state,
                 ...action.payload
             };
+        case "@@register/REGISTER_START":
+            return {
+                ...state,
+                ...action.payload,
+            };
         default:
             return state;
     }
 };
 
-export const postUserAddDb = async (url: string, data: any) => {
-    console.log(data);
-    await fetch(url, {
-        method: "POST",
-        mode: 'cors',
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(data)
-    })
-        .then(response=>console.log(response.json()))
-
+export const postUserAddDb = (url: string, data: any) => {
+    return async (dispatch: any) => {
+        await fetch(url, {
+            method: "POST",
+            mode: 'cors',
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(data)
+        })
+            .then((result) => {
+                return result.json().then((newUser: any) => newUser)
+            })
+            .then((newUser) => {
+                dispatch({type: "@@register/ADD_NEW_USER", payload: newUser});
+            })
+            .catch((e) => {
+                console.log(e);
+            })
+    }
 };
 
 /*

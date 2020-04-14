@@ -6,7 +6,9 @@ import Search from "../../components/Search";
 const HeaderContainer = (props: any) => {
     // console.log(props);
     const {products, auth} = props;
-    // const foo={}
+    const cleanLocalStorage = () => {
+        localStorage.clear()
+    };
     return (
         <>
             <p>Im Header Container</p>
@@ -15,12 +17,12 @@ const HeaderContainer = (props: any) => {
                 <button onClick={props.onFindProduct}>click</button>
                 {
                     auth ?
-                        <a href="http://localhost:3010/auth/login" >Log Out</a>
+                        <a href="http://localhost:3010/auth/login" onClick={cleanLocalStorage}>Log Out</a>
                         :
-                        <div>
+                        <>
                             <a href="http://localhost:3010/auth/login">Log in</a>
                             <a href="http://localhost:3010/auth/register">Sign up</a>
-                        </div>
+                        </>
                 }
             </div>
         </>

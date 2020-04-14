@@ -124,7 +124,7 @@ const getRefreshedToken = () => {
                 dispatch({type: "@@login/LOGIN_SUCCESS", payload: token});
             })
             .catch((e) => {
-                console.log(e);
+                // console.log(e);
             })
     }
 };

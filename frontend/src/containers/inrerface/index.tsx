@@ -1,9 +1,20 @@
-export interface auth {
+export interface IAuth {
     isAuthenticated: boolean,
 }
 
 export interface RootState {
-    loginReducer: auth,
+    loginReducer: IAuth,
+    registerReducer: IRegisterUser,
+}
+
+export interface IRegisterUser {
+    firstName: string,
+    lastName: string,
+    email: string,
+    password: string,
+    confirmPassword: string,
+    confirmationCode: string,
+
 }
 
 /* export interface login {
