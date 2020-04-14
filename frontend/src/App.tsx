@@ -16,7 +16,6 @@ function App() {
                 <Route path="/auth/register" render={() => <Register/>}/>
                 <Route path="/auth/login" render={() => <Login/>}/>
                 <PrivateRoute path='/printing-edition' component={WrapRoute}/>
-                {/*<PrivateRoute path='/printing-edition' component={ProductContainer} />*/}
             </div>
         </div>
     );

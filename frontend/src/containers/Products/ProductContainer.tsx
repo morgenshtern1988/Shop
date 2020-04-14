@@ -25,7 +25,6 @@ const ProductContainer = (props: any) => {
                         )
                     }
                 </div>*/}
-                }
             </section>
         </>
     )
