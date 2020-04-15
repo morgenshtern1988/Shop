@@ -1,4 +1,4 @@
-let initialState = {
+let initialState = [{
     name: "",
     description: "",
     currency: "",
@@ -6,15 +6,15 @@ let initialState = {
     type: "",
     price: "",
     removes_at: "",
-};
+}];
 
-export const productReducer = (state: any = initialState, action: any) => {
+export const productReducer = (state: any = [], action: any) => {
     switch (action.type) {
         case 'INIT_PRODUCT':
-            // const items = action.payload;
-            return {
-                ...state, ...action.payload
-            };
+            const items = action.payload;
+            return [
+                ...items
+            ];
         // case 'FILTER_PRODUCT':
         //     return [...state, 222];
         // return  [...state, ...state.products.filter((product:any) =>console.log(product.name))];

@@ -1,6 +1,6 @@
 import React from 'react';
+import "./index.scss";
 import {Route, Switch} from 'react-router-dom';
-import Main from "./components/Dashboard/Dashboard";
 import Register from "./containers/Form/RegisterContainer";
 import HeaderContainer from "./containers/Header/HeaderContainer";
 import Login from "./containers/Form/LoginContainer";
@@ -10,13 +10,15 @@ import {RouteMap} from "./components/Route/Route";
 function App() {
     return (
         <div className="wrapper">
-            <HeaderContainer/>
-            <div className="wrap-content">
-                <Switch>
-                    <Route exact path="/auth/register" render={() => <Register/>}/>
-                    <Route exact path="/auth/login" render={() => <Login/>}/>
-                    <PrivateRoute path='/' component={RouteMap}/>
-                </Switch>
+            <div className="container">
+                <HeaderContainer/>
+                <div className="wrap-content">
+                    <Switch>
+                        <Route exact path="/auth/register" render={() => <Register/>}/>
+                        <Route exact path="/auth/login" render={() => <Login/>}/>
+                        <PrivateRoute path='/' component={RouteMap}/>
+                    </Switch>
+                </div>
             </div>
         </div>
     );

@@ -1,7 +1,8 @@
 import * as mongoose from 'mongoose';
-import { IPrintingEdition } from "../../types/interface/printingEdition";
+import {IPrintingEdition} from "../../types/interface/printingEdition";
 import {printingEditionsType} from "../emuns/printingEditionsType";
-//задаем название коллекции
+// import mongoosePaginate from 'mongoose-paginate';
+
 export const PrintingEditionSchema = new mongoose.Schema({
     name: {
         type: String, required: true,
@@ -13,7 +14,7 @@ export const PrintingEditionSchema = new mongoose.Schema({
         type: String
     },
     removes_at: {
-        type: Boolean, default:false,
+        type: Boolean, default: false,
     },
     type: {
         type: printingEditionsType, required: true,
@@ -22,12 +23,20 @@ export const PrintingEditionSchema = new mongoose.Schema({
         type: Number
     },
     currency: {
-        type: String, default:"EUR",
+        type: String, default: "EUR",
     },
-    author_ids: {
-        type: mongoose.Schema.Types.ObjectId
-    },
+    author_ids: [
+        {
+            type: mongoose.Schema.Types.ObjectId ,
+            // required: true
+        }
+    ],
 });
 
-interface printingEditionModel extends IPrintingEdition, mongoose.Document{}
-export const printingEditionModel = mongoose.model<printingEditionModel>("printing-edition", PrintingEditionSchema)
+// PrintingEditionSchema.plugin(mongoosePaginate);
+
+interface printingEditionModel extends IPrintingEdition, mongoose.Document {
+}
+
+
+export const printingEditionModel = mongoose.model<printingEditionModel>("printing-edition", PrintingEditionSchema);

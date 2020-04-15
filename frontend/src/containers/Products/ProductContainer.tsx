@@ -5,12 +5,15 @@ import ProductTable from "../../components/ProductTable/ProductTable";
 import {getProductThunk} from "../../reduxStore/product/product"
 
 const ProductContainer = (props: any) => {
+
     const selectIsOn = (state: RootState) => state.productReducer;
     const products = useSelector(selectIsOn);
     const dispatch = useDispatch();
+
     useEffect(() => {
         dispatch(getProductThunk())
     }, []);
+
     return (
         <>
             <section className="wrap-products">
