@@ -9,7 +9,6 @@ export const registerUser = async (user: IUser) => {
     return result
 };
 
-// геnерируем токены и обновляем refresh v mongo
 export const updateTokens = async (user: any) => {
     const accessToken = await generateAccessToken(user);
     const refreshToken = await generateRefreshToken(user);
