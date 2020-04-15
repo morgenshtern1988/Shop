@@ -4,7 +4,6 @@ import {Table} from "react-bootstrap";
 
 const ProductTable = (props: any) => {
     const {products} = props;
-    console.log(products);
     return (
         <>
             <h1>Product Management</h1>

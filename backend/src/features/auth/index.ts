@@ -5,5 +5,5 @@ export const authRouter = Router();
 
 authRouter.post("/register", registerUser);
 authRouter.post("/login", authenticateUser);
-authRouter.post("/refresh-tokens", refreshTokens);
+authRouter.get("/refresh-tokens", refreshTokens);
 authRouter.post("/access-tokens", tokenAccessLifeCheck);

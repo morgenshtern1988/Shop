@@ -1,5 +1,5 @@
 import React from "react";
-import {Redirect, Route} from 'react-router-dom';
+import {Redirect} from 'react-router-dom';
 import {Button, FormGroup, FormControl, ControlLabel} from "react-bootstrap";
 import {connect} from "react-redux";
 import {singInUser} from "../../reduxStore/login/action";

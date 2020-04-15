@@ -6,20 +6,11 @@ import {
     ControlLabel
 } from "react-bootstrap";
 import LoaderButton from "../../components/LoaderButton/LoaderButton";
-// import {useFormFields} from "../../libs/hooksLib";
-import {postUserAddDb, registerReducer} from "../../reduxStore/register/register";
+import {postUserAddDb} from "../../reduxStore/register/register";
 import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../inrerface";
 
 export default function Signup(props: any) {
-    // const [fields, handleFieldChange] = useFormFields({
-    //     firstName: "",
-    //     lastName: "",
-    //     email: "",
-    //     password: "",
-    //     confirmPassword: "",
-    //     confirmationCode: ""
-    // });
 
     const selectIsOn = (state: RootState) => state.registerReducer;
     const newUser = useSelector(selectIsOn);

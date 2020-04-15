@@ -1,12 +1,4 @@
-let initialState = [{
-    name: "",
-    description: "",
-    currency: "",
-    cover_image: "",
-    type: "",
-    price: "",
-    removes_at: "",
-}];
+import {fetchGetProducts} from "../../services/productsApi";
 
 export const productReducer = (state: any = [], action: any) => {
     switch (action.type) {
@@ -24,10 +16,12 @@ export const productReducer = (state: any = [], action: any) => {
 };
 export const getProductThunk = () => {
     return async (dispatch: any) => {
-        await fetch("http://localhost:7227/admin/printing-edition")
-            .then((response) => response.json())
+        await fetchGetProducts()
             .then((items) => {
                 dispatch({type: 'INIT_PRODUCT', payload: items})
+            })
+            .catch(()=>{
+                dispatch({type: 'INIT_PRODUCT', payload: []})
             })
     }
 };

@@ -10,7 +10,7 @@ export const RouteMap = (props: any) => {
                 <Route exact path="/printing-edition" component={ProductContainer}/>
                 {/*<Route path="/printing-edition" component={ProductContainer}/>*/}
                 <Route exact path="/admin/printing-edition" component={Dashboard}/>
-                {/*<Redirect to="/"/>*/}
+                <Redirect to="/"/>
             </Switch>
         </>
     )

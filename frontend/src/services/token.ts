@@ -1,59 +1,41 @@
-export async function getValidAccessToken() {
-    const tokenStorage = localStorage.getItem('token');
-    let fakeAuth = {
-        isAuthenticated: false,
-    };
-    if (tokenStorage !== null) {
-        const token = JSON.parse(tokenStorage);
-        const accessToken = {
-            accessToken: token.accessToken,
-        };
-        await fetch("http://localhost:7227/auth/access-tokens", {
-            method: "POST",
-            // mode: 'cors',
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(accessToken)
-        })
-            .then((result) => {
-                console.log(result);
-                if (result.status !== 401) {
-                    fakeAuth.isAuthenticated = true;
-                    console.log("token живой");
-                } else {
-                    console.log("status 401");
-                    getRefreshToken()
-                }
-            })
-            .catch((e) => {
-                console.log("ошибка");
-            });
+import axios from 'axios';
 
-        async function getRefreshToken() {
-            const refreshToken = {
-                refreshToken: token.refreshToken
-            };
-            await fetch("http://localhost:7227/auth/refresh-tokens", {
-                method: "POST",
-                // mode: 'cors',
+axios.interceptors.response.use(response => {
+    return response;
+}, err => {
+    return new Promise((resolve, reject) => {
+        const originalReq = err.config;
+        if (err.response.status === 401 && err.config && !err.config.__isRetryRequest) {
+            originalReq._retry = true;
+            const authToken = JSON.parse(localStorage.getItem('token') || '{}');
+            const refreshToken = authToken.refreshToken;
+            const accessToken = authToken.refreshToken;
+            let res = fetch("http://localhost:7227/auth/access-tokens", {
+                method: 'POST',
+                mode: 'cors',
+                cache: 'no-cache',
+                credentials: 'same-origin',
                 headers: {
-                    "Content-Type": "application/json"
+                    'Content-Type': 'application/json',
+                    'Device': 'device',
+                    'Token': accessToken
                 },
-                body: JSON.stringify(refreshToken)
-            })
-                .then((result) => {
-                    result.json().then((token: any) => localStorage.setItem('token', JSON.stringify(token)));
-                    console.log("обновили пару токинов");
-                    fakeAuth.isAuthenticated = true;
-                })
-                .catch((e) => {
-                    console.log(e);
-                    fakeAuth.isAuthenticated = false;
-                })
+                redirect: 'follow',
+                referrer: 'no-referrer',
+                body: JSON.stringify({
+                    token: accessToken,
+                    refresh_token: refreshToken
+                }),
+            }).then(res => res.json()).then(res => {
+                console.log(res);
+                // localStorage.setItem('token', JSON.stringify(token));
+                // setSession({token: res.token, refresh_token: res.refresh});
+                originalReq.headers['Token'] = res.token;
+                originalReq.headers['Device'] = "device";
+                return axios(originalReq);
+            });
+            resolve(res);
         }
-        return fakeAuth.isAuthenticated
-    }
-    return fakeAuth.isAuthenticated
-
-}
+        return Promise.reject(err);
+    });
+});

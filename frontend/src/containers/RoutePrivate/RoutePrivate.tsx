@@ -11,7 +11,7 @@ export const PrivateRoute = (props: any) => {
     const selectIsOn = (state: RootState) => state.loginReducer.isAuthenticated;
     const isAuthenticated = useSelector(selectIsOn);
     const dispatch = useDispatch();
-    dispatch(isAlive());
+    // dispatch(isAlive());
 
     return (
         <Route {...rest} render={(props: any) => (

@@ -1,4 +1,4 @@
-import {Response, Request} from "express";
+import {Response, Request, NextFunction} from "express";
 import {createUser, loginUser} from "../services/auth.services";
 import * as jwt from "jsonwebtoken";
 import appJwt from "../../../config/app";
@@ -18,12 +18,12 @@ export const authenticateUser = async (request: Request, response: Response) => 
         .catch(() => response.sendStatus(401))
 };
 
-export const tokenAccessLifeCheck = async (request: Request, response: Response) => {
+export const tokenAccessLifeCheck = async (request: Request, response: Response, next: NextFunction) => {
     const accessToken = request.headers.authorization;
     let payload: any;
     try {
         const resultVerify = jwt.verify(accessToken, appJwt.jwt.secret);
-        response.sendStatus(200)
+        next()
     } catch (e) {
         response.sendStatus(401);
     }

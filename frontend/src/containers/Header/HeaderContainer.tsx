@@ -1,11 +1,9 @@
 import React from "react";
 import {connect} from "react-redux";
-import {Redirect} from "react-router-dom"
-import Search from "../../components/Search";
 
 const HeaderContainer = (props: any) => {
     // console.log(props);
-    const {products, auth} = props;
+    const {auth} = props;
     const cleanLocalStorage = () => {
         localStorage.clear()
     };
