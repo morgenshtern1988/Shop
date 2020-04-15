@@ -11,7 +11,8 @@ exports.generateAccessToken = async (user) => {
         id: user._id,
         type: app_1.default.jwt.tokens.access.type,
     };
-    const option = { expiresIn: app_1.default.jwt.tokens.access.expiresIn };
+    // const option = {expiresIn: appJwt.jwt.tokens.access.expiresIn};
+    const option = { expiresIn: 60 };
     return jwt.sign(payload, app_1.default.jwt.secret, option);
 };
 exports.generateRefreshToken = async (user) => {
@@ -20,7 +21,8 @@ exports.generateRefreshToken = async (user) => {
         role: user.role,
         type: app_1.default.jwt.tokens.refresh.type,
     };
-    const option = { expiresIn: app_1.default.jwt.tokens.refresh.expiresIn };
+    const option = { expiresIn: new Date().getTime() + 60 };
+    // const option = {expiresIn: appJwt.jwt.tokens.refresh.expiresIn};
     return jwt.sign(payload, app_1.default.jwt.secret, option);
 };
 //rewrite refresh token in DB

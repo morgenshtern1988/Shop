@@ -1,21 +1,17 @@
 import axios, {AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse} from "axios";
 
 const api = () => {
-    const token = JSON.parse(localStorage.getItem("token") as string);
 
-    const instance = axios.create({
-        baseURL: 'http://localhost:7227',
-        headers: {
-            Authorization: token && token.accessToken || "",
-        }
-    });
+    const instance = axios;
+    instance.defaults.baseURL = 'http://localhost:7227';
 
     /// requset interceptor
     instance.interceptors.request.use(
         (config: AxiosRequestConfig): AxiosRequestConfig | Promise<AxiosRequestConfig> => {
-            /*  if (config.method === 'post') {
-                  config.headers = Object.assign(config.headers, {'Content-Type': 'application/json'});
-              }*/
+            const token = JSON.parse(localStorage.getItem("token") as string);
+            config.headers = {
+                Authorization: token && token.accessToken ? token.accessToken : '',
+            }
             console.log('Request: ', config);
             return config;
         });

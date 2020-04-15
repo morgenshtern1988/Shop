@@ -21,11 +21,18 @@ export const authenticateUser = async (request: Request, response: Response) => 
 export const tokenAccessLifeCheck = async (request: Request, response: Response, next: NextFunction) => {
     const accessToken = request.headers.authorization;
     let payload: any;
+
+    if (!accessToken) {
+        response.status(401).send('No token provided');
+        return;
+    }
+
     try {
-        const resultVerify = jwt.verify(accessToken, appJwt.jwt.secret);
-        next()
+        const resultVerify = await jwt.verify(accessToken, appJwt.jwt.secret);
+        console.log(resultVerify)
+        next();
     } catch (e) {
-        response.sendStatus(401);
+        response.status(401).send(e);
     }
 };
 export const refreshTokens = async (request: Request, response: Response) => {

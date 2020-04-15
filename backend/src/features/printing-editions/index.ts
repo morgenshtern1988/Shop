@@ -5,12 +5,12 @@ import {
     adminRemoveProduct,
     adminUpdateProduct
 } from "./handlers/printingEgitions.handler";
-import {AuthMiddleware} from "../../middleware/auth.middleware";
+import {tokenAccessLifeCheck} from "../auth/handlers/auth.handlers";
 
 export const adminProductRouter = Router();
 
 //authMiddleware
-adminProductRouter.get("/", adminShowProduct);
-adminProductRouter.post("/create", adminCreateProduct);
-adminProductRouter.delete("/:id", adminRemoveProduct);
-adminProductRouter.put("/:id", adminUpdateProduct);
+adminProductRouter.get("/", tokenAccessLifeCheck, adminShowProduct);
+adminProductRouter.post("/create", tokenAccessLifeCheck, adminCreateProduct);
+adminProductRouter.delete("/:id", tokenAccessLifeCheck, adminRemoveProduct);
+adminProductRouter.put("/:id", tokenAccessLifeCheck, adminUpdateProduct);

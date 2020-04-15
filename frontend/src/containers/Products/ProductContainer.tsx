@@ -10,9 +10,9 @@ const ProductContainer = (props: any) => {
     const products = useSelector(selectIsOn);
     const dispatch = useDispatch();
 
-    // useEffect(() => {
-    //     dispatch(getProductThunk())
-    // }, []);
+    useEffect(() => {
+        dispatch(getProductThunk())
+    }, []);
 
     return (
         <>

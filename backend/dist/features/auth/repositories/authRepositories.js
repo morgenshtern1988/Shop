@@ -8,7 +8,6 @@ exports.registerUser = async (user) => {
     const result = await user_1.userModel.insertMany(user);
     return result;
 };
-// геnерируем токены и обновляем refresh v mongo
 exports.updateTokens = async (user) => {
     const accessToken = await authHelpers_1.generateAccessToken(user);
     const refreshToken = await authHelpers_1.generateRefreshToken(user);
@@ -23,7 +22,6 @@ exports.authenticateUser = async (user) => {
     if (userInDb) {
         const isPasswordMatching = await bcrypt.compare(user.password, userInDb.password);
         if (isPasswordMatching) {
-            console.log("удачно совпали пароли");
             return await exports.updateTokens(userInDb);
         }
         else

@@ -20,7 +20,6 @@ async function showProduct(printingEditions) {
     }
 }
 exports.showProduct = showProduct;
-//5e6fe7206c82e932a0351ae8
 async function removeProduct(id) {
     printingEditionsRepositories_1.adminRemoveProduct(id);
 }

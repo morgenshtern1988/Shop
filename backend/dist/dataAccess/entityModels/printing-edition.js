@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose = require("mongoose");
 const printingEditionsType_1 = require("../emuns/printingEditionsType");
-//задаем название коллекции
+// import mongoosePaginate from 'mongoose-paginate';
 exports.PrintingEditionSchema = new mongoose.Schema({
     name: {
         type: String, required: true,
@@ -25,9 +25,11 @@ exports.PrintingEditionSchema = new mongoose.Schema({
     currency: {
         type: String, default: "EUR",
     },
-    author_ids: {
-        type: mongoose.Schema.Types.ObjectId
-    },
+    author_ids: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+        }
+    ],
 });
 exports.printingEditionModel = mongoose.model("printing-edition", exports.PrintingEditionSchema);
 //# sourceMappingURL=printing-edition.js.map

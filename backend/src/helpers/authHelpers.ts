@@ -12,7 +12,7 @@ export const generateAccessToken = async (user: any) => {
         type: appJwt.jwt.tokens.access.type,
     };
     // const option = {expiresIn: appJwt.jwt.tokens.access.expiresIn};
-    const option = {expiresIn: new Date().getTime() + 60};
+    const option = {expiresIn: 60};
     return jwt.sign(payload, appJwt.jwt.secret, option)
 };
 

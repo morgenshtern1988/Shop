@@ -14,19 +14,24 @@ exports.authenticateUser = async (request, response) => {
         .then(token => response.json(token))
         .catch(() => response.sendStatus(401));
 };
-exports.tokenAccessLifeCheck = async (request, response) => {
-    const { accessToken } = request.body;
+exports.tokenAccessLifeCheck = async (request, response, next) => {
+    const accessToken = request.headers.authorization;
     let payload;
+    if (!accessToken) {
+        response.status(401).send('No token provided');
+        return;
+    }
     try {
-        const resultVerify = jwt.verify(accessToken, app_1.default.jwt.secret);
-        response.sendStatus(200);
+        const resultVerify = await jwt.verify(accessToken, app_1.default.jwt.secret);
+        console.log(resultVerify);
+        next();
     }
     catch (e) {
-        response.sendStatus(401);
+        response.status(401).send(e);
     }
 };
 exports.refreshTokens = async (request, response) => {
-    const { refreshToken } = request.body;
+    const refreshToken = request.headers.authorization;
     let payload;
     try {
         payload = jwt.verify(refreshToken, app_1.default.jwt.secret);
@@ -53,14 +58,5 @@ exports.refreshTokens = async (request, response) => {
             return;
         }
     }
-    /* tokenModel.findOne({tokenId: payload.id})
-         .then((token: any) => {
-             if (token === null) {
-                 throw new Error("Invalid token!");
-             }
-             return updateTokens((token.userId));
-         })
-         .then((tokens: any) => res.json(tokens))
-         .catch((err: any) => res.status(401).json({message: err.message}))*/
 };
 //# sourceMappingURL=auth.handlers.js.map
