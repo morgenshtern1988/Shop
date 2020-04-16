@@ -6,10 +6,8 @@ import HeaderContainer from "./containers/Header/HeaderContainer";
 import Login from "./containers/Form/LoginContainer";
 import {PrivateRoute} from "./containers/RoutePrivate/RoutePrivate";
 import {RouteMap} from "./components/Route/Route";
-import axios from "axios";
 
 function App() {
-
     return (
         <div className="wrapper">
             <div className="container">

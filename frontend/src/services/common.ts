@@ -3,7 +3,7 @@ import axios, {AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse} fro
 const api = () => {
 
     const instance = axios;
-    instance.defaults.baseURL = 'http://localhost:7227';
+    instance.defaults.baseURL = 'http://localhost:8888';
 
     /// requset interceptor
     instance.interceptors.request.use(
@@ -11,7 +11,7 @@ const api = () => {
             const token = JSON.parse(localStorage.getItem("token") as string);
             config.headers = {
                 Authorization: token && token.accessToken ? token.accessToken : '',
-            }
+            };
             console.log('Request: ', config);
             return config;
         });
@@ -20,16 +20,16 @@ const api = () => {
         (response: AxiosResponse): AxiosResponse | Promise<AxiosResponse> => response,
         async (error: AxiosError) => {
             const originalRequest: AxiosRequestConfig = error.config;
-            console.log(originalRequest)
+            console.log(originalRequest);
             if (
                 error.response &&
                 error.response.status === 401 &&
                 localStorage.getItem('token') !== null &&
                 window.location.pathname !== '/login' &&
-                window.location.pathname !== '/registration'
+                window.location.pathname !== '/register'
             ) {
                 const authToken = JSON.parse(localStorage.getItem('token') || '{}');
-                const refreshedToken = await fetch("http://localhost:7227/auth/refresh-tokens", {
+                const refreshedToken = await fetch("http://localhost:8888/auth/refresh-tokens", {
                     method: "GET",
                     headers: {
                         "Content-Type": "application/json",
@@ -37,7 +37,7 @@ const api = () => {
                     }
                 }).then(res => res.json().then((token: any) => token));
                 localStorage.setItem('token', JSON.stringify(refreshedToken));
-                console.log(refreshedToken)
+                console.log(refreshedToken);
 
                 instance.defaults.headers.Authorization = refreshedToken.refreshToken;
                 return instance(originalRequest);

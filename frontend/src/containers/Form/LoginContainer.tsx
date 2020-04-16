@@ -2,8 +2,8 @@ import React from "react";
 import {Redirect} from 'react-router-dom';
 import {Button, FormGroup, FormControl, ControlLabel} from "react-bootstrap";
 import {connect} from "react-redux";
-import {singInUser} from "../../reduxStore/login/action";
-import {store} from "../../reduxStore/store";
+import {singInUser} from "../../reducers/login/action";
+import {store} from "../../store/store";
 
 const Login = (props: any) => {
     let {setEmail, setPassword, email, password, postUserFromApi, auth} = props;

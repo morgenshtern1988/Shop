@@ -7,9 +7,6 @@ export const productReducer = (state: any = [], action: any) => {
             return [
                 ...items
             ];
-        // case 'FILTER_PRODUCT':
-        //     return [...state, 222];
-        // return  [...state, ...state.products.filter((product:any) =>console.log(product.name))];
         default:
             return state;
     }

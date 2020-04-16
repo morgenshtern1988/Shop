@@ -1,3 +1,5 @@
+import {TYPES} from "../../action/login";
+
 export let initialState = {
     email: "",
     password: "",
@@ -6,28 +8,27 @@ export let initialState = {
     error: "",
     isAuthenticated: false,
 };
-
 export const loginReducer = (state: any = initialState, action: any) => {
     switch (action.type) {
-        case `@@login/AUTH_VALUE`: {
+        case TYPES.LOGIN_AUTH_VALUE: {
             return {
                 ...state,
                 isAuthenticated: action.payload,
             }
         }
-        case `@@login/DO_LOGIN`: {
+        case TYPES.LOGIN_DO_LOGIN: {
             return {
                 ...state,
                 loading: true
             };
         }
-        case `@@login/LOGIN_START`: {
+        case TYPES.LOGIN_LOGIN_START: {
             return {
                 ...state,
                 ...action.payload,
             };
         }
-        case `@@login/LOGIN_FAILED`: {
+        case TYPES.LOGIN_LOGIN_FAILED: {
             const {data} = action.payload;
             return {
                 ...state,
@@ -36,7 +37,7 @@ export const loginReducer = (state: any = initialState, action: any) => {
                 error: "error"
             };
         }
-        case `@@login/LOGIN_SUCCESS`: {
+        case TYPES.LOGIN_LOGIN_SUCCESS: {
             // const {data} = action.payload;
             return {
                 ...state,
@@ -51,7 +52,7 @@ export const loginReducer = (state: any = initialState, action: any) => {
 
 export const singInUser = (data: any) => {
     return async (dispatch: any) => {
-        await fetch("http://localhost:7227/auth/login", {
+        await fetch("http://localhost:8888/auth/login", {
             method: "POST",
             // mode: 'cors',
             headers: {
@@ -75,10 +76,10 @@ export const singInUser = (data: any) => {
     }
 };
 
-export const isAlive = () => {
+/*export const isAlive = () => {
     const authToken = JSON.parse(localStorage.getItem('token') || '{}');
     return async (dispatch: any) => {
-        await fetch("http://localhost:7227/auth/access-tokens", {
+        await fetch("http://localhost:8888/auth/access-tokens", {
             mode: 'cors',
             method: "POST",
             headers: {
@@ -97,12 +98,11 @@ export const isAlive = () => {
                 console.log(e);
             });
     }
-};
-
-const getRefreshedToken = () => {
+};*/
+/*const getRefreshedToken = () => {
     const authToken = JSON.parse(localStorage.getItem('token') || '{}');
     return async (dispatch: any) => {
-        await fetch("http://localhost:7227/auth/refresh-tokens", {
+        await fetch("http://localhost:8888/auth/refresh-tokens", {
             mode: 'cors',
             method: "POST",
             headers: {
@@ -125,6 +125,6 @@ const getRefreshedToken = () => {
                 // console.log(e);
             })
     }
-};
+};*/
 
 

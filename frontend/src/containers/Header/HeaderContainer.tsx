@@ -16,13 +16,13 @@ const HeaderContainer = (props: any) => {
                 {
                     auth ?
                         <div>
-                            <a href="http://localhost:3010/auth/login" onClick={cleanLocalStorage}>Log Out</a>
-                            <a href="http://localhost:3010/admin/printing-edition">Admin Aria</a>
+                            <a href="http://localhost:3000/auth/login" onClick={cleanLocalStorage}>Log Out</a>
+                            <a href="http://localhost:3000/admin/printing-edition">Admin Aria</a>
                         </div>
                         :
                         <>
-                            <a href="http://localhost:3010/auth/login">Log in</a>
-                            <a href="http://localhost:3010/auth/register">Sign up</a>
+                            <a href="http://localhost:3000/auth/login">Log in</a>
+                            <a href="http://localhost:3000/auth/register">Sign up</a>
                         </>
                 }
             </div>

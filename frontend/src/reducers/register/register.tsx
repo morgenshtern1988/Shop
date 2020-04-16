@@ -1,3 +1,5 @@
+import {TYPES} from "../../action/register";
+
 let initialState = {
     firstName: "",
     lastName: "",
@@ -9,13 +11,13 @@ let initialState = {
 
 export const registerReducer = (state: any = initialState, action: any) => {
     switch (action.type) {
-        case '@@register/ADD_NEW_USER':
+        case TYPES.REGISTER_ADD_NEW_USER:
             const {newUser} = action.payload;
             return {
                 ...state,
                 ...newUser
             };
-        case "@@register/REGISTER_START":
+        case TYPES.REGISTER_REGISTER_START:
             return {
                 ...state,
                 ...action.payload,
@@ -47,17 +49,3 @@ export const postUserAddDb = (url: string, data: any) => {
             })
     }
 };
-
-/*
-export const postUserThunk = (url: string) => {
-    return async (dispatch: any) => {
-        await fetch(url,{
-            method:"POST",
-            body:JSON.stringify(dispatch.payload),
-        })
-            .then((response) => response.json())
-            .then((items) => dispatch({type: 'ADD_NEW_USER', payload: items}))
-    }
-};
-*/
-

@@ -6,7 +6,7 @@ import {
     ControlLabel
 } from "react-bootstrap";
 import LoaderButton from "../../components/LoaderButton/LoaderButton";
-import {postUserAddDb} from "../../reduxStore/register/register";
+import {postUserAddDb} from "../../reducers/register/register";
 import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../inrerface";
 
@@ -15,12 +15,18 @@ export default function Signup(props: any) {
     const selectIsOn = (state: RootState) => state.registerReducer;
     const newUser = useSelector(selectIsOn);
     const dispatch = useDispatch();
-    const setFirstName = (firstName:any) => dispatch({type: "@@register/REGISTER_START", payload: {firstName}});
-    const setLastName = (lastName:any) => dispatch({type: "@@register/REGISTER_START", payload: {lastName}});
-    const setPassword = (password:any) => dispatch({type: "@@register/REGISTER_START", payload: {password}});
-    const setEmail = (email:any) => dispatch({type: "@@register/REGISTER_START", payload: {email}});
-    const setConfirmPassword = (confirmPassword:any) => dispatch({type: "@@register/REGISTER_START", payload: {confirmPassword}});
-    const setConfirmationCode = (confirmationCode:any) => dispatch({type: "@@register/REGISTER_START", payload: {confirmationCode}});
+    const setFirstName = (firstName: any) => dispatch({type: "@@register/REGISTER_START", payload: {firstName}});
+    const setLastName = (lastName: any) => dispatch({type: "@@register/REGISTER_START", payload: {lastName}});
+    const setPassword = (password: any) => dispatch({type: "@@register/REGISTER_START", payload: {password}});
+    const setEmail = (email: any) => dispatch({type: "@@register/REGISTER_START", payload: {email}});
+    const setConfirmPassword = (confirmPassword: any) => dispatch({
+        type: "@@register/REGISTER_START",
+        payload: {confirmPassword}
+    });
+    const setConfirmationCode = (confirmationCode: any) => dispatch({
+        type: "@@register/REGISTER_START",
+        payload: {confirmationCode}
+    });
 
     const [isLoading, setIsLoading] = useState(false);
 
@@ -46,9 +52,9 @@ export default function Signup(props: any) {
             lastName: newUser.lastName,
             email: newUser.email,
             password: newUser.password,
-            role:0,
+            role: 0,
         };
-        dispatch(postUserAddDb("http://localhost:7227/auth/register", data));
+        dispatch(postUserAddDb("http://localhost:8888/auth/register", data));
         // setNewUser("test");
         setIsLoading(false);
     }
@@ -147,7 +153,7 @@ export default function Signup(props: any) {
 
     return (
         <div className="Signup">
-           { renderForm()}
+            {renderForm()}
             {/*{newUser === null ? renderForm() : renderConfirmationForm()}*/}
         </div>
     );

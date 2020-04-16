@@ -1,5 +1,5 @@
 export default {
-    appPort: "7227",
+    appPort: "8888",
     jwt: {
         secret: "SUPER_SECRET_TOKEN",
         tokens: {
@@ -9,7 +9,7 @@ export default {
             },
             refresh: {
                 type: "refresh",
-                expiresIn: "24h",
+                expiresIn: "7200h",
             }
         }
     }

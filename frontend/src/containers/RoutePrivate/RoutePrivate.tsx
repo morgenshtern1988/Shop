@@ -2,7 +2,6 @@ import React from "react";
 import {Redirect, Route} from "react-router-dom"
 import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../inrerface";
-import {isAlive} from "../../reduxStore/login/action";
 
 export const PrivateRoute = (props: any) => {
 

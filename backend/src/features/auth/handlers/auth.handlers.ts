@@ -29,7 +29,6 @@ export const tokenAccessLifeCheck = async (request: Request, response: Response,
 
     try {
         const resultVerify = await jwt.verify(accessToken, appJwt.jwt.secret);
-        console.log(resultVerify)
         next();
     } catch (e) {
         response.status(401).send(e);
@@ -47,11 +46,6 @@ export const refreshTokens = async (request: Request, response: Response) => {
         };
         const token = await updateTokens(user);
         response.json(token);
-        /*
-                if (payload.type !== "refresh") {
-                    res.status(401).json({message: "Invalid token"});
-                    return;
-                }*/
     } catch (e) {
         if (e instanceof jwt.TokenExpiredError) {
             response.status(401).json({message: "Token expired"});
