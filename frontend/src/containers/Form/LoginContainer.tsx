@@ -7,18 +7,21 @@ import {store} from "../../store/store";
 
 const Login = (props: any) => {
     let {setEmail, setPassword, email, password, postUserFromApi, auth} = props;
+
     function validateForm() {
         return (email !== undefined && password !== undefined)
     }
+
     function handleSubmit(event: any) {
         const data = store.getState().loginReducer;
         postUserFromApi(data);
         event.preventDefault();
     }
+
     return (
         <>
             {auth
-                ? <Redirect exact from="/auth/login" to='/printing-edition'/>
+                ? <Redirect exact from="/auth/login" to='/home'/>
                 : <div className="Login">
                     <form onSubmit={handleSubmit}>
                         <FormGroup controlId="email" bsSize="large">

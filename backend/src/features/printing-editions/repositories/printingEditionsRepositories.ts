@@ -7,6 +7,11 @@ export const adminShowProduct = async function (printingEdition: any) {
     return result
 };
 
+export const userShowProductAsync = async function (printingEdition: any) {
+    const result = printingEditionModel.find({});
+    return result
+};
+
 //authMiddleware
 export const adminCreateProduct = async (printingEdition: IPrintingEdition) => {
     const result = await printingEditionModel.insertMany(printingEdition);

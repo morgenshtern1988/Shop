@@ -1,4 +1,9 @@
-import {adminCreateProduct, adminRemoveProduct, adminUpdateProduct} from "../repositories/printingEditionsRepositories";
+import {
+    adminCreateProduct,
+    adminRemoveProduct,
+    adminUpdateProduct,
+    userShowProductAsync
+} from "../repositories/printingEditionsRepositories";
 import {IPrintingEdition} from "../../../types/interface/printingEdition";
 import {adminShowProduct} from "../repositories/printingEditionsRepositories";
 
@@ -15,6 +20,14 @@ export async function showProduct(printingEditions: any) {
         return "Error"
     } else {
         return await adminShowProduct(printingEditions)
+    }
+}
+
+export async function userShowProduct(printingEditions: any) {
+    if (printingEditions === null) {
+        return "Error"
+    } else {
+        return await userShowProductAsync(printingEditions)
     }
 }
 

@@ -1,5 +1,11 @@
 import {Request, Response, NextFunction} from "express";
-import {createProduct, removeProduct, showProduct, updateProduct} from "../services/printingEditionsServices"
+import {
+    createProduct,
+    removeProduct,
+    showProduct,
+    updateProduct,
+    userShowProduct
+} from "../services/printingEditionsServices"
 
 export const adminShowProduct = async function (request: Request, response: Response) {
     showProduct(request.body)
@@ -7,7 +13,13 @@ export const adminShowProduct = async function (request: Request, response: Resp
         .catch((err) => response.json(err))
 };
 
-//authMiddleware
+export const userShowProductAsync = async function (request: Request, response: Response) {
+    userShowProduct(request.body)
+        .then((printingEdition) => response.json(printingEdition))
+        .catch((err) => response.json(err))
+};
+
+
 export const adminCreateProduct = async (request: Request, response: Response): Promise<any> => {
     createProduct(request.body)
         .then((printingEdition: any) => response.json(printingEdition))

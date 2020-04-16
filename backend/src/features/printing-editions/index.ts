@@ -3,14 +3,19 @@ import {
     adminCreateProduct,
     adminShowProduct,
     adminRemoveProduct,
-    adminUpdateProduct
+    adminUpdateProduct, userShowProductAsync
 } from "./handlers/printingEgitions.handler";
 import {tokenAccessLifeCheck} from "../auth/handlers/auth.handlers";
+import {AuthMiddleware} from "../../middleware/auth.middleware";
+import {PermissionMiddleware} from "../../middleware/permission.middleware";
 
 export const adminProductRouter = Router();
+export const userProductRouter = Router();
 
-//authMiddleware
-adminProductRouter.get("/", tokenAccessLifeCheck, adminShowProduct);
-adminProductRouter.post("/create", tokenAccessLifeCheck, adminCreateProduct);
-adminProductRouter.delete("/:id", tokenAccessLifeCheck, adminRemoveProduct);
-adminProductRouter.put("/:id", tokenAccessLifeCheck, adminUpdateProduct);
+adminProductRouter.get("/", tokenAccessLifeCheck, AuthMiddleware, PermissionMiddleware([1]), adminShowProduct);
+adminProductRouter.post("/create", tokenAccessLifeCheck, AuthMiddleware, PermissionMiddleware([1]), adminCreateProduct);
+adminProductRouter.delete("/:id", tokenAccessLifeCheck, AuthMiddleware, PermissionMiddleware([1]), adminRemoveProduct);
+adminProductRouter.put("/:id", tokenAccessLifeCheck, AuthMiddleware, PermissionMiddleware([1]), adminUpdateProduct);
+
+userProductRouter.get("/", tokenAccessLifeCheck, AuthMiddleware, userShowProductAsync);
+// userProductRouter.get("/", tokenAccessLifeCheck, AuthMiddleware, PermissionMiddleware, userShowProductAsync);

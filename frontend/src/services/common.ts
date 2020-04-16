@@ -12,7 +12,7 @@ const api = () => {
             config.headers = {
                 Authorization: token && token.accessToken ? token.accessToken : '',
             };
-            console.log('Request: ', config);
+            // console.log('Request: ', config);
             return config;
         });
 
@@ -25,8 +25,8 @@ const api = () => {
                 error.response &&
                 error.response.status === 401 &&
                 localStorage.getItem('token') !== null &&
-                window.location.pathname !== '/login' &&
-                window.location.pathname !== '/register'
+                window.location.pathname !== '/auth/login' &&
+                window.location.pathname !== '/auth/register'
             ) {
                 const authToken = JSON.parse(localStorage.getItem('token') || '{}');
                 const refreshedToken = await fetch("http://localhost:8888/auth/refresh-tokens", {
@@ -37,14 +37,12 @@ const api = () => {
                     }
                 }).then(res => res.json().then((token: any) => token));
                 localStorage.setItem('token', JSON.stringify(refreshedToken));
-                console.log(refreshedToken);
-
+                // console.log(refreshedToken);
                 instance.defaults.headers.Authorization = refreshedToken.refreshToken;
                 return instance(originalRequest);
             }
             return error;
-        })
-
+        });
     return instance;
 };
 
