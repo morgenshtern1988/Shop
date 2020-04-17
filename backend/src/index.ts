@@ -12,7 +12,7 @@ connectMongo();
 const app = express();
 
 export interface User {
-    id:string,
+    id: string,
     role: number;
 }
 
@@ -33,7 +33,6 @@ app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type, authorization');
     next()
 });
-
 app.use("/auth", authRouter);
 app.use("/printing-edition", userProductRouter);
 app.use("/admin/printing-edition", adminProductRouter);

@@ -11,12 +11,17 @@ import {PermissionMiddleware} from "../../middleware/permission.middleware";
 import {controllerRole} from "../../controllers/auth";
 
 export const adminProductRouter = Router();
-export const userProductRouter = Router();
+
 
 adminProductRouter.get("/", tokenAccessLifeCheck, AuthMiddleware, PermissionMiddleware([1]), adminShowProduct);
-adminProductRouter.post("/create", tokenAccessLifeCheck, AuthMiddleware, PermissionMiddleware([1]), adminCreateProduct);
-adminProductRouter.delete("/:id", tokenAccessLifeCheck, AuthMiddleware, PermissionMiddleware([1]), adminRemoveProduct);
+
+adminProductRouter.post("/create", adminCreateProduct);
+// adminProductRouter.post("/create", tokenAccessLifeCheck, AuthMiddleware, PermissionMiddleware([1]), adminCreateProduct);
+
+adminProductRouter.delete("/:id", adminRemoveProduct);
+// adminProductRouter.delete("/:id", tokenAccessLifeCheck, AuthMiddleware, PermissionMiddleware([1]), adminRemoveProduct);
+
 adminProductRouter.put("/:id", tokenAccessLifeCheck, AuthMiddleware, PermissionMiddleware([1]), adminUpdateProduct);
 
-
+export const userProductRouter = Router();
 userProductRouter.get("/", tokenAccessLifeCheck, AuthMiddleware, controllerRole, userShowProductAsync);

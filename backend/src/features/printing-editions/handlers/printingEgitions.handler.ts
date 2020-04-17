@@ -28,6 +28,7 @@ export const adminCreateProduct = async (request: Request, response: Response): 
 
 export const adminRemoveProduct = async (request: Request, response: Response) => {
     const id = request.params.id;
+    console.log(id);
     removeProduct(id)
         .then((printingEdition: any) => response.json(printingEdition))
         .catch((err: any) => response.json(err))

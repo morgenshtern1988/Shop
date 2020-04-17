@@ -32,11 +32,11 @@ export async function userShowProduct(printingEditions: any) {
 }
 
 export async function removeProduct(id: string) {
-    adminRemoveProduct(id)
+   return adminRemoveProduct(id)
 }
 
 export async function updateProduct(printingEditions: any, id: string) {
     console.log(id);
     console.log(printingEditions);
-    adminUpdateProduct(printingEditions, id);
+  return adminUpdateProduct(printingEditions, id);
 }

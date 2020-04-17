@@ -22,6 +22,8 @@ export const adminRemoveProduct = async (id: string) => {
     // const printingEdition = await printingEditionModel.find({});
     const printingEdition = await printingEditionModel.findById(id);
     await printingEditionModel.remove(printingEdition);
+    const refreshPrintingEditionInDB = await printingEditionModel.find({});
+    return refreshPrintingEditionInDB;
 };
 
 export const adminUpdateProduct = async (reqPrintingEditions: any, id: string) => {
