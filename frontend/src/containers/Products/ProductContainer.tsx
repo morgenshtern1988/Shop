@@ -16,9 +16,7 @@ const ProductContainer = (props: any) => {
 
     return (
         <>
-            <section className="wrap-products">
-                <ProductTable products={products}/>
-            </section>
+            <ProductTable products={products}/>
         </>
     )
 };

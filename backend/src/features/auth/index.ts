@@ -1,5 +1,6 @@
 import {Router} from "express";
 import {registerUser, authenticateUser, refreshTokens, tokenAccessLifeCheck} from "./handlers/auth.handlers"
+import {controllerRole} from "../../controllers/auth";
 
 export const authRouter = Router();
 

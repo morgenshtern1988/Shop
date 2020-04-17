@@ -11,7 +11,8 @@ connectMongo();
 
 const app = express();
 
-interface User {
+export interface User {
+    id:string,
     role: number;
 }
 
@@ -34,8 +35,8 @@ app.use((req, res, next) => {
 });
 
 app.use("/auth", authRouter);
-app.use("/admin/printing-edition", adminProductRouter);
 app.use("/printing-edition", userProductRouter);
+app.use("/admin/printing-edition", adminProductRouter);
 
 app.listen(PORT.appPort, function () {
     console.log("Сервер начинает прослушивание...");

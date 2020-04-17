@@ -12,10 +12,10 @@ export const registerUser = async (request: Request, response: Response) => {
         .catch(err => response.json(err))
 };
 
-export const authenticateUser = async (request: Request, response: Response) => {
+export const authenticateUser = async (request: Request, response: Response, next: NextFunction) => {
     loginUser(request.body)
         .then(token => response.json(token))
-        .catch(() => response.sendStatus(401))
+        .catch(() => response.sendStatus(401));
 };
 
 export const tokenAccessLifeCheck = async (request: Request, response: Response, next: NextFunction) => {

@@ -11,13 +11,15 @@ export const productReducer = (state: any = [], action: any) => {
             return state;
     }
 };
+
 export const getProductThunk = () => {
     return async (dispatch: any) => {
         await fetchGetProducts()
             .then((items) => {
-                dispatch({type: 'INIT_PRODUCT', payload: items})
+                console.log(items);
+                dispatch({type: 'INIT_PRODUCT', payload: items.data})
             })
-            .catch(()=>{
+            .catch(() => {
                 dispatch({type: 'INIT_PRODUCT', payload: []})
             })
     }

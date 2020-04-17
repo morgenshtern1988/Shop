@@ -10,16 +10,12 @@ import {RouteMap} from "./components/Route/Route";
 function App() {
     return (
         <div className="wrapper">
-            <div className="container">
-                <HeaderContainer/>
-                <div className="wrap-content">
-                    <Switch>
-                        <Route exact path="/auth/register" render={() => <Register/>}/>
-                        <Route exact path="/auth/login" render={() => <Login/>}/>
-                        <PrivateRoute path='/' component={RouteMap}/>
-                    </Switch>
-                </div>
-            </div>
+            <HeaderContainer/>
+            {/*<Switch>
+                <Route exact path="/auth/register" render={() => <Register/>}/>
+                <Route exact path="/auth/login" render={() => <Login/>}/>
+                <PrivateRoute path='/' component={RouteMap}/>
+            </Switch>*/}
         </div>
     );
 }

@@ -8,6 +8,7 @@ import {store} from "../../store/store";
 const Login = (props: any) => {
     let {setEmail, setPassword, email, password, postUserFromApi, auth} = props;
 
+
     function validateForm() {
         return (email !== undefined && password !== undefined)
     }
@@ -21,7 +22,7 @@ const Login = (props: any) => {
     return (
         <>
             {auth
-                ? <Redirect exact from="/auth/login" to='/home'/>
+                ? <Redirect exact from="/auth/login" to='/printing-edition'/>
                 : <div className="Login">
                     <form onSubmit={handleSubmit}>
                         <FormGroup controlId="email" bsSize="large">
@@ -62,7 +63,6 @@ const mapDispatchToProps = (dispatch: any) => ({
     setEmail: (email: any) => dispatch({type: "@@login/LOGIN_START", payload: {email}}),
     setPassword: (password: any) => dispatch({type: "@@login/LOGIN_START", payload: {password}}),
     postUserFromApi: (data: any) => dispatch(singInUser(data)),
-    // isAuthenticated: (bool: boolean) => dispatch({type: "@@login/AUTH_VALUE", payload: {bool}})
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login)

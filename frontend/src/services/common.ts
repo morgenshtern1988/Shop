@@ -20,7 +20,7 @@ const api = () => {
         (response: AxiosResponse): AxiosResponse | Promise<AxiosResponse> => response,
         async (error: AxiosError) => {
             const originalRequest: AxiosRequestConfig = error.config;
-            console.log(originalRequest);
+            // console.log(originalRequest);
             if (
                 error.response &&
                 error.response.status === 401 &&
