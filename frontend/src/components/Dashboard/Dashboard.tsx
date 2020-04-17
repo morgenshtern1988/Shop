@@ -4,10 +4,10 @@ import ProductContainer from "../../containers/Products/ProductContainer";
 const Dashboard = () => {
     return (
         <>
-            <p>im Dashboard</p>
+            <h1 className="">Catalog</h1>
             <ProductContainer/>
         </>
     )
 };
 
-export default Dashboard;
+export default Dashboard

@@ -6,9 +6,9 @@ const ProductTable = (props: any) => {
     const {products} = props;
     return (
         <>
-            <h1>Product Management</h1>
-            <Table responsive>
-                <thead>
+            <h1 className="heading-text">Product Management</h1>
+            <Table responsive className="table-striped">
+                <thead className="thead-dark ">
                 <tr>
                     <th>ID</th>
                     <th>Name</th>

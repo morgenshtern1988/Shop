@@ -3,20 +3,23 @@ import {connect} from "react-redux";
 import "./style.scss";
 
 const HeaderContainer = (props: any) => {
+
     const {auth} = props;
     const cleanLocalStorage = () => {
         localStorage.clear()
     };
+
     return (
         <>
-            <header className="top-header">
+            <header className="top-header d-flex pt-4 pb-4">
                 <div className="container">
                     <div className="row">
                         <div className="col-6 align-self-center">
-                            {/*<img src="../../img/img1.png" alt="logo"/>*/}
-                            <img src={require("../../img/logo.svg")}/>
+                            <a href="#">
+                                <img src={require("../../img/logo.svg")}/>
+                            </a>
                         </div>
-                        <div className="col-6 align-self-center">
+                        <div className="col-6 align-self-center text-right">
                             {
                                 auth ?
                                     <div>
@@ -34,10 +37,19 @@ const HeaderContainer = (props: any) => {
                     </div>
                 </div>
             </header>
-            <header className="bottom-header">
-                <span>home</span><span>Book Catalog</span>
-                <input type="text"/>
-                <button onClick={props.onFindProduct}>click</button>
+            <header className="bottom-header d-flex pt-4 pb-4">
+                <div className="container">
+                    <div className="row">
+                        <div className="col-6">
+                            <a href="#">Home</a>
+                            <a href="#">Book Catalog</a>
+                        </div>
+                        <div className="col-6 text-right">
+                            <input type="text" placeholder="Search"/>
+                            {/*<button onClick={props.onFindProduct}>click</button>*/}
+                        </div>
+                    </div>
+                </div>
             </header>
         </>
     )
