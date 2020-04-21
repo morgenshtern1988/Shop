@@ -4,4 +4,5 @@ export const TYPES = {
     LOGIN_LOGIN_START: `@@login/LOGIN_START`,
     LOGIN_LOGIN_FAILED: `@@login/LOGIN_FAILED`,
     LOGIN_LOGIN_SUCCESS: `@@login/LOGIN_SUCCESS`,
+    LOGIN_USER_IN_DB:`@@login/USER_IN_DB`
 };

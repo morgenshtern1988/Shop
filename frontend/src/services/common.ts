@@ -10,7 +10,7 @@ const api = () => {
         (config: AxiosRequestConfig): AxiosRequestConfig | Promise<AxiosRequestConfig> => {
             const token = JSON.parse(localStorage.getItem("token") as string);
             config.headers = {
-                Authorization: token && token.accessToken ? token.accessToken : '',
+                Authorization: token && token.accessToken ? token.accessToken : ''
             };
             // console.log('Request: ', config);
             return config;

@@ -16,8 +16,11 @@ export const getProductThunk = () => {
     return async (dispatch: any) => {
         await fetchGetProducts()
             .then((items) => {
-                console.log(items);
-                dispatch({type: 'INIT_PRODUCT', payload: items.data})
+                const {headers, data} = items;
+                dispatch({type: 'INIT_PRODUCT', payload: data});
+                const user = JSON.parse(headers.infouser);
+                console.log(user);
+                dispatch({type: "@@login/USER_IN_DB", payload: {user}});
             })
             .catch(() => {
                 dispatch({type: 'INIT_PRODUCT', payload: []})

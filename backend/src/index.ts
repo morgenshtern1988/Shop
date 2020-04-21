@@ -30,7 +30,8 @@ app.use(bodyParser.json());
 app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
-    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, authorization');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, authorization, InfoUser');
+    res.setHeader("Access-Control-Expose-Headers", "InfoUser");
     next()
 });
 app.use("/auth", authRouter);

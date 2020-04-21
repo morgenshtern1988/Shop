@@ -8,8 +8,8 @@ export const RouteMap = (props: any) => {
         <>
             <Switch>
                 <Route exact path="/printing-edition" component={ProductContainer}/>
-                {/*<Route path="/printing-edition" component={ProductContainer}/>*/}
                 <Route exact path="/admin/printing-edition" component={Dashboard}/>
+                {/*<Route path="/printing-edition" component={ProductContainer}/>*/}
                 <Redirect to="/"/>
             </Switch>
         </>

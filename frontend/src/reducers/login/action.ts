@@ -1,6 +1,9 @@
 import {TYPES} from "../../action/login";
 
 export let initialState = {
+    firstName: "",
+    lastName: "",
+    role: "",
     email: "",
     password: "",
     loading: false,
@@ -32,16 +35,23 @@ export const loginReducer = (state: any = initialState, action: any) => {
             const {data} = action.payload;
             return {
                 ...state,
-                data,
+                token: {...data},
                 loading: false,
                 error: "error"
             };
         }
-        case TYPES.LOGIN_LOGIN_SUCCESS: {
-            // const {data} = action.payload;
+        case TYPES.LOGIN_USER_IN_DB: {
+            const {user} = action.payload;
             return {
                 ...state,
-                token: action.payload,
+                ...user,
+            }
+        }
+        case TYPES.LOGIN_LOGIN_SUCCESS: {
+            const {data} = action.payload;
+            return {
+                ...state,
+                token: {...data},
                 loading: false
             };
         }
@@ -67,9 +77,9 @@ export const singInUser = (data: any) => {
                     return result.json().then((token: any) => token)
                 }
             })
-            .then((token) => {
-                localStorage.setItem('token', JSON.stringify(token));
-                dispatch({type: "@@login/LOGIN_SUCCESS", payload: token});
+            .then((data) => {
+                localStorage.setItem('token', JSON.stringify(data));
+                dispatch({type: "@@login/LOGIN_SUCCESS", payload: {data}});
                 dispatch({type: "@@login/AUTH_VALUE", payload: true})
             })
             .catch((err) => dispatch({type: "@@login/LOGIN_FAILED", payload: {}}))
