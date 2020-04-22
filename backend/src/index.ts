@@ -34,6 +34,7 @@ app.use((req, res, next) => {
     res.setHeader("Access-Control-Expose-Headers", "InfoUser");
     next()
 });
+
 app.use("/auth", authRouter);
 app.use("/printing-edition", userProductRouter);
 app.use("/admin/printing-edition", adminProductRouter);

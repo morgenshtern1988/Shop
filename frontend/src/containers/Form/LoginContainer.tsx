@@ -22,7 +22,7 @@ const Login = (props: any) => {
     return (
         <>
             {auth
-                ? <Redirect exact from="/auth/login" to='/printing-edition'/>
+                ? <Redirect to='/'/>
                 : <div className="Login">
                     <form onSubmit={handleSubmit}>
                         <FormGroup controlId="email" bsSize="large">

@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import {
-    HelpBlock,
+    // HelpBlock,
     FormGroup,
     FormControl,
     ControlLabel
@@ -8,7 +8,7 @@ import {
 import LoaderButton from "../../components/LoaderButton/LoaderButton";
 import {postUserAddDb} from "../../reducers/register/register";
 import {useDispatch, useSelector} from "react-redux";
-import {RootState} from "../inrerface";
+import {RootState} from "../../types/inrerface";
 
 export default function Signup(props: any) {
 
@@ -23,10 +23,10 @@ export default function Signup(props: any) {
         type: "@@register/REGISTER_START",
         payload: {confirmPassword}
     });
-    const setConfirmationCode = (confirmationCode: any) => dispatch({
+ /*   const setConfirmationCode = (confirmationCode: any) => dispatch({
         type: "@@register/REGISTER_START",
         payload: {confirmationCode}
-    });
+    });*/
 
     const [isLoading, setIsLoading] = useState(false);
 
@@ -40,9 +40,9 @@ export default function Signup(props: any) {
         );
     }
 
-    function validateConfirmationForm() {
+   /* function validateConfirmationForm() {
         return newUser.confirmationCode.length > 0;
-    }
+    }*/
 
     async function handleSubmit(event: any) {
         event.preventDefault();
@@ -59,10 +59,10 @@ export default function Signup(props: any) {
         setIsLoading(false);
     }
 
-    async function handleConfirmationSubmit(event: any) {
+  /*  async function handleConfirmationSubmit(event: any) {
         event.preventDefault();
         setIsLoading(true);
-    }
+    }*/
 
     // function renderConfirmationForm() {
     //     return (

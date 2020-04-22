@@ -6,7 +6,7 @@ import {PersistGate} from "redux-persist/integration/react"
 import {BrowserRouter} from "react-router-dom";
 import {store, persistor} from "./store/store";
 import 'bootstrap/dist/css/bootstrap.min.css';
-
+// forceRefresh={true}
 ReactDOM.render(
     <BrowserRouter>
         <Provider store={store}>

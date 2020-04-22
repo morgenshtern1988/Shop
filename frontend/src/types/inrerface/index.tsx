@@ -1,4 +1,12 @@
 export interface IAuth {
+    firstName: string,
+    lastName: string,
+    role: number,
+    email: string,
+    password: string,
+    loading: boolean,
+    token: string,
+    error: string,
     isAuthenticated: boolean,
 }
 
