@@ -12,18 +12,17 @@ import {controllerRole} from "../../controllers/auth";
 
 export const adminProductRouter = Router();
 
-
 adminProductRouter.get("/", tokenAccessLifeCheck, AuthMiddleware, PermissionMiddleware([1]), adminShowProduct);
 
-// adminProductRouter.post("/create", adminCreateProduct);
 adminProductRouter.post("/create", tokenAccessLifeCheck, AuthMiddleware, PermissionMiddleware([1]), adminCreateProduct);
 
-// adminProductRouter.delete("/:id", adminRemoveProduct);
 adminProductRouter.delete("/:id", tokenAccessLifeCheck, AuthMiddleware, PermissionMiddleware([1]), adminRemoveProduct);
 
 adminProductRouter.put("/:id", tokenAccessLifeCheck, AuthMiddleware, PermissionMiddleware([1]), adminUpdateProduct);
 
 export const userProductRouter = Router();
 
-// userProductRouter.get("/", tokenAccessLifeCheck, AuthMiddleware, PermissionMiddleware([0]), userShowProductAsync);
-userProductRouter.get("/", tokenAccessLifeCheck, AuthMiddleware, controllerRole, userShowProductAsync);
+userProductRouter.get("/", userShowProductAsync);
+
+
+// userProductRouter.get("/", tokenAccessLifeCheck, AuthMiddleware, controllerRole, userShowProductAsync);

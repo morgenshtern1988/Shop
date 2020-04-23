@@ -8,6 +8,7 @@ import {PrivateRoute} from "./containers/RoutePrivate";
 import {HomePage} from "./containers/HomePage";
 import AdminPage from "./containers/AdminPage";
 import {Role} from "./helpers/role";
+import {ProductHomeContainer} from "./containers/Products";
 
 function App() {
 
@@ -19,7 +20,9 @@ function App() {
                     <Switch>
                         <Route path="/auth/register" render={() => <Register/>}/>
                         <Route path="/auth/login" render={() => <Login/>}/>
-                        <PrivateRoute exact path='/' component={HomePage}/>
+                        <Route exact path='/' component={HomePage}/>
+                        <Route path='/printing-editing' component={ProductHomeContainer}/>
+                        {/*<PrivateRoute exact path='/' component={HomePage}/>*/}
                         <PrivateRoute path='/admin' roles={Role.Admin} component={AdminPage}/>
                     </Switch>
                 </div>

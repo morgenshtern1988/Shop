@@ -1,5 +1,4 @@
 import React from "react";
-// import ProductContainer from "../../containers/Products/ProductContainer";
 import {Route, Switch} from "react-router-dom";
 import {RootState} from "../../types/inrerface";
 import {useSelector} from "react-redux";

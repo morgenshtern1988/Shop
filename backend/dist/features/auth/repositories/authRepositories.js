@@ -18,7 +18,7 @@ exports.updateTokens = async (user) => {
 };
 exports.authenticateUser = async (user) => {
     const userInDb = await user_1.userModel.findOne({ email: user.email });
-    console.log(userInDb);
+    // console.log(userInDb);
     if (userInDb) {
         const isPasswordMatching = await bcrypt.compare(user.password, userInDb.password);
         if (isPasswordMatching) {

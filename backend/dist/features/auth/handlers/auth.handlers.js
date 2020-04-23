@@ -9,10 +9,11 @@ exports.registerUser = async (request, response) => {
         .then(user => response.json(user))
         .catch(err => response.json(err));
 };
-exports.authenticateUser = async (request, response) => {
+exports.authenticateUser = async (request, response, next) => {
     auth_services_1.loginUser(request.body)
         .then(token => response.json(token))
         .catch(() => response.sendStatus(401));
+    next();
 };
 exports.tokenAccessLifeCheck = async (request, response, next) => {
     const accessToken = request.headers.authorization;
@@ -23,7 +24,6 @@ exports.tokenAccessLifeCheck = async (request, response, next) => {
     }
     try {
         const resultVerify = await jwt.verify(accessToken, app_1.default.jwt.secret);
-        console.log(resultVerify);
         next();
     }
     catch (e) {
@@ -42,11 +42,6 @@ exports.refreshTokens = async (request, response) => {
         };
         const token = await authRepositories_1.updateTokens(user);
         response.json(token);
-        /*
-                if (payload.type !== "refresh") {
-                    res.status(401).json({message: "Invalid token"});
-                    return;
-                }*/
     }
     catch (e) {
         if (e instanceof jwt.TokenExpiredError) {

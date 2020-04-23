@@ -37,14 +37,14 @@ const HeaderContainer = (props: any) => {
                                                     <a href="http://localhost:3000/auth/login"
                                                        onClick={cleanLocalStorage}>Log Out</a>
                                                     <a href="http://localhost:3000/admin">Admin Area</a>
-                                                    <span>Admin!</span>
+                                                    <p className="welcome-user">Admin!</p>
                                                 </>
                                                 :
-                                                <div>
-                                                    <span>Hello, {name}</span>
+                                                <>
+                                                    <p className="welcome-user">Hello, {name}</p>
                                                     <a href="http://localhost:3000/auth/login"
                                                        onClick={cleanLocalStorage}>Log Out</a>
-                                                </div>
+                                                </>
                                         }
                                     </div>
                                     :

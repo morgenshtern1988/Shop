@@ -20,14 +20,23 @@ async function showProduct(printingEditions) {
     }
 }
 exports.showProduct = showProduct;
+async function userShowProduct(printingEditions) {
+    if (printingEditions === null) {
+        return "Error";
+    }
+    else {
+        return await printingEditionsRepositories_1.userShowProductAsync(printingEditions);
+    }
+}
+exports.userShowProduct = userShowProduct;
 async function removeProduct(id) {
-    printingEditionsRepositories_1.adminRemoveProduct(id);
+    return printingEditionsRepositories_1.adminRemoveProduct(id);
 }
 exports.removeProduct = removeProduct;
 async function updateProduct(printingEditions, id) {
     console.log(id);
     console.log(printingEditions);
-    printingEditionsRepositories_1.adminUpdateProduct(printingEditions, id);
+    return printingEditionsRepositories_1.adminUpdateProduct(printingEditions, id);
 }
 exports.updateProduct = updateProduct;
 //# sourceMappingURL=printingEditionsServices.js.map

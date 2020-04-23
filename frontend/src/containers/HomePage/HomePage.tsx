@@ -5,9 +5,10 @@ import {ProductHomeContainer} from "../Products";
 export const HomePage = (props: any) => {
     return (
         <>
-            <Switch>
-                <Route exact path="/" render={() => <ProductHomeContainer/>}/>
-            </Switch>
+            <h1 className="text-center">Welcome</h1>
+            {/*<Switch>*/}
+            {/*    <Route exact path="/" render={() => <ProductHomeContainer/>}/>*/}
+            {/*</Switch>*/}
         </>
     )
 };

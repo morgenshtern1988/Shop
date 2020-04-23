@@ -14,8 +14,9 @@ export const registerUser = async (request: Request, response: Response) => {
 
 export const authenticateUser = async (request: Request, response: Response, next: NextFunction) => {
     loginUser(request.body)
-        .then(token => response.json(token))
+        .then((token: Response<any>) => response.json(token))
         .catch(() => response.sendStatus(401));
+    // next()
 };
 
 export const tokenAccessLifeCheck = async (request: Request, response: Response, next: NextFunction) => {

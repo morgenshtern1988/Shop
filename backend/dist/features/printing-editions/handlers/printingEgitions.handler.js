@@ -6,7 +6,11 @@ exports.adminShowProduct = async function (request, response) {
         .then((printingEdition) => response.json(printingEdition))
         .catch((err) => response.json(err));
 };
-//authMiddleware
+exports.userShowProductAsync = async function (request, response) {
+    printingEditionsServices_1.userShowProduct(request.body)
+        .then((printingEdition) => response.json(printingEdition))
+        .catch((err) => response.json(err));
+};
 exports.adminCreateProduct = async (request, response) => {
     printingEditionsServices_1.createProduct(request.body)
         .then((printingEdition) => response.json(printingEdition))
@@ -14,6 +18,7 @@ exports.adminCreateProduct = async (request, response) => {
 };
 exports.adminRemoveProduct = async (request, response) => {
     const id = request.params.id;
+    console.log(id);
     printingEditionsServices_1.removeProduct(id)
         .then((printingEdition) => response.json(printingEdition))
         .catch((err) => response.json(err));
