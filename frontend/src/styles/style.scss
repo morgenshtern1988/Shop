@@ -1,5 +1,5 @@
 @import "./scss/bootstrap";
-@import "variables";
+@import "./variables";
 
 @font-face {
   font-family: 'poppinsblack';
@@ -8,6 +8,7 @@
   font-weight: normal;
   font-style: normal;
 }
+
 @font-face {
   font-family: 'poppinsblack_italic';
   src: url('./fonts/poppins-blackitalic.woff2') format('woff2'),
@@ -15,6 +16,7 @@
   font-weight: normal;
   font-style: normal;
 }
+
 @font-face {
   font-family: 'poppinsbold';
   src: url('./fonts/poppins-bold.woff2') format('woff2'),
@@ -22,6 +24,7 @@
   font-weight: normal;
   font-style: normal;
 }
+
 @font-face {
   font-family: 'poppinsextrabold';
   src: url('./fonts/poppins-extrabold.woff2') format('woff2'),
@@ -29,6 +32,7 @@
   font-weight: normal;
   font-style: normal;
 }
+
 @font-face {
   font-family: 'poppinsitalic';
   src: url('./fonts/poppins-italic.woff2') format('woff2'),
@@ -36,6 +40,7 @@
   font-weight: normal;
   font-style: normal;
 }
+
 @font-face {
   font-family: 'poppinslight';
   src: url('./fonts/poppins-light.woff2') format('woff2'),
@@ -43,6 +48,7 @@
   font-weight: normal;
   font-style: normal;
 }
+
 @font-face {
   font-family: 'poppinsmedium';
   src: url('./fonts/poppins-medium.woff2') format('woff2'),
@@ -50,6 +56,7 @@
   font-weight: normal;
   font-style: normal;
 }
+
 @font-face {
   font-family: 'poppinsregular';
   src: url('./fonts/poppins-regular.woff2') format('woff2'),
@@ -57,6 +64,7 @@
   font-weight: normal;
   font-style: normal;
 }
+
 @font-face {
   font-family: 'oswaldbold';
   src: url('./fonts/oswald-bolditalic.woff2') format('woff2'),
@@ -64,6 +72,7 @@
   font-weight: normal;
   font-style: normal;
 }
+
 @font-face {
   font-family: 'oswaldlight';
   src: url('./fonts/oswald-light.woff2') format('woff2'),
@@ -71,6 +80,7 @@
   font-weight: normal;
   font-style: normal;
 }
+
 @font-face {
   font-family: 'oswaldmedium';
   src: url('./fonts/oswald-medium.woff2') format('woff2'),
@@ -78,6 +88,7 @@
   font-weight: normal;
   font-style: normal;
 }
+
 @font-face {
   font-family: 'oswald_regularregular';
   src: url('./fonts/oswald-regular.woff2') format('woff2'),
@@ -85,6 +96,7 @@
   font-weight: normal;
   font-style: normal;
 }
+
 * {
   margin: 0;
   padding: 0;
@@ -123,7 +135,6 @@
 }
 
 /////////////////////
-
 //HomePage////
 .wrap-product {
   background: rgba(249, 249, 249, 0.98);
@@ -133,7 +144,8 @@
     font-weight: $font-weight-medium;
     font-family: oswaldmedium;
   }
-  .author{
+
+  .author {
     font-family: oswald_regularregular;
   }
 
