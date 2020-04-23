@@ -1,10 +1,10 @@
-import React, {useEffect} from "react";
+import React from "react";
 import {connect, useSelector} from "react-redux";
-import "./style.scss";
+// import "./style.scss";
 import {history} from "../../helpers/history"
 import {RootState} from "../../types/inrerface";
 import {Role} from "../../helpers/role";
-import {Link, Route} from "react-router-dom";
+// import {Link, Route} from "react-router-dom";
 
 const HeaderContainer = (props: any) => {
 
@@ -18,7 +18,7 @@ const HeaderContainer = (props: any) => {
     const user = useSelector(selectIsOn);
     const name = user.firstName;
     const role = user.role;
-    
+
     return (
         <>
             <header className="top-header d-flex pt-4 pb-4">
@@ -30,20 +30,6 @@ const HeaderContainer = (props: any) => {
                             </a>
                         </div>
                         <div className="col-6 align-self-center text-right">
-                            <div>
-                                <ul>
-                                    <li><a href="#">Books</a></li>
-                                    <li><a href="#">New</a></li>
-                                    <li><a href="#">Series</a></li>
-                                    <li><a href="#">Contact us</a></li>
-                                </ul>
-                            </div>
-                            <div>
-                                <ul>
-                                    <li><a href="#">Cart</a></li>
-                                    <li><a href="#">Favorite</a></li>
-                                </ul>
-                            </div>
                             {
                                 auth ?
                                     <div>
@@ -73,11 +59,12 @@ const HeaderContainer = (props: any) => {
                     </div>
                 </div>
             </header>
-            {/* <header className="bottom-header d-flex pt-4 pb-4">
+            <header className="bottom-header d-flex pt-4 pb-4">
                 <div className="container">
                     <div className="row">
                         <div className="col-6">
                             <a href="http://localhost:3000/">Home</a>
+                            <a href="http://localhost:3000/printing-editing">Book Catalog</a>
                         </div>
                         <div className="col-6 text-right">
                             <input type="text" placeholder="Search"/>
@@ -85,7 +72,7 @@ const HeaderContainer = (props: any) => {
                         </div>
                     </div>
                 </div>
-            </header>*/}
+            </header>
         </>
     )
 };

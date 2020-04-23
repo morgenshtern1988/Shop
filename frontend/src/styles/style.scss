@@ -1,0 +1,148 @@
+@import "./scss/bootstrap";
+@import "variables";
+
+@font-face {
+  font-family: 'poppinsblack';
+  src: url('./fonts/poppins-black.woff2') format('woff2'),
+  url('./fonts/poppins-black.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'poppinsblack_italic';
+  src: url('./fonts/poppins-blackitalic.woff2') format('woff2'),
+  url('./fonts/poppins-blackitalic.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'poppinsbold';
+  src: url('./fonts/poppins-bold.woff2') format('woff2'),
+  url('./fonts/poppins-bold.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'poppinsextrabold';
+  src: url('./fonts/poppins-extrabold.woff2') format('woff2'),
+  url('./fonts/poppins-extrabold.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'poppinsitalic';
+  src: url('./fonts/poppins-italic.woff2') format('woff2'),
+  url('./fonts/poppins-italic.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'poppinslight';
+  src: url('./fonts/poppins-light.woff2') format('woff2'),
+  url('./fonts/poppins-light.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'poppinsmedium';
+  src: url('./fonts/poppins-medium.woff2') format('woff2'),
+  url('./fonts/poppins-medium.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'poppinsregular';
+  src: url('./fonts/poppins-regular.woff2') format('woff2'),
+  url('./fonts/poppins-regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'oswaldbold';
+  src: url('./fonts/oswald-bolditalic.woff2') format('woff2'),
+  url('./fonts/oswald-bolditalic.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'oswaldlight';
+  src: url('./fonts/oswald-light.woff2') format('woff2'),
+  url('./fonts/oswald-light.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'oswaldmedium';
+  src: url('./fonts/oswald-medium.woff2') format('woff2'),
+  url('./fonts/oswald-medium.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'oswald_regularregular';
+  src: url('./fonts/oswald-regular.woff2') format('woff2'),
+  url('./fonts/oswald-regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+///HeaderContainer
+.heading-text {
+  font-size: 48px;
+  font-weight: 700;
+}
+
+.top-header {
+  background-color: #333;
+
+  a {
+    font-size: $default-size;
+    color: $white;
+  }
+}
+
+.bottom-header {
+  background-color: $orange;
+
+  a {
+    font-weight: 600;
+    color: $white;
+  }
+
+  input {
+    outline: none;
+    border: none;
+    padding: 11px 0 12px 16px;
+    background: rgba(244, 244, 244, 0.78);
+  }
+}
+
+/////////////////////
+
+//HomePage////
+.wrap-product {
+  background: rgba(249, 249, 249, 0.98);
+
+  h1, .price {
+    font-size: $h4-font-size;
+    font-weight: $font-weight-medium;
+    font-family: oswaldmedium;
+  }
+  .author{
+    font-family: oswald_regularregular;
+  }
+
+  img {
+    vertical-align: top;
+    width: 100%;
+  }
+
+  .price {
+    color: $orange;
+  }
+}

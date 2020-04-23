@@ -1,5 +1,5 @@
 import React from 'react';
-import "./styles/index.scss";
+import "./styles/style.scss";
 import {Route, Switch} from 'react-router-dom';
 import Register from "./containers/Form/RegisterContainer";
 import HeaderContainer from "./containers/Header";

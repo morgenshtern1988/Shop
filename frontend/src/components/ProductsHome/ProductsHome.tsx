@@ -8,6 +8,7 @@ export const ProductsHome = (props: any) => {
             <div className="row">
                 {
                     products.map((product: any) => {
+                        console.log(product._id)
                             return <ProductHome
                                 product={product}
                                 key={product._id}/>
