@@ -2,7 +2,7 @@ import React from "react";
 import Product from "./Product";
 import {Table} from "react-bootstrap";
 
-const ProductTable = (props: any) => {
+const ProductsTable = (props: any) => {
     const {products} = props;
     return (
         <>
@@ -35,7 +35,7 @@ const ProductTable = (props: any) => {
     )
 };
 
-export default ProductTable;
+export default ProductsTable;
 /*
 {
     products.map((product: any) => {

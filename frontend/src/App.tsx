@@ -8,22 +8,9 @@ import {PrivateRoute} from "./containers/RoutePrivate";
 import {HomePage} from "./containers/HomePage";
 import AdminPage from "./containers/AdminPage";
 import {Role} from "./helpers/role";
-// import {RootState} from "./containers/inrerface";
-// import {useSelector} from "react-redux";
-import ProductContainer from "./containers/Products/ProductContainer";
 
 function App() {
-   /* const selectIsOn = (state: RootState) => state.loginReducer.role;
-    const role = useSelector(selectIsOn);*/
-    // useEffect(() => {
-    //     console.log(role)
-    // });
-    // componentDidMount() {
-    //     authenticationService.currentUser.subscribe(x => this.setState({
-    //         currentUser: x,
-    //         isAdmin: x && x.role === Role.Admin
-    //     }));
-    // }
+
     return (
         <div className="wrapper">
             <HeaderContainer/>
@@ -32,7 +19,7 @@ function App() {
                     <Switch>
                         <Route path="/auth/register" render={() => <Register/>}/>
                         <Route path="/auth/login" render={() => <Login/>}/>
-                        <PrivateRoute exact path='/' component={ProductContainer}/>
+                        <PrivateRoute exact path='/' component={HomePage}/>
                         <PrivateRoute path='/admin' roles={Role.Admin} component={AdminPage}/>
                     </Switch>
                 </div>
