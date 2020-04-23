@@ -13,12 +13,10 @@ const HeaderContainer = (props: any) => {
         localStorage.clear();
         history.push('/auth/login')
     };
-
     const selectIsOn = (state: RootState) => state.loginReducer;
     const user = useSelector(selectIsOn);
     const name = user.firstName;
     const role = user.role;
-
     return (
         <>
             <header className="top-header d-flex pt-4 pb-4">
