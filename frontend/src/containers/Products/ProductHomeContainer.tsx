@@ -1,13 +1,16 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import {RootState} from "../../types/inrerface";
 import {useDispatch, useSelector} from "react-redux";
 import {getProductThunk} from "../../reducers/product/product";
-import {ProductsHome} from "../../components/Products";
+import {ProductInfo, ProductsHome} from "../../components/Products";
 import {Route, Switch} from "react-router-dom";
 
 export const ProductHomeContainer = () => {
-    const selectIsOn = (state: RootState) => state.productReducer;
-    const products = useSelector(selectIsOn);
+    const redirectReducer = (state: RootState) => state.redirectReducer;
+    const redirect = useSelector(redirectReducer);
+
+    const productReducer = (state: RootState) => state.productReducer;
+    const products = useSelector(productReducer);
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -18,8 +21,9 @@ export const ProductHomeContainer = () => {
         <>
             <Switch>
                 <Route exact path="/printing-editing" render={() => <ProductsHome products={products}/>}/>
+                <Route path={"/printing-editing/" + redirect._id}
+                       render={() => <ProductInfo product={redirect.product}/>}/>
             </Switch>
-            {/*<Products products={products}/>*/}
         </>
     )
 };

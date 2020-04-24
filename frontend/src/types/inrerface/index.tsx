@@ -14,6 +14,13 @@ export interface RootState {
     loginReducer: IAuth,
     registerReducer: IRegisterUser,
     productReducer: IProduct,
+    redirectReducer: IRedirect,
+}
+
+export interface IRedirect {
+    _id: string,
+    redirect: boolean,
+    product: IProduct,
 }
 
 export interface IRegisterUser {
@@ -27,6 +34,7 @@ export interface IRegisterUser {
 }
 
 export interface IProduct {
+    _id: string,
     name: string,
     description: string,
     currency: string,
