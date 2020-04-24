@@ -1,4 +1,5 @@
 import {TYPES} from "../../action/register";
+import {fetchPostRegister} from "../../services/login";
 
 let initialState = {
     firstName: "",
@@ -29,16 +30,9 @@ export const registerReducer = (state: any = initialState, action: any) => {
 
 export const postUserAddDb = (url: string, data: any) => {
     return async (dispatch: any) => {
-        await fetch(url, {
-            method: "POST",
-            mode: 'cors',
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(data)
-        })
-            .then((result) => {
-                console.log(result);
+        await fetchPostRegister(url, data)
+            .then((result: Response) => {
+                // console.log(result);
                 return result.json().then((newUser: any) => newUser)
             })
             .then((newUser) => {

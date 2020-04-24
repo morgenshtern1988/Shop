@@ -2,7 +2,7 @@ import React from "react";
 import {Redirect} from 'react-router-dom';
 import {Button, FormGroup, FormControl, ControlLabel} from "react-bootstrap";
 import {connect} from "react-redux";
-import {singInUser} from "../../reducers/login/action";
+import {singInUser} from "../../reducers/login/login";
 import {store} from "../../store/store";
 
 const Login = (props: any) => {

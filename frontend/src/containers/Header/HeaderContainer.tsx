@@ -1,6 +1,5 @@
 import React from "react";
 import {connect, useSelector} from "react-redux";
-// import "./style.scss";
 import {history} from "../../helpers/history"
 import {RootState} from "../../types/inrerface";
 import {Role} from "../../helpers/role";

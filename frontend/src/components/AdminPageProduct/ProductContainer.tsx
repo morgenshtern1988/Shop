@@ -1,11 +1,11 @@
 import React, {useEffect} from "react";
-import {RootState} from "../../types/inrerface";
 import {useDispatch, useSelector} from "react-redux";
+import {RootState} from "../../types/inrerface";
+import ProductsTable from "../ProductTable/ProductsTable";
 import {getProductThunk} from "../../reducers/product/product";
-import {ProductsHome} from "../../components/Products";
-import {Route, Switch} from "react-router-dom";
 
-export const ProductHomeContainer = () => {
+export const ProductContainer = (props: any) => {
+
     const selectIsOn = (state: RootState) => state.productReducer;
     const products = useSelector(selectIsOn);
     const dispatch = useDispatch();
@@ -16,10 +16,7 @@ export const ProductHomeContainer = () => {
 
     return (
         <>
-            <Switch>
-                <Route exact path="/printing-editing" render={() => <ProductsHome products={products}/>}/>
-            </Switch>
-            {/*<Products products={products}/>*/}
+            <ProductsTable products={products}/>
         </>
     )
 };
