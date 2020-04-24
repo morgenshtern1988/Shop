@@ -2,9 +2,7 @@ import {userModel} from "../dataAccess/entityModels/user";
 import {NextFunction, Request, Response} from "express";
 
 export const controllerRole = async (request: Request, response: Response, next: NextFunction) => {
-    console.log(request.headers);
-   /* if(request.user){
-
+    if (request.user) {
         console.log(request.user);
         const userInfo = request.user;
         const userInDB = await userModel.findOne({_id: userInfo.id});
@@ -19,8 +17,8 @@ export const controllerRole = async (request: Request, response: Response, next:
             response.setHeader("InfoUser", currentUser);
             next()
         } else response.send("User does not exist").status(401);
-    }else {
+    } else {
         response.send("Ошибка")
         next()
-    }*/
+    }
 };

@@ -1,8 +1,8 @@
 import api from './common';
 
 export const fetchGetProducts = async (): Promise<any> => {
-    const {data, headers} = await api.get('/printing-edition');
-    return {data, headers};
+    const {data} = await api.get('/printing-edition');
+    return {data};
 };
 
 

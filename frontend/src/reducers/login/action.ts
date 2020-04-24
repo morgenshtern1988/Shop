@@ -1,4 +1,5 @@
 import {TYPES} from "../../action/login";
+import {fetchGetInfoUser, fetchLPostLogin} from "../../services/login";
 
 export let initialState = {
     firstName: "",
@@ -62,15 +63,9 @@ export const loginReducer = (state: any = initialState, action: any) => {
 
 export const singInUser = (data: any) => {
     return async (dispatch: any) => {
-        await fetch("http://localhost:8888/auth/login", {
-            method: "POST",
-            // mode: 'cors',
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(data)
-        })
+        await fetchLPostLogin(data)
             .then((result) => {
+                console.log(result);
                 if (result.status !== 200) {
                     throw Error
                 } else {
@@ -82,6 +77,9 @@ export const singInUser = (data: any) => {
                 dispatch({type: "@@login/LOGIN_SUCCESS", payload: {data}});
                 dispatch({type: "@@login/AUTH_VALUE", payload: true})
             })
-            .catch((err) => dispatch({type: "@@login/LOGIN_FAILED", payload: {}}))
+            .catch((err) => dispatch({type: "@@login/LOGIN_FAILED", payload: {}}));
+
+        await fetchGetInfoUser()
+            .then((user) => dispatch({type: "@@login/USER_IN_DB", payload: {user}}))
     }
 };

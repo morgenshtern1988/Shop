@@ -7,7 +7,7 @@ exports.default = {
         tokens: {
             access: {
                 type: "access",
-                expiresIn: "1m",
+                expiresIn: "60m",
             },
             refresh: {
                 type: "refresh",

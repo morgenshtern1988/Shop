@@ -17,7 +17,7 @@ export const getProductThunk = () => {
         await fetchGetProducts()
             .then((items) => {
                 console.log("удачно");
-                const {headers, data} = items;
+                const {data} = items;
                 dispatch({type: 'INIT_PRODUCT', payload: data});
                 // const user = JSON.parse(headers.infouser);
                 // console.log("--user--");

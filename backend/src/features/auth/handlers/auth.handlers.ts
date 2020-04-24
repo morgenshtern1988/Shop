@@ -5,6 +5,17 @@ import appJwt from "../../../config/app";
 import {tokenModel} from "../../../dataAccess/entityModels/tokien";
 import {updateTokens} from "../repositories/authRepositories";
 import {userModel} from "../../../dataAccess/entityModels/user";
+import {AuthMiddleware} from "../../../middleware/auth.middleware";
+import {controllerRole} from "../../../controllers/auth";
+
+export const getUserInfo = async (req: Request, res: Response) => {
+    const userInDb = await userModel.findById(req.user.id);
+    const {firstName, lastName, role, email} = userInDb;
+    const data = {
+        firstName, lastName, role, email,
+    };
+    res.json(data);
+};
 
 export const registerUser = async (request: Request, response: Response) => {
     createUser(request.body)
@@ -14,9 +25,8 @@ export const registerUser = async (request: Request, response: Response) => {
 
 export const authenticateUser = async (request: Request, response: Response, next: NextFunction) => {
     loginUser(request.body)
-        .then((token: Response<any>) => response.json(token))
+        .then((token: any) => response.json(token))
         .catch(() => response.sendStatus(401));
-    // next()
 };
 
 export const tokenAccessLifeCheck = async (request: Request, response: Response, next: NextFunction) => {
