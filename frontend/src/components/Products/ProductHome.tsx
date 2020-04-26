@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import {Redirect} from "react-router";
 import {IProduct, RootState} from "../../types/inrerface";
 import {useDispatch, useSelector} from "react-redux";
+import {history} from "../../helpers/history";
 
 export const ProductHome = (props: any) => {
 
@@ -12,6 +13,7 @@ export const ProductHome = (props: any) => {
     const dispatch = useDispatch();
 
     const redirectInfo = (product: IProduct) => {
+        history.push('/printing-editing');
         dispatch({type: "REDIRECT_NEW_LINK", payload: {_id: product._id, redirect: true, product,}})
     };
     return (
