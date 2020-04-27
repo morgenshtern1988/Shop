@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect} from "react";
 import {RootState} from "../../types/inrerface";
 import {useDispatch, useSelector} from "react-redux";
 import {getProductThunk} from "../../reducers/product/product";

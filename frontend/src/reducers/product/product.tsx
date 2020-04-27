@@ -27,6 +27,11 @@ export const filterReducer = (state: any = [], action: any) => {
             return [
                 ...filterProduct,
             ];
+        case "SORT_PRODUCT":
+            const products = action.payload;
+            return [
+                ...products,
+            ];
         default:
             return state;
     }
