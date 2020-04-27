@@ -11,6 +11,7 @@ export interface IAuth {
 }
 
 export interface RootState {
+    filterReducer:IProduct,
     loginReducer: IAuth,
     registerReducer: IRegisterUser,
     productReducer: IProduct,

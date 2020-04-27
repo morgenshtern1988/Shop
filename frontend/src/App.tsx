@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import "./styles/style.scss";
 import {Route, Switch} from 'react-router-dom';
 import Register from "./containers/Form/RegisterContainer";
@@ -22,7 +22,6 @@ function App() {
                         <Route path="/auth/login" render={() => <Login/>}/>
                         <Route exact path='/' component={HomePage}/>
                         <Route path='/printing-editing' component={ProductHomeContainer}/>
-                        {/*<PrivateRoute exact path='/' component={HomePage}/>*/}
                         <PrivateRoute path='/admin' roles={Role.Admin} component={AdminPage}/>
                     </Switch>
                 </div>

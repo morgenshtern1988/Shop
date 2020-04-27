@@ -1,5 +1,5 @@
 import {combineReducers} from "redux";
-import {productReducer} from "./product/product";
+import {productReducer, filterReducer} from "./product/product";
 import {loginReducer} from "./login/login";
 import {registerReducer} from "./register/register";
 import storage from "redux-persist/lib/storage";
@@ -9,6 +9,7 @@ import {redirectReducer} from "./redirect";
 export const rootReducers = combineReducers(
     {
         productReducer,
+        filterReducer,
         loginReducer,
         registerReducer,
         redirectReducer,
@@ -21,4 +22,4 @@ const persistConfig = {
     // whitelist: ["loginReducer"]
 };
 
-export const persistedReducer =  persistReducer(persistConfig, rootReducers);
+export const persistedReducer = persistReducer(persistConfig, rootReducers);

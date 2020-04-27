@@ -32,4 +32,3 @@ export const ProductHome = (props: any) => {
         </div>
     )
 };
-// href={"http://localhost:3000/printing-editing/" + product._id}

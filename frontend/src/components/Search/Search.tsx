@@ -1,20 +1,16 @@
 import React from "react";
-//
-const Search = (props: any) => {
-    const {title, placeholder, onClick} = props;
-    console.log(props);
 
+export const Search = (props: any) => {
+    const {placeholder, onChange} = props;
+    // console.log(props);
     return (
         <>
             <div className="search">
-                <label>{title || "Search"}</label>
                 <input type="text"
                        placeholder={placeholder || "Enter value"}
-                       onChange={(e) => console.log(e)
-                       }
+                       onChange={(e) => onChange(e.target.value)}
                 />
             </div>
         </>
     )
 };
-export default Search;
