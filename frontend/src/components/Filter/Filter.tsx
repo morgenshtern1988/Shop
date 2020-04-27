@@ -22,12 +22,10 @@ export const Filter = ({products, defaultProducts}: any) => {
         } else dispatch({type: "SORT_PRODUCT", payload: defaultProducts})
     };
     return (
-        <div className="d-flex justify-content-between w-100 mb-5">
-            <h1>Category</h1>
-            <div>
+        <div className="d-flex justify-content-end w-100 mb-5 wrap-sort-currency">
                 <span>Currency</span>
                 <select name="currency" id="currency" onChange={searchCurrency}>
-                    <option value="DEFAULT">DEFAULT</option>
+                    <option value="DEFAULT">Default</option>
                     <option value="USD">USD</option>
                     <option value="AUD">AUD</option>
                     <option value="BYN">BYN</option>
@@ -36,12 +34,11 @@ export const Filter = ({products, defaultProducts}: any) => {
                     <option value="UAN">UAN</option>
                 </select>
                 <span>Sort By</span>
-                <select name="sort" id="" onChange={sortList}>
+                <select name="sort" id="sort" onChange={sortList}>
                     <option value="default">Default</option>
                     <option value="down-sort">Price:Low to high</option>
                     <option value="up-sort">Price:High to Low</option>
                 </select>
-            </div>
         </div>
     )
 };

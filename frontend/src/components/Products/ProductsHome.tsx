@@ -13,18 +13,22 @@ export const ProductsHome = (props: any) => {
 
     return (
         <div className="row">
-            <Filter products={products}
-                    defaultProducts={defaultProducts}/>
-            <div className="row justify-content-end">
+            <div className="col-3">
                 <Catalog products={products} defaultProducts={defaultProducts}/>
-                {
-                    products.map((product: any) => {
-                            return <ProductHome
-                                product={product}
-                                key={product._id}/>
-                        }
-                    )
-                }
+            </div>
+            <div className="col-9">
+                <Filter products={products}
+                        defaultProducts={defaultProducts}/>
+                <div className="row justify-content-around">
+                    {
+                        products.map((product: any) => {
+                                return <ProductHome
+                                    product={product}
+                                    key={product._id}/>
+                            }
+                        )
+                    }
+                </div>
             </div>
         </div>
     )
