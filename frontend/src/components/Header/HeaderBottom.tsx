@@ -18,7 +18,7 @@ export const HeaderBottom = () => {
     }, [products]);
 
     return (
-        <header className="bottom-header d-flex pt-4 pb-4">
+        <header className="bottom-header d-flex pt-4 pb-4 mb-5">
             <div className="container">
                 <div className="row">
                     <div className="col-6">

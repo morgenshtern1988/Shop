@@ -13,8 +13,7 @@ export const productReducer = (state: any = [], action: any) => {
 };
 
 export const filterReducer = (state: any = [], action: any) => {
-    const store = JSON.parse(localStorage.getItem("persist:root") as string);
-    const product = JSON.parse(store.productReducer);
+    const store = JSON.parse(localStorage.getItem("persist:root" || '{}') as string);
     switch (action.type) {
         case "FILTER_PRODUCT_INIT":
             const data = action.payload;
@@ -22,6 +21,7 @@ export const filterReducer = (state: any = [], action: any) => {
                 ...data,
             ];
         case "FILTER_PRODUCT":
+            const product = JSON.parse(store.productReducer);/////////
             const value = action.payload;
             const filterProduct = product.filter((product: any) => product.name.toLowerCase().includes(value));
             return [

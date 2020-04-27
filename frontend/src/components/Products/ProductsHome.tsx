@@ -3,6 +3,7 @@ import {ProductHome} from "./ProductHome";
 import {Filter} from "../Filter";
 import {RootState} from "../../types/inrerface";
 import {useSelector} from "react-redux";
+import {Catalog} from "../Catalog";
 
 export const ProductsHome = (props: any) => {
     const {products} = props;
@@ -11,10 +12,11 @@ export const ProductsHome = (props: any) => {
     const defaultProducts = useSelector(defaultProductReducer);
 
     return (
-        <>
+        <div className="row">
             <Filter products={products}
                     defaultProducts={defaultProducts}/>
-            <div className="row">
+            <div className="row justify-content-end">
+                <Catalog products={products} defaultProducts={defaultProducts}/>
                 {
                     products.map((product: any) => {
                             return <ProductHome
@@ -24,6 +26,6 @@ export const ProductsHome = (props: any) => {
                     )
                 }
             </div>
-        </>
+        </div>
     )
 };

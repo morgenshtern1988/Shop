@@ -17,7 +17,7 @@ export const ProductHome = (props: any) => {
         dispatch({type: "REDIRECT_NEW_LINK", payload: {_id: product._id, redirect: true, product,}})
     };
     return (
-        <div className="col-lg-4 col-md-6 col-sm-6 col-6">
+        <div className="col-lg-3 col-md-3 col-sm-6 col-6">
             <div className=" wrap-product">
                 <img onClick={() => redirectInfo(product)} src={require("../../img/img1.png")} alt="logo"/>
                 <h1 className="text-center text-dark">{product.name}</h1>

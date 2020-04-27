@@ -4,7 +4,6 @@ import {useDispatch} from "react-redux";
 export const Filter = ({products, defaultProducts}: any) => {
 
     const dispatch = useDispatch();
-
     const sortList = (event: any) => {
         const {target} = event;
         let newArr = [...products];
@@ -16,23 +15,26 @@ export const Filter = ({products, defaultProducts}: any) => {
         });
         dispatch({type: "SORT_PRODUCT", payload: newArr});
     };
-    const searchCurrency = () => {
-        
-    }
+    const searchCurrency = ({target}: any) => {
+        if (target.value !== "DEFAULT") {
+            const sortArr = defaultProducts.filter((product: any) => product.currency === target.value);
+            dispatch({type: "SORT_PRODUCT", payload: sortArr})
+        } else dispatch({type: "SORT_PRODUCT", payload: defaultProducts})
+    };
     return (
-        <div className="row justify-content-end">
+        <div className="d-flex justify-content-between w-100 mb-5">
+            <h1>Category</h1>
             <div>
                 <span>Currency</span>
                 <select name="currency" id="currency" onChange={searchCurrency}>
+                    <option value="DEFAULT">DEFAULT</option>
                     <option value="USD">USD</option>
                     <option value="AUD">AUD</option>
                     <option value="BYN">BYN</option>
-                    <option value="GPP">GPP</option>
+                    <option value="EUR">EUR</option>
                     <option value="PLN">PLN</option>
                     <option value="UAN">UAN</option>
                 </select>
-            </div>
-            <div>
                 <span>Sort By</span>
                 <select name="sort" id="" onChange={sortList}>
                     <option value="default">Default</option>
