@@ -9,12 +9,17 @@ import {HomePage} from "./containers/HomePage";
 import AdminPage from "./containers/AdminPage";
 import {Role} from "./helpers/role";
 import {ProductHomeContainer} from "./containers/Products";
+import {RootState} from "./types/inrerface";
+import {useSelector} from "react-redux";
+import {ModalBasket} from "./containers/Modal/ModalBackes"
 
 function App() {
-
+    const redirectReducer = (state: RootState) => state.modalReducer;
+    const modal = useSelector(redirectReducer);
     return (
-        <div className="wrapper">
+        <div className="wrapper position-relative">
             <HeaderContainer/>
+            {modal.idShowModalBasket && <ModalBasket/>}
             <main>
                 <div className="container">
                     <Switch>

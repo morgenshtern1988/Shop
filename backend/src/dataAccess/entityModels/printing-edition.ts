@@ -11,7 +11,7 @@ export const PrintingEditionSchema = new mongoose.Schema({
         type: String, required: true
     },
     cover_image: {
-        type: String
+        data: Buffer, contentType: String,
     },
     removes_at: {
         type: Boolean, default: false,

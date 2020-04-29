@@ -5,6 +5,8 @@ import {registerReducer} from "./register/register";
 import storage from "redux-persist/lib/storage";
 import {persistReducer} from "redux-persist";
 import {redirectReducer} from "./redirect";
+import {buyReducer} from "./buy";
+import {modalReducer} from "./modal";
 
 export const rootReducers = combineReducers(
     {
@@ -13,6 +15,8 @@ export const rootReducers = combineReducers(
         loginReducer,
         registerReducer,
         redirectReducer,
+        buyReducer,
+        modalReducer,
     }
 );
 

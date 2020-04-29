@@ -7,6 +7,7 @@ export const Search = (props: any) => {
         <>
             <div className="search">
                 <input type="text"
+                       className="w-75"
                        placeholder={placeholder || "Enter value"}
                        onChange={(e) => onChange(e.target.value)}
                 />

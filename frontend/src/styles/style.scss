@@ -139,6 +139,11 @@
 }
 
 ///Catalog///
+.check {
+  //display: none;
+}
+
+
 .catalog {
   font-family: oswald_regularregular;
   color: #4D4D4D;
@@ -146,6 +151,18 @@
   font-size: 48px;
   margin-bottom: 23px;
   text-transform: uppercase;
+
+  //h4:after {
+  //  width: 120px;
+  //  height: 120px;
+  //  background-color: red;
+  //}
+
+  //p {
+  //  width: 20px;
+  //  height: 20px;
+  //  background-color: red;
+  //}
 }
 
 .wrap-catalog {

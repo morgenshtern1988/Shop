@@ -3,12 +3,15 @@ import {useDispatch} from "react-redux";
 
 export const ProductInfo = (props: any) => {
     const {product} = props;
-    console.log(product);
+    // console.log(product);
     const dispatch = useDispatch();
 
     useEffect(() => {
         dispatch({type: "REDIRECT_NEW_LINK", payload: {_id: product._id, redirect: false, product,}})
     }, []);
+    const addToBasket = (data: any) => {
+        dispatch({type: "BUY_PRODUCT", payload: {data}})
+    };
     return (
         <div>
             <div className="row product-info pt-xl-5 pt-lg-3 pt-sm-2 mb-5">
@@ -29,7 +32,9 @@ export const ProductInfo = (props: any) => {
                             </select>
                             <span>{product.price} {product.currency}</span>
                         </div>
-                        <button className="pr-3 pl-3 pt-2 pb-2 border-0">Add to cart</button>
+                        <button className="pr-3 pl-3 pt-2 pb-2 border-0" onClick={() => addToBasket(product)}>Add to
+                            cart
+                        </button>
                     </div>
                 </div>
             </div>

@@ -23,7 +23,7 @@ export const filterReducer = (state: any = [], action: any) => {
         case "FILTER_PRODUCT":
             const product = JSON.parse(store.productReducer);/////////
             const value = action.payload;
-            const filterProduct = product.filter((product: any) => product.name.toLowerCase().includes(value));
+            const filterProduct = product.filter((product: any) => product.name.toLowerCase().includes(value.toLowerCase()));
             return [
                 ...filterProduct,
             ];

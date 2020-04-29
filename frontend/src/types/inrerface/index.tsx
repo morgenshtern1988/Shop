@@ -1,3 +1,5 @@
+import {modalReducer} from "../../reducers/modal";
+
 export interface IAuth {
     firstName: string,
     lastName: string,
@@ -11,11 +13,16 @@ export interface IAuth {
 }
 
 export interface RootState {
-    filterReducer:IProduct,
+    filterReducer: IProduct,
     loginReducer: IAuth,
     registerReducer: IRegisterUser,
     productReducer: IProduct,
     redirectReducer: IRedirect,
+    modalReducer: IModal;
+}
+
+export interface IModal {
+    idShowModalBasket: boolean,
 }
 
 export interface IRedirect {

@@ -1,0 +1,1 @@
+export {buyReducer} from "./buy";

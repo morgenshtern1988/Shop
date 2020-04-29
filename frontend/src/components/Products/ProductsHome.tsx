@@ -5,8 +5,7 @@ import {RootState} from "../../types/inrerface";
 import {useSelector} from "react-redux";
 import {Catalog} from "../Catalog";
 
-export const ProductsHome = (props: any) => {
-    const {products} = props;
+export const ProductsHome = ({products}: any) => {
 
     const defaultProductReducer = (state: RootState) => state.productReducer;
     const defaultProducts = useSelector(defaultProductReducer);

@@ -2,10 +2,9 @@ import React from "react";
 
 const Button = (props: any) => {
 
-    const {text, onClick} = props;
+    const {innerText, onClick} = props;
     return (
-        <button onClick={onClick}>{text}</button>
-        // <button onClick={(e)=> onClick(e)}>{text}</button>
+        <button onClick={onClick}>{innerText}</button>
     )
 };
 

@@ -1,7 +1,16 @@
-import React from "react";
+import React, {useState} from "react";
 import {Role} from "../../helpers/role";
+import Button from "../Button";
+import {useDispatch} from "react-redux";
 
 export const HeaderTop = ({auth, cleanLocalStorage, role, name}: any) => {
+
+    const dispatch = useDispatch();
+
+    const showModal = () => {
+        dispatch({type: "IS_SHOW_MODAL", payload: {idShowModalBasket: true}})
+    };
+
     return (
         <header className="top-header d-flex pt-4 pb-4">
             <div className="container">
@@ -26,6 +35,8 @@ export const HeaderTop = ({auth, cleanLocalStorage, role, name}: any) => {
                                             :
                                             <>
                                                 <p className="welcome-user">Hello, {name}</p>
+                                                <Button onClick={() => showModal()}
+                                                        innerText={"Basket"}/>
                                                 <a href="http://localhost:3000/auth/login"
                                                    onClick={cleanLocalStorage}>Log Out</a>
                                             </>

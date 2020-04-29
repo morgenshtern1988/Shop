@@ -15,6 +15,7 @@ const HeaderContainer = ({auth}: any) => {
     const user = useSelector(selectIsOn);
     const name = user.firstName;
     const role = user.role;
+
     return (
         <>
             <HeaderTop auth={auth} cleanLocalStorage={cleanLocalStorage} role={role} name={name}/>
@@ -29,11 +30,5 @@ let mapStateToProps = (state: any) => {
         auth: state.loginReducer.isAuthenticated,
     }
 };
-/*let mapDispatchToProps = (dispatch: any) => {
-    return {
-        onFindProduct: () => dispatch({type: "FILTER_PRODUCT"})
-        // filterProduct: dispatch({type:"FILTER_PRODUCT", payload:resultFilter})
-        // filterProduct: dispatch({type:"FILTER_PRODUCT", payload:resultFilter})
-    }
-};*/
+
 export default connect(mapStateToProps)(HeaderContainer)
