@@ -1,5 +1,5 @@
 import React from "react";
-import {ModalBasket} from "./ModalBackes";
+import {ModalCartContainer} from "./ModalCart";
 import {RootState} from "../../types/inrerface";
 import {useDispatch, useSelector} from "react-redux";
 
@@ -17,7 +17,7 @@ export const ModalContainer = () => {
         <>
             {modal.idShowModalBasket &&
             <div className="modal" onClick={hideModal}>
-                <ModalBasket/>
+                <ModalCartContainer/>
             </div>}
         </>
     )

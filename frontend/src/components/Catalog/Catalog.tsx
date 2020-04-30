@@ -77,7 +77,7 @@ export const Catalog = ({products, defaultProducts}: any) => {
                            onChange={(e: any) => setState({low: e.target.value, high: state.high})}/>
                     <input className="w-25 pl-2 d-flex" type="text" placeholder="До"
                            onChange={(e: any) => setState({low: state.low, high: e.target.value})}/>
-                    <Button text="OK" onClick={searchPriceAndCategory}/>
+                    <Button innerText="OK" onClick={searchPriceAndCategory}/>
                 </div>
             </div>
         </>

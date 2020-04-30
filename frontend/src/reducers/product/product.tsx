@@ -1,6 +1,9 @@
 import {fetchGetProducts} from "../../services/productsApi";
+import {ProductHelper} from "../../infrastructure/Cart";
 
-export const productReducer = (state: any = [], action: any) => {
+let initialState = [1];
+
+export const productReducer = (state: any = initialState, action: any) => {
     switch (action.type) {
         case 'INIT_PRODUCT':
             const data = action.payload;

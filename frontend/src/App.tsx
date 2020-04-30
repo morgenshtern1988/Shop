@@ -9,13 +9,9 @@ import {HomePage} from "./containers/HomePage";
 import AdminPage from "./containers/AdminPage";
 import {Role} from "./helpers/role";
 import {ProductHomeContainer} from "./containers/Products";
-import {RootState} from "./types/inrerface";
-import {useSelector} from "react-redux";
-// import {ModalBasket} from "./containers/Modal/ModalBackes"
 import {ModalContainer} from "./containers/Modal/ModalContainer";
 
 function App() {
-
     return (
         <div className="wrapper position-relative">
             <HeaderContainer/>

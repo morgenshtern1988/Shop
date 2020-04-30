@@ -7,4 +7,4 @@ import {persistedReducer} from "../reducers/root-reducer";
 export const store = createStore(persistedReducer, composeWithDevTools(applyMiddleware(thunkMiddleware)));
 export const persistor = persistStore(store);
 
-// const unsubscribe = store.subscribe(() => console.log(store.getState().modalReducer));
+const unsubscribe = store.subscribe(() => console.log(store.getState().buyReducer));

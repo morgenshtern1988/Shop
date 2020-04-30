@@ -1,11 +1,20 @@
-export const buyReducer = (state: any = [], action: any) => {
+let initialState = {
+    productArr: [],
+    totalPrice: 0,
+    totalCount: 0,
+};
+
+export const buyReducer = (state: any = initialState, action: any) => {
     switch (action.type) {
         case 'BUY_PRODUCT':
-            const {data} = action.payload;
-            return [
+            let {productArr, totalCount, totalPrice} = action.payload;
+            return {
                 ...state,
-                data,
-            ];
+                productArr: productArr,
+                totalPrice: totalPrice,
+                totalCount: totalCount
+
+            };
         default:
             return state;
     }

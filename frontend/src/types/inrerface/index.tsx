@@ -19,6 +19,13 @@ export interface RootState {
     productReducer: IProduct,
     redirectReducer: IRedirect,
     modalReducer: IModal;
+    buyReducer: IBasket,
+}
+
+export interface IBasket {
+    productArr: any,
+    totalPrice: number,
+    totalCount: number,
 }
 
 export interface IModal {
