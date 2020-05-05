@@ -1,7 +1,8 @@
 import React from "react";
 
-export const ModalCart = ({product}:any) =>{
-    return(
+export const ModalCart = ({product}: any) => {
+    console.log(product);
+    return (
         <tr>
             <td>{product.img}</td>
             <td>{product.author}</td>
@@ -18,7 +19,8 @@ export const ModalCart = ({product}:any) =>{
                     <option defaultValue="seven">7</option>
                 </select>
             </td>
-            <td>{product.totalPrice}</td>
+            {/*<td>product.totalPrice</td>*/}
+            <td>{product.itemsPrice}</td>
             <td>Delete</td>
         </tr>
     )

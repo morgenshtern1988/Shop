@@ -12,6 +12,7 @@ import {ProductHomeContainer} from "./containers/Products";
 import {ModalContainer} from "./containers/Modal/ModalContainer";
 
 function App() {
+
     return (
         <div className="wrapper position-relative">
             <HeaderContainer/>

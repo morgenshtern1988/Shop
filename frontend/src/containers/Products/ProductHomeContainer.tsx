@@ -10,14 +10,8 @@ export const ProductHomeContainer = () => {
     const redirectReducer = (state: RootState) => state.redirectReducer;
     const redirect = useSelector(redirectReducer);
 
-    const productReducer = (state: RootState) => state.productReducer;
-    const defaultProduct = useSelector(productReducer);
-
     const filterReducer = (state: RootState) => state.filterReducer;
     const products = useSelector(filterReducer);
-
-    const buyReducer = (state: RootState) => state.buyReducer;
-    const stateCart = useSelector(buyReducer);
 
     const dispatch = useDispatch();
 
@@ -25,14 +19,6 @@ export const ProductHomeContainer = () => {
         dispatch(getProductThunk());
     }, []);
 
-    useEffect(() => {
-        console.log("UseEffect on ProductHomeContainer");
-        const productArr = ProductHelper.getAllProducts(defaultProduct);
-        dispatch({
-            type: "BUY_PRODUCT",
-            payload: {productArr, totalPrice: stateCart.totalPrice, totalCount: stateCart.totalCount}
-        });
-    }, [stateCart.totalCount]);
 
     return (
         <>

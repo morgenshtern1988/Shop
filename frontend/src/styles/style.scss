@@ -307,7 +307,22 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-wrap: wrap;;
   top: 0;
   z-index: 5;
   background: rgba(0, 0, 0, .2);
+
+
+  .bottom-modal {
+    background: linear-gradient(90deg, #FF6825 0%, #000000 0.01%, #000000 97.4%);
+    opacity: 0.06;
+  }
+
+
+  .table-responsive {
+    background-color: #fff;
+    width: 90vw;
+    padding: 20px 0
+  }
 }
+

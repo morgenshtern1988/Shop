@@ -8,19 +8,12 @@ import {ModalCart} from "../../components/Modal/ModalCart";
 export const ModalCartContainer = () => {
     const buyReducer = (state: RootState) => state.buyReducer;
     const stateCart = useSelector(buyReducer);
-
-    const arr = stateCart.productArr.filter((product: any) => {
-        if (product.totalCount !== 0) {
-            return true
-        }
-        return false
-    });
-    console.log(arr);
+    // console.log(stateCart)
     return (
         <>
-            <Table responsive className="table-striped">
-                <thead className="thead-dark ">
-                <tr>
+            <Table responsive className="">
+                <thead className="bottom-modal ">
+                <tr className="">
                     <th>Product</th>
                     <th></th>
                     <th></th>
@@ -32,7 +25,7 @@ export const ModalCartContainer = () => {
                 </thead>
                 <tbody>
                 {
-                    arr.map((product: any) => {
+                    stateCart.productArr.map((product: any) => {
                             return <ModalCart
                                 key={product._id}
                                 product={product}
