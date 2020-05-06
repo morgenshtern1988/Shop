@@ -1,6 +1,6 @@
 export const filterCategory = ({e, setStateCategory, stateCategory, defaultProducts}: any) => {
     const {target} = e;
-    console.log(target.id);
+    // console.log(target.id);
     if (target.id === "Book") {
         if (target.checked) {
             const res = defaultProducts.filter((product: any) => product.type === target.id);
