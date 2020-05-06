@@ -7,6 +7,7 @@ import {persistReducer} from "redux-persist";
 import {redirectReducer} from "./redirect";
 import {buyReducer} from "./buy";
 import {modalReducer} from "./modal";
+import {isActiveReducer} from "./isActive";
 
 export const rootReducers = combineReducers(
     {
@@ -17,6 +18,7 @@ export const rootReducers = combineReducers(
         redirectReducer,
         buyReducer,
         modalReducer,
+        isActiveReducer,
     }
 );
 

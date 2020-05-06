@@ -18,7 +18,7 @@ const Product = ({product}: any) => {
         <tr>
             <td>id</td>
             <td>{product.name}</td>
-            <td>{product.description}</td>
+            <td className={"description"}>{product.description}</td>
             <td>{product.type}</td>
             <td>{product.author}</td>
             <td>{product.price}</td>

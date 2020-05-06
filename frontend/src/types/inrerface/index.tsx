@@ -20,6 +20,11 @@ export interface RootState {
     redirectReducer: IRedirect,
     modalReducer: IModal;
     buyReducer: IBasket,
+    isActiveReducer: IActive;
+}
+
+interface IActive {
+    blockCategory: boolean,
 }
 
 export interface IBasket {
