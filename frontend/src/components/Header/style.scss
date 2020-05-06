@@ -1,5 +1,18 @@
 .top-header {
   background-color: #333;
+  .list{
+    display: flex;
+    z-index: 3;
+    background: #CDCDCD;
+    padding: 7px 20px;
+    transform: translate(-50%, 58%);
+    text-align: left;
+    border-radius: 10px;
+    a{
+      font-size: 14px;
+      color:$black;
+    }
+  }
   .icon-shopping-cart:before{
     position: relative;
     font-size: 16px;
@@ -11,6 +24,9 @@
 
   .welcome-user {
     color: $white;
+    background-color: transparent;
+    border: none;
+    outline: none;
   }
 
   .cart {

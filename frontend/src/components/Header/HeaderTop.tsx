@@ -5,6 +5,9 @@ import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../../types/inrerface";
 
 export const HeaderTop = ({auth, cleanLocalStorage, role, name}: any) => {
+    const isActiveReducer = (state: RootState) => state.isActiveReducer;
+    const isActive = useSelector(isActiveReducer);
+
     const buyReducer = (state: RootState) => state.buyReducer;
     const stateCart = useSelector(buyReducer);
     const dispatch = useDispatch();
@@ -13,6 +16,14 @@ export const HeaderTop = ({auth, cleanLocalStorage, role, name}: any) => {
         dispatch({type: "IS_SHOW_MODAL", payload: {idShowModalBasket: true}})
     };
 
+    const isShowListProfile = () => {
+        if (isActive.listProfile) {
+            dispatch({type: "VISIBLE_LIST_PROFILE", payload: {isShowProfile: false}})
+        } else {
+            dispatch({type: "VISIBLE_LIST_PROFILE", payload: {isShowProfile: true}})
+        }
+    };
+    console.log(isActive.listProfile)
     return (
         <header className="top-header d-flex pt-4 pb-4">
             <div className="container">
@@ -36,14 +47,20 @@ export const HeaderTop = ({auth, cleanLocalStorage, role, name}: any) => {
                                             </>
                                             :
                                             <>
-                                                <a href="http://localhost:3000/auth/login"
-                                                   onClick={cleanLocalStorage} className="mr-3">Log Out</a>
-                                                <a href="#" className="welcome-user icon-user mr-3"/>
+                                                <Button className="welcome-user icon-user mr-3 position-relative"
+                                                        onClick={() => isShowListProfile()}/>
                                                 <Button className={"icon-shopping-cart cart"}
                                                         onClick={() => showModal()}/>
-                                                <span
-                                                    className="cart-count position-absolute">{stateCart.totalCount}</span>
-
+                                                <span className="cart-count position-absolute">{stateCart.totalCount}</span>
+                                                {
+                                                    isActive.listProfile ?
+                                                        <div className="position-absolute list flex-column">
+                                                            <a href="#">My Profile</a>
+                                                            <a href="#">My Orders</a>
+                                                            <a href="http://localhost:3000/auth/login"
+                                                               onClick={cleanLocalStorage}>Log Out</a>
+                                                        </div> : <></>
+                                                }
                                             </>
                                     }
                                 </>
