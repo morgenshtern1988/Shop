@@ -2,7 +2,7 @@ import React from "react";
 import {Route, Switch} from "react-router-dom";
 import {RootState} from "../../types/inrerface";
 import {useSelector} from "react-redux";
-import {ProductContainer} from "../../components/AdminPageProduct";
+import {ProductContainer} from "../AdminPageProduct";
 
 const AdminPage = (props: any) => {
     const {roles} = props;

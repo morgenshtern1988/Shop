@@ -18,7 +18,6 @@ export const ProductHomeContainer = () => {
         dispatch(getProductThunk());
     }, []);
 
-
     return (
         <>
             <Switch>

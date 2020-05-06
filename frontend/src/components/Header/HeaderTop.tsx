@@ -1,10 +1,12 @@
 import React from "react";
 import {Role} from "../../helpers/role";
 import Button from "../Button";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+import {RootState} from "../../types/inrerface";
 
 export const HeaderTop = ({auth, cleanLocalStorage, role, name}: any) => {
-
+    const buyReducer = (state: RootState) => state.buyReducer;
+    const stateCart = useSelector(buyReducer);
     const dispatch = useDispatch();
 
     const showModal = () => {
@@ -20,33 +22,36 @@ export const HeaderTop = ({auth, cleanLocalStorage, role, name}: any) => {
                             <img src={require("../../img/logo.svg")} alt="logo"/>
                         </a>
                     </div>
-                    <div className="col-6 align-self-center text-right">
+                    <div className="col-6 text-right d-flex justify-content-end align-items-center">
                         {
                             auth ?
-                                <div>
+                                <>
                                     {
                                         Role.Admin === role ?
                                             <>
                                                 <a href="http://localhost:3000/auth/login"
-                                                   onClick={cleanLocalStorage}>Log Out</a>
-                                                <a href="http://localhost:3000/admin">Admin Area</a>
-                                                <p className="welcome-user">Admin!</p>
+                                                   onClick={cleanLocalStorage} className="mr-3">Log Out</a>
+                                                <a href="http://localhost:3000/admin" className="mr-3">Admin Area</a>
+                                                <span className="welcome-user">Admin!</span>
                                             </>
                                             :
                                             <>
-                                                <p className="welcome-user">Hello, {name}</p>
-                                                <Button onClick={() => showModal()}
-                                                        innerText={"Basket"}/>
                                                 <a href="http://localhost:3000/auth/login"
-                                                   onClick={cleanLocalStorage}>Log Out</a>
+                                                   onClick={cleanLocalStorage} className="mr-3">Log Out</a>
+                                                <a href="#" className="welcome-user icon-user mr-3"/>
+                                                <Button className={"icon-shopping-cart cart"}
+                                                        onClick={() => showModal()}/>
+                                                <span
+                                                    className="cart-count position-absolute">{stateCart.totalCount}</span>
+
                                             </>
                                     }
-                                </div>
+                                </>
                                 :
-                                <div>
+                                <>
                                     <a href="http://localhost:3000/auth/login">Log in</a>
                                     <a href="http://localhost:3000/auth/register">Sign up</a>
-                                </div>
+                                </>
                         }
                     </div>
                 </div>

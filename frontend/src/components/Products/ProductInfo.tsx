@@ -28,7 +28,6 @@ export const ProductInfo = ({product}: any) => {
         });
         setStyleAlert({display: "block"});
         setTimeout(() => {
-            // setStyleAlert({display: "block", transition: "0.7s"})
             setStyleAlert({display: "none"})
         }, 3000);
     };
