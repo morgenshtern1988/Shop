@@ -1,7 +1,7 @@
 import React from "react";
 
 export const MyProfileEdit = () => {
-    return (
-        <h1>MyProfile EDIT</h1>
-    )
+  return (
+      <h1>MyProfile EDIT</h1>
+  )
 };
