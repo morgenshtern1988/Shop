@@ -10,7 +10,7 @@ export const ProductInfo = ({product}: any) => {
     const dispatch = useDispatch();
 
     const [valueOption, setValueOption] = useState(undefined);
-
+    let [styleAlert, setStyleAlert] = useState({display: "none"});
     useEffect(() => {
         dispatch({type: "REDIRECT_NEW_LINK", payload: {_id: product._id, redirect: false, product,}});
     }, []);
@@ -26,11 +26,19 @@ export const ProductInfo = ({product}: any) => {
                 totalPrice: newArr.totalPrice
             }
         });
+        setStyleAlert({display: "block"});
+        setTimeout(() => {
+            // setStyleAlert({display: "block", transition: "0.7s"})
+            setStyleAlert({display: "none"})
+        }, 3000);
     };
 
     return (
-        <div>
-            <div className="row product-info pt-xl-5 pt-lg-3 pt-sm-2 mb-5">
+        <div className="position-relative">
+            <div className="alert alert-success text-center w-100 position-absolute" style={styleAlert}>
+                Product successful been to cart
+            </div>
+            <div className="row product-info pt-xl-5 pt-lg-3 pt-sm-2 mb-5 ">
                 <div className="col-img col-6 text-center">
                     <img src={require("../../img/img1.png")} alt={"Image:" + product.name}/>
                 </div>

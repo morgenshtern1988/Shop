@@ -1,5 +1,6 @@
 @import "./scss/bootstrap";
 @import "./variables";
+@import "./src/components/Products/style";
 
 @font-face {
   font-family: 'poppinsblack';
@@ -319,6 +320,7 @@
 
     thead {
       vertical-align: middle;
+
       th {
         font-family: oswaldlight;
         font-size: 24px;

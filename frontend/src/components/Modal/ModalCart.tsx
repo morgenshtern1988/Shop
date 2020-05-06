@@ -34,18 +34,21 @@ export const ModalCart = ({product}: any) => {
         });
     };
     return (
-        <tr>
-            <td>{product.img}</td>
-            <td>{product.author}</td>
-            <td>{product.name}</td>
-            <td>{product.price}$</td>
-            <td>
-                <input className="w-25 pl-1" type="number" defaultValue={product.itemsCount}
-                       onChange={(event) => changeAmount(event.target.value)}/>
-            </td>
-            {/*<td>product.totalPrice</td>*/}
-            <td>{product.itemsPrice}</td>
-            <td><Button innerText="Delete" onClick={() => deleteProductInCart({id: product._id, stateBasket})}/></td>
-        </tr>
+        <>
+            <tr>
+                <td>{product.img}</td>
+                <td>{product.author}</td>
+                <td>{product.name}</td>
+                <td>{product.price}$</td>
+                <td>
+                    <input className="w-25 pl-1" type="number" defaultValue={product.itemsCount}
+                           onChange={(event) => changeAmount(event.target.value)}/>
+                </td>
+                {/*<td>product.totalPrice</td>*/}
+                <td>{product.itemsPrice}</td>
+                <td><Button innerText="Delete" onClick={() => deleteProductInCart({id: product._id, stateBasket})}/>
+                </td>
+            </tr>
+        </>
     )
 };
