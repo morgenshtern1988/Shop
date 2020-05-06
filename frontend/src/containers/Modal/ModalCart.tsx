@@ -5,7 +5,7 @@ import {useSelector} from "react-redux";
 import Button from "../../components/Button";
 import {ModalCart} from "../../components/Modal/ModalCart";
 
-export const ModalCartContainer = () => {
+export const ModalCartContainer = ({hideModal}: any) => {
     const buyReducer = (state: RootState) => state.buyReducer;
     const stateCart = useSelector(buyReducer);
     return (
@@ -34,7 +34,7 @@ export const ModalCartContainer = () => {
                         : <></>
                     }
                     <tr>
-                        <td className=""></td>
+                        <td></td>
                         <td></td>
                         <td></td>
                         <td></td>
@@ -45,7 +45,7 @@ export const ModalCartContainer = () => {
                     </tbody>
                 </Table>
                 <div className="mb-5 text-center">
-                    <Button innerText={"Cancel"} className="button-bottom"/>
+                    <Button innerText={"Cancel"} className="button-bottom" id={"cancel"}  onClick={hideModal}/>
                     <Button innerText={"Buy Now"} className="button-bottom"/>
                 </div>
             </div>

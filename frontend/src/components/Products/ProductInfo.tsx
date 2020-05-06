@@ -72,7 +72,7 @@ export const ProductInfo = ({product}: any) => {
                     </div>
                 </div>
             </div>
-            <div>
+            <div className="block-description">
                 {product.description}
             </div>
         </div>

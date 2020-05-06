@@ -10,14 +10,14 @@ export const ModalContainer = () => {
     const dispatch = useDispatch();
 
     const hideModal = (e: any) => {
-        if (e.target.className === 'modal')
+        if (e.target.id === 'cancel')
             dispatch({type: "IS_SHOW_MODAL", payload: {idShowModalBasket: false}})
     };
     return (
         <>
             {modal.idShowModalBasket &&
             <div className="modal" onClick={hideModal}>
-                <ModalCartContainer/>
+                <ModalCartContainer hideModal={hideModal}/>
             </div>}
         </>
     )
