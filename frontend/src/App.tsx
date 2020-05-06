@@ -10,6 +10,7 @@ import AdminPage from "./containers/AdminPage";
 import {Role} from "./helpers/role";
 import {ProductHomeContainer} from "./containers/Products";
 import {ModalContainer} from "./containers/Modal/ModalContainer";
+import {MyProfileContainer} from "./containers/MyProfile"
 
 function App() {
     return (
@@ -24,6 +25,7 @@ function App() {
                         <Route exact path='/' component={HomePage}/>
                         <Route path='/printing-editing' component={ProductHomeContainer}/>
                         <PrivateRoute path='/admin' roles={Role.Admin} component={AdminPage}/>
+                        <PrivateRoute path='/user' roles={Role.User} component={MyProfileContainer}/>
                     </Switch>
                 </div>
             </main>
