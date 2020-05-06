@@ -14,7 +14,7 @@ export const MyProfileContainer = ({roles}: any) => {
             {role === roles ?
                 <Switch>
                     <Route exact path="/user/profile" render={() => <MyProfile/>}/>
-                    {/*<Route exact path="/user/profile/edit" render={() => <MyProfileEdit/>}/>*/}
+                    <Route exact path="/user/profile/edit" render={() => <MyProfileEdit/>}/>
                 </Switch>
                 :
                 <h1>Отказано в доступе</h1>
