@@ -18,16 +18,16 @@ function App() {
             <HeaderContainer/>
             <ModalContainer/>
             <main>
-                <div className="container">
+                {/*<div className="">*/}
                     <Switch>
                         <Route path="/auth/register" render={() => <Register/>}/>
                         <Route path="/auth/login" render={() => <Login/>}/>
                         <Route exact path='/' component={HomePage}/>
                         <Route path='/printing-editing' component={ProductHomeContainer}/>
                         <PrivateRoute path='/admin' roles={Role.Admin} component={AdminPage}/>
-                        <PrivateRoute path='/user' roles={Role.User} component={MyProfileContainer}/>
+                        <PrivateRoute path='/' roles={Role.User} component={MyProfileContainer}/>
                     </Switch>
-                </div>
+                {/*</div>*/}
             </main>
         </div>
     );

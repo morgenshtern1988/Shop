@@ -11,7 +11,7 @@ export const ProductsHome = ({products}: any) => {
     const defaultProducts = useSelector(defaultProductReducer);
 
     return (
-        <div className="row">
+        <div className="row container">
             <div className="col-3">
                 <Catalog products={products} defaultProducts={defaultProducts}/>
             </div>

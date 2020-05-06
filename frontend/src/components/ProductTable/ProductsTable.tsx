@@ -27,7 +27,7 @@ const ProductsTable = ({products, filterCategory, setStateCategory, stateCategor
     }, [stateCategory]);
 
     return (
-        <>
+        <div className="container">
             <h1 className="heading-text">Product Management</h1>
             <Table responsive className="table-striped table-product-manager w-100">
                 <thead className="thead-dark">
@@ -83,7 +83,7 @@ const ProductsTable = ({products, filterCategory, setStateCategory, stateCategor
                 }
                 </tbody>
             </Table>
-        </>
+        </div>
     )
 };
 

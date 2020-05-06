@@ -92,7 +92,7 @@ export default function Signup(props: any) {
 
     function renderForm() {
         return (
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} className="container">
                 <FormGroup controlId="firstName" bsSize="large">
                     <ControlLabel>firstName</ControlLabel>
                     <FormControl

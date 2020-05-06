@@ -3,7 +3,7 @@
 @import "./src/components/Products/style";
 @import "./src/components/Header/style";
 @import "./src/components/ProductTable/style";
-@import "./src/components/MyProfile/style";
+
 @font-face {
   font-family: 'icomoon';
   src: url('./icomoon/icomoon.eot?2bkxeo');
@@ -365,4 +365,7 @@
     //padding: 20px 0
   }
 }
-
+.container{
+  width: 1140px;
+  margin: 0 auto;
+}

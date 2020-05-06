@@ -33,7 +33,7 @@ export const ProductInfo = ({product}: any) => {
     };
 
     return (
-        <div className="position-relative">
+        <div className="position-relative container">
             <div className="alert alert-success text-center w-100 position-absolute" style={styleAlert}>
                 Product successful been to cart
             </div>
