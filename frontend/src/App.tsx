@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import "./styles/style.scss";
 import {Route, Switch} from 'react-router-dom';
 import Register from "./containers/Form/RegisterContainer";

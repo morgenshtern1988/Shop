@@ -104,7 +104,7 @@ $escaped-characters: (
 ) !default;
 
 
-// Options
+// Select
 //
 // Quickly modify global styling by enabling or disabling optional features.
 
@@ -1140,7 +1140,7 @@ $print-body-min-width: map-get($grid-breakpoints, "lg") !default;
 //custom style//
 //14px
 $default-size: 0.875rem;
-$headings-font-size: 24px;
+$headings-font-size: 1.5rem;
 $orange: #FF6825;
 $font-weight-medium: 500;
 $font-weight-semi-bold: 600;

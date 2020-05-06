@@ -2,9 +2,9 @@ import React from "react";
 
 const Button = (props: any) => {
 
-    const {innerText, onClick} = props;
+    const {innerText, onClick, className} = props;
     return (
-        <button onClick={onClick}>{innerText}</button>
+        <button className={className} onClick={onClick}>{innerText}</button>
     )
 };
 

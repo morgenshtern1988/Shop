@@ -313,16 +313,54 @@
   background: rgba(0, 0, 0, .2);
 
 
-  .bottom-modal {
-    background: linear-gradient(90deg, #FF6825 0%, #000000 0.01%, #000000 97.4%);
-    opacity: 0.06;
+  .wrap-modal-cart {
+    background-color: $white;
+    text-align: right;
+
+    thead {
+      vertical-align: middle;
+      th {
+        font-family: oswaldlight;
+        font-size: 24px;
+      }
+
+      h4 {
+        font-family: oswaldmedium;
+        text-transform: uppercase;
+        font-size: 28px;
+      }
+
+    }
+
+
+    .button-bottom {
+      border: 1px solid $orange;
+      background-color: $white;
+      padding: 7px 75px;
+      margin: 0 5px;
+      color: #848383;
+      font-size: 24px;
+      font-weight: 600;
+      font-family: oswaldlight;
+
+      &:hover {
+        border: 1px solid $white;
+        background-color: $orange;
+        color: $white;
+      }
+    }
   }
 
+  .bottom-modal {
+    background-color: #ccc;
+    //background-color: #FF6825;
+    //opacity: 0.06;
+  }
 
   .table-responsive {
-    background-color: #fff;
     width: 90vw;
-    padding: 20px 0
+    text-align: center;
+    //padding: 20px 0
   }
 }
 

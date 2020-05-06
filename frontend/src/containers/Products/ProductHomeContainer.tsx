@@ -4,7 +4,6 @@ import {useDispatch, useSelector} from "react-redux";
 import {getProductThunk} from "../../reducers/product/product";
 import {ProductInfo, ProductsHome} from "../../components/Products";
 import {Route, Switch} from "react-router-dom";
-import {Cart, ProductHelper} from "../../infrastructure/Cart";
 
 export const ProductHomeContainer = () => {
     const redirectReducer = (state: RootState) => state.redirectReducer;

@@ -1,10 +1,9 @@
-import React, {useEffect} from "react";
+import React from "react";
 import {ProductHome} from "./ProductHome";
 import {Filter} from "../Filter";
 import {RootState} from "../../types/inrerface";
-import {useDispatch, useSelector} from "react-redux";
+import { useSelector} from "react-redux";
 import {Catalog} from "../Catalog";
-import {Cart} from "../../infrastructure/Cart";
 
 export const ProductsHome = ({products}: any) => {
 

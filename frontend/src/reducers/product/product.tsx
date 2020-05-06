@@ -1,5 +1,4 @@
 import {fetchGetProducts} from "../../services/productsApi";
-import {ProductHelper} from "../../infrastructure/Cart";
 
 let initialState = [1];
 

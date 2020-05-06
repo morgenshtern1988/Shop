@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React from "react";
 import {Redirect} from "react-router";
 import {IProduct, RootState} from "../../types/inrerface";
 import {useDispatch, useSelector} from "react-redux";

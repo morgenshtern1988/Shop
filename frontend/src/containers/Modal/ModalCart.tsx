@@ -10,11 +10,11 @@ export const ModalCartContainer = () => {
     const stateCart = useSelector(buyReducer);
     // console.log(stateCart)
     return (
-        <>
+        <div className="wrap-modal-cart">
             <Table responsive className="">
-                <thead className="bottom-modal ">
-                <tr className="">
-                    <th>Product</th>
+                <thead className="">
+                <tr className="bottom-modal">
+                    <th><h4>Product</h4></th>
                     <th></th>
                     <th></th>
                     <th>Unit price</th>
@@ -24,22 +24,30 @@ export const ModalCartContainer = () => {
                 </tr>
                 </thead>
                 <tbody>
-                {
+                {stateCart.productArr ?
                     stateCart.productArr.map((product: any) => {
-                            return <ModalCart
-                                key={product._id}
-                                product={product}
-                            />
-                        }
-                    )
+                        return <ModalCart
+                            key={product._id}
+                            product={product}
+                        />
+                    })
+                    : <></>
                 }
+                <tr>
+                    <td className=""></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td><p>Total Price:<span>{stateCart.totalPrice}</span></p></td>
+                    <td></td>
+                </tr>
                 </tbody>
             </Table>
-            <span>Total Price: {stateCart.totalPrice}</span>
-            <div>
-                <Button innerText={"Cancel"}/>
-                <Button innerText={"Buy Now"}/>
+            <div className="mb-5 text-center">
+                <Button innerText={"Cancel"} className="button-bottom"/>
+                <Button innerText={"Buy Now"} className="button-bottom"/>
             </div>
-        </>
+        </div>
     )
 };
