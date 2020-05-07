@@ -7,7 +7,7 @@ const Product = ({product}: any) => {
 
     const dispatch = useDispatch();
     const deleteBookInDB = async (id: string) => {
-        // console.log(e)
+        console.log(id)
         deleteProduct(id)
             .then((data) => {
                 dispatch({type: 'INIT_PRODUCT', payload: data})

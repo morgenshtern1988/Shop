@@ -1,5 +1,3 @@
-import {modalReducer} from "../../reducers/modal";
-
 export interface IAuth {
     firstName: string,
     lastName: string,
@@ -21,11 +19,18 @@ export interface RootState {
     modalReducer: IModal;
     buyReducer: IBasket,
     isActiveReducer: IActive,
+    authorsReducer: IAuthor,
+}
+
+interface IAuthor {
+    authorsArr: Array<object>
+    newAuthor: string,
 }
 
 interface IActive {
     blockCategory: boolean,
     listProfile: boolean,
+    dashboard: boolean,
 }
 
 export interface IBasket {
@@ -36,6 +41,7 @@ export interface IBasket {
 
 export interface IModal {
     idShowModalBasket: boolean,
+    showAddAuthor: boolean,
 }
 
 export interface IRedirect {

@@ -4,10 +4,11 @@ import {IAuthor} from "../../features/authors/api";
 
 export const authorSchema = new mongoose.Schema({
     name: {type: String, required: true},
-    createdDate: {type: Date, default: Date.now},
+    dateOfCreate: {type: Date, default: Date.now},
     removed_at: {type: Boolean, default: false},
-    product_ids: [{type: mongoose.Schema.Types.ObjectId, ref: 'printing-edition', required: true}]
+    product_ids: [{type: mongoose.Schema.Types.ObjectId, ref: 'printing-edition'}]
 });
+
 // authorSchema.plugin(mongoosePaginate);
 
 interface authorModel extends IAuthor, mongoose.Document {

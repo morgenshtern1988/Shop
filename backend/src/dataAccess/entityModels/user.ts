@@ -9,9 +9,13 @@ export const UsersSchema = new mongoose.Schema({
     lastName: {
         type: String, required: true
     },
-    avatar:{
-        type:String
+    avatar: {
+        type: String
     },
+    dateOfRegistration: {
+        type: Date, default: Date.now
+    },
+
     email: {
         type: String, required: true
     },

@@ -1,0 +1,9 @@
+.btn-author {
+  background-color: transparent;
+  border: none;
+  font-size: 27px;
+
+  &:focus {
+    outline: none;
+  }
+}

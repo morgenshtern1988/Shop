@@ -1,0 +1,1 @@
+export {AuthorsDashboard} from "./AuthorsDashboard";

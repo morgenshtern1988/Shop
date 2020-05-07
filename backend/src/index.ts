@@ -3,7 +3,7 @@ import *  as bodyParser from 'body-parser';
 import connectMongo from "./dataAccess/dataBase/connectdb";
 import PORT from "./config/app";
 import {authRouter} from "./features/auth"
-import {adminProductRouter, userProductRouter} from "./features/printing-editions";
+import {adminProductRouter, userProductRouter} from "./features";
 
 require('dotenv').config();
 
@@ -38,7 +38,7 @@ app.use((req, res, next) => {
 app.use("/auth", authRouter);
 app.use("/printing-edition", userProductRouter);
 app.use("/admin/printing-edition", adminProductRouter);
-app.use("/admin/author", adminProductRouter);
+app.use("/admin", adminProductRouter);
 
 app.listen(PORT.appPort, function () {
     console.log("Сервер начинает прослушивание...");

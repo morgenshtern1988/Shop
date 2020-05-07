@@ -1,0 +1,71 @@
+.modal {
+  .btn {
+    border: 2px solid #FF6825;
+    background-color: transparent;
+    padding: 7px 30px;
+    outline: none;
+    color: #848383;
+    font-size: 18px;
+    font-weight: 600;
+    font-family: oswaldlight;
+
+    &:hover {
+      border-radius: 5px;
+      background-color: $orange;
+      color: $white;
+    }
+  }
+}
+
+.wrap-add-author {
+  background-color: #3F3F3F;
+
+  .cancel {
+    margin-right: 12px;
+  }
+
+  span {
+    font-family: oswald_regularregular;
+    font-size: 24px;
+    color: $orange;
+  }
+
+  .icon-plus {
+    margin-bottom: 60px;
+  }
+
+  .icon-plus:before {
+    font-size: 20px;
+    margin-right: 12px;
+  }
+
+  input {
+    color: $white;
+    border: none;
+    font-family: poppinsregular;
+    width: 35vw;
+    margin-bottom: 40px;
+    background-color: #868686;
+    opacity: 0.3;
+    padding: 20px 0 20px 22px;
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  .wrap-info {
+    padding: 119px 125px 82px 125px;
+  }
+
+  .top {
+    padding: 18px 25px 18px;
+    background-color: #5D5C5C;
+
+    .icon-close:before {
+      cursor: pointer;
+      font-size: 16px;
+      color: $orange;
+    }
+  }
+}

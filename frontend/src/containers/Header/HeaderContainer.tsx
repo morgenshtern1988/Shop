@@ -11,10 +11,6 @@ const HeaderContainer = ({auth}: any) => {
         history.push('/auth/login')
     };
 
-    // const selectIsOn = (state: RootState) => state.loginReducer;
-    // const user = useSelector(selectIsOn);
-    // const name = user.firstName;
-    // const role = user.role;
     return (
         <>
             <HeaderTop cleanLocalStorage={cleanLocalStorage}/>

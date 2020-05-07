@@ -8,7 +8,6 @@ import HeaderContainer from "../Header/HeaderContainer";
 
 const Login = (props: any) => {
     let {setEmail, setPassword, email, password, postUserFromApi, auth} = props;
-    console.log(auth)
 
     function validateForm() {
         return (email !== undefined && password !== undefined)

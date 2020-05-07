@@ -19,7 +19,7 @@ export const PrintingEditionSchema = new mongoose.Schema({
         type: printingEditionsType, required: true,
     },
     price: {
-        type: Number
+        type: Number, required: true
     },
     currency: {
         type: String, default: "EUR",

@@ -1,0 +1,1 @@
+export {AuthorsDashboardContainer} from "./AuthorsDashboard"

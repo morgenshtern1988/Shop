@@ -20,7 +20,7 @@ export const HeaderTop = ({cleanLocalStorage}: any) => {
     const role = user.role;
 
     const showModal = () => {
-        dispatch({type: "IS_SHOW_MODAL", payload: {idShowModalBasket: true}})
+        dispatch({type: "IS_SHOW_MODAL", payload: {data: true}})
     };
 
     const isShowListProfile = () => {
@@ -28,6 +28,14 @@ export const HeaderTop = ({cleanLocalStorage}: any) => {
             dispatch({type: "VISIBLE_LIST_PROFILE", payload: {isShowProfile: false}})
         } else {
             dispatch({type: "VISIBLE_LIST_PROFILE", payload: {isShowProfile: true}})
+        }
+    };
+
+    const showDashboard = () => {
+        if (isActive.dashboard) {
+            dispatch({type: "VISIBLE_DASHBOARD", payload: {isShowDashboard: false}})
+        } else {
+            dispatch({type: "VISIBLE_DASHBOARD", payload: {isShowDashboard: true}})
         }
     };
     return (
@@ -46,10 +54,20 @@ export const HeaderTop = ({cleanLocalStorage}: any) => {
                                     {
                                         Role.Admin === role ?
                                             <>
-                                                <a href="http://localhost:3000/auth/login"
-                                                   onClick={cleanLocalStorage} className="mr-3">Log Out</a>
-                                                <a href="http://localhost:3000/admin" className="mr-3">Admin Area</a>
+                                                ?
+                                                <Button className={"bth-dashboard mr-3"} innerText="Admin Area"
+                                                        onClick={() => showDashboard()}/>
                                                 <span className="welcome-user">Admin!</span>
+                                                {
+                                                    isActive.dashboard ?
+                                                        <div className="position-absolute list flex-column">
+                                                            <a href="http://localhost:3000/admin/printing-editing">Product</a>
+                                                            <a href="http://localhost:3000/admin/authors">Author</a>
+                                                            <a href="http://localhost:3000/admin/orders">Orders</a>
+                                                            <a href="http://localhost:3000/auth/login"
+                                                               onClick={cleanLocalStorage}>Log Out</a>
+                                                        </div> : <></>
+                                                }
                                             </>
                                             :
                                             <>

@@ -4,6 +4,7 @@ import {RootState} from "../../types/inrerface";
 import {useSelector} from "react-redux";
 import {ProductContainer} from "../AdminPageProduct";
 import {HeaderTop} from "../../components/Header";
+import {AuthorsDashboardContainer} from "../AdminAuthors";
 
 const AdminPage = ({roles}: any) => {
 
@@ -15,7 +16,8 @@ const AdminPage = ({roles}: any) => {
             <HeaderTop/>
             {role === roles ?
                 <Switch>
-                    <Route exact path="/admin" render={() => <ProductContainer/>}/>
+                    <Route exact path="/admin/printing-editing" render={() => <ProductContainer/>}/>
+                    <Route exact path="/admin/authors" render={() => <AuthorsDashboardContainer/>}/>
                 </Switch>
                 :
                 <h1>Отказано в доступе</h1>
@@ -23,5 +25,4 @@ const AdminPage = ({roles}: any) => {
         </>
     )
 };
-
 export default AdminPage

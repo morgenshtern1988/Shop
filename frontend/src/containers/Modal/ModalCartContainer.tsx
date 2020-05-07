@@ -6,8 +6,10 @@ import Button from "../../components/Button";
 import {ModalCart} from "../../components/Modal/ModalCart";
 
 export const ModalCartContainer = ({hideModal}: any) => {
+
     const buyReducer = (state: RootState) => state.buyReducer;
     const stateCart = useSelector(buyReducer);
+
     return (
         <>
             <div className="wrap-modal-cart">
@@ -34,13 +36,13 @@ export const ModalCartContainer = ({hideModal}: any) => {
                         : <></>
                     }
                     <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        <td/>
+                        <td/>
+                        <td/>
+                        <td/>
+                        <td/>
                         <td><p>Total Price:<span>{stateCart.totalPrice}</span></p></td>
-                        <td></td>
+                        <td/>
                     </tr>
                     </tbody>
                 </Table>
