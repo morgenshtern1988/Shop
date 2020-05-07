@@ -1,7 +1,6 @@
 import * as mongoose from 'mongoose';
 import {IPrintingEdition} from "../../types/interface/printingEdition";
 import {printingEditionsType} from "../emuns/printingEditionsType";
-// import mongoosePaginate from 'mongoose-paginate';
 
 export const PrintingEditionSchema = new mongoose.Schema({
     name: {

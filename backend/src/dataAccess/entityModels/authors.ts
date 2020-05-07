@@ -1,17 +1,17 @@
-import mongoose,{model} from 'mongoose';
-import  mongoosePaginate  from "mongoose-paginate";
-import {Author} from "../../features/authors/api";
+import * as mongoose from 'mongoose';
+// import mongoosePaginate from "mongoose-paginate";
+import {IAuthor} from "../../features/authors/api";
 
-const schema = mongoose.Schema;
-export const authorSchema = new schema({
-    name: {type: String,required: true},
-    createdDate: { type: Date, default: Date.now },
-    removed_at:{type: Boolean, default:false},
-    product_ids: [{ type: mongoose.Schema.Types.ObjectId,ref: 'printing-edition',required: true }]
+export const authorSchema = new mongoose.Schema({
+    name: {type: String, required: true},
+    createdDate: {type: Date, default: Date.now},
+    removed_at: {type: Boolean, default: false},
+    product_ids: [{type: mongoose.Schema.Types.ObjectId, ref: 'printing-edition', required: true}]
 });
-authorSchema.plugin(mongoosePaginate);
+// authorSchema.plugin(mongoosePaginate);
 
-interface authorModel extends Author,mongoose.Document {}
+interface authorModel extends IAuthor, mongoose.Document {
+}
 
-const authorModel = model<authorModel>('Author', authorSchema);
-export default authorModel;
+export const authorModel = mongoose.model<authorModel>('Author', authorSchema);
+// export default authorModel;

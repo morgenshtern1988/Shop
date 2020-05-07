@@ -7,6 +7,6 @@ const TokenShema = new mongoose.Schema({
     userId: {
         type: String
     }
-})
+});
 
 export const tokenModel = mongoose.model('Token', TokenShema)

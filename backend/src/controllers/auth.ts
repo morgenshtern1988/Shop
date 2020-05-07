@@ -3,7 +3,7 @@ import {NextFunction, Request, Response} from "express";
 
 export const controllerRole = async (request: Request, response: Response, next: NextFunction) => {
     if (request.user) {
-        console.log(request.user);
+        // console.log(request.user);
         const userInfo = request.user;
         const userInDB = await userModel.findOne({_id: userInfo.id});
         if (userInDB) {

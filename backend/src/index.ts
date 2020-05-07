@@ -38,6 +38,7 @@ app.use((req, res, next) => {
 app.use("/auth", authRouter);
 app.use("/printing-edition", userProductRouter);
 app.use("/admin/printing-edition", adminProductRouter);
+app.use("/admin/author", adminProductRouter);
 
 app.listen(PORT.appPort, function () {
     console.log("Сервер начинает прослушивание...");
