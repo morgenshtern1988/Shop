@@ -9,6 +9,7 @@ import LoaderButton from "../../components/LoaderButton/LoaderButton";
 import {postUserAddDb} from "../../reducers/register/register";
 import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../../types/inrerface";
+import HeaderContainer from "../Header/HeaderContainer";
 
 export default function Signup(props: any) {
 
@@ -23,10 +24,10 @@ export default function Signup(props: any) {
         type: "@@register/REGISTER_START",
         payload: {confirmPassword}
     });
- /*   const setConfirmationCode = (confirmationCode: any) => dispatch({
-        type: "@@register/REGISTER_START",
-        payload: {confirmationCode}
-    });*/
+    /*   const setConfirmationCode = (confirmationCode: any) => dispatch({
+           type: "@@register/REGISTER_START",
+           payload: {confirmationCode}
+       });*/
 
     const [isLoading, setIsLoading] = useState(false);
 
@@ -40,9 +41,9 @@ export default function Signup(props: any) {
         );
     }
 
-   /* function validateConfirmationForm() {
-        return newUser.confirmationCode.length > 0;
-    }*/
+    /* function validateConfirmationForm() {
+         return newUser.confirmationCode.length > 0;
+     }*/
 
     async function handleSubmit(event: any) {
         event.preventDefault();
@@ -59,10 +60,10 @@ export default function Signup(props: any) {
         setIsLoading(false);
     }
 
-  /*  async function handleConfirmationSubmit(event: any) {
-        event.preventDefault();
-        setIsLoading(true);
-    }*/
+    /*  async function handleConfirmationSubmit(event: any) {
+          event.preventDefault();
+          setIsLoading(true);
+      }*/
 
     // function renderConfirmationForm() {
     //     return (
@@ -92,62 +93,66 @@ export default function Signup(props: any) {
 
     function renderForm() {
         return (
-            <form onSubmit={handleSubmit} className="container">
-                <FormGroup controlId="firstName" bsSize="large">
-                    <ControlLabel>firstName</ControlLabel>
-                    <FormControl
-                        autoFocus
-                        type="text"
-                        value={newUser.firstName}
-                        // onChange={handleFieldChange}
-                        onChange={(e: any) => setFirstName(e.target.value)}
-                    />
-                </FormGroup>
-                <FormGroup controlId="lastName" bsSize="large">
-                    <ControlLabel>lastName</ControlLabel>
-                    <FormControl
-                        autoFocus
-                        type="text"
-                        value={newUser.lastName}
-                        onChange={(e: any) => setLastName(e.target.value)}
-                    />
-                </FormGroup>
-                <FormGroup controlId="email" bsSize="large">
-                    <ControlLabel>Email</ControlLabel>
-                    <FormControl
-                        autoFocus
-                        type="email"
-                        value={newUser.email}
-                        onChange={(e: any) => setEmail(e.target.value)}
-                        // onChange={handleFieldChange}
-                    />
-                </FormGroup>
-                <FormGroup controlId="password" bsSize="large">
-                    <ControlLabel>Password</ControlLabel>
-                    <FormControl
-                        type="password"
-                        value={newUser.password}
-                        onChange={(e: any) => setPassword(e.target.value)}
-                    />
-                </FormGroup>
-                <FormGroup controlId="confirmPassword" bsSize="large">
-                    <ControlLabel>Confirm Password</ControlLabel>
-                    <FormControl
-                        type="password"
-                        value={newUser.confirmPassword}
-                        onChange={(e: any) => setConfirmPassword(e.target.value)}
-                    />
-                </FormGroup>
-                <LoaderButton
-                    block
-                    type="submit"
-                    bsSize="large"
-                    isLoading={isLoading}
-                    disabled={!validateForm()}
-                >
-                    Signup
-                </LoaderButton>
-            </form>
+            <>
+                <HeaderContainer/>
+
+                <form onSubmit={handleSubmit} className="container">
+                    <FormGroup controlId="firstName" bsSize="large">
+                        <ControlLabel>firstName</ControlLabel>
+                        <FormControl
+                            autoFocus
+                            type="text"
+                            value={newUser.firstName}
+                            // onChange={handleFieldChange}
+                            onChange={(e: any) => setFirstName(e.target.value)}
+                        />
+                    </FormGroup>
+                    <FormGroup controlId="lastName" bsSize="large">
+                        <ControlLabel>lastName</ControlLabel>
+                        <FormControl
+                            autoFocus
+                            type="text"
+                            value={newUser.lastName}
+                            onChange={(e: any) => setLastName(e.target.value)}
+                        />
+                    </FormGroup>
+                    <FormGroup controlId="email" bsSize="large">
+                        <ControlLabel>Email</ControlLabel>
+                        <FormControl
+                            autoFocus
+                            type="email"
+                            value={newUser.email}
+                            onChange={(e: any) => setEmail(e.target.value)}
+                            // onChange={handleFieldChange}
+                        />
+                    </FormGroup>
+                    <FormGroup controlId="password" bsSize="large">
+                        <ControlLabel>Password</ControlLabel>
+                        <FormControl
+                            type="password"
+                            value={newUser.password}
+                            onChange={(e: any) => setPassword(e.target.value)}
+                        />
+                    </FormGroup>
+                    <FormGroup controlId="confirmPassword" bsSize="large">
+                        <ControlLabel>Confirm Password</ControlLabel>
+                        <FormControl
+                            type="password"
+                            value={newUser.confirmPassword}
+                            onChange={(e: any) => setConfirmPassword(e.target.value)}
+                        />
+                    </FormGroup>
+                    <LoaderButton
+                        block
+                        type="submit"
+                        bsSize="large"
+                        isLoading={isLoading}
+                        disabled={!validateForm()}
+                    >
+                        Signup
+                    </LoaderButton>
+                </form>
+            </>
         );
     }
 

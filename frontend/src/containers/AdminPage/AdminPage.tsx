@@ -3,14 +3,16 @@ import {Route, Switch} from "react-router-dom";
 import {RootState} from "../../types/inrerface";
 import {useSelector} from "react-redux";
 import {ProductContainer} from "../AdminPageProduct";
+import {HeaderTop} from "../../components/Header";
 
-const AdminPage = (props: any) => {
-    const {roles} = props;
+const AdminPage = ({roles}: any) => {
+
     const selectIsOn = (state: RootState) => state.loginReducer.role;
     const role = useSelector(selectIsOn);
 
     return (
         <>
+            <HeaderTop/>
             {role === roles ?
                 <Switch>
                     <Route exact path="/admin" render={() => <ProductContainer/>}/>

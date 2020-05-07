@@ -1,0 +1,75 @@
+.my-profile {
+  font-family: oswaldmedium;
+
+  button {
+    border: 2px solid #FF6825;
+    background-color: transparent;
+    padding: 7px 30px;
+    outline: none;
+    color: #848383;
+    font-size: 18px;
+    font-weight: 600;
+    font-family: oswaldlight;
+
+    &:hover {
+      border-radius: 5px;
+      background-color: $orange;
+      color: $white;
+    }
+  }
+  .cancel{
+    margin-right: 10px;
+  }
+
+  .edit-profile a {
+    color: $white;
+    opacity: .2;
+    font-size: 16px;
+    font-family: poppinsregular;
+  }
+
+  .wrap-icon-user {
+    margin-bottom: 32px;
+    padding: 20px;
+    max-width: 100%;
+    border-radius: 100%;
+    background-color: #615F5F;;
+  }
+
+  .icon-user:before {
+    opacity: .4;
+    color: $black;
+    font-size: 100px;
+  }
+
+  .wrap-link {
+    padding: 27px 100px;
+  }
+
+  .wrap-info {
+    padding-top: 82px;
+  }
+
+  h1 {
+    color: $orange;
+    font-size: 48px;
+  }
+
+  label {
+    color: #FEFEFE;
+    font-size: 18px;
+    opacity: .7;
+  }
+
+  input {
+    padding: 15px 150px 13px 20px;
+    background-color: #868686;
+    opacity: .3;
+    outline: none;
+  }
+}
+
+.wrap-my-profile {
+  padding-top: 50px;
+  padding-bottom: 300px;
+}

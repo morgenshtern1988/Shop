@@ -4,10 +4,11 @@ import {Button, FormGroup, FormControl, ControlLabel} from "react-bootstrap";
 import {connect} from "react-redux";
 import {singInUser} from "../../reducers/login/login";
 import {store} from "../../store/store";
+import HeaderContainer from "../Header/HeaderContainer";
 
 const Login = (props: any) => {
     let {setEmail, setPassword, email, password, postUserFromApi, auth} = props;
-
+    console.log(auth)
 
     function validateForm() {
         return (email !== undefined && password !== undefined)
@@ -21,6 +22,7 @@ const Login = (props: any) => {
 
     return (
         <>
+            <HeaderContainer/>
             {auth
                 ? <Redirect to='/'/>
                 : <div className="Login container">
