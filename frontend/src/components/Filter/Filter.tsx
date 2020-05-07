@@ -13,14 +13,14 @@ export const Filter = ({products, defaultProducts}: any) => {
             if (a.price > b.price) return target.value === 'up-sort' ? 1 : -1;
             if (a.price === b.price) return 0;
         });
-        dispatch({type: "SORT_PRODUCT", payload: newArr});
+        dispatch({type: "SORT_PRODUCT_UD_DOWN", payload: {newArr}});
     };
     const searchCurrency = ({target}: any) => {
         let newArr = [...products];
         if (target.value !== "DEFAULT") {
-            const sortArr = newArr.filter((product: any) => product.currency === target.value);
-            dispatch({type: "SORT_PRODUCT", payload: sortArr})
-        } else dispatch({type: "SORT_PRODUCT", payload: defaultProducts})
+            newArr = newArr.filter((product: any) => product.currency === target.value);
+            dispatch({type: "SORT_PRODUCT_UD_DOWN", payload: {newArr}})
+        } else dispatch({type: "SORT_PRODUCT_UD_DOWN", payload: {newArr: defaultProducts}})
     };
     return (
         <div className="d-flex justify-content-end w-100 mb-5 wrap-sort-currency">

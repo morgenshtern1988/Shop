@@ -1,5 +1,5 @@
 import {combineReducers} from "redux";
-import {productReducer, filterReducer} from "./product/product";
+import {productReducer} from "./product/product";
 import {loginReducer} from "./login/login";
 import {registerReducer} from "./register/register";
 import storage from "redux-persist/lib/storage";
@@ -9,10 +9,10 @@ import {buyReducer} from "./buy";
 import {modalReducer} from "./modal";
 import {isActiveReducer} from "./isActive"
 import {authorsReducer} from "./authors";
+
 export const rootReducers = combineReducers(
     {
         productReducer,
-        filterReducer,
         loginReducer,
         registerReducer,
         redirectReducer,

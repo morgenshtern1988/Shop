@@ -1,43 +1,49 @@
-import {fetchGetProducts} from "../../services/productsApi";
+import {deleteProduct, fetchGetProducts} from "../../services/productsApi";
 
-let initialState = [1];
+let initialState = {
+    productArr: [],
+    filterProduct: [],
+};
 
 export const productReducer = (state: any = initialState, action: any) => {
+    const store = JSON.parse(localStorage.getItem("persist:root" || '{}') as string);
     switch (action.type) {
         case 'INIT_PRODUCT':
-            const data = action.payload;
-            return [
-                ...data,
-            ];
+            const {data: prodArr} = action.payload;
+            return {
+                ...state,
+                productArr: prodArr
+            };
+        case "FILTER_PRODUCT_INIT":
+            const {data: productArr} = action.payload;
+            return {
+                ...state,
+                filterProduct: productArr,
+            };
+        case "FILTER_PRODUCT_SEARCH":
+            const {value, products: p} = action.payload;
+            const filterProduct = p.filter((product: any) => product.name.toLowerCase().includes(value.toLowerCase()));
+            return {
+                ...state,
+                filterProduct: filterProduct,
+            };
+        case "SORT_PRODUCT":
+            const {res: products} = action.payload;
+            return {
+                ...state,
+                filterProduct: products,
+            };
+        case "SORT_PRODUCT_UD_DOWN":
+            const {newArr} = action.payload;
+            return {
+                ...state,
+                filterProduct: newArr,
+            };
         default:
             return state;
     }
 };
 
-export const filterReducer = (state: any = [], action: any) => {
-    const store = JSON.parse(localStorage.getItem("persist:root" || '{}') as string);
-    switch (action.type) {
-        case "FILTER_PRODUCT_INIT":
-            const data = action.payload;
-            return [
-                ...data,
-            ];
-        case "FILTER_PRODUCT":
-            const product = JSON.parse(store.productReducer);/////////
-            const value = action.payload;
-            const filterProduct = product.filter((product: any) => product.name.toLowerCase().includes(value.toLowerCase()));
-            return [
-                ...filterProduct,
-            ];
-        case "SORT_PRODUCT":
-            const products = action.payload;
-            return [
-                ...products,
-            ];
-        default:
-            return state;
-    }
-};
 
 export const getProductThunk = () => {
     return async (dispatch: any) => {
@@ -45,12 +51,24 @@ export const getProductThunk = () => {
             .then((items) => {
                 console.log("удачно");
                 const {data} = items;
-                dispatch({type: 'INIT_PRODUCT', payload: data});
-                dispatch({type: 'FILTER_PRODUCT_INIT', payload: data});
+                dispatch({type: 'INIT_PRODUCT', payload: {data}});
+                dispatch({type: 'FILTER_PRODUCT_INIT', payload: {data}});
             })
             .catch(() => {
                 console.log("NE удачно");
-                dispatch({type: 'INIT_PRODUCT', payload: []})
+                // dispatch({type: 'INIT_PRODUCT', payload: []})
             })
+    }
+};
+
+export const deleteBookInDB = (id: string) => {
+    return async (dispatch: any) => {
+        await deleteProduct(id)
+            .then((data) => {
+                console.log("New Arr iz DB", data);
+                dispatch({type: 'INIT_PRODUCT', payload: {data}})
+                dispatch({type: 'FILTER_PRODUCT_INIT', payload: {data}});
+            })
+            .catch((err) => console.log(err))
     }
 };

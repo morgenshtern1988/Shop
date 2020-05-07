@@ -7,6 +7,6 @@ export const fetchGetProducts = async (): Promise<any> => {
 
 
 export const deleteProduct = async (id: string): Promise<any> => {
-    const {data} = await api.delete("http://localhost:8888/admin/printing-edition/" + id);
+    const {data} = await api.delete("/admin/printing-edition/" + id);
     return data
 };

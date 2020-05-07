@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import Button from "../Button/Button";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {filterCategory} from "../../infrastructure/FilterCategory";
 
 export const Catalog = ({products, defaultProducts}: any) => {
@@ -12,16 +12,16 @@ export const Catalog = ({products, defaultProducts}: any) => {
 
     useEffect(() => {
         const res = [...stateCategory.book, ...stateCategory.newspapers, ...stateCategory.magazines];
-        dispatch({type: "SORT_PRODUCT", payload: res})
+        dispatch({type: "SORT_PRODUCT", payload: {res}})
     }, [stateCategory]);
 
-    const searchPriceAndCategory = ({stateCategory}: any) => {
-        let res = [...stateCategory.book, ...stateCategory.newspapers, ...stateCategory.magazines];
+    const searchPriceAndCategory = ({stateCategory, defaultProducts}: any) => {
+        const newArr = [...stateCategory.book, ...stateCategory.newspapers, ...stateCategory.magazines];
+        let res = newArr.length ? newArr : defaultProducts;
+        console.log("Res", res);
         if (state.low && state.high !== "") {
-            if (res.length) {
-                res = res.filter((product: any) => product.price >= state.low && product.price <= state.high);
-                dispatch({type: "SORT_PRODUCT", payload: res})
-            }
+            res = res.filter((product: any) => product.price >= state.low && product.price <= state.high);
+            dispatch({type: "SORT_PRODUCT", payload: {res}})
         }
     };
 
@@ -61,7 +61,7 @@ export const Catalog = ({products, defaultProducts}: any) => {
                            onChange={(e: any) => setState({low: e.target.value, high: state.high})}/>
                     <input className="w-25 pl-2 d-flex" type="text" placeholder="До"
                            onChange={(e: any) => setState({low: state.low, high: e.target.value})}/>
-                    <Button innerText="OK" onClick={() => searchPriceAndCategory({stateCategory})}/>
+                    <Button innerText="OK" onClick={() => searchPriceAndCategory({stateCategory, defaultProducts})}/>
                 </div>
             </div>
         </>

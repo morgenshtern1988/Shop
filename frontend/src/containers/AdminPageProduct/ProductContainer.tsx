@@ -7,10 +7,10 @@ import {filterCategory} from "../../infrastructure/FilterCategory";
 
 export const ProductContainer = (props: any) => {
 
-    const defaultProductReducer = (state: RootState) => state.productReducer;
+    const defaultProductReducer = (state: RootState) => state.productReducer.productArr;
     const defaultProducts = useSelector(defaultProductReducer);
 
-    const selectIsOn = (state: RootState) => state.filterReducer;
+    const selectIsOn = (state: RootState) => state.productReducer.filterProduct;
     const products = useSelector(selectIsOn);
     const dispatch = useDispatch();
 
@@ -22,11 +22,12 @@ export const ProductContainer = (props: any) => {
 
     return (
         <>
-            <ProductsTable products={products}
-                           defaultProducts={defaultProducts}
-                           stateCategory={stateCategory}
-                           setStateCategory={setStateCategory}
-                           filterCategory={filterCategory}/>
+            <ProductsTable
+                products={products}
+                defaultProducts={defaultProducts}
+                stateCategory={stateCategory}
+                setStateCategory={setStateCategory}
+                filterCategory={filterCategory}/>
         </>
     )
 };

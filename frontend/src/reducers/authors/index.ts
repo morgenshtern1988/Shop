@@ -1,4 +1,5 @@
-import {fetchGetAuthors, fetchPostAuthors} from "../../services/authorsApi";
+import {deleteAuthorInDB, fetchGetAuthors, fetchPostAuthors} from "../../services/authorsApi";
+import {deleteProduct} from "../../services/productsApi";
 
 let initialState = {
     authorsArr: [],
@@ -57,5 +58,15 @@ export const postAuthorThunk = ({author}: any) => {
                 console.log("NE удачно");
                 // dispatch({type: 'INIT_AUTHORS', payload: []})
             })
+    }
+};
+
+export const deleteAuthorThunk = (id: string) => {
+    return async (dispatch: any) => {
+        await deleteAuthorInDB(id)
+            .then((authorsArr) => {
+                dispatch({type: 'INIT_AUTHORS', payload: {authorsArr}})
+            })
+            .catch((err) => console.log(err))
     }
 };

@@ -9,7 +9,7 @@ import {getProductThunk} from "../../reducers/product/product";
 
 export const AuthorsDashboardContainer = () => {
 
-    const productReducer = (state: RootState) => state.productReducer;
+    const productReducer = (state: RootState) => state.productReducer.productArr;
     const productArr = useSelector(productReducer);
 
     const authorsReducer = (state: RootState) => state.authorsReducer;

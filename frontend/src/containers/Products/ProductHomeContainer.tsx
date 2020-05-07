@@ -10,7 +10,7 @@ export const ProductHomeContainer = () => {
     const redirectReducer = (state: RootState) => state.redirectReducer;
     const redirect = useSelector(redirectReducer);
 
-    const filterReducer = (state: RootState) => state.filterReducer;
+    const filterReducer = (state: RootState) => state.productReducer.filterProduct;
     const products = useSelector(filterReducer);
 
     const dispatch = useDispatch();

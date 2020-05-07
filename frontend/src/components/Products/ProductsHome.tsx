@@ -6,8 +6,7 @@ import { useSelector} from "react-redux";
 import {Catalog} from "../Catalog";
 
 export const ProductsHome = ({products}: any) => {
-
-    const defaultProductReducer = (state: RootState) => state.productReducer;
+    const defaultProductReducer = (state: RootState) => state.productReducer.productArr;
     const defaultProducts = useSelector(defaultProductReducer);
 
     return (

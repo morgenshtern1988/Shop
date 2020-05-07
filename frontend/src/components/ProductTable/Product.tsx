@@ -1,18 +1,12 @@
 import React from "react";
 import Button from "../Button";
+import {deleteBookInDB} from "../../reducers/product/product";
 import {useDispatch} from "react-redux";
-import {deleteProduct} from "../../services/productsApi";
 
 const Product = ({product}: any) => {
-
     const dispatch = useDispatch();
-    const deleteBookInDB = async (id: string) => {
-        console.log(id)
-        deleteProduct(id)
-            .then((data) => {
-                dispatch({type: 'INIT_PRODUCT', payload: data})
-            })
-            .catch((err) => console.log(err))
+    const deleteProduct = async ({id}: any) => {
+        await dispatch(deleteBookInDB(id))
     };
     return (
         <tr>
@@ -23,7 +17,7 @@ const Product = ({product}: any) => {
             <td>{product.author}</td>
             <td>{product.price}</td>
             <td>
-                <Button onClick={() => deleteBookInDB(product._id)} innerText={"Delete"}/>
+                <Button onClick={() => deleteProduct({id: product._id})} innerText={"Delete"}/>
                 <Button onClick={() => console.log("a")} innerText={"Edit"}/>
             </td>
         </tr>

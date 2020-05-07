@@ -1,12 +1,14 @@
 import {IAuthor} from "../api";
 import {authorModel} from "../../../dataAccess/entityModels/authors";
-import {printingEditionModel} from "../../../dataAccess/entityModels/printing-edition";
 
 export const adminCreateAuthor = async (author: IAuthor) => {
-    const result = await authorModel.insertMany(author);
-    return result;
+    return await authorModel.insertMany(author);
 };
-export const adminShowAuthor = async function (author: any) {
-    const result = authorModel.find({});
-    return result
+export const adminShowAuthor = async (author: any) => {
+    return authorModel.find({});
+};
+export const adminRemoveAuthor = async (id: string) => {
+    const authors = await authorModel.findById(id);
+    await authorModel.remove(authors);
+    return await authorModel.find({});
 };

@@ -11,7 +11,6 @@ export interface IAuth {
 }
 
 export interface RootState {
-    filterReducer: IProduct,
     loginReducer: IAuth,
     registerReducer: IRegisterUser,
     productReducer: IProduct,
@@ -61,6 +60,12 @@ export interface IRegisterUser {
 }
 
 export interface IProduct {
+    filterProduct: Array<any>,
+    productArr: Array<any>,
+
+}
+
+export interface IModelProduct {
     _id: string,
     name: string,
     description: string,

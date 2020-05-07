@@ -1,10 +1,13 @@
 import React from "react";
 import Button from "../Button";
+import {useDispatch} from "react-redux";
+import {deleteAuthorThunk} from "../../reducers/authors";
 
 export const AuthorsDashboard = ({author, productArr}: any) => {
+    const dispatch = useDispatch();
 
-    const deleteAuthorInDB = (id: string) => {
-
+    const deleteAuthor = async (id: string) => {
+        await dispatch(deleteAuthorThunk(id))
     };
 
     const searchBookByAuthor = ({id, productArr}: any) => {
@@ -31,7 +34,7 @@ export const AuthorsDashboard = ({author, productArr}: any) => {
                 }
             </td>
             <td>
-                <Button onClick={() => deleteAuthorInDB(author._id)} innerText={"Delete"}/>
+                <Button onClick={() => deleteAuthor(author._id)} innerText={"Delete"}/>
                 <Button onClick={() => console.log("a")} innerText={"Edit"}/>
             </td>
         </tr>

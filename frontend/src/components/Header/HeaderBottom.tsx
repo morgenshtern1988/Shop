@@ -1,21 +1,18 @@
-import React, {useEffect} from "react";
+import React from "react";
 import {Search} from "../Search";
-import {RootState} from "../../types/inrerface";
 import {useDispatch, useSelector} from "react-redux";
+import {RootState} from "../../types/inrerface";
 
 export const HeaderBottom = () => {
 
-    const selectIsOn = (state: RootState) => state.filterReducer;
-    const products = useSelector(selectIsOn);
+    const filterReducer = (state: RootState) => state.productReducer.productArr;
+    const products = useSelector(filterReducer);
+
     const dispatch = useDispatch();
 
-    const handleSearch = (value: string) => {
-        dispatch({type: "FILTER_PRODUCT", payload: value})
+    const handleSearch = ({products, value}: any) => {
+        dispatch({type: "FILTER_PRODUCT_SEARCH", payload: {products, value}})
     };
-
-    useEffect(() => {
-        // console.log(products);
-    }, [products]);
 
     return (
         <header className="bottom-header d-flex pt-4 pb-4 mb-5">
@@ -26,7 +23,7 @@ export const HeaderBottom = () => {
                         <a href="http://localhost:3000/printing-editing">Book Catalog</a>
                     </div>
                     <div className="col-6 text-right">
-                        <Search onChange={handleSearch} placeholder={"Search"}/>
+                        <Search onChange={(e:any)=>handleSearch({products,value:e.target.value})} placeholder={"Search"}/>
                     </div>
                 </div>
             </div>

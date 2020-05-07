@@ -1,12 +1,12 @@
 import React, {useEffect} from "react";
 import Product from "./Product";
 import {Table} from "react-bootstrap";
-import {filterCategory} from "../../infrastructure/FilterCategory";
 import {useDispatch, useSelector} from "react-redux";
 import Button from "../Button";
 import {RootState} from "../../types/inrerface";
 
 const ProductsTable = ({products, filterCategory, setStateCategory, stateCategory, defaultProducts}: any) => {
+
     const isActiveReducer = (state: RootState) => state.isActiveReducer;
     const isActive = useSelector(isActiveReducer);
     const dispatch = useDispatch();
@@ -23,7 +23,7 @@ const ProductsTable = ({products, filterCategory, setStateCategory, stateCategor
 
     useEffect(() => {
         const res = [...stateCategory.book, ...stateCategory.newspapers, ...stateCategory.magazines];
-        dispatch({type: "SORT_PRODUCT", payload: res});
+        dispatch({type: "SORT_PRODUCT", payload: {res}});
     }, [stateCategory]);
 
     return (
@@ -69,7 +69,7 @@ const ProductsTable = ({products, filterCategory, setStateCategory, stateCategor
                     </th>
                     <th>Author</th>
                     <th>Price</th>
-                    <th></th>
+                    <th/>
                 </tr>
                 </thead>
                 <tbody>
