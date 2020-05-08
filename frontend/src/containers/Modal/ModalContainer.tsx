@@ -2,9 +2,9 @@ import React from "react";
 import {ModalCartContainer} from "./ModalCartContainer";
 import {RootState} from "../../types/inrerface";
 import {useDispatch, useSelector} from "react-redux";
-import {ModalAuthor} from "../../components/Modal/ModalAuthor";
+import {AddNewProduct, ModalAuthor} from "../../components/Modal";
 
-export const AllModalContainer = () => {
+export const ModalContainer = () => {
 
     const redirectReducer = (state: RootState) => state.modalReducer;
     const modal = useSelector(redirectReducer);
@@ -15,8 +15,20 @@ export const AllModalContainer = () => {
             dispatch({type: "IS_SHOW_MODAL", payload: {idShowModalBasket: false}})
     };
     const hideModalAuthor = (e: any) => {
-        if (e.target.className === 'modal' || e.target.id === "cancel" || e.target.className === "icon-close" || e.target.id === "btn-add")
+        if (e.target.className === 'modal' ||
+            e.target.id === "cancel" ||
+            e.target.className === "icon-close" ||
+            e.target.id === "btn-add")
             dispatch({type: "IS_SHOW_MODAL_ADD_AUTHOR", payload: {isDisplay: false}})
+    };
+    const hideModalAddProduct = (e: any) => {
+        // console.log("Click in className : ", e.target.className);
+        if (e.target.className === 'modal' ||
+            e.target.id === "cancel" ||
+            e.target.className === "icon-close" ||
+            e.target.id === "btn-add") {
+            dispatch({type: "IS_SHOW_MODAL_ADD_PRODUCT", payload: {isDisplay: false}})
+        }
     };
 
     return (
@@ -31,6 +43,12 @@ export const AllModalContainer = () => {
                 modal.showAddAuthor &&
                 <div className="modal" onClick={(e: any) => hideModalAuthor(e)}>
                     <ModalAuthor hideModalAuthor={hideModalAuthor}/>
+                </div>
+            }
+            {
+                modal.showAddProduct &&
+                <div className="modal" onClick={(e: any) => hideModalAddProduct(e)}>
+                    <AddNewProduct hideModalAddProduct={hideModalAddProduct}/>
                 </div>
             }
         </>

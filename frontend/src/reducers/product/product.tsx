@@ -3,6 +3,14 @@ import {deleteProduct, fetchGetProducts} from "../../services/productsApi";
 let initialState = {
     productArr: [],
     filterProduct: [],
+    stateProduct: {
+        name: "",
+        description: "",
+        category: "",
+        author: [""],
+        price: 0,
+        currency: "",
+    },
 };
 
 export const productReducer = (state: any = initialState, action: any) => {
@@ -13,6 +21,19 @@ export const productReducer = (state: any = initialState, action: any) => {
             return {
                 ...state,
                 productArr: prodArr
+            };
+        case 'STATE_NEW_PRODUCT':
+            const {data: prod} = action.payload;
+            console.log("Prod In State:", prod);
+            return {
+                ...state,
+                // stateProduct: {...prod}
+            };
+        case 'ADD_NEW_PRODUCT':
+            const {data: product} = action.payload;
+            return {
+                ...state,
+                productArr: [...state.productArr, product]
             };
         case "FILTER_PRODUCT_INIT":
             const {data: productArr} = action.payload;

@@ -54,7 +54,6 @@ export const HeaderTop = ({cleanLocalStorage}: any) => {
                                     {
                                         Role.Admin === role ?
                                             <>
-                                                ?
                                                 <Button className={"bth-dashboard mr-3"} innerText="Admin Area"
                                                         onClick={() => showDashboard()}/>
                                                 <span className="welcome-user">Admin!</span>

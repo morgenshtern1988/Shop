@@ -14,7 +14,7 @@ export const ModalAuthor = ({hideModalAuthor}: any) => {
     };
 
     return (
-        <div className="wrap-add-author">
+        <div className="wrap-add">
             <div className="top text-right">
                 <span className="icon-close" onClick={(e: any) => hideModalAuthor(e)}/>
             </div>

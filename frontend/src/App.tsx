@@ -8,13 +8,13 @@ import {HomePage} from "./containers/HomePage";
 import AdminPage from "./containers/AdminPage";
 import {Role} from "./helpers/role";
 import {ProductHomeContainer} from "./containers/Products";
-import {AllModalContainer} from "./containers/Modal/AllModalContainer";
+import {ModalContainer} from "./containers/Modal/ModalContainer";
 import {MyProfileContainer} from "./containers/MyProfile"
 
 function App() {
     return (
         <div className="wrapper position-relative">
-            <AllModalContainer/>
+            <ModalContainer/>
             <main>
                 <Switch>
                     <Route path="/auth/register" render={() => <Register/>}/>

@@ -17,7 +17,7 @@
   }
 }
 
-.wrap-add-author {
+.wrap-add {
   background-color: #3F3F3F;
 
   .cancel {
@@ -39,23 +39,24 @@
     margin-right: 12px;
   }
 
-  input {
-    color: $white;
-    border: none;
-    font-family: poppinsregular;
-    width: 35vw;
-    margin-bottom: 40px;
-    background-color: #868686;
-    opacity: 0.3;
-    padding: 20px 0 20px 22px;
-
-    &:focus {
-      outline: none;
-    }
-  }
 
   .wrap-info {
     padding: 119px 125px 82px 125px;
+
+    input {
+      color: $white;
+      border: none;
+      font-family: poppinsregular;
+      width: 35vw;
+      margin-bottom: 40px;
+      background-color: #868686;
+      opacity: 0.3;
+      padding: 20px 0 20px 22px;
+
+      &:focus {
+        outline: none;
+      }
+    }
   }
 
   .top {
@@ -66,6 +67,49 @@
       cursor: pointer;
       font-size: 16px;
       color: $orange;
+    }
+  }
+}
+
+.wrap-add-product {
+  padding: 26px 46px;
+
+  .currency {
+    background-color: $white;
+    opacity: 1;
+    width: 10vw;
+  }
+
+  select, input {
+    background-color: #868686;
+    opacity: 0.3;
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  h1 {
+    color: $orange;
+    font-family: oswald_regularregular;
+    font-size: 55px;
+    font-weight: 600;
+    //margin-bottom: 80px;
+  }
+
+  span {
+    color: $white;
+    font-size: 18px;
+    font-family: oswald_regularregular;
+  }
+
+  textarea {
+    background-color: #868686;
+    opacity: 0.3;
+    resize: none;
+
+    &:focus {
+      outline: none;
     }
   }
 }

@@ -95,7 +95,6 @@ export default function Signup(props: any) {
         return (
             <>
                 <HeaderContainer/>
-
                 <form onSubmit={handleSubmit} className="container">
                     <FormGroup controlId="firstName" bsSize="large">
                         <ControlLabel>firstName</ControlLabel>

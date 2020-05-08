@@ -41,6 +41,7 @@ export interface IBasket {
 export interface IModal {
     idShowModalBasket: boolean,
     showAddAuthor: boolean,
+    showAddProduct: boolean,
 }
 
 export interface IRedirect {
@@ -62,7 +63,17 @@ export interface IRegisterUser {
 export interface IProduct {
     filterProduct: Array<any>,
     productArr: Array<any>,
+    stateProduct: IAddProduct,
 
+}
+
+export interface IAddProduct {
+    name: string,
+    description: string,
+    category: string,
+    author: Array<string>,
+    price: number,
+    currency: string,
 }
 
 export interface IModelProduct {

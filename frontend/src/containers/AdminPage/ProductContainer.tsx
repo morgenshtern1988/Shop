@@ -12,6 +12,7 @@ export const ProductContainer = (props: any) => {
 
     const selectIsOn = (state: RootState) => state.productReducer.filterProduct;
     const products = useSelector(selectIsOn);
+
     const dispatch = useDispatch();
 
     const [stateCategory, setStateCategory] = useState({book: "", newspapers: "", magazines: ""});

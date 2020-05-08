@@ -3,7 +3,7 @@ import {Table} from "react-bootstrap";
 import {RootState} from "../../types/inrerface";
 import {useSelector} from "react-redux";
 import Button from "../../components/Button";
-import {ModalCart} from "../../components/Modal/ModalCart";
+import {ModalCart} from "../../components/Modal";
 
 export const ModalCartContainer = ({hideModal}: any) => {
 
@@ -17,8 +17,8 @@ export const ModalCartContainer = ({hideModal}: any) => {
                     <thead className="">
                     <tr className="bottom-modal">
                         <th><h4>Product</h4></th>
-                        <th></th>
-                        <th></th>
+                        <th/>
+                        <th/>
                         <th>Unit price</th>
                         <th>Qty</th>
                         <th>Order Amount</th>

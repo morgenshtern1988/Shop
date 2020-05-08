@@ -2,9 +2,9 @@ import React from "react";
 import {Route, Switch} from "react-router-dom";
 import {RootState} from "../../types/inrerface";
 import {useSelector} from "react-redux";
-import {ProductContainer} from "../AdminPageProduct";
 import {HeaderTop} from "../../components/Header";
-import {AuthorsDashboardContainer} from "../AdminAuthors";
+import {ProductContainer} from "./ProductContainer";
+import {AuthorsPage} from "./AuthorsPage";
 
 const AdminPage = ({roles}: any) => {
 
@@ -17,7 +17,7 @@ const AdminPage = ({roles}: any) => {
             {role === roles ?
                 <Switch>
                     <Route exact path="/admin/printing-editing" render={() => <ProductContainer/>}/>
-                    <Route exact path="/admin/authors" render={() => <AuthorsDashboardContainer/>}/>
+                    <Route exact path="/admin/authors" render={() => <AuthorsPage/>}/>
                 </Switch>
                 :
                 <h1>Отказано в доступе</h1>

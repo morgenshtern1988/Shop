@@ -1,6 +1,7 @@
 let initialState = {
     idShowModalBasket: false,
     showAddAuthor: false,
+    showAddProduct: false,
 };
 export const modalReducer = (state: any = initialState, action: any) => {
     switch (action.type) {
@@ -15,6 +16,12 @@ export const modalReducer = (state: any = initialState, action: any) => {
             return {
                 ...state,
                 showAddAuthor: isDisplay,
+            };
+        case 'IS_SHOW_MODAL_ADD_PRODUCT':
+            const {isDisplay: display} = action.payload;
+            return {
+                ...state,
+                showAddProduct: display,
             };
         default:
             return state;

@@ -7,7 +7,7 @@ import {Table} from "react-bootstrap";
 import Button from "../../components/Button";
 import {getProductThunk} from "../../reducers/product/product";
 
-export const AuthorsDashboardContainer = () => {
+export const AuthorsPage = () => {
 
     const productReducer = (state: RootState) => state.productReducer.productArr;
     const productArr = useSelector(productReducer);

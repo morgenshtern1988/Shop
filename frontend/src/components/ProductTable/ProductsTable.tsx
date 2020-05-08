@@ -11,6 +11,11 @@ const ProductsTable = ({products, filterCategory, setStateCategory, stateCategor
     const isActive = useSelector(isActiveReducer);
     const dispatch = useDispatch();
 
+    useEffect(() => {
+        const res = [...stateCategory.book, ...stateCategory.newspapers, ...stateCategory.magazines];
+        dispatch({type: "SORT_PRODUCT", payload: {res}});
+    }, [stateCategory]);
+
     const isActiveBlockCategory = () => {
         if (isActive.blockCategory) {
             dispatch({type: "VISIBLE_BLOCK", payload: {isShow: false}})
@@ -20,15 +25,18 @@ const ProductsTable = ({products, filterCategory, setStateCategory, stateCategor
 
         }
     };
-
-    useEffect(() => {
-        const res = [...stateCategory.book, ...stateCategory.newspapers, ...stateCategory.magazines];
-        dispatch({type: "SORT_PRODUCT", payload: {res}});
-    }, [stateCategory]);
+    const isActiveModalAdd = () => {
+        dispatch({type: "IS_SHOW_MODAL_ADD_PRODUCT", payload: {isDisplay: true}})
+    };
 
     return (
         <div className="container">
-            <h1 className="heading-text">Product Management</h1>
+            <div className="d-flex justify-content-between align-items-center">
+                <h1 className="heading-text">Product Management</h1>
+                <div>
+                    <Button className="icon-plus btn-author" onClick={() => isActiveModalAdd()}/>
+                </div>
+            </div>
             <Table responsive className="table-striped table-product-manager w-100">
                 <thead className="thead-dark">
                 <tr>
