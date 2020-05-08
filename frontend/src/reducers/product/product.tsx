@@ -7,9 +7,10 @@ let initialState = {
         name: "",
         description: "",
         category: "",
-        author: [""],
+        author: [],
         price: 0,
         currency: "",
+        img: "",
     },
 };
 
@@ -23,11 +24,11 @@ export const productReducer = (state: any = initialState, action: any) => {
                 productArr: prodArr
             };
         case 'STATE_NEW_PRODUCT':
-            const {data: prod} = action.payload;
-            console.log("Prod In State:", prod);
+            const data = action.payload;
+            // console.log("Img:", data);
             return {
                 ...state,
-                // stateProduct: {...prod}
+                stateProduct: {...state.stateProduct, ...data}
             };
         case 'ADD_NEW_PRODUCT':
             const {data: product} = action.payload;
@@ -87,7 +88,7 @@ export const deleteBookInDB = (id: string) => {
         await deleteProduct(id)
             .then((data) => {
                 console.log("New Arr iz DB", data);
-                dispatch({type: 'INIT_PRODUCT', payload: {data}})
+                dispatch({type: 'INIT_PRODUCT', payload: {data}});
                 dispatch({type: 'FILTER_PRODUCT_INIT', payload: {data}});
             })
             .catch((err) => console.log(err))

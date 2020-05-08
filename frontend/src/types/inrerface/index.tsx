@@ -74,6 +74,7 @@ export interface IAddProduct {
     author: Array<string>,
     price: number,
     currency: string,
+    img:any,
 }
 
 export interface IModelProduct {

@@ -13,28 +13,50 @@ export const AddNewProduct = ({hideModalAddProduct}: any) => {
 
     const dispatch = useDispatch();
     const setName = (name: any) => dispatch({type: "STATE_NEW_PRODUCT", payload: {name}});
+    const setDescription = (description: any) => dispatch({type: "STATE_NEW_PRODUCT", payload: {description}});
+    const setCategory = (category: any) => dispatch({type: "STATE_NEW_PRODUCT", payload: {category}});
+    const setAuthor = (author: any) => dispatch({type: "STATE_NEW_PRODUCT", payload: {author}});
+    const setPrice = (price: any) => dispatch({type: "STATE_NEW_PRODUCT", payload: {price}});
+    const setCurrency = (currency: any) => dispatch({type: "STATE_NEW_PRODUCT", payload: {currency}});
+    const setImg = (img: any) => dispatch({type: "STATE_NEW_PRODUCT", payload: {img}});
 
     function validateForm() {
-        return 1
-        // return (
-        //     newUser.email.length > 0 &&
-        //     newUser.password.length > 0 &&
-        //     newUser.lastName.length > 0 &&
-        //     newUser.firstName.length > 0 &&
-        //     newUser.password === newUser.confirmPassword
-        // );
-        // return (email !== undefined && password !== undefined)
+        return (
+            product.name.length > 0 &&
+            product.description.length > 0 &&
+            product.category.length > 0 &&
+            product.author.length > 0 &&
+            product.price > 0 &&
+            product.img > 0 &&
+            product.currency.length > 0
+        );
     }
 
     function handleSubmit(event: any) {
+        event.preventDefault();
         console.log("Btn Submit:", event);
         const data = {
             name: product.name,
+            description: product.description,
+            category: product.category,
+            author: product.author,
+            price: product.price,
+            currency: product.currency,
+            img: product.img,
         };
         console.log("data:", data);
-        // const data = store.getState().loginReducer;
         // postUserFromApi(data);
-        event.preventDefault();
+        dispatch({
+            type: "STATE_NEW_PRODUCT", payload: {
+                name: "",
+                description: "",
+                category: "",
+                author: [],
+                price: 0,
+                currency: "",
+                img: "",
+            }
+        });
     }
 
     return (
@@ -51,21 +73,31 @@ export const AddNewProduct = ({hideModalAddProduct}: any) => {
                                 <ControlLabel className="mr-2">Title</ControlLabel>
                                 <FormControl componentClass="textarea" rows={5} cols={50}
                                              value={product.name}
-                                             onChange={(e: any) => setName(e.target.value)}/>
+                                             onChange={(e: any) => setName(e.target.value)}
+                                />
                             </FormGroup>
                             <FormGroup controlId="Description" className="d-flex align-items-center">
                                 <ControlLabel className="mr-2">Description</ControlLabel>
                                 <FormControl componentClass="textarea" rows={5} cols={50}
-                                    // value={newAuthor.description}
-                                    // onChange={(e: any) => setEmail(e.target.value)}
+                                             value={product.description}
+                                             onChange={(e: any) => setDescription(e.target.value)}
                                 />
                             </FormGroup>
                             <Button id="cancel" onClick={(e: any) => hideModalAddProduct(e)}>Cancel</Button>
                         </div>
                         <div className="col-6">
                             <FormGroup className="d-flex align-items-center">
+                                <ControlLabel className="mr-3">Image</ControlLabel>
+                                <FormControl type="file" value={product.img}
+                                             onChange={(e: any) => setImg(e.target.files[0])}>
+                                </FormControl>
+                            </FormGroup>
+                            <FormGroup className="d-flex align-items-center">
                                 <ControlLabel className="mr-3">Category</ControlLabel>
-                                <FormControl componentClass="select">
+                                <FormControl componentClass="select"
+                                             value={product.category}
+                                             onChange={(e: any) => setCategory(e.target.value)}>
+                                    <option value={"default"} hidden={true}>Count..</option>
                                     <option value="Book">Book</option>
                                     <option value="Newspapers">Newspapers</option>
                                     <option value="Magazines">Magazines</option>
@@ -73,24 +105,32 @@ export const AddNewProduct = ({hideModalAddProduct}: any) => {
                             </FormGroup>
                             <FormGroup className="d-flex align-items-center">
                                 <ControlLabel className="mr-3">Author</ControlLabel>
-                                <FormControl componentClass="select">
+                                <FormControl componentClass="select"
+                                    // multiple={true}
+                                             value={product.author}
+                                             onChange={(e: any) => setAuthor(e.target.value)}>
+                                    <option value={"default"}>Default</option>
                                     {
                                         author.length !== 0 ?
                                             author.map((a: any) => {
                                                 return (
                                                     <option value={a.name} key={a._id}>{a.name}</option>
                                                 )
-                                            }) : <></>
+                                            }) : <option>Net</option>
                                     }
                                 </FormControl>
                             </FormGroup>
                             <FormGroup className="d-flex align-items-center">
                                 <ControlLabel className="mr-3">Price</ControlLabel>
-                                <FormControl/>
+                                <FormControl type="number" value={product.price}
+                                             onChange={(e: any) => setPrice(e.target.value)}>
+                                </FormControl>
                             </FormGroup>
                             <FormGroup className="d-flex align-items-center">
                                 <ControlLabel className="mr-3">Currency</ControlLabel>
-                                <FormControl componentClass="select" className="currency">
+                                <FormControl componentClass="select" className="currency"
+                                             value={product.currency}
+                                             onChange={(e: any) => setCurrency(e.target.value)}>
                                     <option value="USD">USD</option>
                                     <option value="EUR">EUR</option>
                                 </FormControl>
