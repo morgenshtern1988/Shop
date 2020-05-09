@@ -45,7 +45,7 @@ export const AddNewProduct = ({hideModalAddProduct}: any) => {
             img: product.img,
         };
         console.log("data:", data);
-        // postUserFromApi(data);
+        // postProductFromApi(data);
         dispatch({
             type: "STATE_NEW_PRODUCT", payload: {
                 name: "",
@@ -97,10 +97,10 @@ export const AddNewProduct = ({hideModalAddProduct}: any) => {
                                 <FormControl componentClass="select"
                                              value={product.category}
                                              onChange={(e: any) => setCategory(e.target.value)}>
-                                    <option value={"default"} hidden={true}>Count..</option>
-                                    <option value="Book">Book</option>
-                                    <option value="Newspapers">Newspapers</option>
-                                    <option value="Magazines">Magazines</option>
+                                    <option defaultValue={"default"} hidden={true}>Count..</option>
+                                    <option defaultValue="Book">Book</option>
+                                    <option defaultValue="Newspapers">Newspapers</option>
+                                    <option defaultValue="Magazines">Magazines</option>
                                 </FormControl>
                             </FormGroup>
                             <FormGroup className="d-flex align-items-center">
@@ -109,12 +109,12 @@ export const AddNewProduct = ({hideModalAddProduct}: any) => {
                                     // multiple={true}
                                              value={product.author}
                                              onChange={(e: any) => setAuthor(e.target.value)}>
-                                    <option value={"default"}>Default</option>
+                                    <option defaultValue={"default"} hidden={true}>Default</option>
                                     {
                                         author.length !== 0 ?
                                             author.map((a: any) => {
                                                 return (
-                                                    <option value={a.name} key={a._id}>{a.name}</option>
+                                                    <option defaultValue={a.name} key={a._id}>{a.name}</option>
                                                 )
                                             }) : <option>Net</option>
                                     }

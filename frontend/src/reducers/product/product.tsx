@@ -1,4 +1,5 @@
-import {deleteProduct, fetchGetProducts} from "../../services/productsApi";
+import {deleteProduct, fetchAddNewProduct, fetchGetProducts} from "../../services/productsApi";
+import {IAddProduct} from "../../types/inrerface";
 
 let initialState = {
     productArr: [],
@@ -71,13 +72,13 @@ export const getProductThunk = () => {
     return async (dispatch: any) => {
         await fetchGetProducts()
             .then((items) => {
-                console.log("удачно");
+                // console.log("удачно");
                 const {data} = items;
                 dispatch({type: 'INIT_PRODUCT', payload: {data}});
                 dispatch({type: 'FILTER_PRODUCT_INIT', payload: {data}});
             })
             .catch(() => {
-                console.log("NE удачно");
+                console.log("unsuccessfully received data of DB");
                 // dispatch({type: 'INIT_PRODUCT', payload: []})
             })
     }
@@ -87,10 +88,21 @@ export const deleteBookInDB = (id: string) => {
     return async (dispatch: any) => {
         await deleteProduct(id)
             .then((data) => {
-                console.log("New Arr iz DB", data);
+                // console.log("New Arr iz DB", data);
                 dispatch({type: 'INIT_PRODUCT', payload: {data}});
                 dispatch({type: 'FILTER_PRODUCT_INIT', payload: {data}});
             })
             .catch((err) => console.log(err))
     }
 };
+
+
+export const postAddNewProduct = (product: IAddProduct) => {
+    return async (dispatch: any) => {
+        await fetchAddNewProduct(product)
+            .then((data) => {
+                console.log("successful received data about new Product of DB ");
+                console.log(data);
+            })
+    }
+}
