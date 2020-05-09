@@ -7,16 +7,15 @@ let initialState = {
     stateProduct: {
         name: "",
         description: "",
-        category: "",
-        author: [],
-        price: 0,
+        type: "",
+        author_ids: [],
+        price: Number,
         currency: "",
-        img: "",
+        cover_image: "",
     },
 };
 
 export const productReducer = (state: any = initialState, action: any) => {
-    const store = JSON.parse(localStorage.getItem("persist:root" || '{}') as string);
     switch (action.type) {
         case 'INIT_PRODUCT':
             const {data: prodArr} = action.payload;
@@ -26,7 +25,7 @@ export const productReducer = (state: any = initialState, action: any) => {
             };
         case 'STATE_NEW_PRODUCT':
             const data = action.payload;
-            // console.log("Img:", data);
+            // console.log("State:", data);
             return {
                 ...state,
                 stateProduct: {...state.stateProduct, ...data}
@@ -97,12 +96,13 @@ export const deleteBookInDB = (id: string) => {
 };
 
 
-export const postAddNewProduct = (product: IAddProduct) => {
+export const postAddNewProductThunk = (product: IAddProduct) => {
     return async (dispatch: any) => {
         await fetchAddNewProduct(product)
             .then((data) => {
                 console.log("successful received data about new Product of DB ");
                 console.log(data);
             })
+            .catch((e: any) => console.log(e))
     }
-}
+};

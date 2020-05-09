@@ -70,11 +70,11 @@ export interface IProduct {
 export interface IAddProduct {
     name: string,
     description: string,
-    category: string,
-    author: Array<string>,
+    type: string,
+    author_ids: Array<string>,
     price: number,
     currency: string,
-    img:any,
+    cover_image:any,
 }
 
 export interface IModelProduct {

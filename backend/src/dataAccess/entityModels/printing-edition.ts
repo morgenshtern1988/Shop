@@ -10,7 +10,9 @@ export const PrintingEditionSchema = new mongoose.Schema({
         type: String, required: true
     },
     cover_image: {
-        data: Buffer, contentType: String,
+        type: String
+        // data: Buffer,
+        // contentType: String,
     },
     removes_at: {
         type: Boolean, default: false,
@@ -31,6 +33,5 @@ export const PrintingEditionSchema = new mongoose.Schema({
 
 interface printingEditionModel extends IPrintingEdition, mongoose.Document {
 }
-
 
 export const printingEditionModel = mongoose.model<printingEditionModel>("printing-edition", PrintingEditionSchema);

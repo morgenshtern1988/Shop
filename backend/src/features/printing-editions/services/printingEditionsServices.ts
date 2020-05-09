@@ -8,6 +8,7 @@ import {IPrintingEdition} from "../../../types/interface/printingEdition";
 import {adminShowProduct} from "../repositories/printingEditionsRepositories";
 
 export async function createProduct(printingEdition: IPrintingEdition) {
+    console.log("Printing-edition:", printingEdition);
     if (printingEdition === null) {
         return "some field is null"
     } else {
@@ -32,11 +33,11 @@ export async function userShowProduct(printingEditions: any) {
 }
 
 export async function removeProduct(id: string) {
-   return adminRemoveProduct(id)
+    return adminRemoveProduct(id)
 }
 
 export async function updateProduct(printingEditions: any, id: string) {
     console.log(id);
     console.log(printingEditions);
-  return adminUpdateProduct(printingEditions, id);
+    return adminUpdateProduct(printingEditions, id);
 }

@@ -4,6 +4,7 @@ import {RootState} from "../../types/inrerface";
 import ProductsTable from "../../components/ProductTable/ProductsTable";
 import {getProductThunk} from "../../reducers/product/product";
 import {filterCategory} from "../../infrastructure/FilterCategory";
+import {getAuthorsThunk} from "../../reducers/authors";
 
 export const ProductContainer = (props: any) => {
 
@@ -18,7 +19,8 @@ export const ProductContainer = (props: any) => {
     const [stateCategory, setStateCategory] = useState({book: "", newspapers: "", magazines: ""});
 
     useEffect(() => {
-        dispatch(getProductThunk())
+        dispatch(getProductThunk());
+        dispatch(getAuthorsThunk())
     }, []);
 
     return (
