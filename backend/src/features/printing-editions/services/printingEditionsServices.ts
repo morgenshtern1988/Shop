@@ -8,7 +8,7 @@ import {IPrintingEdition} from "../../../types/interface/printingEdition";
 import {adminShowProduct} from "../repositories/printingEditionsRepositories";
 
 export async function createProduct(printingEdition: IPrintingEdition) {
-    console.log("Printing-edition:", printingEdition);
+    // console.log("Printing-edition:", printingEdition);
     if (printingEdition === null) {
         return "some field is null"
     } else {

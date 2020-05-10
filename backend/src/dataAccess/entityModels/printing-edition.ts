@@ -26,7 +26,7 @@ export const PrintingEditionSchema = new mongoose.Schema({
     currency: {
         type: String, default: "EUR",
     },
-    author_ids: [{type: mongoose.Schema.Types.ObjectId, ref: 'Author', required: true}]
+    author_ids: [{type: mongoose.Schema.Types.ObjectId, ref: 'author', required: true}]
 });
 
 // PrintingEditionSchema.plugin(mongoosePaginate);

@@ -18,6 +18,6 @@ export const fetchAddNewProduct = async (product: IAddProduct) => {
     const {data} = await api.post("/admin/printing-edition/create", {
         ...product
     });
-    console.log("Data of DB:", data);
-    // return data;
+    // console.log("Data of DB:", data);
+    return data;
 };

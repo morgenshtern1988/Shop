@@ -1,4 +1,5 @@
-export interface IPrintingEdition  {
+export interface IPrintingEdition {
+    // _id: any;
     name: string;
     description: string;
     cover_image: string;

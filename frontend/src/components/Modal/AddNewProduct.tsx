@@ -2,7 +2,7 @@ import React from "react";
 import {Button, FormGroup, FormControl, ControlLabel, Form} from "react-bootstrap";
 import {RootState} from "../../types/inrerface";
 import {useDispatch, useSelector} from "react-redux";
-import {postAddNewProductThunk} from "../../reducers/product/product";
+import {getProductThunk, postAddNewProductThunk} from "../../reducers/product/product";
 
 export const AddNewProduct = ({hideModalAddProduct}: any) => {
 
@@ -60,9 +60,12 @@ export const AddNewProduct = ({hideModalAddProduct}: any) => {
 
     async function handleSubmit(event: any) {
         event.preventDefault();
-        console.log("data:", product);
+        // console.log("data:", product);
         await dispatch(postAddNewProductThunk(product));
-        // clearStateNewProduct();
+        // hideModalAddProduct(event);
+        // await dispatch(getProductThunk());
+        clearStateNewProduct();
+
     }
 
     return (
@@ -72,7 +75,7 @@ export const AddNewProduct = ({hideModalAddProduct}: any) => {
             </div>
             <div className="d-flex justify-content-center align-items-center flex-column wrap-add-product">
                 <h1>Add New Product</h1>
-                <Form onSubmit={handleSubmit}>
+                <Form onSubmit={handleSubmit} id="btn-save">
                     <div className="row">
                         <div className="col-6 d-flex flex-column ">
                             <FormGroup controlId="Title" className="d-flex align-items-center">

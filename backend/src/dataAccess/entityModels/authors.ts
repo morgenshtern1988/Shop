@@ -6,7 +6,7 @@ export const authorSchema = new mongoose.Schema({
     name: {type: String, required: true},
     dateOfCreate: {type: Date, default: Date.now},
     removed_at: {type: Boolean, default: false},
-    product_ids: [{type: mongoose.Schema.Types.ObjectId, ref: 'printing-edition'}]
+    product_ids: [{type: mongoose.Schema.Types.ObjectId, ref: 'printing-edition', required: true}]
 });
 
 // authorSchema.plugin(mongoosePaginate);
@@ -14,5 +14,5 @@ export const authorSchema = new mongoose.Schema({
 interface authorModel extends IAuthor, mongoose.Document {
 }
 
-export const authorModel = mongoose.model<authorModel>('Author', authorSchema);
+export const authorModel = mongoose.model<authorModel>('author', authorSchema);
 // export default authorModel;

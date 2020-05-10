@@ -22,11 +22,12 @@ export const ModalContainer = () => {
             dispatch({type: "IS_SHOW_MODAL_ADD_AUTHOR", payload: {isDisplay: false}})
     };
     const hideModalAddProduct = (e: any) => {
+        console.log("VOT YA:", e.target)
         // console.log("Click in className : ", e.target.className);
         if (e.target.className === 'modal' ||
             e.target.id === "cancel" ||
             e.target.className === "icon-close" ||
-            e.target.id === "btn-add") {
+            e.target.id === "submit") {
             dispatch({type: "IS_SHOW_MODAL_ADD_PRODUCT", payload: {isDisplay: false}})
         }
     };

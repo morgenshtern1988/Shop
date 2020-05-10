@@ -102,6 +102,7 @@ export const postAddNewProductThunk = (product: IAddProduct) => {
             .then((data) => {
                 console.log("successful received data about new Product of DB ");
                 console.log(data);
+                dispatch({type: "ADD_NEW_PRODUCT", payload: {data}})
             })
             .catch((e: any) => console.log(e))
     }
