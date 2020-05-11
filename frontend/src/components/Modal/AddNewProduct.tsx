@@ -31,7 +31,6 @@ export const AddNewProduct = ({hideModalAddProduct}: any) => {
         const authorObj = product.author_ids.filter((author: any) => author._id !== id);
         dispatch({type: "STATE_NEW_PRODUCT", payload: {author_ids: authorObj}})
     };
-    /////////////////////////////////////////
     const setPrice = (price: any) => dispatch({type: "STATE_NEW_PRODUCT", payload: {price: Number(price)}});
     const setCurrency = (currency: any) => dispatch({type: "STATE_NEW_PRODUCT", payload: {currency}});
     const setCountName = (countName: any) => dispatch({type: "STATE_NEW_PRODUCT", payload: {countName}});
@@ -45,6 +44,7 @@ export const AddNewProduct = ({hideModalAddProduct}: any) => {
             description: "",
             type: "",
             author_ids: [],
+            authorSelect: "",
             price: 0,
             currency: "",
             cover_image: "",
@@ -98,7 +98,7 @@ export const AddNewProduct = ({hideModalAddProduct}: any) => {
         // console.log("IDA:",)
         await dispatch(postAddNewProductThunk(product));
         await dispatch(getProductThunk());
-        // await clearStateNewProduct();
+        await clearStateNewProduct();
     }
 
     return (
@@ -206,8 +206,13 @@ export const AddNewProduct = ({hideModalAddProduct}: any) => {
                                 <FormControl componentClass="select" className="currency"
                                              value={product.currency}
                                              onChange={(e: any) => setCurrency(e.target.value)}>
+                                    <option defaultValue={"DEFAULT"} hidden={true}>Default</option>
                                     <option defaultValue="USD">USD</option>
+                                    <option defaultValue="AUD">AUD</option>
+                                    <option defaultValue="BYN">BYN</option>
                                     <option defaultValue="EUR">EUR</option>
+                                    <option defaultValue="PLN">PLN</option>
+                                    <option defaultValue="UAN">UAN</option>
                                 </FormControl>
                             </FormGroup>
                             <Button block bsSize="large" disabled={!validateForm()} type="submit">
