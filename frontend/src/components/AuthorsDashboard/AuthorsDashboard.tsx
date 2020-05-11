@@ -3,30 +3,23 @@ import Button from "../Button";
 import {useDispatch} from "react-redux";
 import {deleteAuthorThunk} from "../../reducers/authors";
 
-export const AuthorsDashboard = ({author, productArr}: any) => {
+export const AuthorsDashboard = ({author}: any) => {
     const dispatch = useDispatch();
-
     const deleteAuthor = async (id: string) => {
         await dispatch(deleteAuthorThunk(id))
     };
-
-    const searchBookByAuthor = ({id, productArr}: any) => {
-        return productArr.find((product: any) => product._id === id);
-    };
-
     return (
         <tr>
             <td>{author._id}</td>
             <td>{author.name}</td>
             <td>
                 {
-                    author.product_ids.map((id: any) => {
-                        const book = searchBookByAuthor({id, productArr});
-                        return <div key={id} className="wrap-div">
+                    author.product_ids.map((product: any) => {
+                        return <div key={product._id} className="wrap-div">
                             {
-                                book === undefined ?
-                                    <div key={id} className="inner-div"/> :
-                                    <p key={id}>{book.name}</p>
+                                product === undefined ?
+                                    <div key={product._id} className="inner-div"/> :
+                                    <p key={product._id}>{product.name}</p>
 
                             }
                         </div>

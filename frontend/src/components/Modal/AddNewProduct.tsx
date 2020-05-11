@@ -13,12 +13,20 @@ export const AddNewProduct = ({hideModalAddProduct}: any) => {
     const product = useSelector(productReducer);
     const dispatch = useDispatch();
     console.log(product);
+    console.log("Count:", product.countName);
+    // const count = product.name.split("").length;
+    // console.log("Count:", count);
     const setName = (name: any) => dispatch({type: "STATE_NEW_PRODUCT", payload: {name}});
     const setDescription = (description: any) => dispatch({type: "STATE_NEW_PRODUCT", payload: {description}});
     const setCategory = (type: any) => dispatch({type: "STATE_NEW_PRODUCT", payload: {type}});
     const setAuthor = (author_ids: any) => dispatch({type: "STATE_NEW_PRODUCT", payload: {author_ids: [author_ids]}});
     const setPrice = (price: any) => dispatch({type: "STATE_NEW_PRODUCT", payload: {price: Number(price)}});
     const setCurrency = (currency: any) => dispatch({type: "STATE_NEW_PRODUCT", payload: {currency}});
+    const setCountName = (countName: any) => dispatch({type: "STATE_NEW_PRODUCT", payload: {countName}});
+    const setCountDescription = (countDescription: any) => dispatch({
+        type: "STATE_NEW_PRODUCT",
+        payload: {countDescription}
+    });
     const clearStateNewProduct = () => dispatch({
         type: "STATE_NEW_PRODUCT", payload: {
             name: "",
@@ -28,6 +36,8 @@ export const AddNewProduct = ({hideModalAddProduct}: any) => {
             price: 0,
             currency: "",
             cover_image: "",
+            countName: 0,
+            countDescription: 0
         }
     });
     const setImg = (event: any) => {
@@ -62,10 +72,8 @@ export const AddNewProduct = ({hideModalAddProduct}: any) => {
         event.preventDefault();
         // console.log("data:", product);
         await dispatch(postAddNewProductThunk(product));
-        // hideModalAddProduct(event);
-        // await dispatch(getProductThunk());
-        clearStateNewProduct();
-
+        await dispatch(getProductThunk());
+        await clearStateNewProduct();
     }
 
     return (
@@ -78,19 +86,31 @@ export const AddNewProduct = ({hideModalAddProduct}: any) => {
                 <Form onSubmit={handleSubmit} id="btn-save">
                     <div className="row">
                         <div className="col-6 d-flex flex-column ">
-                            <FormGroup controlId="Title" className="d-flex align-items-center">
+                            <FormGroup controlId="Title" className="d-flex align-items-center position-relative">
                                 <ControlLabel className="mr-2">Title</ControlLabel>
-                                <FormControl componentClass="textarea" rows={5} cols={50}
+                                <FormControl className="" componentClass="textarea" rows={5} cols={50}
                                              value={product.name}
-                                             onChange={(e: any) => setName(e.target.value)}
+                                             onChange={(e: any) => {
+                                                 setName(e.target.value);
+                                                 const count = product.name.split("").length;
+                                                 setCountName(count)
+                                             }}
                                 />
+                                <ControlLabel
+                                    className="position-absolute count mr-2">{product.countName}/1000</ControlLabel>
                             </FormGroup>
-                            <FormGroup controlId="Description" className="d-flex align-items-center">
+                            <FormGroup controlId="Description" className="d-flex align-items-center position-relative">
                                 <ControlLabel className="mr-2">Description</ControlLabel>
                                 <FormControl componentClass="textarea" rows={5} cols={50}
                                              value={product.description}
-                                             onChange={(e: any) => setDescription(e.target.value)}
+                                             onChange={(e: any) => {
+                                                 setDescription(e.target.value);
+                                                 const count = product.description.split("").length;
+                                                 setCountDescription(count)
+                                             }}
                                 />
+                                <ControlLabel
+                                    className="position-absolute count mr-2">{product.countDescription}/1000</ControlLabel>
                             </FormGroup>
                             <Button id="cancel" onClick={(e: any) => {
                                 hideModalAddProduct(e);
@@ -121,7 +141,9 @@ export const AddNewProduct = ({hideModalAddProduct}: any) => {
                                 <FormControl componentClass="select"
                                     // multiple={true}
                                              value={product.author_ids}
-                                             onChange={(e: any) => setAuthor(e.target.value)}>
+                                             onChange={(e: any) => {
+                                                 setAuthor(e.target.value)
+                                             }}>
                                     <option defaultValue="default" hidden={true}>Default</option>
                                     {
                                         author.length !== 0 ?
@@ -133,6 +155,9 @@ export const AddNewProduct = ({hideModalAddProduct}: any) => {
                                             }) : <option>Net</option>
                                     }
                                 </FormControl>
+                            </FormGroup>
+                            <FormGroup className="author">
+                                <ControlLabel>name</ControlLabel>
                             </FormGroup>
                             <FormGroup className="d-flex align-items-center">
                                 <ControlLabel className="mr-3">Price</ControlLabel>
@@ -149,7 +174,8 @@ export const AddNewProduct = ({hideModalAddProduct}: any) => {
                                     <option defaultValue="EUR">EUR</option>
                                 </FormControl>
                             </FormGroup>
-                            <Button block bsSize="large" disabled={!validateForm()} type="submit">
+                            <Button id="btn-save" block bsSize="large"
+                                    disabled={!validateForm()} type="submit">
                                 Save
                             </Button>
                         </div>

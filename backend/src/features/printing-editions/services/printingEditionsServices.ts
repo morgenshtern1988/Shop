@@ -8,7 +8,6 @@ import {IPrintingEdition} from "../../../types/interface/printingEdition";
 import {adminShowProduct} from "../repositories/printingEditionsRepositories";
 
 export async function createProduct(printingEdition: IPrintingEdition) {
-    // console.log("Printing-edition:", printingEdition);
     if (printingEdition === null) {
         return "some field is null"
     } else {
@@ -16,12 +15,9 @@ export async function createProduct(printingEdition: IPrintingEdition) {
     }
 }
 
-export async function showProduct(printingEditions: any) {
-    if (printingEditions === null) {
-        return "Error"
-    } else {
-        return await adminShowProduct(printingEditions)
-    }
+export async function showProduct() {
+        return await adminShowProduct()
+
 }
 
 export async function userShowProduct(printingEditions: any) {

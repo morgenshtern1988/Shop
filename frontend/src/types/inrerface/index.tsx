@@ -74,7 +74,9 @@ export interface IAddProduct {
     author_ids: Array<string>,
     price: number,
     currency: string,
-    cover_image:any,
+    cover_image: any,
+    countName: number,
+    countDescription: number,
 }
 
 export interface IModelProduct {

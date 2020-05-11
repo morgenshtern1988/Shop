@@ -9,14 +9,10 @@ export async function createAuthor(author: IAuthor) {
     }
 }
 
-export const showAuthor = async (author: any) => {
-    if (author === null) {
-        return "Error"
-    } else {
-        return await adminShowAuthor(author)
-    }
+export const showAuthor = async () => {
+    return await adminShowAuthor()
 };
 
-export const removeAuthor = async (id:any) => {
+export const removeAuthor = async (id: any) => {
     return adminRemoveAuthor(id)
 };

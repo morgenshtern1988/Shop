@@ -18,6 +18,7 @@ adminProductRouter.post("/author/create", adminCreateAuthor);
 adminProductRouter.delete("/author/:id", tokenAccessLifeCheck, AuthMiddleware, PermissionMiddleware([1]), adminRemoveAuthor);
 adminProductRouter.put("/author");
 
+
 //printing-editing
 adminProductRouter.get("/", adminShowProduct);
 // adminProductRouter.get("/", tokenAccessLifeCheck, AuthMiddleware, PermissionMiddleware([1]), adminShowProduct);

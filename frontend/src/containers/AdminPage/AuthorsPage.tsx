@@ -9,9 +9,6 @@ import {getProductThunk} from "../../reducers/product/product";
 
 export const AuthorsPage = () => {
 
-    const productReducer = (state: RootState) => state.productReducer.productArr;
-    const productArr = useSelector(productReducer);
-
     const authorsReducer = (state: RootState) => state.authorsReducer;
     const author = useSelector(authorsReducer);
     const dispatch = useDispatch();
@@ -49,7 +46,6 @@ export const AuthorsPage = () => {
                     authorsArr ?
                         authorsArr.map((author: any) => {
                                 return <AuthorsDashboard
-                                    productArr={productArr}
                                     author={author}
                                     key={author._id}/>
                             }

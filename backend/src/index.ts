@@ -6,9 +6,7 @@ import {authRouter} from "./features/auth"
 import {adminProductRouter, userProductRouter} from "./features";
 
 require('dotenv').config();
-
 connectMongo();
-
 const app = express();
 
 export interface User {

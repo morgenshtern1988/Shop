@@ -8,7 +8,7 @@ import {
 } from "../services/printingEditionsServices"
 
 export const adminShowProduct = async function (request: Request, response: Response) {
-    showProduct(request.body)
+    showProduct()
         .then((printingEdition) => response.json(printingEdition))
         .catch((err) => response.json(err))
 };

@@ -39,7 +39,7 @@ export const ProductInfo = ({product}: any) => {
             </div>
             <div className="row product-info pt-xl-5 pt-lg-3 pt-sm-2 mb-5 ">
                 <div className="col-img col-6 text-center">
-                    <img src={require("../../img/img1.png")} alt={"Image:" + product.name}/>
+                    <img src={product.cover_image} alt={"Image:" + product.name}/>
                 </div>
                 <div className="row col-6 pl-5">
                     <div className="col-6 d-flex align-self-center flex-column">

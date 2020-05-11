@@ -3,40 +3,29 @@ import {printingEditionModel} from "../../../dataAccess/entityModels/printing-ed
 import {IPrintingEdition} from "../../../types/interface/printingEdition";
 import {authorModel} from "../../../dataAccess/entityModels/authors";
 //authMiddleware
-export const adminShowProduct = async function (printingEdition: any) {
-    return await printingEditionModel.find({}).populate("author_ids");
+export const adminShowProduct = async function () {
+    return printingEditionModel.find({}).populate("author_ids");
 };
 
 export const userShowProductAsync = async function (printingEdition: any) {
-    const result = await printingEditionModel.find({}).populate("author_ids");
-    return result
+    return printingEditionModel.find({}).populate("author_ids");
 };
 
 //authMiddleware
 export const adminCreateProduct = async (printingEdition: IPrintingEdition) => {
-    const result = await printingEditionModel.insertMany(printingEdition);
-    // const result = printingEditionModel.find({});
-    //получила книгу , нужно найти авторов по Ид с БД и добавить в ид products_ids ИД этой книги
-    // const authors
-    // const arrAuthor = printingEdition.author_ids[0];
-    // printingEdition.author_ids.forEach((authorId: any) => {
-    // console.log("Arr authors:", arrAuthor);
-    // const a = await authorModel.findByIdAndUpdate(arrAuthor, {products_ids: [result._id]});
-    // });
-    // const printindID = result._id;
-    // console.log("PrintingID:", result._id);
-    // console.log("Res in DB:", a);
-    /* await authorModel.find()
-         .populate("product_id")
-         .exec(
-             function (err, author) {
-                 console.log("author:", author);
-                 console.log("ERR:", err);
-                 // console.log(post[0].name);
-             });*/
+    const result = await printingEditionModel.create(printingEdition);
+    const arrIdAuthors = printingEdition.author_ids;
+    const idProduct = result._id;
+    // console.log("Arr ID Authors:", arrIdAuthors);
+    // console.log("Id Product:", idProduct);
+    arrIdAuthors.forEach((id: any) => {
+        updateAuthor({id, idProduct})
+    });
     return result;
 };
-
+const updateAuthor = async ({id, idProduct}: any) => {
+    await authorModel.findByIdAndUpdate(id, {product_ids: [idProduct]});
+};
 export const adminRemoveProduct = async (id: string) => {
     // const printingEdition = await printingEditionModel.find({});
     const printingEdition = await printingEditionModel.findById(id);

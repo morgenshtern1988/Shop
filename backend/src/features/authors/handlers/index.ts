@@ -8,7 +8,7 @@ export const adminCreateAuthor = async (request: Request, response: Response): P
 };
 
 export const adminShowAuthor = async (request: Request, response: Response): Promise<any> => {
-    showAuthor(request.body)
+    showAuthor()
         .then((author: any) => response.json(author))
         .catch((err) => response.json(err));
 };

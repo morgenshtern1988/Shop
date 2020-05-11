@@ -5,7 +5,6 @@ import {useDispatch} from "react-redux";
 
 const Product = ({product}: any) => {
     const dispatch = useDispatch();
-    console.log(product.author_ids);
     const deleteProduct = async ({id}: any) => {
         await dispatch(deleteBookInDB(id))
     };

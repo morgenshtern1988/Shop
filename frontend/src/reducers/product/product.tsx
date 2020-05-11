@@ -12,6 +12,8 @@ let initialState = {
         price: Number,
         currency: "",
         cover_image: "",
+        countName: 0,
+        countDescription: 0,
     },
 };
 
