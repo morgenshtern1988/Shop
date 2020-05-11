@@ -16,15 +16,15 @@ export const adminCreateProduct = async (printingEdition: IPrintingEdition) => {
     const result = await printingEditionModel.create(printingEdition);
     const arrIdAuthors = printingEdition.author_ids;
     const idProduct = result._id;
-    // console.log("Arr ID Authors:", arrIdAuthors);
-    // console.log("Id Product:", idProduct);
     arrIdAuthors.forEach((id: any) => {
         updateAuthor({id, idProduct})
     });
     return result;
 };
 const updateAuthor = async ({id, idProduct}: any) => {
-    await authorModel.findByIdAndUpdate(id, {product_ids: [idProduct]});
+    let productArr = await authorModel.findById(id);
+    productArr.product_ids.push(idProduct);
+    await authorModel.findByIdAndUpdate(id, {product_ids: productArr.product_ids});
 };
 export const adminRemoveProduct = async (id: string) => {
     // const printingEdition = await printingEditionModel.find({});

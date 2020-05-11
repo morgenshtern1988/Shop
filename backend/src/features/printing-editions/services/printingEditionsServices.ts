@@ -33,7 +33,7 @@ export async function removeProduct(id: string) {
 }
 
 export async function updateProduct(printingEditions: any, id: string) {
-    console.log(id);
-    console.log(printingEditions);
+    // console.log(id);
+    // console.log(printingEditions);
     return adminUpdateProduct(printingEditions, id);
 }

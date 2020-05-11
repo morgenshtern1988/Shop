@@ -11,21 +11,19 @@ import {adminCreateAuthor, adminRemoveAuthor, adminShowAuthor} from "./authors/h
 
 export const adminProductRouter = Router();
 //author
-adminProductRouter.get("/author", adminShowAuthor);
-// adminProductRouter.get("/author", tokenAccessLifeCheck, AuthMiddleware, PermissionMiddleware([1]), adminShowAuthor);
-adminProductRouter.post("/author/create", adminCreateAuthor);
-// adminProductRouter.post("/author/create", tokenAccessLifeCheck, AuthMiddleware, PermissionMiddleware([1]), adminCreateAuthor);
+// adminProductRouter.get("/author", adminShowAuthor);
+adminProductRouter.get("/author", tokenAccessLifeCheck, AuthMiddleware, PermissionMiddleware([1]), adminShowAuthor);
+// adminProductRouter.post("/author/create", adminCreateAuthor);
+adminProductRouter.post("/author/create", tokenAccessLifeCheck, AuthMiddleware, PermissionMiddleware([1]), adminCreateAuthor);
 adminProductRouter.delete("/author/:id", tokenAccessLifeCheck, AuthMiddleware, PermissionMiddleware([1]), adminRemoveAuthor);
 adminProductRouter.put("/author");
 
 
 //printing-editing
-adminProductRouter.get("/", adminShowProduct);
-// adminProductRouter.get("/", tokenAccessLifeCheck, AuthMiddleware, PermissionMiddleware([1]), adminShowProduct);
-///////
-adminProductRouter.post("/create", adminCreateProduct);
-// adminProductRouter.post("/create", tokenAccessLifeCheck, AuthMiddleware, PermissionMiddleware([1]), adminCreateProduct);
-///////
+// adminProductRouter.get("/", adminShowProduct);
+adminProductRouter.get("/", tokenAccessLifeCheck, AuthMiddleware, PermissionMiddleware([1]), adminShowProduct);
+// adminProductRouter.post("/create", adminCreateProduct);
+adminProductRouter.post("/create", tokenAccessLifeCheck, AuthMiddleware, PermissionMiddleware([1]), adminCreateProduct);
 adminProductRouter.delete("/:id", tokenAccessLifeCheck, AuthMiddleware, PermissionMiddleware([1]), adminRemoveProduct);
 adminProductRouter.put("/:id", tokenAccessLifeCheck, AuthMiddleware, PermissionMiddleware([1]), adminUpdateProduct);
 

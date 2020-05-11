@@ -21,5 +21,5 @@ export const adminShowAuthor = async () => {
 export const adminRemoveAuthor = async (id: string) => {
     const authors = await authorModel.findById(id);
     await authorModel.remove(authors);
-    return await authorModel.find({});
+    return await authorModel.find({}).populate("product_ids");
 };

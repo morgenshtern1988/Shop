@@ -15,6 +15,8 @@ export const AuthorsDashboard = ({author}: any) => {
             <td>
                 {
                     author.product_ids.map((product: any) => {
+                        // product.map((product:any)=>{
+                            console.log(product)
                         return <div key={product._id} className="wrap-div">
                             {
                                 product === undefined ?
@@ -23,6 +25,7 @@ export const AuthorsDashboard = ({author}: any) => {
 
                             }
                         </div>
+                        // })
                     })
                 }
             </td>
