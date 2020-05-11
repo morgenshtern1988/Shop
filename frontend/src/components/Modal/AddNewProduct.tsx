@@ -12,14 +12,26 @@ export const AddNewProduct = ({hideModalAddProduct}: any) => {
     const productReducer = (state: RootState) => state.productReducer.stateProduct;
     const product = useSelector(productReducer);
     const dispatch = useDispatch();
-    console.log(product);
-    console.log("Count:", product.countName);
-    // const count = product.name.split("").length;
-    // console.log("Count:", count);
     const setName = (name: any) => dispatch({type: "STATE_NEW_PRODUCT", payload: {name}});
     const setDescription = (description: any) => dispatch({type: "STATE_NEW_PRODUCT", payload: {description}});
     const setCategory = (type: any) => dispatch({type: "STATE_NEW_PRODUCT", payload: {type}});
-    const setAuthor = (author_ids: any) => dispatch({type: "STATE_NEW_PRODUCT", payload: {author_ids: [author_ids]}});
+    //////////////////////////////////////////////////
+    const setAuthorSelect = (authorSelect: any) => {
+        dispatch({type: "STATE_NEW_PRODUCT", payload: {authorSelect: authorSelect}})
+    };
+    const setAuthor = (authorId: any) => {
+        const authorObj = author.find((author: any) => author._id === authorId);
+        product.author_ids.push({
+            name: authorObj.name,
+            _id: authorId,
+        });
+        dispatch({type: "STATE_NEW_PRODUCT", payload: {author_ids: product.author_ids}})
+    };
+    const setDeleteOnListAuthor = (id: string) => {
+        const authorObj = product.author_ids.filter((author: any) => author._id !== id);
+        dispatch({type: "STATE_NEW_PRODUCT", payload: {author_ids: authorObj}})
+    };
+    /////////////////////////////////////////
     const setPrice = (price: any) => dispatch({type: "STATE_NEW_PRODUCT", payload: {price: Number(price)}});
     const setCurrency = (currency: any) => dispatch({type: "STATE_NEW_PRODUCT", payload: {currency}});
     const setCountName = (countName: any) => dispatch({type: "STATE_NEW_PRODUCT", payload: {countName}});
@@ -70,10 +82,23 @@ export const AddNewProduct = ({hideModalAddProduct}: any) => {
 
     async function handleSubmit(event: any) {
         event.preventDefault();
-        // console.log("data:", product);
+        const arrIdAuthors = product.author_ids.map((a: any) => {
+            return a._id
+        });
+        const data = {
+            name: product.name,
+            description: product.description,
+            type: product.type,
+            author_ids: arrIdAuthors,
+            price: product.price,
+            cover_image: product.cover_image,
+            currency: product.currency,
+        };
+        // console.log("data:", data);
+        // console.log("IDA:",)
         await dispatch(postAddNewProductThunk(product));
         await dispatch(getProductThunk());
-        await clearStateNewProduct();
+        // await clearStateNewProduct();
     }
 
     return (
@@ -139,25 +164,36 @@ export const AddNewProduct = ({hideModalAddProduct}: any) => {
                             <FormGroup className="d-flex align-items-center">
                                 <ControlLabel className="mr-3">Author</ControlLabel>
                                 <FormControl componentClass="select"
-                                    // multiple={true}
-                                             value={product.author_ids}
                                              onChange={(e: any) => {
-                                                 setAuthor(e.target.value)
+                                                 setAuthorSelect(e.target.value);
+                                                 setAuthor(e.target.value);
                                              }}>
                                     <option defaultValue="default" hidden={true}>Default</option>
                                     {
                                         author.length !== 0 ?
                                             author.map((a: any) => {
-                                                // console.log("A", a);
                                                 return (
                                                     <option value={a._id} key={a._id}>{a.name}</option>
                                                 )
-                                            }) : <option>Net</option>
+                                            }) : <></>
                                     }
                                 </FormControl>
                             </FormGroup>
                             <FormGroup className="author">
-                                <ControlLabel>name</ControlLabel>
+                                <ul>
+                                    {
+                                        product.author_ids.length !== 0 ?
+                                            product.author_ids.map((author: any) => {
+                                                return (
+                                                    <li className="d-inline-block" key={author._id + 3}>
+                                                        <span key={author._id + 5}>{author.name}</span>
+                                                        <button key={author._id + 6} id={author._id}
+                                                                className="icon-close close"
+                                                                onClick={(e: any) => setDeleteOnListAuthor(e.target.id)}/>
+                                                    </li>)
+
+                                            }) : <></>}
+                                </ul>
                             </FormGroup>
                             <FormGroup className="d-flex align-items-center">
                                 <ControlLabel className="mr-3">Price</ControlLabel>
@@ -174,8 +210,7 @@ export const AddNewProduct = ({hideModalAddProduct}: any) => {
                                     <option defaultValue="EUR">EUR</option>
                                 </FormControl>
                             </FormGroup>
-                            <Button id="btn-save" block bsSize="large"
-                                    disabled={!validateForm()} type="submit">
+                            <Button block bsSize="large" disabled={!validateForm()} type="submit">
                                 Save
                             </Button>
                         </div>

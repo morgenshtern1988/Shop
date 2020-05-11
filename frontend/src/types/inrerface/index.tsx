@@ -22,7 +22,7 @@ export interface RootState {
 }
 
 interface IAuthor {
-    authorsArr: Array<object>
+    authorsArr: Array<any>
     newAuthor: string,
 }
 
@@ -71,12 +71,13 @@ export interface IAddProduct {
     name: string,
     description: string,
     type: string,
-    author_ids: Array<string>,
+    author_ids: Array<any>,
     price: number,
     currency: string,
     cover_image: any,
     countName: number,
     countDescription: number,
+    authorSelect:any,
 }
 
 export interface IModelProduct {

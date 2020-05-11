@@ -9,6 +9,7 @@ let initialState = {
         description: "",
         type: "",
         author_ids: [],
+        authorSelect: "",
         price: Number,
         currency: "",
         cover_image: "",
