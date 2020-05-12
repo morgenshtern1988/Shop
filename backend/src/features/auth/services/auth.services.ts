@@ -1,4 +1,4 @@
-import {IUser} from "../../../types/interface/user";
+import {IUser} from "../../user/api";
 import {registerUser, authenticateUser} from "../repositories/authRepositories"
 import {response} from "express";
 

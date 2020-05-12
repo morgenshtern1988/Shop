@@ -8,6 +8,7 @@ import {
     adminShowProduct, adminUpdateProduct, userShowProductAsync
 } from "./printing-editions/handlers/printingEgitions.handler";
 import {adminCreateAuthor, adminRemoveAuthor, adminShowAuthor} from "./authors/handlers";
+import {adminShowUser} from "./user/handlers";
 
 export const adminProductRouter = Router();
 //author
@@ -27,6 +28,7 @@ adminProductRouter.post("/create", tokenAccessLifeCheck, AuthMiddleware, Permiss
 adminProductRouter.delete("/:id", tokenAccessLifeCheck, AuthMiddleware, PermissionMiddleware([1]), adminRemoveProduct);
 adminProductRouter.put("/:id", tokenAccessLifeCheck, AuthMiddleware, PermissionMiddleware([1]), adminUpdateProduct);
 
+adminProductRouter.get("/user", tokenAccessLifeCheck, AuthMiddleware, PermissionMiddleware([1]), adminShowUser)
 
 export const userProductRouter = Router();
 userProductRouter.get("/", userShowProductAsync);

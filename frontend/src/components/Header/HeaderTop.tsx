@@ -62,6 +62,7 @@ export const HeaderTop = ({cleanLocalStorage}: any) => {
                                                         <div className="position-absolute list flex-column">
                                                             <a href="http://localhost:3000/admin/printing-editing">Product</a>
                                                             <a href="http://localhost:3000/admin/authors">Author</a>
+                                                            <a href="http://localhost:3000/admin/users">Users</a>
                                                             <a href="http://localhost:3000/admin/orders">Orders</a>
                                                             <a href="http://localhost:3000/auth/login"
                                                                onClick={cleanLocalStorage}>Log Out</a>

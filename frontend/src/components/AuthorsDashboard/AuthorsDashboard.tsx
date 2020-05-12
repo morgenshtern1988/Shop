@@ -27,8 +27,8 @@ export const AuthorsDashboard = ({author}: any) => {
                 }
             </td>
             <td>
-                <Button onClick={() => deleteAuthor(author._id)} innerText={"Delete"}/>
-                <Button onClick={() => console.log("a")} innerText={"Edit"}/>
+                <Button onClick={() => console.log("a")} className="icon-pan btn-edit mr-2"/>
+                <Button onClick={() => deleteAuthor(author._id)} className="icon-close btn-close"/>
             </td>
         </tr>
     )

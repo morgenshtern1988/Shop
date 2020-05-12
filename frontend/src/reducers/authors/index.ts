@@ -1,5 +1,4 @@
 import {deleteAuthorInDB, fetchGetAuthors, fetchPostAuthors} from "../../services/authorsApi";
-import {deleteProduct} from "../../services/productsApi";
 
 let initialState = {
     authorsArr: [],

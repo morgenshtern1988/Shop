@@ -20,8 +20,8 @@ const Product = ({product}: any) => {
             })}</td>
             <td>{product.price}</td>
             <td>
-                <Button onClick={() => deleteProduct({id: product._id})} innerText={"Delete"}/>
-                <Button onClick={() => console.log("a")} innerText={"Edit"}/>
+                <Button onClick={() => console.log("a")} className="icon-pan btn-edit mr-2"/>
+                <Button onClick={() => deleteProduct({id: product._id})} className="icon-close btn-close"/>
             </td>
         </tr>
     )

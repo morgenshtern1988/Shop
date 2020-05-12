@@ -2,6 +2,7 @@ let initialState = {
     blockCategory: false,
     listProfile: false,
     dashboard: false,
+    blockStatus:false,
 };
 
 export const isActiveReducer = (state: any = initialState, action: any) => {
@@ -23,6 +24,12 @@ export const isActiveReducer = (state: any = initialState, action: any) => {
             return {
                 ...state,
                 dashboard: isShowDashboard,
+            };
+        case "VISIBLE_STATUS":
+            let {isShowStatus} = action.payload;
+            return {
+                ...state,
+                blockStatus: isShowStatus,
             };
         default:
             return state;

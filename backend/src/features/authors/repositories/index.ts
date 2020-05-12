@@ -17,7 +17,15 @@ export const adminCreateAuthor = async (author: IAuthor) => {
 
 export const adminShowAuthor = async () => {
     return authorModel.find({}).populate("product_ids");
+    // authorModel.paginate({}, {page: 3, limit: 10}, function (err, result) {
+    //         console.error(err);
+    //         console.log('Pages:', result);
+    //     }
+        // console.log(paginatedResults);
+    )
 };
+
+
 export const adminRemoveAuthor = async (id: string) => {
     const authors = await authorModel.findById(id);
     await authorModel.remove(authors);

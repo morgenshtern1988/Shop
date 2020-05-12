@@ -6,9 +6,6 @@ export const HomePage = (props: any) => {
         <>
             <HeaderContainer/>
             <h1 className="text-center">Welcome</h1>
-            {/*<Switch>*/}
-            {/*    <Route exact path="/" render={() => <ProductHomeContainer/>}/>*/}
-            {/*</Switch>*/}
         </>
     )
 };

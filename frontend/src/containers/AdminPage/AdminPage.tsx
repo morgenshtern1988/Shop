@@ -5,6 +5,7 @@ import {useSelector} from "react-redux";
 import {HeaderTop} from "../../components/Header";
 import {ProductContainer} from "./ProductContainer";
 import {AuthorsPage} from "./AuthorsPage";
+import {UserManagement} from "./UserManagement";
 
 const AdminPage = ({roles}: any) => {
 
@@ -18,6 +19,7 @@ const AdminPage = ({roles}: any) => {
                 <Switch>
                     <Route exact path="/admin/printing-editing" render={() => <ProductContainer/>}/>
                     <Route exact path="/admin/authors" render={() => <AuthorsPage/>}/>
+                    <Route exact path="/admin/users" render={() => <UserManagement/>}/>
                 </Switch>
                 :
                 <h1>Отказано в доступе</h1>

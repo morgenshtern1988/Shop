@@ -15,7 +15,6 @@ export const AddNewProduct = ({hideModalAddProduct}: any) => {
     const setName = (name: any) => dispatch({type: "STATE_NEW_PRODUCT", payload: {name}});
     const setDescription = (description: any) => dispatch({type: "STATE_NEW_PRODUCT", payload: {description}});
     const setCategory = (type: any) => dispatch({type: "STATE_NEW_PRODUCT", payload: {type}});
-    //////////////////////////////////////////////////
     const setAuthorSelect = (authorSelect: any) => {
         dispatch({type: "STATE_NEW_PRODUCT", payload: {authorSelect: authorSelect}})
     };
@@ -115,6 +114,7 @@ export const AddNewProduct = ({hideModalAddProduct}: any) => {
                                 <ControlLabel className="mr-2">Title</ControlLabel>
                                 <FormControl className="" componentClass="textarea" rows={5} cols={50}
                                              value={product.name}
+                                             placeholder={"Title.."}
                                              onChange={(e: any) => {
                                                  setName(e.target.value);
                                                  const count = product.name.split("").length;
@@ -127,6 +127,7 @@ export const AddNewProduct = ({hideModalAddProduct}: any) => {
                             <FormGroup controlId="Description" className="d-flex align-items-center position-relative">
                                 <ControlLabel className="mr-2">Description</ControlLabel>
                                 <FormControl componentClass="textarea" rows={5} cols={50}
+                                             placeholder={"Description.."}
                                              value={product.description}
                                              onChange={(e: any) => {
                                                  setDescription(e.target.value);
@@ -152,7 +153,7 @@ export const AddNewProduct = ({hideModalAddProduct}: any) => {
                             </FormGroup>
                             <FormGroup className="d-flex align-items-center">
                                 <ControlLabel className="mr-3">Category</ControlLabel>
-                                <FormControl componentClass="select"
+                                <FormControl className="input-check" componentClass="select"
                                              value={product.type}
                                              onChange={(e: any) => setCategory(e.target.value)}>
                                     <option defaultValue={"default"} hidden={true}>Count..</option>

@@ -1,0 +1,15 @@
+.btn-edit, .btn-close {
+  background-color: inherit;
+  border: none;
+}
+
+.custom-switch .custom-control-label::before {
+  background-color: #FCCAB4;
+  border: none;
+}
+
+.custom-switch .custom-control-label::after {
+  background-color: #FF6825;
+  border: none;
+
+}

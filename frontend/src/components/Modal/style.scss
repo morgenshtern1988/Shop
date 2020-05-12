@@ -107,6 +107,8 @@
     background-color: #868686;
     opacity: 0.3;
     resize: none;
+    color: $white;
+
 
     &:focus {
       outline: none;
@@ -118,5 +120,19 @@
     bottom: 0;
   }
 
+  textarea:placeholder-shown, select:placeholder-shown {
+    color: $white;
+  }
 
+  textarea::placeholder, select::placeholder {
+    color: $white;
+  }
+
+  input:placeholder-shown {
+    color: $white;
+  }
+
+  input::placeholder {
+    color: $white;
+  }
 }

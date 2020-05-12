@@ -41,8 +41,8 @@ const ProductsTable = ({products, filterCategory, setStateCategory, stateCategor
                 <thead className="thead-dark">
                 <tr>
                     <th>ID</th>
-                    <th>Name</th>
-                    <th className="w-100">Description</th>
+                    <th className="w-25">Name</th>
+                    <th className="w-50">Description</th>
                     <th>
                         <Button innerText="Category" className={"list-category position-relative"}
                                 onClick={() => isActiveBlockCategory()}/>
@@ -77,7 +77,7 @@ const ProductsTable = ({products, filterCategory, setStateCategory, stateCategor
                     </th>
                     <th>Author</th>
                     <th>Price</th>
-                    <th/>
+                    <th className=""/>
                 </tr>
                 </thead>
                 <tbody>

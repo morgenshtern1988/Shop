@@ -19,6 +19,11 @@ export interface RootState {
     buyReducer: IBasket,
     isActiveReducer: IActive,
     authorsReducer: IAuthor,
+    userReducer: IUser,
+}
+
+interface IUser {
+    userArr: Array<any>
 }
 
 interface IAuthor {
@@ -30,6 +35,7 @@ interface IActive {
     blockCategory: boolean,
     listProfile: boolean,
     dashboard: boolean,
+    blockStatus: boolean,
 }
 
 export interface IBasket {
@@ -77,7 +83,7 @@ export interface IAddProduct {
     cover_image: any,
     countName: number,
     countDescription: number,
-    authorSelect:any,
+    authorSelect: any,
 }
 
 export interface IModelProduct {

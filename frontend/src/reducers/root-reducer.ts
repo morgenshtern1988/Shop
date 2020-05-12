@@ -9,6 +9,7 @@ import {buyReducer} from "./buy";
 import {modalReducer} from "./modal";
 import {isActiveReducer} from "./isActive"
 import {authorsReducer} from "./authors";
+import {userReducer} from "./user";
 
 export const rootReducers = combineReducers(
     {
@@ -20,6 +21,7 @@ export const rootReducers = combineReducers(
         modalReducer,
         isActiveReducer,
         authorsReducer,
+        userReducer,
     }
 );
 

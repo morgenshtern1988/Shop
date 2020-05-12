@@ -1,5 +1,5 @@
 import * as mongoose from 'mongoose';
-// import mongoosePaginate from "mongoose-paginate";
+import mongoosePaginate from "mongoose-paginate";
 import {IAuthor} from "../../features/authors/api";
 
 export const authorSchema = new mongoose.Schema({

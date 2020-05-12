@@ -148,7 +148,7 @@ export default function Signup(props: any) {
                         isLoading={isLoading}
                         disabled={!validateForm()}
                     >
-                        Signup
+                        Sign Up Your Account
                     </LoaderButton>
                 </form>
             </>

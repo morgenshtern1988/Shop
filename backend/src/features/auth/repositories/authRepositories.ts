@@ -1,4 +1,4 @@
-import {IUser} from "../../../types/interface/user";
+import {IUser} from "../../user/api";
 import {userModel} from "../../../dataAccess/entityModels/user";
 import {generateAccessToken, replaceDbRefreshToken, generateRefreshToken} from "../../../helpers/authHelpers";
 import * as bcrypt from 'bcrypt';

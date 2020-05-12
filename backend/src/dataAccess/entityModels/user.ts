@@ -1,5 +1,5 @@
 import * as mongoose from 'mongoose';
-import {IUser} from "../../types/interface/user";
+import {IUser} from "../../features/user/api";
 import {userRoleType} from "../emuns/userRoleType";
 
 export const UsersSchema = new mongoose.Schema({
