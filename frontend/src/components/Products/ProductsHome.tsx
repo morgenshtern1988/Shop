@@ -1,13 +1,34 @@
-import React from "react";
+import React, {useEffect} from "react";
 import {ProductHome} from "./ProductHome";
 import {Filter} from "../Filter";
 import {RootState} from "../../types/inrerface";
-import { useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {Catalog} from "../Catalog";
+import {Link} from "react-router-dom";
 
 export const ProductsHome = ({products}: any) => {
     const defaultProductReducer = (state: RootState) => state.productReducer.productArr;
     const defaultProducts = useSelector(defaultProductReducer);
+
+    const pagereducer = (state: RootState) => state.pageReducer;
+    const pageReducer = useSelector(pagereducer);
+    const dispatch = useDispatch()
+    useEffect(() => {
+        loadPage()
+    });
+    const loadPage = () => {
+        // get page of items from api
+        const params = new URLSearchParams();
+        console.log("Params:", params);
+        /*const page = parseInt(params.get('page')) || 1;
+        if (page !== pageReducer.pager.currentPage) {
+            fetch(`/api/items?page=${page}`, {method: 'GET'})
+                .then(response => response.json())
+                .then(({pager, pageOfItems}) => {
+                    dispatch({type: "PAGER", payload: {pager, pageOfItems}});
+                });
+        }*/
+    };
 
     return (
         <div className="row container">
@@ -27,6 +48,37 @@ export const ProductsHome = ({products}: any) => {
                         )
                     }
                 </div>
+            </div>
+            <div className="card-body">
+                {pageReducer.pageOfItems.map((item: any) =>
+                    <div key={item.id}>{item.name}</div>
+                )}
+            </div>
+            <div className="card-footer pb-0 pt-3">
+                {pageReducer.pager.pages && pageReducer.pager.pages.length &&
+                <ul className="pagination">
+                    <li className={`page-item first-item ${pageReducer.pager.currentPage === 1 ? 'disabled' : ''}`}>
+                        <Link to={{search: `?page=1`}} className="page-link">First</Link>
+                    </li>
+                    <li className={`page-item previous-item ${pageReducer.pager.currentPage === 1 ? 'disabled' : ''}`}>
+                        <Link to={{search: `?page=${pageReducer.pager.currentPage - 1}`}}
+                              className="page-link">Previous</Link>
+                    </li>
+                    {pageReducer.pager.pages.map((page: any) =>
+                        <li key={page}
+                            className={`page-item number-item ${pageReducer.pager.currentPage === page ? 'active' : ''}`}>
+                            <Link to={{search: `?page=${page}`}} className="page-link">{page}</Link>
+                        </li>
+                    )}
+                    <li className={`page-item next-item ${pageReducer.pager.currentPage === pageReducer.pager.totalPages ? 'disabled' : ''}`}>
+                        <Link to={{search: `?page=${pageReducer.pager.currentPage + 1}`}}
+                              className="page-link">Next</Link>
+                    </li>
+                    <li className={`page-item last-item ${pageReducer.pager.currentPage === pageReducer.pager.totalPages ? 'disabled' : ''}`}>
+                        <Link to={{search: `?page=${pageReducer.pager.totalPages}`}} className="page-link">Last</Link>
+                    </li>
+                </ul>
+                }
             </div>
         </div>
     )

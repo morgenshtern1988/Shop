@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const printingEditionsServices_1 = require("../services/printingEditionsServices");
 exports.adminShowProduct = async function (request, response) {
-    printingEditionsServices_1.showProduct(request.body)
+    printingEditionsServices_1.showProduct()
         .then((printingEdition) => response.json(printingEdition))
         .catch((err) => response.json(err));
 };
@@ -18,7 +18,6 @@ exports.adminCreateProduct = async (request, response) => {
 };
 exports.adminRemoveProduct = async (request, response) => {
     const id = request.params.id;
-    console.log(id);
     printingEditionsServices_1.removeProduct(id)
         .then((printingEdition) => response.json(printingEdition))
         .catch((err) => response.json(err));

@@ -10,6 +10,7 @@ import {modalReducer} from "./modal";
 import {isActiveReducer} from "./isActive"
 import {authorsReducer} from "./authors";
 import {userReducer} from "./user";
+import {pageReducer} from "./pages";
 
 export const rootReducers = combineReducers(
     {
@@ -22,6 +23,7 @@ export const rootReducers = combineReducers(
         isActiveReducer,
         authorsReducer,
         userReducer,
+        pageReducer,
     }
 );
 

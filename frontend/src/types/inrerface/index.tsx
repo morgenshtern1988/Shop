@@ -20,6 +20,12 @@ export interface RootState {
     isActiveReducer: IActive,
     authorsReducer: IAuthor,
     userReducer: IUser,
+    pageReducer: IPage,
+}
+
+interface IPage {
+    pager: any,
+    pageOfItems: any,
 }
 
 interface IUser {

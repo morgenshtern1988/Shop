@@ -5,7 +5,7 @@ const bodyParser = require("body-parser");
 const connectdb_1 = require("./dataAccess/dataBase/connectdb");
 const app_1 = require("./config/app");
 const auth_1 = require("./features/auth");
-const printing_editions_1 = require("./features/printing-editions");
+const features_1 = require("./features");
 require('dotenv').config();
 connectdb_1.default();
 const app = express();
@@ -19,8 +19,9 @@ app.use((req, res, next) => {
     next();
 });
 app.use("/auth", auth_1.authRouter);
-app.use("/printing-edition", printing_editions_1.userProductRouter);
-app.use("/admin/printing-edition", printing_editions_1.adminProductRouter);
+app.use("/printing-edition", features_1.userProductRouter);
+app.use("/admin/printing-edition", features_1.adminProductRouter);
+app.use("/admin", features_1.adminProductRouter);
 app.listen(app_1.default.appPort, function () {
     console.log("Сервер начинает прослушивание...");
 });

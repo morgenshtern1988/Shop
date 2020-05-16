@@ -11,13 +11,8 @@ async function createProduct(printingEdition) {
     }
 }
 exports.createProduct = createProduct;
-async function showProduct(printingEditions) {
-    if (printingEditions === null) {
-        return "Error";
-    }
-    else {
-        return await printingEditionsRepositories_2.adminShowProduct(printingEditions);
-    }
+async function showProduct() {
+    return await printingEditionsRepositories_2.adminShowProduct();
 }
 exports.showProduct = showProduct;
 async function userShowProduct(printingEditions) {
@@ -34,8 +29,8 @@ async function removeProduct(id) {
 }
 exports.removeProduct = removeProduct;
 async function updateProduct(printingEditions, id) {
-    console.log(id);
-    console.log(printingEditions);
+    // console.log(id);
+    // console.log(printingEditions);
     return printingEditionsRepositories_1.adminUpdateProduct(printingEditions, id);
 }
 exports.updateProduct = updateProduct;

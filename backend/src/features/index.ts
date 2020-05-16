@@ -19,7 +19,6 @@ adminProductRouter.post("/author/create", tokenAccessLifeCheck, AuthMiddleware, 
 adminProductRouter.delete("/author/:id", tokenAccessLifeCheck, AuthMiddleware, PermissionMiddleware([1]), adminRemoveAuthor);
 adminProductRouter.put("/author");
 
-
 //printing-editing
 // adminProductRouter.get("/", adminShowProduct);
 adminProductRouter.get("/", tokenAccessLifeCheck, AuthMiddleware, PermissionMiddleware([1]), adminShowProduct);
@@ -28,7 +27,7 @@ adminProductRouter.post("/create", tokenAccessLifeCheck, AuthMiddleware, Permiss
 adminProductRouter.delete("/:id", tokenAccessLifeCheck, AuthMiddleware, PermissionMiddleware([1]), adminRemoveProduct);
 adminProductRouter.put("/:id", tokenAccessLifeCheck, AuthMiddleware, PermissionMiddleware([1]), adminUpdateProduct);
 
-adminProductRouter.get("/user", tokenAccessLifeCheck, AuthMiddleware, PermissionMiddleware([1]), adminShowUser)
+adminProductRouter.get("/user", tokenAccessLifeCheck, AuthMiddleware, PermissionMiddleware([1]), adminShowUser);
 
 export const userProductRouter = Router();
 userProductRouter.get("/", userShowProductAsync);

@@ -17,14 +17,23 @@ export const adminCreateAuthor = async (author: IAuthor) => {
 
 export const adminShowAuthor = async () => {
     return authorModel.find({}).populate("product_ids");
-    // authorModel.paginate({}, {page: 3, limit: 10}, function (err, result) {
-    //         console.error(err);
-    //         console.log('Pages:', result);
-    //     }
-        // console.log(paginatedResults);
-    )
-};
+    /* var pageOptions = {
+         page: req.query.page || 0,
+         limit: req.query.limit || 10
+     };
 
+     authorModel.find()
+         .skip(pageOptions.page*pageOptions.limit)
+         .limit(pageOptions.limit)
+         .exec(function (err, doc) {
+             if(err) { res.status(500).json(err); return; };
+             res.status(200).json(doc);
+         })*/
+    // return authorModel.find({}, {}, {skip: 2, limit: 3}, function (err, results) {
+    // });
+    // return authorModel.find({}, {skip: 1, limit: 1})
+    // .populate("product_ids");
+};
 
 export const adminRemoveAuthor = async (id: string) => {
     const authors = await authorModel.findById(id);

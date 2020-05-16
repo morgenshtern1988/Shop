@@ -12,6 +12,9 @@ exports.UsersSchema = new mongoose.Schema({
     avatar: {
         type: String
     },
+    dateOfRegistration: {
+        type: Date, default: Date.now
+    },
     email: {
         type: String, required: true
     },
