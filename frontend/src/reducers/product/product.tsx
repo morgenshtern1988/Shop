@@ -1,4 +1,4 @@
-import {deleteProduct, fetchAddNewProduct, fetchGetProducts} from "../../services/productsApi";
+import {deleteProduct, fetchAddNewProduct, fetchGetProducts, sortProduct} from "../../services/productsApi";
 import {IAddProduct} from "../../types/inrerface";
 
 let initialState = {
@@ -20,7 +20,7 @@ let initialState = {
 export const productReducer = (state: any = initialState, action: any) => {
     switch (action.type) {
         case 'INIT_PRODUCT':
-            const {data: prodArr} = action.payload;
+            const {printingEditionArr: prodArr} = action.payload;
             return {
                 ...state,
                 productArr: prodArr
@@ -63,15 +63,19 @@ export const productReducer = (state: any = initialState, action: any) => {
 };
 
 
-export const getProductThunk = () => {
+export const getProductThunk = (currentPage: number) => {
     return async (dispatch: any) => {
-        await fetchGetProducts()
+        await fetchGetProducts(currentPage)
             .then((items) => {
-                const {data} = items;
-                const {printingEditionArr, totalPages} = data;
-                console.log("удачно", data);
-                dispatch({type: 'INIT_PRODUCT', payload: {printingEditionArr}});
-                dispatch({type: 'PAGER', payload: {pager: {currentPage: totalPages}}});
+                const {printingEditionArr, totalPages, currentPage} = items.data;
+                // console.log("DATA:", items.data);
+                dispatch({
+                    type: 'PAGER',
+                    payload: {
+                        pager: {currentPage: currentPage, totalPages: totalPages.length, pages: totalPages},
+                        pageOfItems: printingEditionArr
+                    }
+                });
             })
             .catch(() => {
                 console.log("unsuccessfully received data of DB");
@@ -80,11 +84,20 @@ export const getProductThunk = () => {
     }
 };
 
+export const sortProductThunk = (target: any) => {
+    return async (dispatch: any) => {
+        sortProduct(target)
+            .then((data) => {
+                console.log(data);
+            })
+            .catch((err) => console.log(err))
+    }
+};
+
 export const deleteBookInDB = (id: string) => {
     return async (dispatch: any) => {
         await deleteProduct(id)
             .then((data) => {
-                // console.log("New Arr iz DB", data);
                 dispatch({type: 'INIT_PRODUCT', payload: {data}});
                 dispatch({type: 'FILTER_PRODUCT_INIT', payload: {data}});
             })

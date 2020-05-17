@@ -14,12 +14,10 @@ export const ProductContainer = (props: any) => {
     const dispatch = useDispatch();
 
     const [stateCategory, setStateCategory] = useState({book: "", newspapers: "", magazines: ""});
-
-    useEffect(() => {
-        dispatch(getProductThunk());
-        dispatch(getAuthorsThunk())
-    }, []);
-
+    // useEffect(() => {
+    //     dispatch(getProductThunk());
+    //     dispatch(getAuthorsThunk())
+    // }, []);
     return (
         <>
             <ProductsTable

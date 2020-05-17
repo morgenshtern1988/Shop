@@ -2,7 +2,7 @@ import {Request, Response, NextFunction} from "express";
 import {
     createProduct,
     removeProduct,
-    showProduct,
+    showProduct, sortProduct,
     updateProduct,
     userShowProduct
 } from "../services/printingEditionsServices"
@@ -32,7 +32,7 @@ export const adminUpdateProduct = async (request: Request, response: Response) =
     updateProduct(request.body, id)
         .then((printingEdition: any) => response.json(printingEdition))
         .catch((err: any) => response.json(err))
-}
+};
 
 export const userShowProductAsync = async (request: Request, response: Response) => {
     userShowProduct(request.query)
@@ -41,7 +41,7 @@ export const userShowProductAsync = async (request: Request, response: Response)
 };
 
 export const userSortProduct = async (req: Request, res: Response) => {
-    // sortProduct(req.body)
-    //     .then((printingEdition) => res.json(printingEdition))
-    //     .catch((err) => res.json(err))
+    sortProduct(req.body)
+        .then((printingEdition:any) => res.json(printingEdition))
+        .catch((err) => res.json(err))
 };

@@ -7,15 +7,6 @@ export const adminShowProduct = async function () {
     return printingEditionModel.find({}).populate("author_ids");
 };
 
-export const userShowProductAsync = async function (startIndex: number, limit: number) {
-    const totalPages = await resLengthCollection();
-    console.log("length:", totalPages);
-    const printingEditionArr = await printingEditionModel.find({}, null, {skip: startIndex, limit: limit})
-        .populate("author_ids");
-    return {printingEditionArr, totalPages}
-};
-
-//authMiddleware
 export const adminCreateProduct = async (printingEdition: IPrintingEdition) => {
     const result = await printingEditionModel.create(printingEdition);
     const arrIdAuthors = printingEdition.author_ids;
@@ -30,6 +21,7 @@ const updateAuthor = async ({id, idProduct}: any) => {
     productArr.product_ids.push(idProduct);
     await authorModel.findByIdAndUpdate(id, {product_ids: productArr.product_ids});
 };
+
 export const adminRemoveProduct = async (id: string) => {
     // const printingEdition = await printingEditionModel.find({});
     const printingEdition = await printingEditionModel.findById(id);
@@ -41,4 +33,24 @@ export const adminRemoveProduct = async (id: string) => {
 export const adminUpdateProduct = async (reqPrintingEditions: any, id: string) => {
     const printingEdition = await printingEditionModel.findById(id);
     await printingEditionModel.update(printingEdition, reqPrintingEditions)
+};
+
+
+export const userShowProductAsync = async function (startIndex: number, limit: number) {
+    const totalPages = await resLengthCollection(limit);
+    const printingEditionArr = await printingEditionModel.find({}, null, {skip: startIndex, limit: limit})
+        .populate("author_ids");
+    return {printingEditionArr, totalPages}
+};
+
+export const userSortProduct = async (value: string) => {
+    let newArr = await printingEditionModel.find({})
+        .populate("author_ids");
+    newArr.sort((a: any, b: any): any => {
+        if (value === 'default') return newArr;
+        if (a.price < b.price) return value === 'up-sort' ? -1 : 1;
+        if (a.price > b.price) return value === 'up-sort' ? 1 : -1;
+        if (a.price === b.price) return 0;
+    });
+    return newArr
 };

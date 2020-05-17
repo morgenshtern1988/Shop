@@ -31,7 +31,11 @@ export const replaceDbRefreshToken = (tokenId: string, userId: string) =>
         .then(() => tokenModel.create({tokenId, userId}));
 
 
-export const resLengthCollection = async () => {
+export const resLengthCollection = async (limit: number) => {
     const res = await printingEditionModel.find({});
-    return  res.length
+    let totalPages = [];
+    for (let i = 1; i <= Math.ceil(res.length / limit); i++) {
+        totalPages.push(i)
+    }
+    return totalPages
 };

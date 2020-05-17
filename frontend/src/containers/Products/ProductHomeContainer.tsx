@@ -10,22 +10,25 @@ export const ProductHomeContainer = () => {
     const redirectReducer = (state: RootState) => state.redirectReducer;
     const redirect = useSelector(redirectReducer);
 
-    const productReducer = (state: RootState) => state.productReducer.productArr;
-    const products = useSelector(productReducer);
+    const pagereducer = (state: RootState) => state.pageReducer;
+    const pageReducer = useSelector(pagereducer);
 
+    const {currentPage} = pageReducer.pager;
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(getProductThunk());
+        dispatch(getProductThunk(currentPage));
     }, []);
 
     return (
         <>
             <HeaderContainer/>
             <Switch>
-                <Route exact path="/printing-editing" render={() => <ProductsHome products={products}/>}/>
+                <Route exact path={"/printing-editing"}
+                       render={() => <ProductsHome/>}/>
                 <Route path={"/printing-editing/" + redirect._id}
                        render={() => <ProductInfo product={redirect.product}/>}/>
+                <Route path={"/printing-editing"} render={() => <h1>LLL</h1>}/>
             </Switch>
         </>
     )

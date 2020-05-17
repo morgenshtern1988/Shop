@@ -2,7 +2,7 @@ import {
     adminCreateProduct,
     adminRemoveProduct,
     adminUpdateProduct,
-    userShowProductAsync
+    userShowProductAsync, userSortProduct
 } from "../repositories/printingEditionsRepositories";
 import {IPrintingEdition} from "../../../types/interface/printingEdition";
 import {adminShowProduct} from "../repositories/printingEditionsRepositories";
@@ -32,14 +32,16 @@ export async function updateProduct(printingEditions: any, id: string) {
 }
 
 export const userShowProduct = async (query: any) => {
-    const limit = 3;
-    let currentPage = query.page;
-
+    const limit = 6;
+    let currentPage = +query.page || 1;
     if (currentPage < 1) {
         currentPage = 1;
     }
-
     const startIndex = limit * (currentPage - 1);
-    return await userShowProductAsync(startIndex, limit);
+    const res = await userShowProductAsync(startIndex, limit);
+    return {...res, currentPage: currentPage}
 };
 
+export const sortProduct = async ({value}: any) => {
+    return await userSortProduct(value)
+};

@@ -5,76 +5,73 @@ import {RootState} from "../../types/inrerface";
 import {useDispatch, useSelector} from "react-redux";
 import {Catalog} from "../Catalog";
 import {Link} from "react-router-dom";
+import {getProductThunk} from "../../reducers/product/product";
 
-export const ProductsHome = ({products}: any) => {
-    const defaultProductReducer = (state: RootState) => state.productReducer.productArr;
-    const defaultProducts = useSelector(defaultProductReducer);
+export const ProductsHome = () => {
 
     const pagereducer = (state: RootState) => state.pageReducer;
     const pageReducer = useSelector(pagereducer);
+    const {pageOfItems, pager} = pageReducer;
+    const {currentPage} = pageReducer.pager;
+
     const dispatch = useDispatch();
+
     useEffect(() => {
-        loadPage()
+        const page = loadPage();
+        if (page !== currentPage) {
+            dispatch(getProductThunk(page));
+        }
     });
+
     const loadPage = () => {
         const params = new URLSearchParams(window.location.search);
-        console.log(params);
-        // const page = parseInt(params);
-        // if (page !== pageReducer.pager.currentPage) {
-        //     fetch(`/api/items?page=${page}`, {method: 'GET'})
-        //         .then(response => response.json())
-        //         .then(({pager, pageOfItems}) => {
-        //             dispatch({type: "PAGER", payload: {pager, pageOfItems}});
-        //         });
-        // }
+        const page = params.get("page") || 1;
+        return +page
     };
 
     return (
         <div className="row container">
             <div className="col-3">
-                <Catalog products={products} defaultProducts={defaultProducts}/>
+                {/*<Catalog products={products} defaultProducts={defaultProducts}/>*/}
             </div>
             <div className="col-9">
-                <Filter products={products}
-                        defaultProducts={defaultProducts}/>
+                <Filter/>
                 <div className="row justify-content-around">
-                    {/*      {
-                        products.map((product: any) => {
+                    {
+                        pageOfItems.map((product: any) => {
                                 return <ProductHome
                                     product={product}
                                     key={product._id}/>
                             }
                         )
-                    }*/}
+                    }
                 </div>
             </div>
-            <div className="card-body">
-                {products.map((item: any, index: string) =>
-                    <div key={item.id}>{index}</div>
+            {/*<div className="card-body">
+                {pageOfItems.map((item: any, index: string) =>
+                    <div key={item._id}>{index + 1}</div>
                 )}
-            </div>
+            </div>*/}
             <div className="card-footer pb-0 pt-3">
-                {pageReducer.pager.pages && pageReducer.pager.pages.length &&
+                {pager.pages && pager.pages.length &&
                 <ul className="pagination">
-                    <li className={`page-item first-item ${pageReducer.pager.currentPage === 1 ? 'disabled' : ''}`}>
+                    <li className={`page-item first-item ${pager.currentPage === 1 ? 'disabled' : ''}`}>
                         <Link to={{search: `?page=1`}} className="page-link">First</Link>
                     </li>
-                    <li className={`page-item previous-item ${pageReducer.pager.currentPage === 1 ? 'disabled' : ''}`}>
-                        <Link to={{search: `?page=${pageReducer.pager.currentPage - 1}`}}
-                              className="page-link">Previous</Link>
+                    <li className={`page-item previous-item ${pager.currentPage === 1 ? 'disabled' : ''}`}>
+                        <Link to={{search: `?page=${pager.currentPage - 1}`}} className="page-link">Previous</Link>
                     </li>
-                    {pageReducer.pager.pages.map((page: any) =>
+                    {pager.pages.map((page: any) =>
                         <li key={page}
-                            className={`page-item number-item ${pageReducer.pager.currentPage === page ? 'active' : ''}`}>
+                            className={`page-item number-item ${pager.currentPage === page ? 'active' : ''}`}>
                             <Link to={{search: `?page=${page}`}} className="page-link">{page}</Link>
                         </li>
                     )}
-                    <li className={`page-item next-item ${pageReducer.pager.currentPage === pageReducer.pager.totalPages ? 'disabled' : ''}`}>
-                        <Link to={{search: `?page=${pageReducer.pager.currentPage + 1}`}}
-                              className="page-link">Next</Link>
+                    <li className={`page-item next-item ${pager.currentPage === pager.totalPages ? 'disabled' : ''}`}>
+                        <Link to={{search: `?page=${pager.currentPage + 1}`}} className="page-link">Next</Link>
                     </li>
-                    <li className={`page-item last-item ${pageReducer.pager.currentPage === pageReducer.pager.totalPages ? 'disabled' : ''}`}>
-                        <Link to={{search: `?page=${pageReducer.pager.totalPages}`}} className="page-link">Last</Link>
+                    <li className={`page-item last-item ${pager.currentPage === pager.totalPages ? 'disabled' : ''}`}>
+                        <Link to={{search: `?page=${pager.totalPages}`}} className="page-link">Last</Link>
                     </li>
                 </ul>
                 }

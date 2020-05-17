@@ -1,9 +1,16 @@
 import api from './common';
 import {IAddProduct} from "../types/inrerface";
 
-export const fetchGetProducts = async (): Promise<any> => {
-    const {data} = await api.get('/printing-edition');
+export const fetchGetProducts = async (currentPage: number): Promise<any> => {
+    const {data} = await api.get(`/printing-edition?page=${currentPage}`);
     return {data};
+};
+
+export const sortProduct = async (target: any) => {
+    const {data} = await api.post(`/printing-edition/sort`, {
+        value: target.value,
+    });
+    return data
 };
 
 

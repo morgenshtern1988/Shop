@@ -15,10 +15,10 @@ export const AuthorsPage = () => {
 
     const {authorsArr} = author;
 
-    useEffect(() => {
-        dispatch(getProductThunk());
-        dispatch(getAuthorsThunk())
-    }, []);
+  /*  useEffect(() => {
+        // dispatch(getProductThunk());
+        // dispatch(getAuthorsThunk())
+    }, []);*/
 
     const displayModal = () => {
         dispatch({type: "IS_SHOW_MODAL_ADD_AUTHOR", payload: {isDisplay: true}})

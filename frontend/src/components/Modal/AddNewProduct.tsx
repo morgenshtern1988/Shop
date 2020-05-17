@@ -96,7 +96,7 @@ export const AddNewProduct = ({hideModalAddProduct}: any) => {
         // console.log("data:", data);
         // console.log("IDA:",)
         await dispatch(postAddNewProductThunk(product));
-        await dispatch(getProductThunk());
+        // await dispatch(getProductThunk());
         await clearStateNewProduct();
     }
 

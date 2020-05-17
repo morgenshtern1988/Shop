@@ -1,27 +1,30 @@
 import React from "react";
 import {useDispatch} from "react-redux";
+import {sortProductThunk} from "../../reducers/product/product";
 
-export const Filter = ({products, defaultProducts}: any) => {
+export const Filter = () => {
 
     const dispatch = useDispatch();
     const sortList = (event: any) => {
-        const {target} = event;
-        let newArr = [...products];
-        newArr.sort((a, b): any => {
-            if (target.value === 'default') return newArr = defaultProducts;
-            if (a.price < b.price) return target.value === 'up-sort' ? -1 : 1;
-            if (a.price > b.price) return target.value === 'up-sort' ? 1 : -1;
-            if (a.price === b.price) return 0;
-        });
-        dispatch({type: "SORT_PRODUCT_UD_DOWN", payload: {newArr}});
+        dispatch(sortProductThunk(event.target));
+        // const {target} = event;
+        // let newArr = [...products];
+        // newArr.sort((a, b): any => {
+        //     if (target.value === 'default') return newArr = defaultProducts;
+        //     if (a.price < b.price) return target.value === 'up-sort' ? -1 : 1;
+        //     if (a.price > b.price) return target.value === 'up-sort' ? 1 : -1;
+        //     if (a.price === b.price) return 0;
+        // });
+        // dispatch({type: "SORT_PRODUCT_UD_DOWN", payload: {newArr}});
     };
     const searchCurrency = ({target}: any) => {
-        let newArr = [...products];
-        if (target.value !== "DEFAULT") {
-            newArr = newArr.filter((product: any) => product.currency === target.value);
-            dispatch({type: "SORT_PRODUCT_UD_DOWN", payload: {newArr}})
-        } else dispatch({type: "SORT_PRODUCT_UD_DOWN", payload: {newArr: defaultProducts}})
+        // let newArr = [...products];
+        // if (target.value !== "DEFAULT") {
+        //     newArr = newArr.filter((product: any) => product.currency === target.value);
+        //     dispatch({type: "SORT_PRODUCT_UD_DOWN", payload: {newArr}})
+        // } else dispatch({type: "SORT_PRODUCT_UD_DOWN", payload: {newArr: defaultProducts}})
     };
+
     return (
         <div className="d-flex justify-content-end w-100 mb-5 wrap-sort-currency">
             <span>Currency</span>
