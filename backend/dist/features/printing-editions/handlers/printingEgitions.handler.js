@@ -6,11 +6,6 @@ exports.adminShowProduct = async function (request, response) {
         .then((printingEdition) => response.json(printingEdition))
         .catch((err) => response.json(err));
 };
-exports.userShowProductAsync = async function (request, response) {
-    printingEditionsServices_1.userShowProduct(request.body)
-        .then((printingEdition) => response.json(printingEdition))
-        .catch((err) => response.json(err));
-};
 exports.adminCreateProduct = async (request, response) => {
     printingEditionsServices_1.createProduct(request.body)
         .then((printingEdition) => response.json(printingEdition))
@@ -27,5 +22,16 @@ exports.adminUpdateProduct = async (request, response) => {
     printingEditionsServices_1.updateProduct(request.body, id)
         .then((printingEdition) => response.json(printingEdition))
         .catch((err) => response.json(err));
+};
+exports.userShowProductAsync = async (request, response) => {
+    console.log("REQ:", request.query);
+    printingEditionsServices_1.userShowProduct(request.body)
+        .then((printingEdition) => response.json(printingEdition))
+        .catch((err) => response.json(err));
+};
+exports.userSortProduct = async (req, res) => {
+    // sortProduct(req.body)
+    //     .then((printingEdition) => res.json(printingEdition))
+    //     .catch((err) => res.json(err))
 };
 //# sourceMappingURL=printingEgitions.handler.js.map

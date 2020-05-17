@@ -8,11 +8,8 @@ import {getAuthorsThunk} from "../../reducers/authors";
 
 export const ProductContainer = (props: any) => {
 
-    const defaultProductReducer = (state: RootState) => state.productReducer.productArr;
-    const defaultProducts = useSelector(defaultProductReducer);
-
-    const selectIsOn = (state: RootState) => state.productReducer.filterProduct;
-    const products = useSelector(selectIsOn);
+    const productReducer = (state: RootState) => state.productReducer.productArr;
+    const products = useSelector(productReducer);
 
     const dispatch = useDispatch();
 
@@ -27,7 +24,6 @@ export const ProductContainer = (props: any) => {
         <>
             <ProductsTable
                 products={products}
-                defaultProducts={defaultProducts}
                 stateCategory={stateCategory}
                 setStateCategory={setStateCategory}
                 filterCategory={filterCategory}/>

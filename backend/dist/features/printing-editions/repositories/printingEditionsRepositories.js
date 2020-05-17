@@ -6,7 +6,16 @@ const authors_1 = require("../../../dataAccess/entityModels/authors");
 exports.adminShowProduct = async function () {
     return printing_edition_1.printingEditionModel.find({}).populate("author_ids");
 };
-exports.userShowProductAsync = async function (printingEdition) {
+exports.userShowProductAsync = async function ({ query, printingEdition }) {
+    // get page from query params or default to first page
+    const page = parseInt(query.page) || 1;
+    // get pager object for specified page
+    const pageSize = 5;
+    const pager = paginate(items.length, page, pageSize);
+    // get page of items from items array
+    const pageOfItems = items.slice(pager.startIndex, pager.endIndex + 1);
+    // return pager object and current page of items
+    // return res.json({ pager, pageOfItems });
     return printing_edition_1.printingEditionModel.find({}).populate("author_ids");
 };
 //authMiddleware

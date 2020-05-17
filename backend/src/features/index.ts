@@ -5,7 +5,7 @@ import {PermissionMiddleware} from "../middleware/permission.middleware";
 import {
     adminCreateProduct,
     adminRemoveProduct,
-    adminShowProduct, adminUpdateProduct, userShowProductAsync
+    adminShowProduct, adminUpdateProduct, userShowProductAsync, userSortProduct
 } from "./printing-editions/handlers/printingEgitions.handler";
 import {adminCreateAuthor, adminRemoveAuthor, adminShowAuthor} from "./authors/handlers";
 import {adminShowUser} from "./user/handlers";
@@ -31,3 +31,4 @@ adminProductRouter.get("/user", tokenAccessLifeCheck, AuthMiddleware, Permission
 
 export const userProductRouter = Router();
 userProductRouter.get("/", userShowProductAsync);
+userProductRouter.post("/sort", userSortProduct );

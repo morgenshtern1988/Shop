@@ -12,22 +12,21 @@ export const ProductsHome = ({products}: any) => {
 
     const pagereducer = (state: RootState) => state.pageReducer;
     const pageReducer = useSelector(pagereducer);
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
     useEffect(() => {
         loadPage()
     });
     const loadPage = () => {
-        // get page of items from api
-        const params = new URLSearchParams();
-        console.log("Params:", params);
-        /*const page = parseInt(params.get('page')) || 1;
-        if (page !== pageReducer.pager.currentPage) {
-            fetch(`/api/items?page=${page}`, {method: 'GET'})
-                .then(response => response.json())
-                .then(({pager, pageOfItems}) => {
-                    dispatch({type: "PAGER", payload: {pager, pageOfItems}});
-                });
-        }*/
+        const params = new URLSearchParams(window.location.search);
+        console.log(params);
+        // const page = parseInt(params);
+        // if (page !== pageReducer.pager.currentPage) {
+        //     fetch(`/api/items?page=${page}`, {method: 'GET'})
+        //         .then(response => response.json())
+        //         .then(({pager, pageOfItems}) => {
+        //             dispatch({type: "PAGER", payload: {pager, pageOfItems}});
+        //         });
+        // }
     };
 
     return (

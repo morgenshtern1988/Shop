@@ -5,7 +5,7 @@ import {useDispatch, useSelector} from "react-redux";
 import Button from "../Button";
 import {RootState} from "../../types/inrerface";
 
-const ProductsTable = ({products, filterCategory, setStateCategory, stateCategory, defaultProducts}: any) => {
+const ProductsTable = ({products, filterCategory, setStateCategory, stateCategory}: any) => {
 
     const isActiveReducer = (state: RootState) => state.isActiveReducer;
     const isActive = useSelector(isActiveReducer);
@@ -54,7 +54,7 @@ const ProductsTable = ({products, filterCategory, setStateCategory, stateCategor
                                                                      e,
                                                                      setStateCategory,
                                                                      stateCategory,
-                                                                     defaultProducts
+                                                                     products
                                                                  })}/>Books</label>
                                     <label htmlFor="Newspapers"><input type="checkbox" id="Newspapers"
                                                                        className="check"
@@ -62,7 +62,7 @@ const ProductsTable = ({products, filterCategory, setStateCategory, stateCategor
                                                                            e,
                                                                            setStateCategory,
                                                                            stateCategory,
-                                                                           defaultProducts
+                                                                           products
                                                                        })}/>Newspapers</label>
                                     <label htmlFor="Magazines"><input type="checkbox" id="Magazines"
                                                                       className="check"
@@ -70,7 +70,7 @@ const ProductsTable = ({products, filterCategory, setStateCategory, stateCategor
                                                                           e,
                                                                           setStateCategory,
                                                                           stateCategory,
-                                                                          defaultProducts
+                                                                          products
                                                                       })}/>Magazines</label>
                                 </div> : <></>
                         }

@@ -3,7 +3,6 @@ import {IAddProduct} from "../../types/inrerface";
 
 let initialState = {
     productArr: [],
-    filterProduct: [],
     stateProduct: {
         name: "",
         description: "",
@@ -39,30 +38,24 @@ export const productReducer = (state: any = initialState, action: any) => {
                 ...state,
                 productArr: [...state.productArr, product]
             };
-        case "FILTER_PRODUCT_INIT":
-            const {data: productArr} = action.payload;
-            return {
-                ...state,
-                filterProduct: productArr,
-            };
         case "FILTER_PRODUCT_SEARCH":
             const {value, products: p} = action.payload;
             const filterProduct = p.filter((product: any) => product.name.toLowerCase().includes(value.toLowerCase()));
             return {
                 ...state,
-                filterProduct: filterProduct,
+                productArr: filterProduct,
             };
         case "SORT_PRODUCT":
             const {res: products} = action.payload;
             return {
                 ...state,
-                filterProduct: products,
+                productArr: products,
             };
         case "SORT_PRODUCT_UD_DOWN":
             const {newArr} = action.payload;
             return {
                 ...state,
-                filterProduct: newArr,
+                productArr: newArr,
             };
         default:
             return state;
@@ -77,7 +70,6 @@ export const getProductThunk = () => {
                 // console.log("удачно");
                 const {data} = items;
                 dispatch({type: 'INIT_PRODUCT', payload: {data}});
-                dispatch({type: 'FILTER_PRODUCT_INIT', payload: {data}});
             })
             .catch(() => {
                 console.log("unsuccessfully received data of DB");

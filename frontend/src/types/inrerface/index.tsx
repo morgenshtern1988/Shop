@@ -73,7 +73,6 @@ export interface IRegisterUser {
 }
 
 export interface IProduct {
-    filterProduct: Array<any>,
     productArr: Array<any>,
     stateProduct: IAddProduct,
 
