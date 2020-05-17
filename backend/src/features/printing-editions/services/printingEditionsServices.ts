@@ -2,7 +2,7 @@ import {
     adminCreateProduct,
     adminRemoveProduct,
     adminUpdateProduct,
-    userShowProductAsync, userSortProduct
+    userShowProductAsync, userSortCategory, userSortProduct
 } from "../repositories/printingEditionsRepositories";
 import {IPrintingEdition} from "../../../types/interface/printingEdition";
 import {adminShowProduct} from "../repositories/printingEditionsRepositories";
@@ -44,9 +44,19 @@ export const userShowProduct = async (query: any) => {
 export const sortProduct = async ({value, query}: any) => {
     let pagination = paramPagination(query);
     const {startIndex, currentPage, limit} = pagination;
-    // console.log(query);
-    // console.log(value);
+
     const res = await userSortProduct({value, startIndex, limit});
     return {...res, currentPage: currentPage}
+};
 
+export const sortOnCategory = async ({sortParam, query}: any) => {
+    let type = "";
+    if (sortParam.book) type = "Book";
+    if (sortParam.newspapers) type = "Newspapers";
+    if (sortParam.magazines) type = "Magazines";
+    // console.log(sortParam, "query:", query);
+    let pagination = paramPagination(query);
+    const {startIndex, currentPage, limit} = pagination;
+    const res = await userSortCategory({startIndex, currentPage, limit, type});
+    return {...res, currentPage: currentPage}
 };

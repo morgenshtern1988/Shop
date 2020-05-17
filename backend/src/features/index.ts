@@ -5,7 +5,7 @@ import {PermissionMiddleware} from "../middleware/permission.middleware";
 import {
     adminCreateProduct,
     adminRemoveProduct,
-    adminShowProduct, adminUpdateProduct, userShowProductAsync, userSortProduct
+    adminShowProduct, adminUpdateProduct, userShowProductAsync, userSortCategory, userSortProduct
 } from "./printing-editions/handlers/printingEgitions.handler";
 import {adminCreateAuthor, adminRemoveAuthor, adminShowAuthor} from "./authors/handlers";
 import {adminShowUser} from "./user/handlers";
@@ -29,6 +29,8 @@ adminProductRouter.put("/:id", tokenAccessLifeCheck, AuthMiddleware, PermissionM
 
 adminProductRouter.get("/user", tokenAccessLifeCheck, AuthMiddleware, PermissionMiddleware([1]), adminShowUser);
 
+
 export const userProductRouter = Router();
 userProductRouter.get("/", userShowProductAsync);
-userProductRouter.post("/sort", userSortProduct );
+userProductRouter.post("/sort-filter", userSortProduct);
+userProductRouter.post("/sort-category", userSortCategory);

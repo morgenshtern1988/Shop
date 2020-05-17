@@ -9,15 +9,6 @@ export const Filter = (currentPage: any) => {
     const sortList = (event: any) => {
         let page = loadPage();
         dispatch(sortProductThunk({target: event.target, currentPage: page}));
-        // const {target} = event;
-        // let newArr = [...products];
-        // newArr.sort((a, b): any => {
-        //     if (target.value === 'default') return newArr = defaultProducts;
-        //     if (a.price < b.price) return target.value === 'up-sort' ? -1 : 1;
-        //     if (a.price > b.price) return target.value === 'up-sort' ? 1 : -1;
-        //     if (a.price === b.price) return 0;
-        // });
-        // dispatch({type: "SORT_PRODUCT_UD_DOWN", payload: {newArr}});
     };
     const searchCurrency = ({target}: any) => {
         // let newArr = [...products];

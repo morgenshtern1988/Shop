@@ -1,4 +1,10 @@
-import {deleteProduct, fetchAddNewProduct, fetchGetProducts, sortProduct} from "../../services/productsApi";
+import {
+    deleteProduct,
+    fetchAddNewProduct,
+    fetchGetProducts,
+    sortOnCategoryAndPrice,
+    sortProduct
+} from "../../services/productsApi";
 import {IAddProduct} from "../../types/inrerface";
 
 let initialState = {
@@ -101,6 +107,25 @@ export const sortProductThunk = ({target, currentPage}: any) => {
             .catch((err) => console.log(err))
     }
 };
+
+export const sortOnCategoryAndPriceThunk = ({stateObj, currentPage}: any) => {
+    return async (dispatch: any) => {
+        await sortOnCategoryAndPrice({stateObj, currentPage})
+            .then((items) => {
+                const {printingEditionArr, totalPages, currentPage} = items.data;
+                // console.log("DATA:", items);
+                dispatch({
+                    type: 'PAGER',
+                    payload: {
+                        pager: {currentPage: currentPage, totalPages: totalPages.length, pages: totalPages},
+                        pageOfItems: printingEditionArr
+                    }
+                });
+            })
+            .catch((err) => console.log(err))
+    }
+};
+
 
 export const deleteBookInDB = (id: string) => {
     return async (dispatch: any) => {

@@ -2,7 +2,7 @@ import {Request, Response, NextFunction, query} from "express";
 import {
     createProduct,
     removeProduct,
-    showProduct, sortProduct,
+    showProduct, sortOnCategory, sortProduct,
     updateProduct,
     userShowProduct
 } from "../services/printingEditionsServices"
@@ -42,6 +42,12 @@ export const userShowProductAsync = async (request: Request, response: Response)
 
 export const userSortProduct = async (req: Request, res: Response) => {
     sortProduct({value: req.body, query: req.query})
+        .then((printingEdition: any) => res.json(printingEdition))
+        .catch((err) => res.json(err))
+};
+
+export const userSortCategory = async (req: Request, res: Response) => {
+    sortOnCategory({sortParam: req.body, query: req.query})
         .then((printingEdition: any) => res.json(printingEdition))
         .catch((err) => res.json(err))
 };

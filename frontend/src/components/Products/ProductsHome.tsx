@@ -27,7 +27,7 @@ export const ProductsHome = () => {
     return (
         <div className="row container">
             <div className="col-3">
-                {/*<Catalog products={products} defaultProducts={defaultProducts}/>*/}
+                <Catalog currentPage={currentPage}/>
             </div>
             <div className="col-9">
                 <Filter currentPage={currentPage}/>
@@ -42,11 +42,6 @@ export const ProductsHome = () => {
                     }
                 </div>
             </div>
-            {/*<div className="card-body">
-                {pageOfItems.map((item: any, index: string) =>
-                    <div key={item._id}>{index + 1}</div>
-                )}
-            </div>*/}
             <div className="card-footer pb-0 pt-3">
                 {pager.pages && pager.pages.length &&
                 <ul className="pagination">

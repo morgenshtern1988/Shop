@@ -7,8 +7,15 @@ export const fetchGetProducts = async (currentPage: number): Promise<any> => {
 };
 
 export const sortProduct = async ({target, currentPage}: any) => {
-    const {data} = await api.post(`/printing-edition/sort?page=${currentPage}`, {
+    const {data} = await api.post(`/printing-edition/sort-filter?page=${currentPage}`, {
         value: target.value,
+    });
+    return {data}
+};
+
+export const sortOnCategoryAndPrice = async ({stateObj, currentPage}: any) => {
+    const {data} = await api.post(`/printing-edition/sort-category?page=${currentPage}`, {
+        ...stateObj
     });
     return {data}
 };

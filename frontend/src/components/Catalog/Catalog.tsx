@@ -1,28 +1,37 @@
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import Button from "../Button/Button";
 import {useDispatch, useSelector} from "react-redux";
-import {filterCategory} from "../../infrastructure/FilterCategory";
+import {sortOnCategoryAndPriceThunk} from "../../reducers/product/product";
 
-export const Catalog = ({products, defaultProducts}: any) => {
+export const Catalog = ({currentPage}: any) => {
 
-    const [state, setState] = useState({low: "", high: ""});
-    const [stateCategory, setStateCategory] = useState({book: "", newspapers: "", magazines: ""});
+    const [state, setState] = useState({low: 0, high: 0});
+    const [stateCategory, setStateCategory] = useState({book: false, newspapers: false, magazines: false});
 
     const dispatch = useDispatch();
-
-    useEffect(() => {
-        const res = [...stateCategory.book, ...stateCategory.newspapers, ...stateCategory.magazines];
-        dispatch({type: "SORT_PRODUCT", payload: {res}})
-    }, [stateCategory]);
-
-    const searchPriceAndCategory = ({stateCategory, defaultProducts}: any) => {
-        const newArr = [...stateCategory.book, ...stateCategory.newspapers, ...stateCategory.magazines];
-        let res = newArr.length ? newArr : defaultProducts;
-        console.log("Res", res);
-        if (state.low && state.high !== "") {
-            res = res.filter((product: any) => product.price >= state.low && product.price <= state.high);
-            dispatch({type: "SORT_PRODUCT", payload: {res}})
+    const sortProduct = ({stateCategory, state}: any) => {
+        let stateObj = {...state};
+        if (stateCategory.book) {
+            stateObj = {...stateObj, book: true}
         }
+        if (stateCategory.newspapers) {
+            stateObj = {...stateObj, newspapers: true}
+        }
+        if (stateCategory.magazines) {
+            stateObj = {...stateObj, magazines: true}
+        }
+        dispatch(sortOnCategoryAndPriceThunk({stateObj, currentPage}))
+    };
+
+
+    const validate = () => {
+        return (
+            state.low > 0 &&
+            state.high > 0 &&
+            (stateCategory.newspapers ||
+                stateCategory.book ||
+                stateCategory.magazines)
+        )
     };
 
     return (
@@ -32,36 +41,34 @@ export const Catalog = ({products, defaultProducts}: any) => {
                 <div className="list-printing d-flex flex-column mb-5">
                     <h4>Category</h4>
                     <label htmlFor="Book"><input type="checkbox" id="Book" className="check"
-                                                 onChange={(e: any) => filterCategory({
-                                                     e,
-                                                     setStateCategory,
-                                                     stateCategory,
-                                                     defaultProducts
+                                                 onChange={(e: any) => setStateCategory({
+                                                     book: e.target.checked,
+                                                     newspapers: stateCategory.newspapers,
+                                                     magazines: stateCategory.magazines
                                                  })}/>Books</label>
                     <label htmlFor="Newspapers"><input type="checkbox" id="Newspapers"
                                                        className="check"
-                                                       onChange={(e: any) => filterCategory({
-                                                           e,
-                                                           setStateCategory,
-                                                           stateCategory,
-                                                           defaultProducts
+                                                       onChange={(e: any) => setStateCategory({
+                                                           book: stateCategory.book,
+                                                           newspapers: e.target.checked,
+                                                           magazines: stateCategory.magazines
                                                        })}/>Newspapers</label>
                     <label htmlFor="Magazines"><input type="checkbox" id="Magazines"
                                                       className="check"
-                                                      onChange={(e: any) => filterCategory({
-                                                          e,
-                                                          setStateCategory,
-                                                          stateCategory,
-                                                          defaultProducts
+                                                      onChange={(e: any) => setStateCategory({
+                                                          book: stateCategory.book,
+                                                          newspapers: stateCategory.newspapers,
+                                                          magazines: e.target.checked
                                                       })}/>Magazines</label>
                 </div>
                 <h4 className="mb-3">Price, $</h4>
                 <div className="d-flex justify-content-between wrap-price">
                     <input className=" w-25 pl-2" type="text" placeholder="От"
-                           onChange={(e: any) => setState({low: e.target.value, high: state.high})}/>
+                           onChange={(e: any) => setState({low: +e.target.value, high: state.high})}/>
                     <input className="w-25 pl-2 d-flex" type="text" placeholder="До"
-                           onChange={(e: any) => setState({low: state.low, high: e.target.value})}/>
-                    <Button innerText="OK" onClick={() => searchPriceAndCategory({stateCategory, defaultProducts})}/>
+                           onChange={(e: any) => setState({low: state.low, high: +e.target.value})}/>
+                    <Button innerText="OK" disabled={!validate()}
+                            onClick={() => sortProduct({stateCategory, state})}/>
                 </div>
             </div>
         </>
