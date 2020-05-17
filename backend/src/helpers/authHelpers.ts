@@ -1,7 +1,9 @@
 import * as jwt from "jsonwebtoken";
+
 const uuid = require("uuid/v4");
 import {tokenModel} from "../dataAccess/entityModels/tokien";
 import appJwt from "../config/app";
+import {printingEditionModel} from "../dataAccess/entityModels/printing-edition";
 
 export const generateAccessToken = async (user: any) => {
     const payload = {
@@ -27,3 +29,9 @@ export const replaceDbRefreshToken = (tokenId: string, userId: string) =>
     tokenModel.findOneAndRemove({userId})
         .exec()
         .then(() => tokenModel.create({tokenId, userId}));
+
+
+export const resLengthCollection = async () => {
+    const res = await printingEditionModel.find({});
+    return  res.length
+};

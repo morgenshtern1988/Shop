@@ -35,16 +35,9 @@ export const adminUpdateProduct = async (request: Request, response: Response) =
 }
 
 export const userShowProductAsync = async (request: Request, response: Response) => {
-    console.log("REQ:", request.query);
     userShowProduct(request.query)
-        .then((printingEdition: any) => {
-            console.log("заашел что то вернуть")
-            response.json(printingEdition)
-        })
-        .catch((err) => {
-            console.log("вернука я ОШИБКУ")
-            response.json(err)
-        })
+        .then((printingEdition: any) => response.json(printingEdition))
+        .catch((err) => response.json(err))
 };
 
 export const userSortProduct = async (req: Request, res: Response) => {

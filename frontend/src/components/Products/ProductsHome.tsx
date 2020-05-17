@@ -38,19 +38,19 @@ export const ProductsHome = ({products}: any) => {
                 <Filter products={products}
                         defaultProducts={defaultProducts}/>
                 <div className="row justify-content-around">
-                    {
+                    {/*      {
                         products.map((product: any) => {
                                 return <ProductHome
                                     product={product}
                                     key={product._id}/>
                             }
                         )
-                    }
+                    }*/}
                 </div>
             </div>
             <div className="card-body">
-                {pageReducer.pageOfItems.map((item: any) =>
-                    <div key={item.id}>{item.name}</div>
+                {products.map((item: any, index: string) =>
+                    <div key={item.id}>{index}</div>
                 )}
             </div>
             <div className="card-footer pb-0 pt-3">

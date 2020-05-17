@@ -21,7 +21,7 @@ function App() {
                     <Route path="/auth/login" render={() => <Login/>}/>
                     <Route exact path='/' component={HomePage}/>
                     <Route path='/printing-editing' component={ProductHomeContainer}/>
-                    <PrivateRoute path='/admin' roles={Role.Admin} component={AdminPage}/>
+                    {/*<PrivateRoute path='/admin' roles={Role.Admin} component={AdminPage}/>*/}
                     {/*<PrivateRoute path='/' roles={Role.User} component={MyProfileContainer}/>*/}
                 </Switch>
             </main>

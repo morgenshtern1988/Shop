@@ -1,16 +1,18 @@
-import * as express from "express"
 import {printingEditionModel} from "../../../dataAccess/entityModels/printing-edition"
 import {IPrintingEdition} from "../../../types/interface/printingEdition";
 import {authorModel} from "../../../dataAccess/entityModels/authors";
-import paginate from "jw-paginate";
-//authMiddleware
+import {resLengthCollection} from "../../../helpers/authHelpers";
+
 export const adminShowProduct = async function () {
     return printingEditionModel.find({}).populate("author_ids");
 };
 
-export const userShowProductAsync = async function ({query}: any) {
-    return await printingEditionModel.find({}).populate("author_ids");
-
+export const userShowProductAsync = async function (startIndex: number, limit: number) {
+    const totalPages = await resLengthCollection();
+    console.log("length:", totalPages);
+    const printingEditionArr = await printingEditionModel.find({}, null, {skip: startIndex, limit: limit})
+        .populate("author_ids");
+    return {printingEditionArr, totalPages}
 };
 
 //authMiddleware

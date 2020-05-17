@@ -67,9 +67,11 @@ export const getProductThunk = () => {
     return async (dispatch: any) => {
         await fetchGetProducts()
             .then((items) => {
-                // console.log("удачно");
                 const {data} = items;
-                dispatch({type: 'INIT_PRODUCT', payload: {data}});
+                const {printingEditionArr, totalPages} = data;
+                console.log("удачно", data);
+                dispatch({type: 'INIT_PRODUCT', payload: {printingEditionArr}});
+                dispatch({type: 'PAGER', payload: {pager: {currentPage: totalPages}}});
             })
             .catch(() => {
                 console.log("unsuccessfully received data of DB");
