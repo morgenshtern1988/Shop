@@ -1,12 +1,14 @@
 import React from "react";
 import {useDispatch} from "react-redux";
 import {sortProductThunk} from "../../reducers/product/product";
+import {loadPage} from "../../helpers/pages";
 
-export const Filter = () => {
+export const Filter = (currentPage: any) => {
 
     const dispatch = useDispatch();
     const sortList = (event: any) => {
-        dispatch(sortProductThunk(event.target));
+        let page = loadPage();
+        dispatch(sortProductThunk({target: event.target, currentPage: page}));
         // const {target} = event;
         // let newArr = [...products];
         // newArr.sort((a, b): any => {

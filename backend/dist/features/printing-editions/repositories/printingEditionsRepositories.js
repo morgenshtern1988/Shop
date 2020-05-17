@@ -2,23 +2,10 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const printing_edition_1 = require("../../../dataAccess/entityModels/printing-edition");
 const authors_1 = require("../../../dataAccess/entityModels/authors");
-//authMiddleware
+const authHelpers_1 = require("../../../helpers/authHelpers");
 exports.adminShowProduct = async function () {
     return printing_edition_1.printingEditionModel.find({}).populate("author_ids");
 };
-exports.userShowProductAsync = async function ({ query, printingEdition }) {
-    // get page from query params or default to first page
-    const page = parseInt(query.page) || 1;
-    // get pager object for specified page
-    const pageSize = 5;
-    const pager = paginate(items.length, page, pageSize);
-    // get page of items from items array
-    const pageOfItems = items.slice(pager.startIndex, pager.endIndex + 1);
-    // return pager object and current page of items
-    // return res.json({ pager, pageOfItems });
-    return printing_edition_1.printingEditionModel.find({}).populate("author_ids");
-};
-//authMiddleware
 exports.adminCreateProduct = async (printingEdition) => {
     const result = await printing_edition_1.printingEditionModel.create(printingEdition);
     const arrIdAuthors = printingEdition.author_ids;
@@ -43,5 +30,31 @@ exports.adminRemoveProduct = async (id) => {
 exports.adminUpdateProduct = async (reqPrintingEditions, id) => {
     const printingEdition = await printing_edition_1.printingEditionModel.findById(id);
     await printing_edition_1.printingEditionModel.update(printingEdition, reqPrintingEditions);
+};
+exports.userShowProductAsync = async function (startIndex, limit) {
+    const totalPages = await authHelpers_1.resLengthCollection(limit);
+    const printingEditionArr = await printing_edition_1.printingEditionModel.find({}, null, { skip: startIndex, limit: limit })
+        .populate("author_ids");
+    return { printingEditionArr, totalPages };
+};
+exports.userSortProduct = async ({ value, startIndex, limit }) => {
+    const totalPages = await authHelpers_1.resLengthCollection(limit);
+    let newArr = await printing_edition_1.printingEditionModel.find({}, null, { skip: startIndex, limit: limit })
+        .populate("author_ids");
+    console.log("value", value);
+    console.log("startIndex", startIndex);
+    console.log("limit", limit);
+    const printingEditionArr = [...newArr];
+    printingEditionArr.sort((a, b) => {
+        if (value === 'default')
+            return newArr;
+        if (a.price < b.price)
+            return value === 'up-sort' ? -1 : 1;
+        if (a.price > b.price)
+            return value === 'up-sort' ? 1 : -1;
+        if (a.price === b.price)
+            return 0;
+    });
+    return { printingEditionArr, totalPages };
 };
 //# sourceMappingURL=printingEditionsRepositories.js.map

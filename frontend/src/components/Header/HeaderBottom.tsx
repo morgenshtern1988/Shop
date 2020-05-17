@@ -11,7 +11,7 @@ export const HeaderBottom = () => {
 
     const pagereducer = (state: RootState) => state.pageReducer;
     const pageReducer = useSelector(pagereducer);
-    console.log(pageReducer);
+    // console.log(pageReducer);
     const {currentPage} = pageReducer.pager;
 
     const dispatch = useDispatch();

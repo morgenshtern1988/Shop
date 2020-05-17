@@ -7,6 +7,7 @@ import {
 import {IPrintingEdition} from "../../../types/interface/printingEdition";
 import {adminShowProduct} from "../repositories/printingEditionsRepositories";
 import {printingEditionModel} from "../../../dataAccess/entityModels/printing-edition";
+import {paramPagination} from "../../../helpers/authHelpers";
 
 export async function createProduct(printingEdition: IPrintingEdition) {
     if (printingEdition === null) {
@@ -32,16 +33,20 @@ export async function updateProduct(printingEditions: any, id: string) {
 }
 
 export const userShowProduct = async (query: any) => {
-    const limit = 6;
-    let currentPage = +query.page || 1;
-    if (currentPage < 1) {
-        currentPage = 1;
-    }
-    const startIndex = limit * (currentPage - 1);
+
+    let pagination = paramPagination(query);
+    const {startIndex, currentPage, limit} = pagination;
+
     const res = await userShowProductAsync(startIndex, limit);
     return {...res, currentPage: currentPage}
 };
 
-export const sortProduct = async ({value}: any) => {
-    return await userSortProduct(value)
+export const sortProduct = async ({value, query}: any) => {
+    let pagination = paramPagination(query);
+    const {startIndex, currentPage, limit} = pagination;
+    // console.log(query);
+    // console.log(value);
+    const res = await userSortProduct({value, startIndex, limit});
+    return {...res, currentPage: currentPage}
+
 };

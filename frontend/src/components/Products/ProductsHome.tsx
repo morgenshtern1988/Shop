@@ -6,6 +6,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {Catalog} from "../Catalog";
 import {Link} from "react-router-dom";
 import {getProductThunk} from "../../reducers/product/product";
+import {loadPage} from "../../helpers/pages";
 
 export const ProductsHome = () => {
 
@@ -23,19 +24,13 @@ export const ProductsHome = () => {
         }
     });
 
-    const loadPage = () => {
-        const params = new URLSearchParams(window.location.search);
-        const page = params.get("page") || 1;
-        return +page
-    };
-
     return (
         <div className="row container">
             <div className="col-3">
                 {/*<Catalog products={products} defaultProducts={defaultProducts}/>*/}
             </div>
             <div className="col-9">
-                <Filter/>
+                <Filter currentPage={currentPage}/>
                 <div className="row justify-content-around">
                     {
                         pageOfItems.map((product: any) => {

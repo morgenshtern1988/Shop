@@ -11,15 +11,15 @@ exports.adminProductRouter = express_1.Router();
 //author
 // adminProductRouter.get("/author", adminShowAuthor);
 exports.adminProductRouter.get("/author", auth_handlers_1.tokenAccessLifeCheck, auth_middleware_1.AuthMiddleware, permission_middleware_1.PermissionMiddleware([1]), handlers_1.adminShowAuthor);
-// adminProductRouter.post("/author/create", adminCreateAuthor);
-exports.adminProductRouter.post("/author/create", auth_handlers_1.tokenAccessLifeCheck, auth_middleware_1.AuthMiddleware, permission_middleware_1.PermissionMiddleware([1]), handlers_1.adminCreateAuthor);
+exports.adminProductRouter.post("/author/create", handlers_1.adminCreateAuthor);
+// adminProductRouter.post("/author/create", tokenAccessLifeCheck, AuthMiddleware, PermissionMiddleware([1]), adminCreateAuthor);
 exports.adminProductRouter.delete("/author/:id", auth_handlers_1.tokenAccessLifeCheck, auth_middleware_1.AuthMiddleware, permission_middleware_1.PermissionMiddleware([1]), handlers_1.adminRemoveAuthor);
 exports.adminProductRouter.put("/author");
 //printing-editing
 // adminProductRouter.get("/", adminShowProduct);
 exports.adminProductRouter.get("/", auth_handlers_1.tokenAccessLifeCheck, auth_middleware_1.AuthMiddleware, permission_middleware_1.PermissionMiddleware([1]), printingEgitions_handler_1.adminShowProduct);
-// adminProductRouter.post("/create", adminCreateProduct);
-exports.adminProductRouter.post("/create", auth_handlers_1.tokenAccessLifeCheck, auth_middleware_1.AuthMiddleware, permission_middleware_1.PermissionMiddleware([1]), printingEgitions_handler_1.adminCreateProduct);
+exports.adminProductRouter.post("/create", printingEgitions_handler_1.adminCreateProduct);
+// adminProductRouter.post("/create", tokenAccessLifeCheck, AuthMiddleware, PermissionMiddleware([1]), adminCreateProduct);
 exports.adminProductRouter.delete("/:id", auth_handlers_1.tokenAccessLifeCheck, auth_middleware_1.AuthMiddleware, permission_middleware_1.PermissionMiddleware([1]), printingEgitions_handler_1.adminRemoveProduct);
 exports.adminProductRouter.put("/:id", auth_handlers_1.tokenAccessLifeCheck, auth_middleware_1.AuthMiddleware, permission_middleware_1.PermissionMiddleware([1]), printingEgitions_handler_1.adminUpdateProduct);
 exports.adminProductRouter.get("/user", auth_handlers_1.tokenAccessLifeCheck, auth_middleware_1.AuthMiddleware, permission_middleware_1.PermissionMiddleware([1]), handlers_2.adminShowUser);

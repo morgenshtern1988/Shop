@@ -84,11 +84,19 @@ export const getProductThunk = (currentPage: number) => {
     }
 };
 
-export const sortProductThunk = (target: any) => {
+export const sortProductThunk = ({target, currentPage}: any) => {
     return async (dispatch: any) => {
-        sortProduct(target)
-            .then((data) => {
-                console.log(data);
+        sortProduct({target, currentPage})
+            .then((items) => {
+                const {printingEditionArr, totalPages, currentPage} = items.data;
+                console.log("DATA:", items.data);
+                dispatch({
+                    type: 'PAGER',
+                    payload: {
+                        pager: {currentPage: currentPage, totalPages: totalPages.length, pages: totalPages},
+                        pageOfItems: printingEditionArr
+                    }
+                });
             })
             .catch((err) => console.log(err))
     }

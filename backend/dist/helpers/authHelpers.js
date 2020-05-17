@@ -4,6 +4,7 @@ const jwt = require("jsonwebtoken");
 const uuid = require("uuid/v4");
 const tokien_1 = require("../dataAccess/entityModels/tokien");
 const app_1 = require("../config/app");
+const printing_edition_1 = require("../dataAccess/entityModels/printing-edition");
 exports.generateAccessToken = async (user) => {
     const payload = {
         role: user.role,
@@ -25,4 +26,21 @@ exports.generateRefreshToken = async (user) => {
 exports.replaceDbRefreshToken = (tokenId, userId) => tokien_1.tokenModel.findOneAndRemove({ userId })
     .exec()
     .then(() => tokien_1.tokenModel.create({ tokenId, userId }));
+exports.paramPagination = (query) => {
+    const limit = 6;
+    let currentPage = +query.page || 1;
+    if (currentPage < 1) {
+        currentPage = 1;
+    }
+    const startIndex = limit * (currentPage - 1);
+    return { startIndex, currentPage, limit };
+};
+exports.resLengthCollection = async (limit) => {
+    const res = await printing_edition_1.printingEditionModel.find({});
+    let totalPages = [];
+    for (let i = 1; i <= Math.ceil(res.length / limit); i++) {
+        totalPages.push(i);
+    }
+    return totalPages;
+};
 //# sourceMappingURL=authHelpers.js.map

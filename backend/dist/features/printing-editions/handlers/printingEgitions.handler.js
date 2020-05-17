@@ -24,14 +24,13 @@ exports.adminUpdateProduct = async (request, response) => {
         .catch((err) => response.json(err));
 };
 exports.userShowProductAsync = async (request, response) => {
-    console.log("REQ:", request.query);
-    printingEditionsServices_1.userShowProduct(request.body)
+    printingEditionsServices_1.userShowProduct(request.query)
         .then((printingEdition) => response.json(printingEdition))
         .catch((err) => response.json(err));
 };
 exports.userSortProduct = async (req, res) => {
-    // sortProduct(req.body)
-    //     .then((printingEdition) => res.json(printingEdition))
-    //     .catch((err) => res.json(err))
+    printingEditionsServices_1.sortProduct({ value: req.body, query: req.query })
+        .then((printingEdition) => res.json(printingEdition))
+        .catch((err) => res.json(err));
 };
 //# sourceMappingURL=printingEgitions.handler.js.map

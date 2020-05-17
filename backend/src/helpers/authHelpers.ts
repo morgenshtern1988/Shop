@@ -31,6 +31,16 @@ export const replaceDbRefreshToken = (tokenId: string, userId: string) =>
         .then(() => tokenModel.create({tokenId, userId}));
 
 
+export const paramPagination = (query: any) => {
+    const limit = 6;
+    let currentPage = +query.page || 1;
+    if (currentPage < 1) {
+        currentPage = 1;
+    }
+    const startIndex = limit * (currentPage - 1);
+    return {startIndex,currentPage, limit}
+};
+
 export const resLengthCollection = async (limit: number) => {
     const res = await printingEditionModel.find({});
     let totalPages = [];

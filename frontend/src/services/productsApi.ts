@@ -6,11 +6,11 @@ export const fetchGetProducts = async (currentPage: number): Promise<any> => {
     return {data};
 };
 
-export const sortProduct = async (target: any) => {
-    const {data} = await api.post(`/printing-edition/sort`, {
+export const sortProduct = async ({target, currentPage}: any) => {
+    const {data} = await api.post(`/printing-edition/sort?page=${currentPage}`, {
         value: target.value,
     });
-    return data
+    return {data}
 };
 
 

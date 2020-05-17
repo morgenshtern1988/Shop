@@ -1,4 +1,4 @@
-import {Request, Response, NextFunction} from "express";
+import {Request, Response, NextFunction, query} from "express";
 import {
     createProduct,
     removeProduct,
@@ -41,7 +41,7 @@ export const userShowProductAsync = async (request: Request, response: Response)
 };
 
 export const userSortProduct = async (req: Request, res: Response) => {
-    sortProduct(req.body)
-        .then((printingEdition:any) => res.json(printingEdition))
+    sortProduct({value: req.body, query: req.query})
+        .then((printingEdition: any) => res.json(printingEdition))
         .catch((err) => res.json(err))
 };
