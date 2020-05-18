@@ -50,13 +50,9 @@ export const sortProduct = async ({value, query}: any) => {
 };
 
 export const sortOnCategory = async ({sortParam, query}: any) => {
-    let type = "";
-    if (sortParam.book) type = "Book";
-    if (sortParam.newspapers) type = "Newspapers";
-    if (sortParam.magazines) type = "Magazines";
-    // console.log(sortParam, "query:", query);
+    let type = {...sortParam.type};
     let pagination = paramPagination(query);
     const {startIndex, currentPage, limit} = pagination;
-    const res = await userSortCategory({startIndex, currentPage, limit, type});
+    const res = await userSortCategory({startIndex, limit, type});
     return {...res, currentPage: currentPage}
 };

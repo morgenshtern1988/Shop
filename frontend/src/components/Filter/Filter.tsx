@@ -1,9 +1,14 @@
 import React from "react";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {sortProductThunk} from "../../reducers/product/product";
 import {loadPage} from "../../helpers/pages";
+import {RootState} from "../../types/inrerface";
 
 export const Filter = (currentPage: any) => {
+
+
+    const productReducer = (state: RootState) => state.productReducer.paramFilter;
+    const paramFilter = useSelector(productReducer);
 
     const dispatch = useDispatch();
     const sortList = (event: any) => {
@@ -33,7 +38,7 @@ export const Filter = (currentPage: any) => {
                 <option value="UAN">UAN</option>
             </select>
             <span>Sort By</span>
-            <select name="sort" id="sort" onChange={(event: any) => sortList(event)}>
+            <select name="sort" id="sort" value={paramFilter} onChange={(event: any) => sortList(event)}>
                 <option value="default">Default</option>
                 <option value="down-sort">Price:Low to high</option>
                 <option value="up-sort">Price:High to Low</option>

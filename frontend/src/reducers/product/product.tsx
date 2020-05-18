@@ -9,7 +9,11 @@ import {IAddProduct} from "../../types/inrerface";
 
 let initialState = {
     productArr: [],
-    paramSort: {low: 0, high: 0, book: false, newspapers: false, magazines: false},
+    paramSort: {
+        low: 0,
+        high: 0,
+        type: {book: false, newspapers: false, magazines: false}
+    },
     paramFilter: "",
     stateProduct: {
         name: "",
@@ -117,7 +121,7 @@ export const sortOnCategoryAndPriceThunk = ({stateObj, currentPage}: any) => {
         await sortOnCategoryAndPrice({stateObj, currentPage})
             .then((items) => {
                 const {printingEditionArr, totalPages, currentPage} = items.data;
-                // console.log("DATA:", items);
+                console.log("DATA SORT CATEGOTY:", items);
                 dispatch({
                     type: 'PAGER',
                     payload: {

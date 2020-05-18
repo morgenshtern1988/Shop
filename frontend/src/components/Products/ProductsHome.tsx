@@ -23,18 +23,36 @@ export const ProductsHome = () => {
     const {currentPage} = pageReducer.pager;
 
     const dispatch = useDispatch();
-
+    const {low, high} = paramSort;
     useEffect(() => {
+        console.log("low:", paramSort.low);
+        console.log("high:", paramSort.high);
+        console.log("type:", paramSort.type);
+        console.log("-----");
+        console.log("paramFilter:", paramFilter);
         const page = loadPage();
         if (page !== currentPage) {
-            if (paramFilter !== "default") {
-                // console.log("SUSSSS DISPATCH")
+            if (paramFilter === "up-sort" || paramFilter === "down-sort") {
+                console.log("зашел в АП ДОВН");
                 dispatch(sortProductThunk({target: paramFilter, currentPage: page}));
-            } else if (paramSort.low > 0 && paramSort.high > 0) {
+            } else if (low > 0 && high > 0) {
+                console.log("защел в СОРТ");
                 dispatch(sortOnCategoryAndPriceThunk({stateObj: paramSort, currentPage}))
-            } else dispatch(getProductThunk(page));
+            } else {
+                console.log("зашел в последний");
+                dispatch(getProductThunk(page));
+            }
         }
     });
+
+    // useEffect(() => {
+    //     console.log("YA OTRABOTAL")
+    //     const page = loadPage();
+    //     if (paramSort.low > 0 && paramSort.high > 0 || paramSort.type.length !== 0) {
+    //         dispatch(sortOnCategoryAndPriceThunk({stateObj: paramSort, currentPage}))
+    //     } else dispatch(getProductThunk(page));
+    // }, [paramSort.click]);
+
 
     return (
         <div className="row container">

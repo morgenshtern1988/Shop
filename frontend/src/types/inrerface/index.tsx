@@ -85,10 +85,14 @@ export interface IParamFilter {
 export interface IParamSort {
     low: number,
     high: number,
-    book: boolean,
-    newspapers: boolean,
-    magazines: boolean,
+    type: any,
+    click: any,
+}
 
+export interface IType {
+    Book: boolean,
+    Newspapers: boolean,
+    Magazines: boolean,
 }
 
 export interface IAddProduct {

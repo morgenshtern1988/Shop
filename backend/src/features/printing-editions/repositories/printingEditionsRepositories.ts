@@ -37,32 +37,36 @@ export const adminUpdateProduct = async (reqPrintingEditions: any, id: string) =
 
 
 export const userShowProductAsync = async function (startIndex: number, limit: number) {
-    const totalPages = await resLengthCollection(limit);
-    const printingEditionArr = await printingEditionModel.find({}, null, {skip: startIndex, limit: limit})
+    let param = {};
+    const totalPages = await resLengthCollection({limit, param});
+    const printingEditionArr = await printingEditionModel.find(param, null, {skip: startIndex, limit: limit})
         .populate("author_ids");
     return {printingEditionArr, totalPages}
 };
 
 export const userSortProduct = async ({value: target, startIndex, limit}: any) => {
-    // console.log("rr:", target);
-    const totalPages = await resLengthCollection(limit);
-    // console.log("TP:", totalPages);
-    let printingEditionArr = await printingEditionModel.find({}).populate("author_ids");
+    let param = {};
+    const totalPages = await resLengthCollection({limit, param});
+    let printingEditionArr = await printingEditionModel.find(param).populate("author_ids");
     printingEditionArr.sort((a: any, b: any): any => {
         if (target.value === 'default') return printingEditionArr;
         if (a.price < b.price) return target.value === 'up-sort' ? -1 : 1;
         if (a.price > b.price) return target.value === 'up-sort' ? 1 : -1;
         if (a.price === b.price) return 0;
     });
-    // console.log(startIndex, "+", limit);
     printingEditionArr = printingEditionArr.splice(startIndex, limit);
-    // console.log("length:", printingEditionArr.length);
     return {printingEditionArr, totalPages}
 };
 
-export const userSortCategory = async ({startIndex, currentPage, limit, type}: any) => {
-    const totalPages = await resLengthCollection(limit);
-    const printingEditionArr = await printingEditionModel.find({type: type}, null, {skip: startIndex, limit: limit})
+export const userSortCategory = async ({startIndex, limit, type: types}: any) => {
+    const myType = Object.keys(types);
+    console.log("my tyoe:", myType);
+    console.log("staetIndex:", startIndex);
+    console.log("limit:", limit);
+    let param = {type: myType[0]};
+    const totalPages = await resLengthCollection({limit, param});
+    let printingEditionArr = await printingEditionModel.find(param)
         .populate("author_ids");
+    printingEditionArr = printingEditionArr.splice(startIndex, limit);
     return {printingEditionArr, totalPages}
 };
