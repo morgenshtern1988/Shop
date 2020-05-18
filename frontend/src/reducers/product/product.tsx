@@ -9,6 +9,8 @@ import {IAddProduct} from "../../types/inrerface";
 
 let initialState = {
     productArr: [],
+    paramSort: {low: 0, high: 0, book: false, newspapers: false, magazines: false},
+    paramFilter: "",
     stateProduct: {
         name: "",
         description: "",
@@ -51,17 +53,17 @@ export const productReducer = (state: any = initialState, action: any) => {
                 ...state,
                 productArr: filterProduct,
             };
-        case "SORT_PRODUCT":
-            const {res: products} = action.payload;
-            return {
-                ...state,
-                productArr: products,
-            };
         case "SORT_PRODUCT_UD_DOWN":
-            const {newArr} = action.payload;
+            const {paramFilter} = action.payload;
             return {
                 ...state,
-                productArr: newArr,
+                paramFilter: paramFilter,
+            };
+        case "SORT_PRODUCT":
+            const paramSort = action.payload;
+            return {
+                ...state,
+                paramSort: {...state.paramSort, ...paramSort},
             };
         default:
             return state;
@@ -74,6 +76,7 @@ export const getProductThunk = (currentPage: number) => {
         await fetchGetProducts(currentPage)
             .then((items) => {
                 const {printingEditionArr, totalPages, currentPage} = items.data;
+                console.log("get thunk product");
                 // console.log("DATA:", items.data);
                 dispatch({
                     type: 'PAGER',
@@ -95,7 +98,8 @@ export const sortProductThunk = ({target, currentPage}: any) => {
         sortProduct({target, currentPage})
             .then((items) => {
                 const {printingEditionArr, totalPages, currentPage} = items.data;
-                console.log("DATA:", items.data);
+                // console.log("DATA:", items.data);
+                console.log("sort product ");
                 dispatch({
                     type: 'PAGER',
                     payload: {

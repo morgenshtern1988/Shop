@@ -75,6 +75,19 @@ export interface IRegisterUser {
 export interface IProduct {
     productArr: Array<any>,
     stateProduct: IAddProduct,
+    paramSort: IParamSort,
+    paramFilter: string,
+}
+
+export interface IParamFilter {
+}
+
+export interface IParamSort {
+    low: number,
+    high: number,
+    book: boolean,
+    newspapers: boolean,
+    magazines: boolean,
 
 }
 

@@ -44,7 +44,7 @@ export const userShowProduct = async (query: any) => {
 export const sortProduct = async ({value, query}: any) => {
     let pagination = paramPagination(query);
     const {startIndex, currentPage, limit} = pagination;
-
+    // console.log(value, query, startIndex, currentPage, limit);
     const res = await userSortProduct({value, startIndex, limit});
     return {...res, currentPage: currentPage}
 };

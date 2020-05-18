@@ -5,13 +5,20 @@ import {RootState} from "../../types/inrerface";
 import {useDispatch, useSelector} from "react-redux";
 import {Catalog} from "../Catalog";
 import {Link} from "react-router-dom";
-import {getProductThunk} from "../../reducers/product/product";
+import {getProductThunk, sortOnCategoryAndPriceThunk, sortProductThunk} from "../../reducers/product/product";
 import {loadPage} from "../../helpers/pages";
 
 export const ProductsHome = () => {
 
+    const productReducer = (state: RootState) => state.productReducer;
+    const param = useSelector(productReducer);
+    const {paramFilter, paramSort} = param;
+    // console.log("PARAM:", paramSort);
+
     const pagereducer = (state: RootState) => state.pageReducer;
     const pageReducer = useSelector(pagereducer);
+
+
     const {pageOfItems, pager} = pageReducer;
     const {currentPage} = pageReducer.pager;
 
@@ -20,7 +27,12 @@ export const ProductsHome = () => {
     useEffect(() => {
         const page = loadPage();
         if (page !== currentPage) {
-            dispatch(getProductThunk(page));
+            if (paramFilter !== "default") {
+                // console.log("SUSSSS DISPATCH")
+                dispatch(sortProductThunk({target: paramFilter, currentPage: page}));
+            } else if (paramSort.low > 0 && paramSort.high > 0) {
+                dispatch(sortOnCategoryAndPriceThunk({stateObj: paramSort, currentPage}))
+            } else dispatch(getProductThunk(page));
         }
     });
 

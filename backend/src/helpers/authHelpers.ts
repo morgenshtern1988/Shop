@@ -43,6 +43,7 @@ export const paramPagination = (query: any) => {
 
 export const resLengthCollection = async (limit: number) => {
     const res = await printingEditionModel.find({});
+    // console.log("RESL",res.length)
     let totalPages = [];
     for (let i = 1; i <= Math.ceil(res.length / limit); i++) {
         totalPages.push(i)

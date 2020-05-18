@@ -44,16 +44,19 @@ export const userShowProductAsync = async function (startIndex: number, limit: n
 };
 
 export const userSortProduct = async ({value: target, startIndex, limit}: any) => {
+    // console.log("rr:", target);
     const totalPages = await resLengthCollection(limit);
-    let newArr = await printingEditionModel.find({}, null, {skip: startIndex, limit: limit})
-        .populate("author_ids");
-    const printingEditionArr = [...newArr];
+    // console.log("TP:", totalPages);
+    let printingEditionArr = await printingEditionModel.find({}).populate("author_ids");
     printingEditionArr.sort((a: any, b: any): any => {
-        if (target.value === 'default') return newArr;
+        if (target.value === 'default') return printingEditionArr;
         if (a.price < b.price) return target.value === 'up-sort' ? -1 : 1;
         if (a.price > b.price) return target.value === 'up-sort' ? 1 : -1;
         if (a.price === b.price) return 0;
     });
+    // console.log(startIndex, "+", limit);
+    printingEditionArr = printingEditionArr.splice(startIndex, limit);
+    // console.log("length:", printingEditionArr.length);
     return {printingEditionArr, totalPages}
 };
 

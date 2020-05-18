@@ -7,9 +7,11 @@ export const Filter = (currentPage: any) => {
 
     const dispatch = useDispatch();
     const sortList = (event: any) => {
+        dispatch({type: "SORT_PRODUCT_UD_DOWN", payload: {paramFilter: event.target.value}});
         let page = loadPage();
-        dispatch(sortProductThunk({target: event.target, currentPage: page}));
+        dispatch(sortProductThunk({target: event.target.value, currentPage: page}));
     };
+
     const searchCurrency = ({target}: any) => {
         // let newArr = [...products];
         // if (target.value !== "DEFAULT") {
@@ -31,7 +33,7 @@ export const Filter = (currentPage: any) => {
                 <option value="UAN">UAN</option>
             </select>
             <span>Sort By</span>
-            <select name="sort" id="sort" onChange={sortList}>
+            <select name="sort" id="sort" onChange={(event: any) => sortList(event)}>
                 <option value="default">Default</option>
                 <option value="down-sort">Price:Low to high</option>
                 <option value="up-sort">Price:High to Low</option>

@@ -16,10 +16,6 @@ export const ProductHomeContainer = () => {
     const {currentPage} = pageReducer.pager;
     const dispatch = useDispatch();
 
-    useEffect(() => {
-        dispatch(getProductThunk(currentPage));
-    }, []);
-
     return (
         <>
             <HeaderContainer/>
