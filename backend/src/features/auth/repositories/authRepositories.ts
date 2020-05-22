@@ -5,8 +5,7 @@ import * as bcrypt from 'bcrypt';
 
 export const registerUser = async (user: IUser) => {
     user.password = await bcrypt.hash(user.password, 10);
-    const result = await userModel.insertMany(user);
-    return result
+    return await userModel.insertMany(user);
 };
 
 export const updateTokens = async (user: any) => {

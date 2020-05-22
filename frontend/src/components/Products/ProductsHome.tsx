@@ -13,7 +13,6 @@ export const ProductsHome = () => {
     const productReducer = (state: RootState) => state.productReducer;
     const param = useSelector(productReducer);
     const {paramFilter, paramSort} = param;
-    // console.log("PARAM:", paramSort);
 
     const pagereducer = (state: RootState) => state.pageReducer;
     const pageReducer = useSelector(pagereducer);
@@ -25,11 +24,11 @@ export const ProductsHome = () => {
     const dispatch = useDispatch();
     const {low, high} = paramSort;
     useEffect(() => {
-        console.log("low:", paramSort.low);
-        console.log("high:", paramSort.high);
-        console.log("type:", paramSort.type);
-        console.log("-----");
-        console.log("paramFilter:", paramFilter);
+        // console.log("low:", paramSort.low);
+        // console.log("high:", paramSort.high);
+        // console.log("type:", paramSort.type);
+        // console.log("-----");
+        // console.log("paramFilter:", paramFilter);
         const page = loadPage();
         if (page !== currentPage) {
             if (paramFilter === "up-sort" || paramFilter === "down-sort") {
@@ -44,16 +43,7 @@ export const ProductsHome = () => {
             }
         }
     });
-
-    // useEffect(() => {
-    //     console.log("YA OTRABOTAL")
-    //     const page = loadPage();
-    //     if (paramSort.low > 0 && paramSort.high > 0 || paramSort.type.length !== 0) {
-    //         dispatch(sortOnCategoryAndPriceThunk({stateObj: paramSort, currentPage}))
-    //     } else dispatch(getProductThunk(page));
-    // }, [paramSort.click]);
-
-
+    
     return (
         <div className="row container">
             <div className="col-3">

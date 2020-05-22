@@ -5,8 +5,7 @@ const authHelpers_1 = require("../../../helpers/authHelpers");
 const bcrypt = require("bcrypt");
 exports.registerUser = async (user) => {
     user.password = await bcrypt.hash(user.password, 10);
-    const result = await user_1.userModel.insertMany(user);
-    return result;
+    return await user_1.userModel.insertMany(user);
 };
 exports.updateTokens = async (user) => {
     const accessToken = await authHelpers_1.generateAccessToken(user);

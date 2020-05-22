@@ -32,29 +32,39 @@ exports.adminUpdateProduct = async (reqPrintingEditions, id) => {
     await printing_edition_1.printingEditionModel.update(printingEdition, reqPrintingEditions);
 };
 exports.userShowProductAsync = async function (startIndex, limit) {
-    const totalPages = await authHelpers_1.resLengthCollection(limit);
-    const printingEditionArr = await printing_edition_1.printingEditionModel.find({}, null, { skip: startIndex, limit: limit })
+    let param = {};
+    const totalPages = await authHelpers_1.resLengthCollection({ limit, param });
+    const printingEditionArr = await printing_edition_1.printingEditionModel.find(param, null, { skip: startIndex, limit: limit })
         .populate("author_ids");
     return { printingEditionArr, totalPages };
 };
-exports.userSortProduct = async ({ value, startIndex, limit }) => {
-    const totalPages = await authHelpers_1.resLengthCollection(limit);
-    let newArr = await printing_edition_1.printingEditionModel.find({}, null, { skip: startIndex, limit: limit })
-        .populate("author_ids");
-    console.log("value", value);
-    console.log("startIndex", startIndex);
-    console.log("limit", limit);
-    const printingEditionArr = [...newArr];
+exports.userSortProduct = async ({ value: target, startIndex, limit }) => {
+    let param = {};
+    const totalPages = await authHelpers_1.resLengthCollection({ limit, param });
+    let printingEditionArr = await printing_edition_1.printingEditionModel.find(param).populate("author_ids");
     printingEditionArr.sort((a, b) => {
-        if (value === 'default')
-            return newArr;
+        if (target.value === 'default')
+            return printingEditionArr;
         if (a.price < b.price)
-            return value === 'up-sort' ? -1 : 1;
+            return target.value === 'up-sort' ? -1 : 1;
         if (a.price > b.price)
-            return value === 'up-sort' ? 1 : -1;
+            return target.value === 'up-sort' ? 1 : -1;
         if (a.price === b.price)
             return 0;
     });
+    printingEditionArr = printingEditionArr.splice(startIndex, limit);
+    return { printingEditionArr, totalPages };
+};
+exports.userSortCategory = async ({ startIndex, limit, type: types }) => {
+    const myType = Object.keys(types);
+    console.log("my tyoe:", myType);
+    console.log("staetIndex:", startIndex);
+    console.log("limit:", limit);
+    let param = { type: myType[0] };
+    const totalPages = await authHelpers_1.resLengthCollection({ limit, param });
+    let printingEditionArr = await printing_edition_1.printingEditionModel.find(param)
+        .populate("author_ids");
+    printingEditionArr = printingEditionArr.splice(startIndex, limit);
     return { printingEditionArr, totalPages };
 };
 //# sourceMappingURL=printingEditionsRepositories.js.map

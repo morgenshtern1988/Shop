@@ -33,4 +33,9 @@ exports.userSortProduct = async (req, res) => {
         .then((printingEdition) => res.json(printingEdition))
         .catch((err) => res.json(err));
 };
+exports.userSortCategory = async (req, res) => {
+    printingEditionsServices_1.sortOnCategory({ sortParam: req.body, query: req.query })
+        .then((printingEdition) => res.json(printingEdition))
+        .catch((err) => res.json(err));
+};
 //# sourceMappingURL=printingEgitions.handler.js.map

@@ -22,6 +22,10 @@ export const UsersSchema = new mongoose.Schema({
     password: {
         type: String, required: true
     },
+    confirmed: {
+        type: Boolean,
+        default: false
+    },
     role: {
         type: userRoleType,
     }

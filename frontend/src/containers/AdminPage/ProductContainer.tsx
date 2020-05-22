@@ -8,7 +8,7 @@ import {getAuthorsThunk} from "../../reducers/authors";
 
 export const ProductContainer = (props: any) => {
 
-    const productReducer = (state: RootState) => state.productReducer.productArr;
+    const productReducer = (state: RootState) => state.pageReducer.pageOfItems;
     const products = useSelector(productReducer);
 
     const dispatch = useDispatch();

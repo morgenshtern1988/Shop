@@ -35,8 +35,9 @@ exports.paramPagination = (query) => {
     const startIndex = limit * (currentPage - 1);
     return { startIndex, currentPage, limit };
 };
-exports.resLengthCollection = async (limit) => {
-    const res = await printing_edition_1.printingEditionModel.find({});
+exports.resLengthCollection = async ({ limit, param }) => {
+    const res = await printing_edition_1.printingEditionModel.find(param);
+    console.log("RESULT LENGTH", res.length);
     let totalPages = [];
     for (let i = 1; i <= Math.ceil(res.length / limit); i++) {
         totalPages.push(i);

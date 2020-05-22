@@ -25,5 +25,6 @@ exports.adminProductRouter.put("/:id", auth_handlers_1.tokenAccessLifeCheck, aut
 exports.adminProductRouter.get("/user", auth_handlers_1.tokenAccessLifeCheck, auth_middleware_1.AuthMiddleware, permission_middleware_1.PermissionMiddleware([1]), handlers_2.adminShowUser);
 exports.userProductRouter = express_1.Router();
 exports.userProductRouter.get("/", printingEgitions_handler_1.userShowProductAsync);
-exports.userProductRouter.post("/sort", printingEgitions_handler_1.userSortProduct);
+exports.userProductRouter.post("/sort-filter", printingEgitions_handler_1.userSortProduct);
+exports.userProductRouter.post("/sort-category", printingEgitions_handler_1.userSortCategory);
 //# sourceMappingURL=index.js.map

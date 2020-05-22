@@ -9,4 +9,6 @@ exports.authRouter.post("/login", auth_handlers_1.authenticateUser);
 exports.authRouter.get("/refresh-tokens", auth_handlers_1.refreshTokens);
 exports.authRouter.post("/access-tokens", auth_handlers_1.tokenAccessLifeCheck);
 exports.authRouter.get("/getUserInfo", auth_middleware_1.AuthMiddleware, auth_handlers_1.getUserInfo);
+exports.authRouter.post("/email", auth_handlers_1.collectEmail);
+// authRouter.get('/email/confirm/:id', confirmEmail);
 //# sourceMappingURL=index.js.map

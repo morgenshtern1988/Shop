@@ -2,11 +2,8 @@ import {Response, Request, NextFunction} from "express";
 import {createUser, loginUser} from "../services/auth.services";
 import * as jwt from "jsonwebtoken";
 import appJwt from "../../../config/app";
-import {tokenModel} from "../../../dataAccess/entityModels/tokien";
 import {updateTokens} from "../repositories/authRepositories";
 import {userModel} from "../../../dataAccess/entityModels/user";
-import {AuthMiddleware} from "../../../middleware/auth.middleware";
-import {controllerRole} from "../../../controllers/auth";
 
 export const getUserInfo = async (req: Request, res: Response) => {
     const userInDb = await userModel.findById(req.user.id);
@@ -68,3 +65,61 @@ export const refreshTokens = async (request: Request, response: Response) => {
     }
 };
 
+import msgs from "../email.msgs"
+import sendEmail from "../email.send";
+import templates from "../email.templates";
+
+export const collectEmail = async (req: Request, res: Response) => {
+    const {email, firstName, lastName, password} = req.body;
+    await userModel.findOne({email})
+        .then((user: any) => {
+            // У нас новый пользователь! Отправьте им подтверждение по электронной почте.
+            if (!user) {
+                userModel.create({email, firstName, lastName, password})
+                    .then(newUser => sendEmail(newUser.email, templates.confirm(newUser._id)))
+                    .then(() => res.json({msg: msgs.confirm}))
+                    .catch(err => console.log(err))
+            }
+                // Мы уже видели этот адрес электронной почты. Но пользователь не имеет
+            // нажали на ссылку подтверждения. Отправить еще одно подтверждение по электронной почте.
+            else if (user && !user.confirmed) {
+                sendEmail(user.email, templates.confirm(user._id))
+                    .then(() => res.json({msg: msgs.resend}))
+            }
+            // Пользователь уже подтвердил этот адрес электронной почты
+            else {
+                res.json({msg: msgs.alreadyConfirmed})
+            }
+
+        })
+        .catch(err => {
+            console.log("EEEEERRRRRRRRRORRRRRRRRR")
+            console.log(err)
+        })
+};
+/*
+export const confirmEmail = async (req: Request, res: Response) => {
+    const {id} = req.params;
+    await userModel.findById(id)
+        .then(user => {
+            // Пользователь с таким идентификатором не существует в БД. Возможно, некоторые хитрые
+            // пользователь попытался перейти на URL, отличный от того, который указан в
+            // подтверждение по электронной почте.
+            if (!user) {
+                res.json({msg: msgs.couldNotFind})
+            }
+                // Пользователь существует, но не был подтвержден. Мы должны подтвердить это
+            // Пользователь и сообщить им, что их адрес электронной почты подтвержден.
+            else if (user && !user.confirmed) {
+                userModel.findByIdAndUpdate(id, {confirmed: true})
+                    .then(() => res.json({msg: msgs.confirmed}))
+                    .catch(err => console.log(err))
+            }
+            // Пользователь уже подтвердил этот адрес электронной почты.
+            else {
+                res.json({msg: msgs.alreadyConfirmed})
+            }
+        })
+        .catch(err => console.log(err))
+};
+*/
