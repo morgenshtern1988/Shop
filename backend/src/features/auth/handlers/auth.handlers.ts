@@ -93,11 +93,10 @@ export const collectEmail = async (req: Request, res: Response) => {
 
         })
         .catch(err => {
-            console.log("EEEEERRRRRRRRRORRRRRRRRR")
             console.log(err)
         })
 };
-/*
+
 export const confirmEmail = async (req: Request, res: Response) => {
     const {id} = req.params;
     await userModel.findById(id)
@@ -122,4 +121,4 @@ export const confirmEmail = async (req: Request, res: Response) => {
         })
         .catch(err => console.log(err))
 };
-*/
+

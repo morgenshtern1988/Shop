@@ -4,7 +4,7 @@ import {
     authenticateUser,
     refreshTokens,
     tokenAccessLifeCheck,
-    getUserInfo, collectEmail
+    getUserInfo, collectEmail, confirmEmail
 } from "./handlers/auth.handlers"
 import {AuthMiddleware} from "../../middleware/auth.middleware";
 
@@ -18,4 +18,4 @@ authRouter.get("/getUserInfo", AuthMiddleware, getUserInfo);
 
 
 authRouter.post("/email", collectEmail);
-// authRouter.get('/email/confirm/:id', confirmEmail);
+authRouter.get('/email/confirm/:id', confirmEmail);

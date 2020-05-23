@@ -1,3 +1,4 @@
+require('dotenv').config();
 const nodemailer = require('nodemailer');
 
 // Учетные данные для учетной записи электронной почты, с которой вы хотите отправлять почту
@@ -6,7 +7,7 @@ const credentials = {
     port: 465,
     secure: true,
     auth: {
-        // These environment variables will be pulled from the .env file
+        // Эти переменные окружения будут извлечены из файла .env
         user: process.env.MAIL_USER,
         pass: process.env.MAIL_PASS
     }
@@ -27,7 +28,7 @@ export default async (to: any, content: any) => {
 
 // Объединяем контент и контакты в один объект, который может
     // быть переданным Nodemailer.
-    const email = Object.assign({}, content, contacts)
+    const email = Object.assign({}, content, contacts);
 // Этот файл импортируется в контроллер как «sendEmail». Потому что
     // 'transporter.sendMail ()' ниже возвращает обещание, что мы можем написать такой код
     // в контроллере, когда мы используем функцию sendEmail ().
