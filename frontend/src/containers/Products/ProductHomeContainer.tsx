@@ -24,7 +24,6 @@ export const ProductHomeContainer = () => {
                        render={() => <ProductsHome/>}/>
                 <Route path={"/printing-editing/" + redirect._id}
                        render={() => <ProductInfo product={redirect.product}/>}/>
-                <Route path={"/printing-editing"} render={() => <h1>LLL</h1>}/>
             </Switch>
         </>
     )

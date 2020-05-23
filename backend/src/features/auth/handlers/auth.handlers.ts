@@ -1,8 +1,8 @@
 import {Response, Request, NextFunction} from "express";
-import {createUser, loginUser} from "../services/auth.services";
+import {loginUser} from "../services/auth.services";
 import * as jwt from "jsonwebtoken";
 import appJwt from "../../../config/app";
-import {updateTokens} from "../repositories/authRepositories";
+import {registerUserByEmail, updateTokens} from "../repositories/authRepositories";
 import {userModel} from "../../../dataAccess/entityModels/user";
 
 export const getUserInfo = async (req: Request, res: Response) => {
@@ -12,12 +12,6 @@ export const getUserInfo = async (req: Request, res: Response) => {
         firstName, lastName, role, email,
     };
     res.json(data);
-};
-
-export const registerUser = async (request: Request, response: Response) => {
-    createUser(request.body)
-        .then(user => response.json(user))
-        .catch(err => response.json(err))
 };
 
 export const authenticateUser = async (request: Request, response: Response, next: NextFunction) => {
@@ -75,7 +69,7 @@ export const collectEmail = async (req: Request, res: Response) => {
         .then((user: any) => {
             // У нас новый пользователь! Отправьте им подтверждение по электронной почте.
             if (!user) {
-                userModel.create({email, firstName, lastName, password})
+                registerUserByEmail(req.body)
                     .then(newUser => sendEmail(newUser.email, templates.confirm(newUser._id)))
                     .then(() => res.json({msg: msgs.confirm}))
                     .catch(err => console.log(err))
@@ -99,6 +93,7 @@ export const collectEmail = async (req: Request, res: Response) => {
 
 export const confirmEmail = async (req: Request, res: Response) => {
     const {id} = req.params;
+    console.log(req.params);
     await userModel.findById(id)
         .then(user => {
             // Пользователь с таким идентификатором не существует в БД. Возможно, некоторые хитрые

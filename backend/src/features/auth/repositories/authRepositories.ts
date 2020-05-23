@@ -3,9 +3,9 @@ import {userModel} from "../../../dataAccess/entityModels/user";
 import {generateAccessToken, replaceDbRefreshToken, generateRefreshToken} from "../../../helpers/authHelpers";
 import * as bcrypt from 'bcrypt';
 
-export const registerUser = async (user: IUser) => {
+export const registerUserByEmail = async (user:any) => {
     user.password = await bcrypt.hash(user.password, 10);
-    return await userModel.insertMany(user);
+    return await userModel.create(user);
 };
 
 export const updateTokens = async (user: any) => {

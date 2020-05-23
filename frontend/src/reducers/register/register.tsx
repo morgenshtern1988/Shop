@@ -7,7 +7,8 @@ let initialState = {
     email: "",
     password: "",
     confirmPassword: "",
-    confirmationCode: "",
+    loading: true,
+    info: "",
 };
 
 export const registerReducer = (state: any = initialState, action: any) => {

@@ -69,6 +69,8 @@ export interface IRegisterUser {
     password: string,
     confirmPassword: string,
     confirmationCode: string,
+    loading:boolean,
+    info:string,
 
 }
 

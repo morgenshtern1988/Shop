@@ -10,7 +10,7 @@ export default {
     confirm: (id: any) => ({
         subject: 'Printing-Editing',
         html: `
-         <a style="font-size: 25px; color:#1edb56; background-color: #1b0606; padding: 7px" href="http://localhost:${PORT.appPort}/auth/email/confirm/${id}">
+         <a style="font-size: 25px; color:#1edb56; background-color: #1b0606; padding: 7px" href="http://localhost:3000/auth/register/done/?id=${id}">
            Click to confirm email
          </a>
        `,

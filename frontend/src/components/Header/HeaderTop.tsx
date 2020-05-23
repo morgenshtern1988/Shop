@@ -3,6 +3,7 @@ import {Role} from "../../helpers/role";
 import Button from "../Button";
 import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../../types/inrerface";
+import {Link, Redirect} from "react-router-dom";
 
 export const HeaderTop = ({cleanLocalStorage}: any) => {
     const isActiveReducer = (state: RootState) => state.isActiveReducer;
@@ -91,8 +92,8 @@ export const HeaderTop = ({cleanLocalStorage}: any) => {
                                 </>
                                 :
                                 <>
-                                    <a href="http://localhost:3000/auth/login">Log in</a>
-                                    <a href="http://localhost:3000/auth/register">Sign up</a>
+                                    <Link to="/auth/login">Log in</Link>
+                                    <Link to="/auth/register">Sign up</Link>
                                 </>
                         }
                     </div>
