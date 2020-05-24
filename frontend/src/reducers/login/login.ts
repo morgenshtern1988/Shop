@@ -32,15 +32,6 @@ export const loginReducer = (state: any = initialState, action: any) => {
                 ...action.payload,
             };
         }
-        /*  case TYPES.LOGIN_LOGIN_FAILED: {
-              const {data} = action.payload;
-              return {
-                  ...state,
-                  token: {...data},
-                  loading: false,
-                  error: "error"
-              };
-          }*/
         case TYPES.LOGIN_USER_IN_DB: {
             const {user} = action.payload;
             return {
@@ -49,10 +40,11 @@ export const loginReducer = (state: any = initialState, action: any) => {
             }
         }
         case TYPES.LOGIN_LOGIN_SUCCESS: {
-            const {data} = action.payload;
+            const {data, auth} = action.payload;
             return {
                 ...state,
                 token: {...data},
+                isAuthenticated: auth,
                 loading: false
             };
         }
@@ -76,13 +68,11 @@ export const singInUser = (data: any) => {
                     throw new Error(data.msg)
                 } else {
                     localStorage.setItem('token', JSON.stringify(data));
-                    dispatch({type: "@@login/LOGIN_SUCCESS", payload: {data}});
-                    dispatch({type: "@@login/ERROR", payload: ""})
-                    dispatch({type: "@@login/AUTH_VALUE", payload: true});
+                    dispatch({type: "@@login/LOGIN_SUCCESS", payload: {data, auth: true}});
+                    dispatch({type: "@@login/ERROR", payload: ""});
                 }
             })
             .catch((err) => {
-                    console.log("словила ошибку:", err.message);
                     dispatch({type: "@@login/ERROR", payload: err.message})
                 }
             );

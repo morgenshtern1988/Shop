@@ -7,6 +7,7 @@ import {Catalog} from "../Catalog";
 import {Link} from "react-router-dom";
 import {getProductThunk, sortOnCategoryAndPriceThunk, sortProductThunk} from "../../reducers/product/product";
 import {loadPage} from "../../helpers/pages";
+import {Paginate} from "../Pagination";
 
 export const ProductsHome = () => {
 
@@ -17,18 +18,12 @@ export const ProductsHome = () => {
     const pagereducer = (state: RootState) => state.pageReducer;
     const pageReducer = useSelector(pagereducer);
 
-
     const {pageOfItems, pager} = pageReducer;
     const {currentPage} = pageReducer.pager;
 
     const dispatch = useDispatch();
     const {low, high} = paramSort;
     useEffect(() => {
-        // console.log("low:", paramSort.low);
-        // console.log("high:", paramSort.high);
-        // console.log("type:", paramSort.type);
-        // console.log("-----");
-        // console.log("paramFilter:", paramFilter);
         const page = loadPage();
         if (page !== currentPage) {
             if (paramFilter === "up-sort" || paramFilter === "down-sort") {
@@ -43,7 +38,7 @@ export const ProductsHome = () => {
             }
         }
     });
-    
+
     return (
         <div className="row container">
             <div className="col-3">
@@ -62,30 +57,7 @@ export const ProductsHome = () => {
                     }
                 </div>
             </div>
-            <div className="card-footer pb-0 pt-3">
-                {pager.pages && pager.pages.length &&
-                <ul className="pagination">
-                    <li className={`page-item first-item ${pager.currentPage === 1 ? 'disabled' : ''}`}>
-                        <Link to={{search: `?page=1`}} className="page-link">First</Link>
-                    </li>
-                    <li className={`page-item previous-item ${pager.currentPage === 1 ? 'disabled' : ''}`}>
-                        <Link to={{search: `?page=${pager.currentPage - 1}`}} className="page-link">Previous</Link>
-                    </li>
-                    {pager.pages.map((page: any) =>
-                        <li key={page}
-                            className={`page-item number-item ${pager.currentPage === page ? 'active' : ''}`}>
-                            <Link to={{search: `?page=${page}`}} className="page-link">{page}</Link>
-                        </li>
-                    )}
-                    <li className={`page-item next-item ${pager.currentPage === pager.totalPages ? 'disabled' : ''}`}>
-                        <Link to={{search: `?page=${pager.currentPage + 1}`}} className="page-link">Next</Link>
-                    </li>
-                    <li className={`page-item last-item ${pager.currentPage === pager.totalPages ? 'disabled' : ''}`}>
-                        <Link to={{search: `?page=${pager.totalPages}`}} className="page-link">Last</Link>
-                    </li>
-                </ul>
-                }
-            </div>
+            <Paginate pager={pager}/>
         </div>
     )
 };

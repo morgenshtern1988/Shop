@@ -9,11 +9,6 @@ export const HeaderBottom = () => {
     const filterReducer = (state: RootState) => state.productReducer.productArr;
     const products = useSelector(filterReducer);
 
-    const pagereducer = (state: RootState) => state.pageReducer;
-    const pageReducer = useSelector(pagereducer);
-    // console.log(pageReducer);
-    const {currentPage} = pageReducer.pager;
-
     const dispatch = useDispatch();
 
     const handleSearch = ({products, value}: any) => {

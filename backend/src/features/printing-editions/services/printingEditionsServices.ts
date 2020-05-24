@@ -17,8 +17,11 @@ export async function createProduct(printingEdition: IPrintingEdition) {
     }
 }
 
-export async function showProduct() {
-    return await adminShowProduct()
+export async function showProduct(query: any) {
+    let pagination = paramPagination(query);
+    const {startIndex, currentPage, limit} = pagination;
+    const res = await adminShowProduct(startIndex, limit);
+    return {...res, currentPage: currentPage}
 }
 
 

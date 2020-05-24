@@ -1,7 +1,7 @@
 import {
     deleteProduct,
     fetchAddNewProduct,
-    fetchGetProducts,
+    fetchGetProducts, getAdminProducts,
     sortOnCategoryAndPrice,
     sortProduct
 } from "../../services/productsApi";
@@ -81,6 +81,27 @@ export const getProductThunk = (currentPage: number) => {
             .then((items) => {
                 const {printingEditionArr, totalPages, currentPage} = items.data;
                 console.log("get thunk product");
+                // console.log("DATA:", items.data);
+                dispatch({
+                    type: 'PAGER',
+                    payload: {
+                        pager: {currentPage: currentPage, totalPages: totalPages.length, pages: totalPages},
+                        pageOfItems: printingEditionArr
+                    }
+                });
+            })
+            .catch(() => {
+                console.log("unsuccessfully received data of DB");
+                // dispatch({type: 'INIT_PRODUCT', payload: []})
+            })
+    }
+};
+export const getProductAdminThunk = (currentPage: number) => {
+    return async (dispatch: any) => {
+        await getAdminProducts(currentPage)
+            .then((items) => {
+                const {printingEditionArr, totalPages, currentPage} = items.data;
+                // console.log("get thunk product");
                 // console.log("DATA:", items.data);
                 dispatch({
                     type: 'PAGER',

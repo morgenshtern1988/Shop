@@ -8,11 +8,10 @@ import {
 } from "../services/printingEditionsServices"
 
 export const adminShowProduct = async function (request: Request, response: Response) {
-    showProduct()
-        .then((printingEdition) => response.json(printingEdition))
+    showProduct(request.query)
+        .then((printingEdition: any) => response.json(printingEdition))
         .catch((err) => response.json(err))
 };
-
 
 export const adminCreateProduct = async (request: Request, response: Response): Promise<any> => {
     createProduct(request.body)

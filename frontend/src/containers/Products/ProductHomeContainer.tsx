@@ -10,12 +10,6 @@ export const ProductHomeContainer = () => {
     const redirectReducer = (state: RootState) => state.redirectReducer;
     const redirect = useSelector(redirectReducer);
 
-    const pagereducer = (state: RootState) => state.pageReducer;
-    const pageReducer = useSelector(pagereducer);
-
-    const {currentPage} = pageReducer.pager;
-    const dispatch = useDispatch();
-
     return (
         <>
             <HeaderContainer/>

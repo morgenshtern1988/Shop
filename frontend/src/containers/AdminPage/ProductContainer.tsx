@@ -6,18 +6,13 @@ import {getProductThunk} from "../../reducers/product/product";
 import {filterCategory} from "../../infrastructure/FilterCategory";
 import {getAuthorsThunk} from "../../reducers/authors";
 
-export const ProductContainer = (props: any) => {
+export const ProductContainer = () => {
 
     const productReducer = (state: RootState) => state.pageReducer.pageOfItems;
     const products = useSelector(productReducer);
 
-    const dispatch = useDispatch();
-
     const [stateCategory, setStateCategory] = useState({book: "", newspapers: "", magazines: ""});
-    // useEffect(() => {
-    //     dispatch(getProductThunk());
-    //     dispatch(getAuthorsThunk())
-    // }, []);
+
     return (
         <>
             <ProductsTable

@@ -5,6 +5,10 @@ export const fetchGetProducts = async (currentPage: number): Promise<any> => {
     const {data} = await api.get(`/printing-edition?page=${currentPage}`);
     return {data};
 };
+export const getAdminProducts = async (currentPage: number): Promise<any> => {
+    const {data} = await api.get(`/admin/printing-edition?page=${currentPage}`);
+    return {data};
+};
 
 export const sortProduct = async ({target, currentPage}: any) => {
     const {data} = await api.post(`/printing-edition/sort-filter?page=${currentPage}`, {

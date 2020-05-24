@@ -3,7 +3,7 @@ import {Role} from "../../helpers/role";
 import Button from "../Button";
 import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../../types/inrerface";
-import {Link, Redirect} from "react-router-dom";
+import {Link} from "react-router-dom";
 
 export const HeaderTop = ({cleanLocalStorage}: any) => {
     const isActiveReducer = (state: RootState) => state.isActiveReducer;
@@ -61,7 +61,7 @@ export const HeaderTop = ({cleanLocalStorage}: any) => {
                                                 {
                                                     isActive.dashboard ?
                                                         <div className="position-absolute list flex-column">
-                                                            <a href="http://localhost:3000/admin/printing-editing">Product</a>
+                                                            <Link to={"/admin/printing-editing?page=1"}>Product</Link>
                                                             <a href="http://localhost:3000/admin/authors">Author</a>
                                                             <a href="http://localhost:3000/admin/users">Users</a>
                                                             <a href="http://localhost:3000/admin/orders">Orders</a>

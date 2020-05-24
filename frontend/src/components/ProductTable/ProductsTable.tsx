@@ -4,12 +4,31 @@ import {Table} from "react-bootstrap";
 import {useDispatch, useSelector} from "react-redux";
 import Button from "../Button";
 import {RootState} from "../../types/inrerface";
+import {Paginate} from "../Pagination";
+import {loadPage} from "../../helpers/pages";
+import {getProductAdminThunk} from "../../reducers/product/product";
+import {getAuthorsThunk} from "../../reducers/authors";
 
 const ProductsTable = ({products, filterCategory, setStateCategory, stateCategory}: any) => {
 
     const isActiveReducer = (state: RootState) => state.isActiveReducer;
     const isActive = useSelector(isActiveReducer);
+
+    const pagereducer = (state: RootState) => state.pageReducer;
+    const pageReducer = useSelector(pagereducer);
+    const {pager} = pageReducer;
+
+    const {currentPage} = pageReducer.pager;
+
     const dispatch = useDispatch();
+
+    useEffect(() => {
+        const page = loadPage();
+        if (page !== currentPage) {
+            dispatch(getProductAdminThunk(page));
+            dispatch(getAuthorsThunk())
+        }
+    });
 
     useEffect(() => {
         const res = [...stateCategory.book, ...stateCategory.newspapers, ...stateCategory.magazines];
@@ -91,6 +110,7 @@ const ProductsTable = ({products, filterCategory, setStateCategory, stateCategor
                 }
                 </tbody>
             </Table>
+            <Paginate pager={pager}/>
         </div>
     )
 };

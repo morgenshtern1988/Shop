@@ -5,7 +5,7 @@ import App from "./App";
 import {PersistGate} from "redux-persist/integration/react"
 import {BrowserRouter} from "react-router-dom";
 import {store, persistor} from "./store/store";
-// forceRefresh={true}
+
 ReactDOM.render(
     <BrowserRouter>
         <Provider store={store}>

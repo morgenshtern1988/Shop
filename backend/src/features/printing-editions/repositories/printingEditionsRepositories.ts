@@ -3,8 +3,12 @@ import {IPrintingEdition} from "../../../types/interface/printingEdition";
 import {authorModel} from "../../../dataAccess/entityModels/authors";
 import {resLengthCollection} from "../../../helpers/authHelpers";
 
-export const adminShowProduct = async function () {
-    return printingEditionModel.find({}).populate("author_ids");
+export const adminShowProduct = async function (startIndex: number, limit: number) {
+    let param = {};
+    const totalPages = await resLengthCollection({limit, param});
+    const printingEditionArr = await printingEditionModel.find(param, null, {skip: startIndex, limit: limit})
+        .populate("author_ids");
+    return {printingEditionArr, totalPages}
 };
 
 export const adminCreateProduct = async (printingEdition: IPrintingEdition) => {
