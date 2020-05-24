@@ -1,5 +1,6 @@
 import {Request, Response, NextFunction, query} from "express";
 import {
+    categorySort,
     createProduct,
     removeProduct,
     showProduct, sortOnCategory, sortProduct,
@@ -47,6 +48,12 @@ export const userSortProduct = async (req: Request, res: Response) => {
 
 export const userSortCategory = async (req: Request, res: Response) => {
     sortOnCategory({sortParam: req.body, query: req.query})
+        .then((printingEdition: any) => res.json(printingEdition))
+        .catch((err) => res.json(err))
+};
+
+export const sortCategory = async (req: Request, res: Response) => {
+    categorySort({type: req.body.value, query: req.query})
         .then((printingEdition: any) => res.json(printingEdition))
         .catch((err) => res.json(err))
 };

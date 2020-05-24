@@ -32,7 +32,7 @@ export const replaceDbRefreshToken = (tokenId: string, userId: string) =>
 
 
 export const paramPagination = (query: any) => {
-    const limit = 6;
+    const limit = 7;
     let currentPage = +query.page || 1;
     if (currentPage < 1) {
         currentPage = 1;
@@ -43,7 +43,6 @@ export const paramPagination = (query: any) => {
 
 export const resLengthCollection = async ({limit,param}: any) => {
     const res = await printingEditionModel.find(param);
-    console.log("RESULT LENGTH",res.length)
     let totalPages = [];
     for (let i = 1; i <= Math.ceil(res.length / limit); i++) {
         totalPages.push(i)

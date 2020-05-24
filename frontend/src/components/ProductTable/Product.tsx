@@ -3,11 +3,7 @@ import Button from "../Button";
 import {deleteBookInDB} from "../../reducers/product/product";
 import {useDispatch} from "react-redux";
 
-const Product = ({product}: any) => {
-    const dispatch = useDispatch();
-    const deleteProduct = async ({id}: any) => {
-        await dispatch(deleteBookInDB(id))
-    };
+const Product = ({product, deleteProduct}: any) => {
 
     return (
         <tr>

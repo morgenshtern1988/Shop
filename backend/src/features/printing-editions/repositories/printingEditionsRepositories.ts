@@ -64,10 +64,17 @@ export const userSortProduct = async ({value: target, startIndex, limit}: any) =
 
 export const userSortCategory = async ({startIndex, limit, type: types}: any) => {
     const myType = Object.keys(types);
-    console.log("my tyoe:", myType);
-    console.log("staetIndex:", startIndex);
-    console.log("limit:", limit);
     let param = {type: myType[0]};
+    const totalPages = await resLengthCollection({limit, param});
+    let printingEditionArr = await printingEditionModel.find(param)
+        .populate("author_ids");
+    printingEditionArr = printingEditionArr.splice(startIndex, limit);
+    return {printingEditionArr, totalPages}
+};
+
+
+export const sortCategory = async ({startIndex, limit, type}: any) => {
+    let param = {type: type};
     const totalPages = await resLengthCollection({limit, param});
     let printingEditionArr = await printingEditionModel.find(param)
         .populate("author_ids");

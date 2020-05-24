@@ -101,8 +101,6 @@ export const getProductAdminThunk = (currentPage: number) => {
         await getAdminProducts(currentPage)
             .then((items) => {
                 const {printingEditionArr, totalPages, currentPage} = items.data;
-                // console.log("get thunk product");
-                // console.log("DATA:", items.data);
                 dispatch({
                     type: 'PAGER',
                     payload: {
@@ -113,7 +111,6 @@ export const getProductAdminThunk = (currentPage: number) => {
             })
             .catch(() => {
                 console.log("unsuccessfully received data of DB");
-                // dispatch({type: 'INIT_PRODUCT', payload: []})
             })
     }
 };

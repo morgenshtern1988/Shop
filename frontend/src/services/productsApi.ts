@@ -39,3 +39,9 @@ export const fetchAddNewProduct = async (product: IAddProduct) => {
     // console.log("Data of DB:", data);
     return data;
 };
+//////////////////////////////////
+
+export const sortProductAdmin = async ({value, currentPage}: any) => {
+    const {data} = await api.post(`/admin/printing-edition/sort-category?page=${currentPage}`, {value});
+    return {data}
+};

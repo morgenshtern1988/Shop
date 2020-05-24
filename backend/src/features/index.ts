@@ -5,7 +5,7 @@ import {PermissionMiddleware} from "../middleware/permission.middleware";
 import {
     adminCreateProduct,
     adminRemoveProduct,
-    adminShowProduct, adminUpdateProduct, userShowProductAsync, userSortCategory, userSortProduct
+    adminShowProduct, adminUpdateProduct, sortCategory, userShowProductAsync, userSortCategory, userSortProduct
 } from "./printing-editions/handlers/printingEgitions.handler";
 import {adminCreateAuthor, adminRemoveAuthor, adminShowAuthor} from "./authors/handlers";
 import {adminShowUser} from "./user/handlers";
@@ -20,13 +20,11 @@ adminProductRouter.delete("/author/:id", tokenAccessLifeCheck, AuthMiddleware, P
 adminProductRouter.put("/author");
 
 //printing-editing
-// adminProductRouter.get("/", adminShowProduct);
 adminProductRouter.get("/", tokenAccessLifeCheck, AuthMiddleware, PermissionMiddleware([1]), adminShowProduct);
-// adminProductRouter.post("/create", adminCreateProduct);
 adminProductRouter.post("/create", tokenAccessLifeCheck, AuthMiddleware, PermissionMiddleware([1]), adminCreateProduct);
 adminProductRouter.delete("/:id", tokenAccessLifeCheck, AuthMiddleware, PermissionMiddleware([1]), adminRemoveProduct);
 adminProductRouter.put("/:id", tokenAccessLifeCheck, AuthMiddleware, PermissionMiddleware([1]), adminUpdateProduct);
-
+adminProductRouter.post("/sort-category", tokenAccessLifeCheck, AuthMiddleware, PermissionMiddleware([1]), sortCategory);
 adminProductRouter.get("/user", tokenAccessLifeCheck, AuthMiddleware, PermissionMiddleware([1]), adminShowUser);
 
 

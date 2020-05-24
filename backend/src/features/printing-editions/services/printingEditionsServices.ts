@@ -1,7 +1,7 @@
 import {
     adminCreateProduct,
     adminRemoveProduct,
-    adminUpdateProduct,
+    adminUpdateProduct, sortCategory,
     userShowProductAsync, userSortCategory, userSortProduct
 } from "../repositories/printingEditionsRepositories";
 import {IPrintingEdition} from "../../../types/interface/printingEdition";
@@ -18,6 +18,7 @@ export async function createProduct(printingEdition: IPrintingEdition) {
 }
 
 export async function showProduct(query: any) {
+    console.log("xype:", query);
     let pagination = paramPagination(query);
     const {startIndex, currentPage, limit} = pagination;
     const res = await adminShowProduct(startIndex, limit);
@@ -53,9 +54,17 @@ export const sortProduct = async ({value, query}: any) => {
 };
 
 export const sortOnCategory = async ({sortParam, query}: any) => {
+    // console.log(sortParam);
     let type = {...sortParam.type};
     let pagination = paramPagination(query);
     const {startIndex, currentPage, limit} = pagination;
     const res = await userSortCategory({startIndex, limit, type});
+    return {...res, currentPage: currentPage}
+};
+
+export const categorySort = async ({type, query}: any) => {
+    let pagination = paramPagination(query);
+    const {startIndex, currentPage, limit} = pagination;
+    const res = await sortCategory({startIndex, limit, type});
     return {...res, currentPage: currentPage}
 };

@@ -1,25 +1,17 @@
-import React, {useEffect, useState} from "react";
-import {useDispatch, useSelector} from "react-redux";
+import React from "react";
+import {useSelector} from "react-redux";
 import {RootState} from "../../types/inrerface";
 import ProductsTable from "../../components/ProductTable/ProductsTable";
-import {getProductThunk} from "../../reducers/product/product";
-import {filterCategory} from "../../infrastructure/FilterCategory";
-import {getAuthorsThunk} from "../../reducers/authors";
 
 export const ProductContainer = () => {
 
     const productReducer = (state: RootState) => state.pageReducer.pageOfItems;
     const products = useSelector(productReducer);
 
-    const [stateCategory, setStateCategory] = useState({book: "", newspapers: "", magazines: ""});
-
     return (
         <>
             <ProductsTable
-                products={products}
-                stateCategory={stateCategory}
-                setStateCategory={setStateCategory}
-                filterCategory={filterCategory}/>
+                products={products}/>
         </>
     )
 };
