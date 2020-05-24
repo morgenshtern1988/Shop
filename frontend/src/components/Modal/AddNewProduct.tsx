@@ -100,6 +100,7 @@ export const AddNewProduct = ({hideModalAddProduct}: any) => {
         await clearStateNewProduct();
     }
 
+    console.log(product);
     return (
         <div className="wrap-add">
             <div className="top text-right">

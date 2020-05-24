@@ -1,16 +1,23 @@
 import React from "react";
 import Button from "../Button";
 import {useDispatch, useSelector} from "react-redux";
-import {postAuthorThunk} from "../../reducers/authors";
+import {getAuthorsThunk, postAuthorThunk} from "../../reducers/authors";
 import {RootState} from "../../types/inrerface";
+import {loadPage} from "../../helpers/pages";
+import {getProductThunk} from "../../reducers/product/product";
 
 export const ModalAuthor = ({hideModalAuthor}: any) => {
     const dispatch = useDispatch();
     const selectIsOn = (state: RootState) => state.authorsReducer.newAuthor;
     const author = useSelector(selectIsOn);
+    const pagereducer = (state: RootState) => state.authorsReducer.pager;
+    const pager = useSelector(pagereducer);
 
-    const addAuthorInDB = ({author}: any) => {
-        dispatch(postAuthorThunk({author}));
+    const addAuthorInDB = async ({author}: any) => {
+        await dispatch(postAuthorThunk({author}));
+        const page = loadPage();
+        await dispatch(getAuthorsThunk(page));
+        await dispatch(getProductThunk(page));
     };
 
     return (

@@ -19,7 +19,6 @@ export const AuthorsPage = ({pageOfItems: authorArr}: any) => {
     useEffect(() => {
         const page = loadPage();
         if (page !== pager.currentPage) {
-            console.log('зашел в юз эф');
             dispatch(getAuthorsThunk(page));
             dispatch(getProductThunk(page));
         }

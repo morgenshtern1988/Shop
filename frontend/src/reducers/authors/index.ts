@@ -59,7 +59,6 @@ export const postAuthorThunk = ({author}: any) => {
     return async (dispatch: any) => {
         await fetchPostAuthors({author})
             .then((author) => {
-                // console.log((authorsArr[0]))
                 dispatch({type: 'ADD_NEW_AUTHORS', payload: {author: author[0]}});
             })
             .catch(() => {
@@ -69,11 +68,11 @@ export const postAuthorThunk = ({author}: any) => {
     }
 };
 
-export const deleteAuthorThunk = (id: string) => {
+export const deleteAuthorThunk = (id: any) => {
     return async (dispatch: any) => {
         await deleteAuthorInDB(id)
-            .then((authorsArr) => {
-                dispatch({type: 'INIT_AUTHORS', payload: {authorsArr}})
+            .then(items => {
+                console.log("author delete")
             })
             .catch((err) => console.log(err))
     }

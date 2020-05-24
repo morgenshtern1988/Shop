@@ -1,14 +1,20 @@
 import React from "react";
 import Button from "../Button";
 import {useDispatch} from "react-redux";
-import {deleteAuthorThunk} from "../../reducers/authors";
+import {deleteAuthorThunk, getAuthorsThunk} from "../../reducers/authors";
+import {loadPage} from "../../helpers/pages";
+import {getProductThunk} from "../../reducers/product/product";
 
 export const AuthorsDashboard = ({author}: any) => {
     const dispatch = useDispatch();
 
     const deleteAuthor = async (id: string) => {
-        await dispatch(deleteAuthorThunk(id))
+        await dispatch(deleteAuthorThunk(id));
+        const page = loadPage();
+        await dispatch(getAuthorsThunk(page));
+        await dispatch(getProductThunk(page));
     };
+
     return (
         <tr>
             <td>{author._id}</td>
@@ -34,3 +40,4 @@ export const AuthorsDashboard = ({author}: any) => {
         </tr>
     )
 };
+
