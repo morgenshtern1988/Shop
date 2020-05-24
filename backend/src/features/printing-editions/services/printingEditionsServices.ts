@@ -16,9 +16,7 @@ export async function createProduct(printingEdition: IPrintingEdition) {
         return await adminCreateProduct(printingEdition)
     }
 }
-
 export async function showProduct(query: any) {
-    console.log("xype:", query);
     let pagination = paramPagination(query);
     const {startIndex, currentPage, limit} = pagination;
     const res = await adminShowProduct(startIndex, limit);

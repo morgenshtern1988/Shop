@@ -62,7 +62,7 @@ export const HeaderTop = ({cleanLocalStorage}: any) => {
                                                     isActive.dashboard ?
                                                         <div className="position-absolute list flex-column">
                                                             <Link to={"/admin/printing-editing?page=1"}>Product</Link>
-                                                            <a href="http://localhost:3000/admin/authors">Author</a>
+                                                            <Link to={"/admin/authors?page=1"}>Author</Link>
                                                             <a href="http://localhost:3000/admin/users">Users</a>
                                                             <a href="http://localhost:3000/admin/orders">Orders</a>
                                                             <a href="http://localhost:3000/auth/login"

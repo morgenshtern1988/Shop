@@ -33,6 +33,8 @@ interface IUser {
 }
 
 interface IAuthor {
+    pager: any,
+    pageOfItems: Array<any>,
     authorsArr: Array<any>
     newAuthor: string,
 }
@@ -69,8 +71,8 @@ export interface IRegisterUser {
     password: string,
     confirmPassword: string,
     confirmationCode: string,
-    loading:boolean,
-    info:string,
+    loading: boolean,
+    info: string,
 
 }
 

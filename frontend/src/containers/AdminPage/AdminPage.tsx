@@ -12,13 +12,16 @@ const AdminPage = ({roles}: any) => {
     const selectIsOn = (state: RootState) => state.loginReducer.role;
     const role = useSelector(selectIsOn);
 
+    const pagereducer = (state: RootState) => state.authorsReducer.pageOfItems;
+    const pageOfItems = useSelector(pagereducer);
+
     return (
         <>
             <HeaderTop/>
             {role === roles ?
                 <Switch>
                     <Route exact path="/admin/printing-editing" render={() => <ProductContainer/>}/>
-                    <Route exact path="/admin/authors" render={() => <AuthorsPage/>}/>
+                    <Route exact path="/admin/authors" render={() => <AuthorsPage pageOfItems={pageOfItems}/>}/>
                     <Route exact path="/admin/users" render={() => <UserManagement/>}/>
                 </Switch>
                 :

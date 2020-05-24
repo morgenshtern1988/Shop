@@ -80,8 +80,6 @@ export const getProductThunk = (currentPage: number) => {
         await fetchGetProducts(currentPage)
             .then((items) => {
                 const {printingEditionArr, totalPages, currentPage} = items.data;
-                console.log("get thunk product");
-                // console.log("DATA:", items.data);
                 dispatch({
                     type: 'PAGER',
                     payload: {

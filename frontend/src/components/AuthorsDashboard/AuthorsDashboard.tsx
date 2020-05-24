@@ -5,6 +5,7 @@ import {deleteAuthorThunk} from "../../reducers/authors";
 
 export const AuthorsDashboard = ({author}: any) => {
     const dispatch = useDispatch();
+
     const deleteAuthor = async (id: string) => {
         await dispatch(deleteAuthorThunk(id))
     };

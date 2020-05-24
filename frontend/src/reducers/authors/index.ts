@@ -2,6 +2,8 @@ import {deleteAuthorInDB, fetchGetAuthors, fetchPostAuthors} from "../../service
 import {sortProductAdmin} from "../../services/productsApi";
 
 let initialState = {
+    pager: {},
+    pageOfItems: [],
     authorsArr: [],
     newAuthor: "",
 };
@@ -9,10 +11,11 @@ let initialState = {
 export const authorsReducer = (state: any = initialState, action: any) => {
     switch (action.type) {
         case 'INIT_AUTHORS':
-            const {authorsArr} = action.payload;
+            const {pager, pageOfItems} = action.payload;
             return {
                 ...state,
-                authorsArr,
+                pager: pager,
+                pageOfItems: pageOfItems,
             };
         case 'SET_STATE_NEW_AUTHORS':
             let {author} = action.payload;
@@ -32,17 +35,22 @@ export const authorsReducer = (state: any = initialState, action: any) => {
     }
 };
 
-export const getAuthorsThunk = () => {
+export const getAuthorsThunk = (currentPage: any) => {
     return async (dispatch: any) => {
-        await fetchGetAuthors()
+        await fetchGetAuthors(currentPage)
             .then((items) => {
-                const {data: authorsArr} = items;
-                dispatch({type: 'INIT_AUTHORS', payload: {authorsArr}});
-                // dispatch({type: 'INIT_AUTHORS', payload: data});
+                const {author, totalPages, currentPage} = items.data;
+                dispatch({
+                    type: 'INIT_AUTHORS',
+                    payload: {
+                        pager: {currentPage: currentPage, totalPages: totalPages.length, pages: totalPages},
+                        pageOfItems: author
+                    }
+                });
             })
             .catch(() => {
                 console.log("NE удачно");
-                dispatch({type: 'INIT_AUTHORS', payload: []})
+                // dispatch({type: 'INIT_AUTHORS', payload: []})
             })
     }
 };

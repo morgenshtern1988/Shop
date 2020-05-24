@@ -26,7 +26,7 @@ const ProductsTable = ({products}: any) => {
         const page = loadPage();
         if (page !== currentPage) {
             dispatch(getProductAdminThunk(page));
-            dispatch(getAuthorsThunk())
+            dispatch(getAuthorsThunk(page))
         }
     });
 
@@ -34,7 +34,7 @@ const ProductsTable = ({products}: any) => {
         await dispatch(deleteBookInDB(id));
         const page = loadPage();
         dispatch(getProductAdminThunk(page));
-        dispatch(getAuthorsThunk())
+        // dispatch(getAuthorsThunk(page))
 
     };
 
@@ -52,15 +52,16 @@ const ProductsTable = ({products}: any) => {
     };
 
     const filterCategory = ({value}: any) => {
+        const page = loadPage();
         dispatch(sortProductAdminThunk({value, currentPage}));
-        dispatch(getAuthorsThunk());
+        dispatch(getAuthorsThunk(page));
         dispatch({type: "VISIBLE_BLOCK", payload: {isShow: false}})
     };
 
     const filterAllCategory = () => {
         const page = loadPage();
         dispatch(getProductAdminThunk(page));
-        dispatch(getAuthorsThunk());
+        dispatch(getAuthorsThunk(page));
         dispatch({type: "VISIBLE_BLOCK", payload: {isShow: false}})
 
     };

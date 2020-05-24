@@ -1,7 +1,7 @@
 import api from "./common";
 
-export const fetchGetAuthors = async (): Promise<any> => {
-    const {data} = await api.get('/admin/author');
+export const fetchGetAuthors = async (currentPage: any): Promise<any> => {
+    const {data} = await api.get(`/admin/author?page=${currentPage}`);
     return {data};
 };
 
@@ -9,10 +9,10 @@ export const fetchPostAuthors = async ({author}: any): Promise<any> => {
     const {data} = await api.post("/admin/author/create", {
         name: author,
     });
-    return data
+    return {data}
 };
 
 export const deleteAuthorInDB = async (id: any): Promise<any> => {
     const {data} = await api.delete("/admin/author/" + id);
-    return data;
+    return {data};
 };

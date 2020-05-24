@@ -6,24 +6,27 @@ import {RootState} from "../../types/inrerface";
 import {Table} from "react-bootstrap";
 import Button from "../../components/Button";
 import {getProductThunk} from "../../reducers/product/product";
+import {Paginate} from "../../components/Pagination";
+import {loadPage} from "../../helpers/pages";
 
-export const AuthorsPage = () => {
-
-    const authorsReducer = (state: RootState) => state.authorsReducer;
-    const author = useSelector(authorsReducer);
+export const AuthorsPage = ({pageOfItems: authorArr}: any) => {
     const dispatch = useDispatch();
 
-    const {authorsArr} = author;
+    const pagereducer = (state: RootState) => state.authorsReducer;
+    const pageReducer = useSelector(pagereducer);
+    const {pager} = pageReducer;
 
-  /*  useEffect(() => {
-        // dispatch(getProductThunk());
-        // dispatch(getAuthorsThunk())
-    }, []);*/
-
+    useEffect(() => {
+        const page = loadPage();
+        if (page !== pager.currentPage) {
+            console.log('зашел в юз эф');
+            dispatch(getAuthorsThunk(page));
+            dispatch(getProductThunk(page));
+        }
+    });
     const displayModal = () => {
         dispatch({type: "IS_SHOW_MODAL_ADD_AUTHOR", payload: {isDisplay: true}})
     };
-
     return (
         <div className="container">
             <div className="d-flex mb-3 mb-3 justify-content-between align-items-center">
@@ -43,16 +46,16 @@ export const AuthorsPage = () => {
                 </thead>
                 <tbody>
                 {
-                    authorsArr ?
-                        authorsArr.map((author: any) => {
-                                return <AuthorsDashboard
-                                    author={author}
-                                    key={author._id}/>
-                            }
-                        ) : <></>
+                    authorArr.map((author: any) => {
+                            return <AuthorsDashboard
+                                author={author}
+                                key={author._id}/>
+                        }
+                    )
                 }
                 </tbody>
             </Table>
+            <Paginate pager={pager}/>
         </div>
     )
 };

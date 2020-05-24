@@ -8,7 +8,7 @@ export const adminCreateAuthor = async (request: Request, response: Response): P
 };
 
 export const adminShowAuthor = async (request: Request, response: Response): Promise<any> => {
-    showAuthor()
+    showAuthor(request.query)
         .then((author: any) => response.json(author))
         .catch((err) => response.json(err));
 };
@@ -18,4 +18,4 @@ export const adminRemoveAuthor = async (request: Request, response: Response): P
     removeAuthor(id)
         .then((author: any) => response.json(author))
         .catch((err) => response.json(err));
-}
+};
