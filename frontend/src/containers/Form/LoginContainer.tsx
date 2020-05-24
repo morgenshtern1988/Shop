@@ -1,25 +1,24 @@
 import React from "react";
 import {Redirect} from 'react-router-dom';
 import {Button, FormGroup, FormControl, ControlLabel} from "react-bootstrap";
-import {connect, useSelector} from "react-redux";
+import {connect, useDispatch, useSelector} from "react-redux";
 import {singInUser} from "../../reducers/login/login";
 import HeaderContainer from "../Header/HeaderContainer";
 import {RootState} from "../../types/inrerface";
 
-const Login = (props: any) => {
-    let {setEmail, setPassword, email, password, postUserFromApi, auth} = props;
+const Login = ({setEmail, setPassword, email, password, auth}: any) => {
 
     const loginReducer = (state: RootState) => state.loginReducer;
     const login = useSelector(loginReducer);
-    // console.log(login);
+    const dispatch = useDispatch();
 
     function validateForm() {
         return (email !== undefined && password !== undefined)
     }
 
     function handleSubmit(event: any) {
-        postUserFromApi(login);
         event.preventDefault();
+        dispatch(singInUser(login));
     }
 
     return (
@@ -66,7 +65,6 @@ const mapStateToProps = (state: any) => ({
 const mapDispatchToProps = (dispatch: any) => ({
     setEmail: (email: any) => dispatch({type: "@@login/LOGIN_START", payload: {email}}),
     setPassword: (password: any) => dispatch({type: "@@login/LOGIN_START", payload: {password}}),
-    postUserFromApi: (data: any) => dispatch(singInUser(data)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login)

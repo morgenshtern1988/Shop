@@ -1,16 +1,13 @@
 import {IUser} from "../../user/api";
 import {authenticateUser} from "../repositories/authRepositories"
+import createError from "http-errors"
 
 export const loginUser = async (user: IUser) => {
     console.log("BODY:", user);
-    // console.log("BODY LENGTH:", Object.keys(user).length);
     try {
-        // if (Object.keys(user).length !== 0) {
         await authenticateUser(user)
-        // } else {
-        //     return new Error("request undefined")
-        // }
-    } catch (e) {
-        throw  new Error(e)
+
+    } catch (err) {
+        throw new Error(err.message)
     }
 };

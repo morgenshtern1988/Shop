@@ -20,18 +20,16 @@ export const updateTokens = async (user: any) => {
 export const authenticateUser = async (user: IUser) => {
     try {
         const userInDb = await userModel.findOne({email: user.email});
-        console.log("user in DB:", userInDb);
+        if (userInDb === null) throw new Error("This user is not registered");
         if (!userInDb.confirmed) {
-            console.log("зашли в первую ошибку");
-            new Error("Email not confirmed")
+            throw new Error("Email not confirmed")
         } else if (userInDb) {
-            console.log("зашли тру юзер в ДБ");
             const isPasswordMatching = await bcrypt.compare(user.password, userInDb.password);
             if (isPasswordMatching) {
                 await updateTokens(userInDb)
-            } else new Error("Wrong password")
-        } else new Error("User does not exist")
+            } else throw new Error("Wrong password")
+        }
     } catch (e) {
-        throw new Error(e)
+        throw new Error(e.message)
     }
 };

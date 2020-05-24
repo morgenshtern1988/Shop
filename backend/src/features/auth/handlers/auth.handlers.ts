@@ -20,7 +20,9 @@ export const authenticateUser = async (request: Request, response: Response, nex
             response.json(token)
         })
         .catch((err: any) => {
-                response.sendStatus(401)
+                response.status(401).send({
+                    message: err.message
+                });
             }
         );
 };

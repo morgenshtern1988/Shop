@@ -72,11 +72,12 @@ export const singInUser = (data: any) => {
     return async (dispatch: any) => {
         await fetchLPostLogin(data)
             .then((result) => {
-                console.log("aa", result)
+                console.log("result", result);
                 if (result.status !== 200) {
-                    result.json().then((err: any) =>{
+                    result.json().then((err: any) => {
                         console.log("errrr:", err);
-                        dispatch({type: "@@login/ERROR", payload: {err}})});
+                        dispatch({type: "@@login/ERROR", payload: {err}})
+                    });
                     throw Error
                 } else {
                     return result.json().then((token: any) => token)
@@ -87,9 +88,12 @@ export const singInUser = (data: any) => {
                 dispatch({type: "@@login/LOGIN_SUCCESS", payload: {data}});
                 dispatch({type: "@@login/AUTH_VALUE", payload: true})
             })
-            .catch((err) => dispatch({type: "@@login/LOGIN_FAILED", payload: {}}));
-
-      /*  await fetchGetInfoUser()
-            .then((user) => dispatch({type: "@@login/USER_IN_DB", payload: {user}}))*/
+            .catch((err) => {
+                    console.log("errOR:", err)
+                    // dispatch({type: "@@login/LOGIN_FAILED", payload: {}})
+                }
+            );
+        /*  await fetchGetInfoUser()
+              .then((user) => dispatch({type: "@@login/USER_IN_DB", payload: {user}}))*/
     }
 };
