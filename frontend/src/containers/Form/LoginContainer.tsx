@@ -1,21 +1,24 @@
 import React from "react";
 import {Redirect} from 'react-router-dom';
 import {Button, FormGroup, FormControl, ControlLabel} from "react-bootstrap";
-import {connect} from "react-redux";
+import {connect, useSelector} from "react-redux";
 import {singInUser} from "../../reducers/login/login";
-import {store} from "../../store/store";
 import HeaderContainer from "../Header/HeaderContainer";
+import {RootState} from "../../types/inrerface";
 
 const Login = (props: any) => {
     let {setEmail, setPassword, email, password, postUserFromApi, auth} = props;
+
+    const loginReducer = (state: RootState) => state.loginReducer;
+    const login = useSelector(loginReducer);
+    // console.log(login);
 
     function validateForm() {
         return (email !== undefined && password !== undefined)
     }
 
     function handleSubmit(event: any) {
-        const data = store.getState().loginReducer;
-        postUserFromApi(data);
+        postUserFromApi(login);
         event.preventDefault();
     }
 

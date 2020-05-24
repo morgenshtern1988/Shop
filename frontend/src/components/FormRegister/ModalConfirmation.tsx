@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect} from "react";
 import {Modal} from "react-bootstrap";
 import {RootState} from "../../types/inrerface";
 import {useDispatch, useSelector} from "react-redux";

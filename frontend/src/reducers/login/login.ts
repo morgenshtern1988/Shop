@@ -56,6 +56,13 @@ export const loginReducer = (state: any = initialState, action: any) => {
                 loading: false
             };
         }
+        case TYPES.LOGIN_ERROR: {
+            const {err} = action.payload;
+            return {
+                ...state,
+                error: err,
+            };
+        }
         default:
             return state;
     }
@@ -65,8 +72,11 @@ export const singInUser = (data: any) => {
     return async (dispatch: any) => {
         await fetchLPostLogin(data)
             .then((result) => {
-                console.log(result);
+                console.log("aa", result)
                 if (result.status !== 200) {
+                    result.json().then((err: any) =>{
+                        console.log("errrr:", err);
+                        dispatch({type: "@@login/ERROR", payload: {err}})});
                     throw Error
                 } else {
                     return result.json().then((token: any) => token)
@@ -79,7 +89,7 @@ export const singInUser = (data: any) => {
             })
             .catch((err) => dispatch({type: "@@login/LOGIN_FAILED", payload: {}}));
 
-        await fetchGetInfoUser()
-            .then((user) => dispatch({type: "@@login/USER_IN_DB", payload: {user}}))
+      /*  await fetchGetInfoUser()
+            .then((user) => dispatch({type: "@@login/USER_IN_DB", payload: {user}}))*/
     }
 };

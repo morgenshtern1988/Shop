@@ -16,8 +16,13 @@ export const getUserInfo = async (req: Request, res: Response) => {
 
 export const authenticateUser = async (request: Request, response: Response, next: NextFunction) => {
     loginUser(request.body)
-        .then((token: any) => response.json(token))
-        .catch(() => response.sendStatus(401));
+        .then((token: any) => {
+            response.json(token)
+        })
+        .catch((err: any) => {
+                response.sendStatus(401)
+            }
+        );
 };
 
 export const tokenAccessLifeCheck = async (request: Request, response: Response, next: NextFunction) => {

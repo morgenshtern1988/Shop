@@ -1,6 +1,17 @@
 import api from './common';
+import axios from "axios";
 
-export const fetchLPostLogin = async (data: any): Promise<any> => {
+axios.defaults.baseURL = 'http://localhost:8888';
+axios.defaults.headers = {"Content-Type": "application/json"};
+
+export const fetchLPostLogin = async (dataObj: any): Promise<any> => {
+    const obj = {email: dataObj.email, password: dataObj.password};
+    const data = await axios.post("/auth/login",
+        {...obj})
+    ;
+    console.log("RES:", data)
+};
+/*export const fetchLPostLogin = async (data: any): Promise<any> => {
     const dataRes = await fetch("http://localhost:8888/auth/login", {
         method: "POST",
         headers: {
@@ -8,17 +19,15 @@ export const fetchLPostLogin = async (data: any): Promise<any> => {
         },
         body: JSON.stringify(data)
     });
-    return dataRes
-};
-
+    console.log(dataRes);
+};*/
 export const fetchGetInfoUser = async (): Promise<any> => {
     const {data} = await api.get('/auth/getUserInfo');
     return data;
 };
 
-
 export const fetchPostRegister = async (url: string, data: any) => {
-    const user = await fetch(url, {
+    return await fetch(url, {
         method: "POST",
         mode: 'cors',
         headers: {
@@ -26,5 +35,4 @@ export const fetchPostRegister = async (url: string, data: any) => {
         },
         body: JSON.stringify(data)
     });
-    return user
 };
