@@ -11,6 +11,7 @@ const Login = ({setEmail, setPassword, email, password, auth}: any) => {
     const loginReducer = (state: RootState) => state.loginReducer;
     const login = useSelector(loginReducer);
     const dispatch = useDispatch();
+    // console.log(login.error);
 
     function validateForm() {
         return (email !== undefined && password !== undefined)
@@ -45,10 +46,16 @@ const Login = ({setEmail, setPassword, email, password, auth}: any) => {
                                 type="password"
                             />
                         </FormGroup>
+                        {
+                            login.error.length > 0 ?
+                                <span className="msg-err">{login.error}!</span>
+                                : <></>
+                        }
                         <Button block bsSize="large" disabled={!validateForm()} type="submit">
                             Login
                         </Button>
                     </form>
+
                 </div>
             }
         </>

@@ -1,5 +1,5 @@
 import {TYPES} from "../../action/login";
-import {fetchGetInfoUser, fetchLPostLogin} from "../../services/login";
+import {fetchLPostLogin, fetchGetInfoUser} from "../../services/login";
 
 export let initialState = {
     firstName: "",
@@ -32,15 +32,15 @@ export const loginReducer = (state: any = initialState, action: any) => {
                 ...action.payload,
             };
         }
-        case TYPES.LOGIN_LOGIN_FAILED: {
-            const {data} = action.payload;
-            return {
-                ...state,
-                token: {...data},
-                loading: false,
-                error: "error"
-            };
-        }
+        /*  case TYPES.LOGIN_LOGIN_FAILED: {
+              const {data} = action.payload;
+              return {
+                  ...state,
+                  token: {...data},
+                  loading: false,
+                  error: "error"
+              };
+          }*/
         case TYPES.LOGIN_USER_IN_DB: {
             const {user} = action.payload;
             return {
@@ -57,7 +57,7 @@ export const loginReducer = (state: any = initialState, action: any) => {
             };
         }
         case TYPES.LOGIN_ERROR: {
-            const {err} = action.payload;
+            const err = action.payload;
             return {
                 ...state,
                 error: err,
@@ -71,29 +71,22 @@ export const loginReducer = (state: any = initialState, action: any) => {
 export const singInUser = (data: any) => {
     return async (dispatch: any) => {
         await fetchLPostLogin(data)
-            .then((result) => {
-                console.log("result", result);
-                if (result.status !== 200) {
-                    result.json().then((err: any) => {
-                        console.log("errrr:", err);
-                        dispatch({type: "@@login/ERROR", payload: {err}})
-                    });
-                    throw Error
+            .then(data => {
+                if (data.msg) {
+                    throw new Error(data.msg)
                 } else {
-                    return result.json().then((token: any) => token)
+                    localStorage.setItem('token', JSON.stringify(data));
+                    dispatch({type: "@@login/LOGIN_SUCCESS", payload: {data}});
+                    dispatch({type: "@@login/ERROR", payload: ""})
+                    dispatch({type: "@@login/AUTH_VALUE", payload: true});
                 }
-            })
-            .then((data) => {
-                localStorage.setItem('token', JSON.stringify(data));
-                dispatch({type: "@@login/LOGIN_SUCCESS", payload: {data}});
-                dispatch({type: "@@login/AUTH_VALUE", payload: true})
             })
             .catch((err) => {
-                    console.log("errOR:", err)
-                    // dispatch({type: "@@login/LOGIN_FAILED", payload: {}})
+                    console.log("словила ошибку:", err.message);
+                    dispatch({type: "@@login/ERROR", payload: err.message})
                 }
             );
-        /*  await fetchGetInfoUser()
-              .then((user) => dispatch({type: "@@login/USER_IN_DB", payload: {user}}))*/
+        await fetchGetInfoUser()
+            .then((user) => dispatch({type: "@@login/USER_IN_DB", payload: {user}}))
     }
 };

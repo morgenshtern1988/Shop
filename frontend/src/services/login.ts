@@ -1,19 +1,12 @@
 import api from './common';
-import axios from "axios";
-
-axios.defaults.baseURL = 'http://localhost:8888';
-axios.defaults.headers = {"Content-Type": "application/json"};
 
 export const fetchLPostLogin = async (dataObj: any): Promise<any> => {
-    const obj = {email: dataObj.email, password: dataObj.password};
-    return await fetch("http://localhost:8888/auth/login", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(obj)
-    });
+    const {data} = await api.post("http://localhost:8888/auth/login", {
+        email: dataObj.email, password: dataObj.password
+    })
+    return data
 };
+
 export const fetchGetInfoUser = async (): Promise<any> => {
     const {data} = await api.get('/auth/getUserInfo');
     return data;
