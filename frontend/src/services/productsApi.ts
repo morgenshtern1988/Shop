@@ -33,11 +33,9 @@ export const deleteProduct = async (id: string): Promise<any> => {
 
 
 export const fetchAddNewProduct = async (product: IAddProduct) => {
-    console.log("зашел в сервис");
     const {data} = await api.post("/admin/printing-edition/create", {
         ...product
     });
-    // console.log("Data of DB:", data);
     return data;
 };
 //////////////////////////////////

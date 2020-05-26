@@ -1,17 +1,23 @@
-import React from "react";
+import React, {useEffect} from "react";
 import {Button, FormGroup, FormControl, ControlLabel, Form} from "react-bootstrap";
 import {RootState} from "../../types/inrerface";
 import {useDispatch, useSelector} from "react-redux";
-import {getProductThunk, postAddNewProductThunk} from "../../reducers/product/product";
+import {getProductAdminThunk, getProductThunk, postAddNewProductThunk} from "../../reducers/product/product";
+import {getAllAuthorsThunk, getAuthorsThunk} from "../../reducers/authors";
+import {loadPage} from "../../helpers/pages";
 
 export const AddNewProduct = ({hideModalAddProduct}: any) => {
+    const dispatch = useDispatch();
 
+///////////////////////////////////////
     const authorsReducer = (state: RootState) => state.authorsReducer.authorsArr;
     const author = useSelector(authorsReducer);
-
+    useEffect(() => {
+        dispatch(getAllAuthorsThunk())
+    }, []);
+/////////////////////////////////
     const productReducer = (state: RootState) => state.productReducer.stateProduct;
     const product = useSelector(productReducer);
-    const dispatch = useDispatch();
     const setName = (name: any) => dispatch({type: "STATE_NEW_PRODUCT", payload: {name}});
     const setDescription = (description: any) => dispatch({type: "STATE_NEW_PRODUCT", payload: {description}});
     const setCategory = (type: any) => dispatch({type: "STATE_NEW_PRODUCT", payload: {type}});
@@ -93,14 +99,13 @@ export const AddNewProduct = ({hideModalAddProduct}: any) => {
             cover_image: product.cover_image,
             currency: product.currency,
         };
-        // console.log("data:", data);
-        // console.log("IDA:",)
-        await dispatch(postAddNewProductThunk(product));
-        // await dispatch(getProductThunk());
+        await dispatch(postAddNewProductThunk(data));
+        const page = loadPage();
+        await dispatch(getProductAdminThunk(page));
+        await dispatch(getAuthorsThunk(page));
         await clearStateNewProduct();
     }
 
-    console.log(product);
     return (
         <div className="wrap-add">
             <div className="top text-right">

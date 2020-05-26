@@ -23,6 +23,10 @@ export const adminShowAuthor = async (startIndex: number, limit: number) => {
     return {author, totalPages}
 };
 
+export const adminShowAllAuthor = async () => {
+    return await authorModel.find({}).populate("product_ids");
+};
+
 export const adminRemoveAuthor = async (id: string) => {
     const authors = await authorModel.findById(id);
     await authorModel.remove(authors);

@@ -7,15 +7,15 @@ import {
     adminRemoveProduct,
     adminShowProduct, adminUpdateProduct, sortCategory, userShowProductAsync, userSortCategory, userSortProduct
 } from "./printing-editions/handlers/printingEgitions.handler";
-import {adminCreateAuthor, adminRemoveAuthor, adminShowAuthor} from "./authors/handlers";
+import {adminCreateAuthor, adminRemoveAuthor, adminShowAllAuthor, adminShowAuthor} from "./authors/handlers";
 import {adminShowUser} from "./user/handlers";
 
 export const adminProductRouter = Router();
 //author
-// adminProductRouter.get("/author", adminShowAuthor);
 adminProductRouter.get("/author", tokenAccessLifeCheck, AuthMiddleware, PermissionMiddleware([1]), adminShowAuthor);
+// adminProductRouter.get("/all-author", tokenAccessLifeCheck, AuthMiddleware, PermissionMiddleware([1]), adminShowAllAuthor);
+adminProductRouter.get("/all-author",adminShowAllAuthor);
 adminProductRouter.post("/author/create", adminCreateAuthor);
-// adminProductRouter.post("/author/create", tokenAccessLifeCheck, AuthMiddleware, PermissionMiddleware([1]), adminCreateAuthor);
 adminProductRouter.delete("/author/:id", tokenAccessLifeCheck, AuthMiddleware, PermissionMiddleware([1]), adminRemoveAuthor);
 adminProductRouter.put("/author");
 

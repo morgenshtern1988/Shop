@@ -1,4 +1,4 @@
-import {adminCreateAuthor, adminRemoveAuthor, adminShowAuthor} from "../repositories";
+import {adminCreateAuthor, adminRemoveAuthor, adminShowAllAuthor, adminShowAuthor} from "../repositories";
 import {IAuthor} from "../api";
 import {paramPagination} from "../../../helpers/authHelpers";
 import {adminShowProduct} from "../../printing-editions/repositories/printingEditionsRepositories";
@@ -16,6 +16,10 @@ export const showAuthor = async (query: any) => {
     const {startIndex, currentPage, limit} = pagination;
     const res = await adminShowAuthor(startIndex, limit);
     return {...res, currentPage: currentPage}
+};
+
+export const showAllAuthor = async () => {
+   return await adminShowAllAuthor();
 };
 
 export const removeAuthor = async (id: any) => {

@@ -16,3 +16,9 @@ export const deleteAuthorInDB = async (id: any): Promise<any> => {
     const {data} = await api.delete("/admin/author/" + id);
     return {data};
 };
+
+
+export const getAllAuthorThunk = async () => {
+    const {data} = await api.get("/admin/printing-edition/all-author");
+    return {data}
+};

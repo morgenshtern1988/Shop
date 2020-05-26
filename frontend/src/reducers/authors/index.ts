@@ -1,4 +1,4 @@
-import {deleteAuthorInDB, fetchGetAuthors, fetchPostAuthors} from "../../services/authorsApi";
+import {deleteAuthorInDB, fetchGetAuthors, fetchPostAuthors, getAllAuthorThunk} from "../../services/authorsApi";
 import {sortProductAdmin} from "../../services/productsApi";
 
 let initialState = {
@@ -29,6 +29,12 @@ export const authorsReducer = (state: any = initialState, action: any) => {
             return {
                 ...state,
                 authorsArr: [...state.authorsArr, a]
+            };
+        case 'ALL_AUTHORS':
+            let authorsArr = action.payload;
+            return {
+                ...state,
+                authorsArr: authorsArr
             };
         default:
             return state;
@@ -93,5 +99,15 @@ export const sortProductAdminThunk = ({value, currentPage}: any) => {
                 });
             })
             .catch((i: any) => console.log(i))
+    }
+};
+
+export const getAllAuthorsThunk = () => {
+    return async (dispatch: any) => {
+        await getAllAuthorThunk()
+            .then(items => {
+                dispatch({type: "ALL_AUTHORS", payload: items.data})
+            })
+            .catch((e) => console.log("err:", e))
     }
 };

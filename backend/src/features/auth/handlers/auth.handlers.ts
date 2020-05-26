@@ -17,11 +17,9 @@ export const getUserInfo = async (req: Request, res: Response) => {
 export const authenticateUser = async (request: Request, response: Response, next: NextFunction) => {
     loginUser(request.body)
         .then((token: any) => {
-            console.log("token", token);
             response.json(token)
         })
         .catch((err: any) => {
-                console.log("Ошибкаа:", err);
                 response.json({msg: err.message});
             }
         );

@@ -1,5 +1,5 @@
 import {Request, Response} from "express";
-import {createAuthor, removeAuthor, showAuthor} from "../services";
+import {createAuthor, removeAuthor, showAllAuthor, showAuthor} from "../services";
 
 export const adminCreateAuthor = async (request: Request, response: Response): Promise<any> => {
     createAuthor(request.body)
@@ -9,6 +9,11 @@ export const adminCreateAuthor = async (request: Request, response: Response): P
 
 export const adminShowAuthor = async (request: Request, response: Response): Promise<any> => {
     showAuthor(request.query)
+        .then((author: any) => response.json(author))
+        .catch((err) => response.json(err));
+};
+export const adminShowAllAuthor = async (request: Request, response: Response): Promise<any> => {
+    showAllAuthor()
         .then((author: any) => response.json(author))
         .catch((err) => response.json(err));
 };

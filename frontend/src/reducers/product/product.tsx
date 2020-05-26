@@ -163,12 +163,12 @@ export const deleteBookInDB = (id: string) => {
 };
 
 
-export const postAddNewProductThunk = (product: IAddProduct) => {
+export const postAddNewProductThunk = (product: any) => {
     return async (dispatch: any) => {
         await fetchAddNewProduct(product)
             .then((data) => {
-                console.log("successful received data about new Product of DB ");
-                console.log(data);
+                // console.log("successful received data about new Product of DB ");
+                // console.log(data);
                 dispatch({type: "ADD_NEW_PRODUCT", payload: {data}})
             })
             .catch((e: any) => console.log(e))
