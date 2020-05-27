@@ -1,6 +1,5 @@
 import React from "react";
 import Button from "../Button";
-import {Checkbox, FormControl} from "react-bootstrap";
 
 export const User = ({user}: any) => {
     const {firstName, lastName, email} = user;

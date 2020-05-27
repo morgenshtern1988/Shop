@@ -1,7 +1,6 @@
-import React, {useEffect} from "react";
+import React from "react";
 import {RootState} from "../../types/inrerface";
-import {useDispatch, useSelector} from "react-redux";
-import {getProductThunk} from "../../reducers/product/product";
+import {useSelector} from "react-redux";
 import {ProductInfo, ProductsHome} from "../../components/Products";
 import {Route, Switch} from "react-router-dom";
 import HeaderContainer from "../Header/HeaderContainer";

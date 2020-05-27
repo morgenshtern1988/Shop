@@ -27,13 +27,10 @@ export const ProductsHome = () => {
         const page = loadPage();
         if (page !== currentPage) {
             if (paramFilter === "up-sort" || paramFilter === "down-sort") {
-                console.log("зашел в АП ДОВН");
                 dispatch(sortProductThunk({target: paramFilter, currentPage: page}));
             } else if (low > 0 && high > 0) {
-                console.log("защел в СОРТ");
                 dispatch(sortOnCategoryAndPriceThunk({stateObj: paramSort, currentPage}))
             } else {
-                console.log("зашел в последний");
                 dispatch(getProductThunk(page));
             }
         }

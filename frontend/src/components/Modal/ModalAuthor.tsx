@@ -10,8 +10,8 @@ export const ModalAuthor = ({hideModalAuthor}: any) => {
     const dispatch = useDispatch();
     const selectIsOn = (state: RootState) => state.authorsReducer.newAuthor;
     const author = useSelector(selectIsOn);
-    const pagereducer = (state: RootState) => state.authorsReducer.pager;
-    const pager = useSelector(pagereducer);
+    // const pagereducer = (state: RootState) => state.authorsReducer.pager;
+    // const pager = useSelector(pagereducer);
 
     const addAuthorInDB = async ({author}: any) => {
         await dispatch(postAuthorThunk({author}));

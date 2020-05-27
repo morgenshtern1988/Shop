@@ -8,6 +8,10 @@ import {adminProductRouter, userProductRouter} from "./features";
 require('dotenv').config();
 connectMongo();
 const app = express();
+const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
+const stripePublicKey = process.env.STRIPE_PUBLIC_KEY;
+console.log(stripeSecretKey);
+console.log(stripePublicKey);
 
 export interface User {
     id: string,

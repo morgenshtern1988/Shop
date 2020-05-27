@@ -8,7 +8,7 @@ export const ProductInfo = ({product}: any) => {
     const redirectReducer = (state: RootState) => state.buyReducer;
     let stateBasket = useSelector(redirectReducer);
     const dispatch = useDispatch();
-    console.log(product)
+    // console.log(product)
     const [valueOption, setValueOption] = useState(undefined);
     let [styleAlert, setStyleAlert] = useState({display: "none"});
     useEffect(() => {
@@ -44,10 +44,10 @@ export const ProductInfo = ({product}: any) => {
                 <div className="row col-6 pl-5">
                     <div className="col-6 d-flex align-self-center flex-column">
                         <h1>{product.name}</h1>
-                        <p>spaces designer for the senses</p>
-                        <p className="mb-4">{product.author_ids.map((a: any) => {
+                        <span>spaces designer for the senses</span>
+                        <span className="mb-4">{product.author_ids.map((a: any) => {
                             return <p key={a._id}>{a.name}</p>
-                        })}</p>
+                        })}</span>
                         <div className="d-flex justify-content-between select-sum mb-4">
                             <span>Qty:</span>
                             <select name="sum" id="sum" onChange={(e: any) => setValueOption(e.target.value)}>

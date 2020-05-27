@@ -56,6 +56,7 @@ export interface IModal {
     idShowModalBasket: boolean,
     showAddAuthor: boolean,
     showAddProduct: boolean,
+    showModalStripe: boolean,
 }
 
 export interface IRedirect {

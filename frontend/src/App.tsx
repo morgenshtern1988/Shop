@@ -10,11 +10,13 @@ import {Role} from "./helpers/role";
 import {ProductHomeContainer} from "./containers/Products";
 import {ModalContainer} from "./containers/Modal/ModalContainer";
 import {MyProfileContainer} from "./containers/MyProfile"
+import {loadStripe} from "@stripe/stripe-js";
 
 function App() {
+
     return (
         <div className="wrapper position-relative">
-            <ModalContainer/>
+            <ModalContainer />
             <main>
                 <Switch>
                     <Route path="/auth/register" component={Register}/>

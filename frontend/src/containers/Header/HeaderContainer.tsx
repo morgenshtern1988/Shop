@@ -1,7 +1,6 @@
 import React from "react";
-import {connect, useSelector} from "react-redux";
+import {connect} from "react-redux";
 import {history} from "../../helpers/history"
-import {RootState} from "../../types/inrerface";
 import {HeaderBottom, HeaderTop} from "../../components/Header";
 
 const HeaderContainer = ({auth}: any) => {

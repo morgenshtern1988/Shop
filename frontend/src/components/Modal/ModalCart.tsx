@@ -23,7 +23,6 @@ export const ModalCart = ({product}: any) => {
     };
     const deleteProductInCart = ({id, stateBasket}: any) => {
         const newArr = Cart.deleteProductInCart({id, stateBasket});
-        console.log(newArr);
         dispatch({
             type: "BUY_PRODUCT",
             payload: {
@@ -36,8 +35,11 @@ export const ModalCart = ({product}: any) => {
     return (
         <>
             <tr>
-                <td>{product.img}</td>
-                <td>{product.author}</td>
+                <td><img src={product.cover_image} alt={"Image:" + product.name}/></td>
+                <td>{product.author.map(((a: any) => {
+                    return <span key={a._id}>{a.name}</span>
+                }))}
+                </td>
                 <td>{product.name}</td>
                 <td>{product.price}$</td>
                 <td>
