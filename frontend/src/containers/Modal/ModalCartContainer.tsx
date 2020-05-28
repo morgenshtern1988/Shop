@@ -4,8 +4,6 @@ import {RootState} from "../../types/inrerface";
 import {useDispatch, useSelector} from "react-redux";
 import Button from "../../components/Button";
 import {ModalCart} from "../../components/Modal";
-import {Elements} from "@stripe/react-stripe-js";
-import {loadStripe} from "@stripe/stripe-js";
 
 export const ModalCartContainer = ({hideModal}: any) => {
 

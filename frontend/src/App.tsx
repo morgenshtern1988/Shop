@@ -10,7 +10,6 @@ import {Role} from "./helpers/role";
 import {ProductHomeContainer} from "./containers/Products";
 import {ModalContainer} from "./containers/Modal/ModalContainer";
 import {MyProfileContainer} from "./containers/MyProfile"
-import {loadStripe} from "@stripe/stripe-js";
 
 function App() {
 
