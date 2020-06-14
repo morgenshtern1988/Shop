@@ -1,5 +1,5 @@
 import {printingEditionModel} from "../../../dataAccess/entityModels/printing-edition"
-import {IPrintingEdition} from "../../../types/interface/printingEdition";
+import {IPrintingEdition} from "../api";
 import {authorModel} from "../../../dataAccess/entityModels/authors";
 import {resLengthCollection} from "../../../helpers/authHelpers";
 

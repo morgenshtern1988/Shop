@@ -2,7 +2,6 @@ import {IUser} from "../../user/api";
 import {authenticateUser} from "../repositories/authRepositories"
 
 export const loginUser = async (user: IUser) => {
-    console.log("BODY:", user);
     try {
         return await authenticateUser(user)
 

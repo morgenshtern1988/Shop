@@ -1,5 +1,5 @@
 import * as mongoose from 'mongoose';
-import {IPrintingEdition} from "../../types/interface/printingEdition";
+import {IPrintingEdition} from "../../features/printing-editions/api";
 import {printingEditionsType} from "../emuns/printingEditionsType";
 
 export const PrintingEditionSchema = new mongoose.Schema({

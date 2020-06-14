@@ -5,5 +5,7 @@ export interface IUser {
     email: string;
     password: string;
     confirmed: boolean;
+    removed_at: boolean;
+    status:boolean;
     role: boolean;
 }

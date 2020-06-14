@@ -22,7 +22,15 @@ export const UsersSchema = new mongoose.Schema({
     password: {
         type: String, required: true
     },
+    status: {
+        type: Boolean,
+        default: false,
+    },
     confirmed: {
+        type: Boolean,
+        default: false
+    },
+    removed_at: {
         type: Boolean,
         default: false
     },

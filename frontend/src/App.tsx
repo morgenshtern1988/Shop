@@ -12,7 +12,6 @@ import {ModalContainer} from "./containers/Modal/ModalContainer";
 import {MyProfileContainer} from "./containers/MyProfile"
 
 function App() {
-
     return (
         <div className="wrapper position-relative">
             <ModalContainer />

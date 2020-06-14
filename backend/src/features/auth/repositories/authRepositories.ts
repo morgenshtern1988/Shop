@@ -21,12 +21,12 @@ export const authenticateUser = async (user: IUser) => {
     try {
         const userInDb = await userModel.findOne({email: user.email});
         if (userInDb === null) throw new Error("This user is not registered");
-        if (!userInDb.confirmed) throw Error("Email not confirmed");
+        if (!userInDb.confirmed) throw Error("Email not confirmed or Wrong password");
         if (userInDb) {
             const isPasswordMatching = await bcrypt.compare(user.password, userInDb.password);
             if (isPasswordMatching) {
                 return await updateTokens(userInDb)
-            } else throw new Error("Wrong password")
+            } else throw new Error("Email not confirmed or Wrong password")
         } else throw new Error()
     } catch (e) {
         throw new Error(e.message)

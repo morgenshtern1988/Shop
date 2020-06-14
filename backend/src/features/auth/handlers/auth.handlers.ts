@@ -7,9 +7,9 @@ import {userModel} from "../../../dataAccess/entityModels/user";
 
 export const getUserInfo = async (req: Request, res: Response) => {
     const userInDb = await userModel.findById(req.user.id);
-    const {firstName, lastName, role, email} = userInDb;
+    const {firstName, lastName, role, email, _id} = userInDb;
     const data = {
-        firstName, lastName, role, email,
+        firstName, lastName, role, email, _id
     };
     res.json(data);
 };

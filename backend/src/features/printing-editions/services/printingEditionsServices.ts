@@ -4,7 +4,7 @@ import {
     adminUpdateProduct, sortCategory,
     userShowProductAsync, userSortCategory, userSortProduct
 } from "../repositories/printingEditionsRepositories";
-import {IPrintingEdition} from "../../../types/interface/printingEdition";
+import {IPrintingEdition} from "../api";
 import {adminShowProduct} from "../repositories/printingEditionsRepositories";
 import {printingEditionModel} from "../../../dataAccess/entityModels/printing-edition";
 import {paramPagination} from "../../../helpers/authHelpers";

@@ -7,6 +7,7 @@ export interface IAuth {
     loading: boolean,
     token: string,
     error: string,
+    _id:string,
     isAuthenticated: boolean,
 }
 

@@ -1,3 +1,3 @@
 export {ModalAuthor} from "./ModalAuthor";
-export {ModalCart} from "./ModalCart";
+export {ModalCartTable} from "./ModalCartTable";
 export {AddNewProduct} from "./AddNewProduct";

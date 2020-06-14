@@ -13,8 +13,8 @@ import {adminShowUser} from "./user/handlers";
 export const adminProductRouter = Router();
 //author
 adminProductRouter.get("/author", tokenAccessLifeCheck, AuthMiddleware, PermissionMiddleware([1]), adminShowAuthor);
-// adminProductRouter.get("/all-author", tokenAccessLifeCheck, AuthMiddleware, PermissionMiddleware([1]), adminShowAllAuthor);
-adminProductRouter.get("/all-author",adminShowAllAuthor);
+adminProductRouter.get("/all-author", tokenAccessLifeCheck, AuthMiddleware, PermissionMiddleware([1]), adminShowAllAuthor);
+// adminProductRouter.get("/all-author",adminShowAllAuthor);
 adminProductRouter.post("/author/create", adminCreateAuthor);
 adminProductRouter.delete("/author/:id", tokenAccessLifeCheck, AuthMiddleware, PermissionMiddleware([1]), adminRemoveAuthor);
 adminProductRouter.put("/author");

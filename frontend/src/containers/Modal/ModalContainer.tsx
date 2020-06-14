@@ -1,9 +1,8 @@
 import React from "react";
-import {ModalCartContainer} from "./ModalCartContainer";
+import {ModalCart} from "../../components/Modal/ModalCart";
 import {RootState} from "../../types/inrerface";
 import {useDispatch, useSelector} from "react-redux";
 import {AddNewProduct, ModalAuthor} from "../../components/Modal";
-import {ModalStripe} from "../../components/Modal/ModalStripe";
 import {Elements} from "@stripe/react-stripe-js";
 import {loadStripe} from "@stripe/stripe-js";
 
@@ -40,14 +39,14 @@ export const ModalContainer = () => {
     };
 
     const stripePromise = loadStripe('pk_test_k5zfmHubfmPQvJoSvg16goIX007DVoCjJt');
-    stripePromise.then((item: any) => console.log(item));
+    stripePromise.then((item: any) => item);
 
     return (
         <>
             {
                 modal.idShowModalBasket &&
                 <div className="modal">
-                    <ModalCartContainer hideModal={hideModal}/>
+                    <ModalCart hideModal={hideModal}/>
                 </div>
             }
             {
@@ -66,7 +65,7 @@ export const ModalContainer = () => {
                 modal.showModalStripe &&
                 <div className="modal" onClick={(e: any) => hideModalAddProductStripe(e)}>
                     <Elements stripe={stripePromise}>
-                        <ModalStripe/>
+                        <ModalCart/>
                     </Elements>
                 </div>
             }

@@ -1,4 +1,62 @@
 .modal {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;;
+  top: 0;
+  z-index: 5;
+  background: rgba(0, 0, 0, .2);
+
+
+  .wrap-modal-cart {
+    background-color: $white;
+    text-align: right;
+
+    thead {
+      vertical-align: middle;
+
+      th {
+        font-family: oswaldlight;
+        font-size: 24px;
+      }
+
+      h4 {
+        font-family: oswaldmedium;
+        text-transform: uppercase;
+        font-size: 28px;
+      }
+    }
+
+    .button-bottom, {
+      border: 1px solid $orange;
+      background-color: $white;
+      padding: 7px 75px;
+      margin: 0 5px;
+      color: #848383;
+      font-size: 24px;
+      font-weight: 600;
+      font-family: oswaldlight;
+
+      &:hover {
+        border: 1px solid $white;
+        background-color: $orange;
+        color: $white;
+      }
+    }
+  }
+
+  .bottom-modal {
+    background-color: #ccc;
+  }
+
+  .table-responsive {
+    width: 90vw;
+    text-align: center;
+  }
+
   .btn {
     border: 2px solid #FF6825;
     background-color: transparent;
@@ -17,6 +75,7 @@
   }
 }
 
+////////////////////////////
 .wrap-add {
   background-color: #3F3F3F;
 
@@ -152,5 +211,8 @@
     font-size: 20px;
     margin-bottom: 40px;
   }
+}
 
+.button-bottom {
+  //display: none;
 }
