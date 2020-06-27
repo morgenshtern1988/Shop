@@ -5,7 +5,7 @@ import {useDispatch, useSelector} from "react-redux";
 import Button from "../Button";
 import {ModalCartTable} from "./index";
 import StripeCheckout from "react-stripe-checkout";
-import {Orders} from "../../../shared/models/order";
+import {Orders} from "../../shared/models/order";
 import {asyncCreateOrder} from "../../services/order";
 
 export const ModalCart = ({hideModal}: any) => {

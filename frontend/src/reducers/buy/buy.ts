@@ -1,5 +1,5 @@
 import {asyncGetOrder} from "../../services/order";
-import {getOrders} from "../../../shared/models/order";
+import {getOrders} from "../../shared/models/order";
 
 let initialState = {
     productArr: [],

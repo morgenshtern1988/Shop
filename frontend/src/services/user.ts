@@ -1,5 +1,5 @@
 import api from "./common";
-import {IResetPassword} from "../types/inrerface/user";
+import {IResetPassword} from "../shared/models/user";
 
 export const fetchGetUser = async (): Promise<any> => {
     const {data} = await api.get("/admin/user");

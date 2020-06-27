@@ -37,7 +37,6 @@ const api = () => {
                     }
                 }).then(res => res.json().then((token: any) => token));
                 localStorage.setItem('token', JSON.stringify(refreshedToken));
-                // console.log(refreshedToken);
                 instance.defaults.headers.Authorization = refreshedToken.refreshToken;
                 return instance(originalRequest);
             }

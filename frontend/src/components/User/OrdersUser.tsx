@@ -1,12 +1,10 @@
 import React, {useEffect} from "react";
-import {HeaderTop} from "../Header";
-import ReactTable from 'react-table'
 import {thunkGetOrders} from "../../reducers/buy/buy";
 import {RootState} from "../../types/inrerface";
 import {useDispatch, useSelector} from "react-redux";
 import {Table} from "react-bootstrap";
 import Order from "./Order";
-import {IOrder} from "../../../shared/models/order";
+import {IOrder} from "../../shared/models/order";
 
 export const OrdersUser = () => {
     const storeUserID = (state: RootState) => state.loginReducer._id;
@@ -14,7 +12,7 @@ export const OrdersUser = () => {
     const id = useSelector(storeUserID);
     const orders = useSelector(storeOrders);
     const dispatch = useDispatch();
-
+    console.log(orders);
     useEffect(() => {
         dispatch(thunkGetOrders({user_id: id}))
     }, []);
@@ -26,12 +24,11 @@ export const OrdersUser = () => {
                     <thead className="thead-dark">
                     <tr>
                         <th>OrderID</th>
-                        <th>Order Time</th>
                         <th>Product</th>
                         <th>Title</th>
-                        <th>Qty</th>
-                        <th>Order amount</th>
-                        <th>Order Status</th>
+                        <th>Price</th>
+                        <th>Status</th>
+                        <th/>
                     </tr>
                     </thead>
                     <tbody>
