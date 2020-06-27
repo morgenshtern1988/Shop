@@ -1,5 +1,5 @@
 import {Response, Request, NextFunction} from "express";
-import {loginUser} from "../services/auth.services";
+import {loginUser, servicesResetPassword} from "../services/auth.services";
 import * as jwt from "jsonwebtoken";
 import appJwt from "../../../config/app";
 import {registerUserByEmail, updateTokens} from "../repositories/authRepositories";
@@ -67,6 +67,7 @@ export const refreshTokens = async (request: Request, response: Response) => {
 import msgs from "../email.msgs"
 import sendEmail from "../email.send";
 import templates from "../email.templates";
+import {IUser} from "../../user/api";
 
 export const collectEmail = async (req: Request, res: Response) => {
     const {email, firstName, lastName, password} = req.body;
@@ -122,3 +123,9 @@ export const confirmEmail = async (req: Request, res: Response) => {
         .catch(err => console.log(err))
 };
 
+
+export const resetPassword = async (request: Request, response: Response) => {
+    servicesResetPassword(request.body)
+        .then((res: any) => response.json(res))
+        .catch((err: any) => response.json(err))
+};

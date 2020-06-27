@@ -4,6 +4,9 @@ import {MyProfileInfo, MyProfileEdit} from "../../components/MyProfile";
 import {RootState} from "../../types/inrerface";
 import {useSelector} from "react-redux";
 import {HeaderTop} from "../../components/Header";
+import {PrivateRoute} from "../RoutePrivate";
+import {Role} from "../../helpers/role";
+import {OrdersUser} from "../../components/User";
 
 export const MyProfileContainer = ({roles}: any) => {
 
@@ -15,6 +18,7 @@ export const MyProfileContainer = ({roles}: any) => {
             <HeaderTop/>
             {role === roles ?
                 <Switch>
+                    <Route path='/order'  component={OrdersUser}/>
                     <Route exact path="/profile" render={() => <MyProfileInfo user={user}/>}/>
                     <Route exact path="/profile/edit" render={() => <MyProfileEdit user={user}/>}/>
                 </Switch>

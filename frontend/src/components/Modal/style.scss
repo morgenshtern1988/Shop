@@ -109,7 +109,7 @@
       width: 35vw;
       margin-bottom: 40px;
       background-color: #868686;
-      opacity: 0.3;
+      //opacity: 0.3;
       padding: 20px 0 20px 22px;
 
       &:focus {
@@ -135,13 +135,13 @@
 
   .currency {
     background-color: $white;
-    opacity: 1;
+    //opacity: 1;
     width: 10vw;
   }
 
   select, input {
     background-color: #868686;
-    opacity: 0.3;
+    //opacity: 0.3;
 
     &:focus {
       outline: none;
@@ -164,7 +164,7 @@
 
   textarea {
     background-color: #868686;
-    opacity: 0.3;
+    border: none;
     resize: none;
     color: $white;
 
@@ -179,7 +179,7 @@
     bottom: 0;
   }
 
-  textarea:placeholder-shown, select:placeholder-shown {
+  #Title:placeholder-shown, select:placeholder-shown {
     color: $white;
   }
 

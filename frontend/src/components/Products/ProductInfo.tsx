@@ -8,7 +8,6 @@ export const ProductInfo = ({product}: any) => {
     const redirectReducer = (state: RootState) => state.buyReducer;
     let stateBasket = useSelector(redirectReducer);
     const dispatch = useDispatch();
-    // console.log(product)
     const [valueOption, setValueOption] = useState(undefined);
     let [styleAlert, setStyleAlert] = useState({display: "none"});
     useEffect(() => {

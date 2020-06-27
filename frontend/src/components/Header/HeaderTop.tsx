@@ -82,7 +82,7 @@ export const HeaderTop = ({cleanLocalStorage}: any) => {
                                                     isActive.listProfile ?
                                                         <div className="position-absolute list flex-column">
                                                             <a href="http://localhost:3000/profile">My Profile</a>
-                                                            <a href="">My Orders</a>
+                                                            <a href="http://localhost:3000/order">My Orders</a>
                                                             <a href="http://localhost:3000/auth/login"
                                                                onClick={cleanLocalStorage}>Log Out</a>
                                                         </div> : <></>

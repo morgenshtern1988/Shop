@@ -26,17 +26,26 @@ export const ModalCart = ({hideModal}: any) => {
                 printing_edition_id: product._id,
                 count: product.itemsCount,
                 price: product.itemsPrice,
-                currency: "USA",
+                currency: "USD",
             }
         });
+        console.log("productArr:", productArr);
         const order: Orders = {
             user_id: _id,
             items: productArr,
             amount: stateCart.totalPrice,
             transaction_id: token.id,
         };
+        console.log("orders:", order);
         const result = await asyncCreateOrder(order);
         if (result) {
+            dispatch({
+                type: "BUY_PRODUCT", payload: {
+                    productArr: [],
+                    totalPrice: 0,
+                    totalCount: 0,
+                }
+            });
             disableModalStripe()
         }
     };

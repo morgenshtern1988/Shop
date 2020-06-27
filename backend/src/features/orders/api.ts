@@ -12,7 +12,9 @@ export interface OrderItem {
     price: number;
     currency: string;
 }
-
+export interface getOrders {
+    user_id: string
+}
 export interface Payment {
     transaction_id: string;
 }

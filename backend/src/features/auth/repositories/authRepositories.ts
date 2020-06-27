@@ -1,4 +1,4 @@
-import {IUser} from "../../user/api";
+import {IResetPassword, IUser} from "../../user/api";
 import {userModel} from "../../../dataAccess/entityModels/user";
 import {generateAccessToken, generateRefreshToken} from "../../../helpers/authHelpers";
 import * as bcrypt from 'bcrypt';
@@ -31,4 +31,15 @@ export const authenticateUser = async (user: IUser) => {
     } catch (e) {
         throw new Error(e.message)
     }
+};
+
+export const reposResetPassword = async (user: IResetPassword) => {
+    try {
+        user.newPassword = await bcrypt.hash(user.newPassword, 10);
+        const updatePasswordUSer = await userModel.findOneAndUpdate({_id: user.id}, {password: user.newPassword});
+        return await updatePasswordUSer;
+    } catch (err) {
+        return new Error(err.status)
+    }
+
 };

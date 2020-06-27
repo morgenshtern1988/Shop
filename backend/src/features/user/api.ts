@@ -9,3 +9,9 @@ export interface IUser {
     status:boolean;
     role: boolean;
 }
+export interface IResetPassword {
+    id: string;
+    oldPassword: string;
+    newPassword: string;
+}
+

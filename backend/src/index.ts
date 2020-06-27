@@ -3,7 +3,6 @@ import *  as bodyParser from 'body-parser';
 import PORT from "./config/app";
 import {authRouter} from "./features/auth";
 import {adminProductRouter, userProductRouter} from "./features";
-import {Response, Request} from "express";
 import {connect} from "./dataAccess/dataBase/connectdb";
 import {userOrder} from "./features/orders";
 

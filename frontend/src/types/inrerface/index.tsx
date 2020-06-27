@@ -1,3 +1,5 @@
+import {IOrder, OrderItem} from "../../../shared/models/order";
+
 export interface IAuth {
     firstName: string,
     lastName: string,
@@ -7,7 +9,7 @@ export interface IAuth {
     loading: boolean,
     token: string,
     error: string,
-    _id:string,
+    _id: string,
     isAuthenticated: boolean,
 }
 
@@ -51,7 +53,10 @@ export interface IBasket {
     productArr: any,
     totalPrice: number,
     totalCount: number,
+    orders: Array<IOrder>
 }
+
+
 
 export interface IModal {
     idShowModalBasket: boolean,

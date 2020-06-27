@@ -8,16 +8,14 @@ import {loadPage} from "../../helpers/pages";
 
 export const AddNewProduct = ({hideModalAddProduct}: any) => {
     const dispatch = useDispatch();
-
-///////////////////////////////////////
     const authorsReducer = (state: RootState) => state.authorsReducer.authorsArr;
     const author = useSelector(authorsReducer);
     useEffect(() => {
         dispatch(getAllAuthorsThunk())
     }, []);
-/////////////////////////////////
     const productReducer = (state: RootState) => state.productReducer.stateProduct;
     const product = useSelector(productReducer);
+    console.log(product);
     const setName = (name: any) => dispatch({type: "STATE_NEW_PRODUCT", payload: {name}});
     const setDescription = (description: any) => dispatch({type: "STATE_NEW_PRODUCT", payload: {description}});
     const setCategory = (type: any) => dispatch({type: "STATE_NEW_PRODUCT", payload: {type}});
@@ -62,7 +60,6 @@ export const AddNewProduct = ({hideModalAddProduct}: any) => {
         let reader = new FileReader();
         let file = event.target.files[0];
         reader.onloadend = () => {
-            // console.log("succefull");
             let result = reader.result;
             dispatch({type: "STATE_NEW_PRODUCT", payload: {cover_image: result}})
         };
